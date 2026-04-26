@@ -1,32 +1,42 @@
 @import "tailwindcss";
 
-:root {
+:root{
   --primary: #0d3b66;
   --secondary: #ff7f11;
   --danger: #ff5555;
   --white: #ffffff;
 }
-.text-primary {
+.text-primary{
   color: var(--primary);
 }
-.text-secondary {
+.text-secondary{
   color: var(--secondary);
 }
-.text-white {
+.text-white{
   color: var(--white);
 }
-.bg-primary {
+.bg-primary{
   background-color: var(--primary);
 }
-.bg-white {
+.bg-white{
   background-color: var(--white);
 }
-.border-primary {
+.border-white{
+  border-color: var(--white);
+}
+.border-primary{
   border-color: var(--primary);
 }
-.text-danger {
+.text-danger{
   color: var(--danger);
 }
+
+.heroSectionBG{
+  background-size: 100%;
+  background-image: url('../assets//images/herosection-image.jpg');
+}
+
+
 
 @theme inline {
   --color-background: var(--background);

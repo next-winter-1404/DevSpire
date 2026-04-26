@@ -1,6 +1,10 @@
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
+import HeroSection from "@/components/HeroSection/HeroSection";
 
-export default function Home() {
-  return <div>home page</div>;
+
+export default function Landing() {
+  return(
+    <div className="px-12">
+      <HeroSection/>
+    </div>
+  ) 
 }

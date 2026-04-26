@@ -1,0 +1,34 @@
+{
+    "header":{
+        "home": "Home",
+        "fastReserve": "Fast Reserve",
+        "mortgageAndRent": "Mortgage and Rent",
+        "blogs": "Blogs",
+        "aboutUs": "About US",
+        "login": "Login",
+        "signUp": "Sign Up"
+    },
+    "heroSection":{
+        "title": "Find your dream home or favorite hotel here.",
+        "description": "From buying and selling property to short-term hotel and apartment rentals; easily search, compare, and make the best choice.",
+        "button": "Mortgage and Property Lease"
+    },
+    "footer":{
+        "logo": "Logo",
+        "footerNote": "We are with you on the path of renting, buying, and selling villas, so that you can have a pleasant experience of choosing a memorable residence or investment with confidence and peace of mind.",
+        "accommodationReservation": "Accommondation Reservation",
+        "accReservationText1": "Accommodation booking guide",
+        "accReservationText2": "Payment method",
+        "accReservationText3": "Cancellation of accommodation reservation",
+        "customerServices": "Customer Services",
+        "customerServicesText1": "Guest FAQs",
+        "customerServicesText2": "Host FAQ",
+        "customerServicesText3": "How do I register my residence?",
+        "customerServicesText4": "User privacy",
+        "contactUs": "Contact US",
+        "contactUsText1": "09229167194 - 098541612310",
+        "contactUsText2": "Delta@gmail.com",
+        "contactUsText3": "Gilan, Rasht, Azadi Square, next to Azimizadeh Crossroads",
+        "law": "All material and intellectual property rights of this work are reserved for your brand."
+    }
+}

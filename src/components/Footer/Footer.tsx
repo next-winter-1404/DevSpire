@@ -26,22 +26,22 @@ const Footer = () => {
                 <div className='flex gap-6'>
                     <div className='flex flex-col gap-4'>
                         <h3 className='text-[20px] text-secondary'>نحوه رزرو اقامتگاه</h3>
-                        <span className='text-[16px] text-white'>راهنمای رزرو اقامتگاه</span>
-                        <span className='text-[16px] text-white'>شیوه پرداخت</span>
-                        <span className='text-[16px] text-white'>لغو رزرو اقامتگاه</span>
+                        <span className='text-[16px] text-white cursor-pointer'>راهنمای رزرو اقامتگاه</span>
+                        <span className='text-[16px] text-white cursor-pointer'>شیوه پرداخت</span>
+                        <span className='text-[16px] text-white cursor-pointer'>لغو رزرو اقامتگاه</span>
                     </div>
                     <div className='flex flex-col gap-4'>
                         <h3 className='text-[20px] text-secondary'>خدمات مشتریان</h3>
-                        <span className='text-[16px] text-white'>پرسش های متداول مهمان</span>
-                        <span className='text-[16px] text-white'>پرسش های متداول میزبان</span>
-                        <span className='text-[16px] text-white'>چطور اقامتگاه ثبت کنم ؟</span>
-                        <span className='text-[16px] text-white'>حریم شخصی کاربران</span>
+                        <span className='text-[16px] text-white cursor-pointer'>پرسش های متداول مهمان</span>
+                        <span className='text-[16px] text-white cursor-pointer'>پرسش های متداول میزبان</span>
+                        <span className='text-[16px] text-white cursor-pointer'>چطور اقامتگاه ثبت کنم ؟</span>
+                        <span className='text-[16px] text-white cursor-pointer'>حریم شخصی کاربران</span>
                     </div>
                     <div className='flex flex-col gap-4'>
                         <h3 className='text-[20px] text-secondary'>راه ارتباطی با ما</h3>
-                        <span className='text-[16px] text-white'>09229167194 - 098541612310</span>
-                        <span className='text-[16px] text-white'>Delta@gmail.com</span>
-                        <span className='text-[16px] text-white'>گیلان ، رشت ، میدان آزادی ، جنب چهار راه عظیمی زاده</span>
+                        <span className='text-[16px] text-white cursor-pointer'>09229167194 - 098541612310</span>
+                        <span className='text-[16px] text-white cursor-pointer'>Delta@gmail.com</span>
+                        <span className='text-[16px] text-white cursor-pointer'>گیلان ، رشت ، میدان آزادی ، جنب چهار راه عظیمی زاده</span>
                     </div>
                 </div>
             </div>

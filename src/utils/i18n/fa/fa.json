@@ -1,0 +1,34 @@
+{
+    "header":{
+        "home": "خانه",
+        "fastReserve": "رزرو سریع",
+        "mortgageAndRent": "رهن و اجاره",
+        "blogs": "مقالات",
+        "aboutUs": "درباره ما",
+        "login": "ورود",
+        "signUp": "ثبت نام"
+    },
+    "heroSection":{
+        "title": "خانه رویایی یا هتل دلخواهت رو اینجا پیدا کن",
+        "description": "از خرید و فروش ملک تا اجاره کوتاه‌مدت هتل و آپارتمان؛ به راحتی جستجو کن، مقایسه کن و بهترین انتخاب رو داشته باش.",
+        "button": "رهن و اجاره ملک"
+    },
+    "footer":{
+        "logo": "لوگو",
+        "footerNote": "ما همراه شما هستیم در مسیر اجاره، خرید و فروش ویلا؛ تا با اطمینان و آرامش، تجربه‌ای دلنشین از انتخاب اقامتگاه یا سرمایه‌گذاری به‌یادماندنی داشته باشید.",
+        "accommodationReservation": "رزرو اقامتگاه",
+        "accReservationText1": "راهنمای رزرو اقامتگاه",
+        "accReservationText2": "شیوه پرداخت",
+        "accReservationText3": "لغو رزرو اقامتگاه",
+        "customerServices": "خدمات مشتریان",
+        "customerServicesText1": "پرسش های متداول مهمان",
+        "customerServicesText2": "پرسش های متداول میزبان",
+        "customerServicesText3": "چطور اقامتگاه ثبت کنم ؟",
+        "customerServicesText4": "حریم شخصی کاربران",
+        "contactUs": "راه ارتباطی با ما",
+        "contactUsText1": "09229167194 - 098541612310",
+        "contactUsText2": "Delta@gmail.com",
+        "contactUsText3": "گیلان ، رشت ، میدان آزادی ، جنب چهار راه عظیمی زاده",
+        "law": "تمام حقوق مادی و معنوی این اثر برای برند شما محفوظ است ."
+    }
+}
