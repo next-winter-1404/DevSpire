@@ -1,14 +1,15 @@
 import React from "react";
-import Home from "@/icons/Home";
-import Arrow from "@/icons/Arrow";
+import Home from "../../../public/icons/Home";
+import Arrow from "../../../public/icons/Arrow";
 import ToggleThem from "../common/ToggleTheme";
 
 const Header = () => {
+
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between w-ful mt-6 mx-auto px-12">
       <div className="flex items-center gap-2">
         <Home />
-        <span className="font-medium text-primary">لوگو</span>
+        <span className="font-medium text-[#0D3B66]">لوگو</span>
         <div>
           <ToggleThem />
         </div>
@@ -27,10 +28,10 @@ const Header = () => {
         <span className="cursor-pointer">درباره ما</span>
       </div>
       <div className="flex gap-6">
-        <button className="py-2 px-6 text-[#FFFFFF] bg-primary rounded-[48px] cursor-pointer">
+        <button className="py-2 px-6 text-[#FFFFFF] bg-[#0D3B66] rounded-[48px] cursor-pointer">
           ورود
         </button>
-        <button className="py-2 px-6 text-primary border border-primary rounded-[48px] cursor-pointer">
+        <button className="py-2 px-6 text-[#0D3B66] border border-[#0D3B66] rounded-[48px] cursor-pointer">
           ثبت نام
         </button>
       </div>
