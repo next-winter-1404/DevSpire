@@ -13,6 +13,18 @@
         "description": "From buying and selling property to short-term hotel and apartment rentals; easily search, compare, and make the best choice.",
         "button": "Mortgage and Property Lease"
     },
+    "heroSectionForm":{
+        "title": "Reserve Now!",
+        "title1": "Select destination",
+        "placeholder1": "Select the destination",
+        "title2": "Number of people",
+        "placeholder2": "Select the number of people.",
+        "title3": "Date of arrival",
+        "placeholder3": "Select the arrival date",
+        "title4": "Departure date",
+        "placeholder4": "Select the departure date",
+        "button": "Search"
+    },
     "footer":{
         "logo": "Logo",
         "footerNote": "We are with you on the path of renting, buying, and selling villas, so that you can have a pleasant experience of choosing a memorable residence or investment with confidence and peace of mind.",
