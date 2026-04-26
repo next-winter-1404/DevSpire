@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Home from "@/icons/Home";
 import Arrow from "@/icons/Arrow";
 
@@ -23,12 +24,19 @@ const Header = () => {
         <span>درباره ما</span>
       </div>
       <div className="flex gap-6">
-        <button className="py-2 px-6 text-[#FFFFFF] bg-primary rounded-[48px]">
-          ورود
-        </button>
-        <button className="py-2 px-6 text-primary border border-primary rounded-[48px]">
-          ثبت نام
-        </button>
+        <Link href="/auth/login">
+
+          <button className="py-2 px-6 text-[#FFFFFF] bg-primary rounded-[48px]">
+            ورود
+          </button>
+        </Link>
+        <Link href="/auth/register">
+
+          <button className="py-2 px-6 text-primary border border-primary rounded-[48px]">
+            ثبت نام
+          </button>
+        </Link>
+
       </div>
     </div>
   );
