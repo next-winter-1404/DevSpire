@@ -26,11 +26,19 @@
 .bg-white {
   background-color: var(--white);
 }
+.border-white {
+  border-color: var(--white);
+}
 .border-primary {
   border-color: var(--primary);
 }
 .text-danger {
   color: var(--danger);
+}
+
+.heroSectionBG {
+  background-size: 100%;
+  background-image: url("../assets//images/herosection-image.jpg");
 }
 
 @theme inline {

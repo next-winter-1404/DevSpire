@@ -14,23 +14,23 @@ const Header = () => {
         </div>
       </div>
       <div className="flex items-center gap-8">
-        <span>خانه</span>
+        <span className="cursor-pointer">خانه</span>
         <div className="flex items-center gap-2">
-          <span>رزرو سریع</span>
+          <span className="cursor-pointer">رزرو سریع</span>
           <Arrow />
         </div>
         <div className="flex items-center gap-2">
-          <span>رهن و اجاره</span>
+          <span className="cursor-pointer">رهن و اجاره</span>
           <Arrow />
         </div>
-        <span>مقالات</span>
-        <span>درباره ما</span>
+        <span className="cursor-pointer">مقالات</span>
+        <span className="cursor-pointer">درباره ما</span>
       </div>
       <div className="flex gap-6">
-        <button className="py-2 px-6 text-[#FFFFFF] bg-primary rounded-[48px]">
+        <button className="py-2 px-6 text-[#FFFFFF] bg-primary rounded-[48px] cursor-pointer">
           ورود
         </button>
-        <button className="py-2 px-6 text-primary border border-primary rounded-[48px]">
+        <button className="py-2 px-6 text-primary border border-primary rounded-[48px] cursor-pointer">
           ثبت نام
         </button>
       </div>
