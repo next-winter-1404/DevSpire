@@ -11,7 +11,7 @@
     "heroSection":{
         "title": "Find your dream home or favorite hotel here.",
         "description": "From buying and selling property to short-term hotel and apartment rentals; easily search, compare, and make the best choice.",
-        "button": "Mortgage and Property Lease"
+        "mortgageButton": "Mortgage and Property Lease"
     },
     "heroSectionForm":{
         "title": "Reserve Now!",
@@ -23,7 +23,58 @@
         "placeholder3": "Select the arrival date",
         "title4": "Departure date",
         "placeholder4": "Select the departure date",
-        "button": "Search"
+        "searchButton": "Search"
+    },
+    "categories":{
+        "title": "Categories",
+        "apartment": "Apartment",
+        "villaEstate": "Villa Estate",
+        "withSwimmingPool": "With Swimming Pool",
+        "cottageEstate": "Cottage Estate",
+        "coastalEstate": "Coastal Estate",
+        "ecotourism": "Ecotourism"
+    },
+    "specialOffers":{
+        "title": "Special villa rental offers",
+        "seeAllButton": "See All"
+    },
+    "whyChooseUs":{
+        "title": "Why should you choose us?",
+        "text": "Finding the right villa is not always easy. We are here to make things easy for you. From hundreds of files, we select only the best and most reliable options so that you do not waste your valuable time searching endlessly. Whether you are looking for a short-term vacation rental or thinking of buying or renting long-term, we introduce the best choices according to your budget and needs. Our 24-hour support and step-by-step guidance will ensure that you are never alone and find your dream villa with confidence."
+    },
+    "bestChoice":{
+        "title": "The best choice for vacation and stay",
+        "seeAllButton": "See All"
+    },
+    "rentVilla":{
+        "title": "Rent a villa in the most popular destinations in Iran"
+    },
+    "differentFeatures":{
+        "title": "Features that make us different",
+        "title1": "Full support and transparency",
+        "title1text1": "Fast and 24-hour response",
+        "title1text2": "Detailed description of the property conditions",
+        "title1text3": "Transparency in pricing and contracts",
+        "title2": "Real and up-to-date files",
+        "title2text1": "Only authentic and approved villas",
+        "title2text2": "Continuously updating files",
+        "title2text3": "Delete duplicate and invalid files",
+        "title3": "Wide variety of villas",
+        "title3text1": "Beach, forest and urban villas",
+        "title3text2": "Economical to luxurious options",
+        "title3text3": "A choice that suits your lifestyle",
+        "title4": "Free expert advice",
+        "title4text1": "Guidance based on your budget and needs",
+        "title4text2": "Suggest the best areas to stay",
+        "title4text3": "Accompanying until the contract is signed"
+    },
+    "needHelp":{
+        "title": "Need help?",
+        "description": "Our experts are always ready to answer your questions.",
+        "freeConsultationBtn": "Get Free Consultation"
+    },
+    "sayAboutUs":{
+        "title": "What customers say about us?"
     },
     "footer":{
         "logo": "Logo",
