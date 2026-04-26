@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { IReserveCard } from "../types";
+import Tilt from "react-parallax-tilt";
 
 type props = {
   className?: string;

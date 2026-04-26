@@ -11,11 +11,11 @@ const FastReserveView = () => {
       <div className="mb-8">
         <BreadCrumbs items={breadcrumbItemsMock} />
       </div>
-      <div className=" w-full lg:w-[60%] flex items-center justify-between mb-6">
+      <div className=" w-full lg:w-[60%] flex items-center justify-between mb-8">
         <h2 className="text-[#1E2022] lg:text-[24px] font-bold ">فیلتر ها</h2>
         <span className="lg:text-[20px] text-[#0D3B66] ">16 نتیجه</span>
       </div>
-      <div className="w-full flex flex-col lg:flex-row items-start lg:justify-between  h-auto lg:h-[235px] ">
+      <div className="w-full flex flex-col lg:flex-row items-start lg:justify-between  h-auto lg:h-[235px] mb-10 ">
         <div className=" w-full lg:w-[60%] h-full">
           <FastReserveSideFilters />
         </div>
@@ -23,7 +23,7 @@ const FastReserveView = () => {
           <LeafletMapClientWrapper />
         </div>
       </div>
-      <div className="mt-8">
+      <div>
         <ReserveCardList />
       </div>
     </div>

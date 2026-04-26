@@ -8,11 +8,15 @@ export default function MainLayout({
 }) {
   return (
     <>
-      <Header />
-      <main className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 container">
+      <header className="px-4 sm:px-6 lg:px-10 pt-8 sm:pt-5  ">
+        <Header />
+      </header>
+      <main className="px-4 sm:px-6 lg:px-10 py-8 sm:py-5 lg:py-10 container">
         {children}
       </main>
-      <Footer />
+      <footer className="px-4 sm:px-6 lg:px-10 py-8 sm:py-5 ">
+        <Footer />
+      </footer>
     </>
   );
 }

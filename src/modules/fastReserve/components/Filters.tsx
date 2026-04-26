@@ -10,7 +10,7 @@ const FastReserveSideFilters = () => {
                 type="text"
                 placeholder="نام هتل مورد نظر"
                 className="w-full bg-[#F5F5F5] border-none rounded-[40px] py-3 px-5 placeholder:text-[#777777]
-                placeholder:text-[16px] text-right  outline-none text-[#777777] text-[16px]"
+                placeholder:text-[16px] text-right  outline-none text-[#1E2022] text-[16px]"
               />
               <img
                 src="/icons/fastReservePage/search.png"

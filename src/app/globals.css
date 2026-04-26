@@ -1,10 +1,15 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --primary: #0d3b66;
   --secondary: #ff7f11;
   --danger: #ff5555;
   --white: #ffffff;
+
+  --background: #ffffff;
+  --foreground: #0a0a0a;
 }
 .text-primary {
   color: var(--primary);
@@ -36,10 +41,20 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+.light {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 body {

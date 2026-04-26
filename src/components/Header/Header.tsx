@@ -1,13 +1,17 @@
 import React from "react";
 import Home from "@/icons/Home";
 import Arrow from "@/icons/Arrow";
+import ToggleThem from "../common/ToggleTheme";
 
 const Header = () => {
   return (
-    <div className="flex justify-between mt-6 px-12">
+    <div className="flex justify-between">
       <div className="flex items-center gap-2">
         <Home />
         <span className="font-medium text-primary">لوگو</span>
+        <div>
+          <ToggleThem />
+        </div>
       </div>
       <div className="flex items-center gap-8">
         <span>خانه</span>
