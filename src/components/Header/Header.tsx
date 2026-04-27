@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex justify-center mt-6 px-12">
+      <div className="flex justify-center">
         <div className="flex justify-between w-full">
           <div className="flex items-center gap-2">
             <Image

@@ -4,10 +4,11 @@ import ReserveCardList from "../components/ReserveCardList";
 import LeafletMapClientWrapper from "@/components/common/LeafletMapClientWrapper";
 import BreadCrumbs from "@/components/common/BreadCrumbs";
 import { breadcrumbItemsMock } from "../mocks/data";
+import Container from "@/components/common/Container";
 
 const FastReserveView = () => {
   return (
-    <div>
+    <Container>
       <div className="mb-8">
         <BreadCrumbs items={breadcrumbItemsMock} />
       </div>
@@ -28,7 +29,7 @@ const FastReserveView = () => {
       <div>
         <ReserveCardList />
       </div>
-    </div>
+    </Container>
   );
 };
 

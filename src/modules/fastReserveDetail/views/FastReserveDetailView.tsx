@@ -13,10 +13,11 @@ import DetailTabs from "../components/DetailTabs";
 import SliderWrapper from "@/components/common/SliderWrapper";
 import { MOCK_DATA } from "@/modules/fastReserve/mocks/data";
 import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
+import Container from "@/components/common/Container";
 
 const FastReserveDetailView = () => {
   return (
-    <div className="w-full flex flex-col">
+    <Container className="w-full flex flex-col">
       <div className="w-full mb-8 md:mb-6">
         <BreadCrumbs items={breadcrumbItemsMock2} />
       </div>
@@ -67,7 +68,7 @@ const FastReserveDetailView = () => {
           </SliderWrapper>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
