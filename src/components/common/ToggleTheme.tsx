@@ -1,5 +1,6 @@
 "use client";
 import { useTheme } from "@/utils/helper/useTheme";
+import Image from "next/image";
 
 const ToggleThem = () => {
   const { theme, setTheme, mounted } = useTheme();
@@ -7,14 +8,29 @@ const ToggleThem = () => {
   return (
     <div
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="rounded-full  cursor-pointer pr-6 "
+      className="rounded-full  cursor-pointer  "
     >
       {theme == "light" ? (
-        <span className="bg-slate-700  transition-colors hover:bg-[#644DB3] transition-all duration-100">
-          moon
-        </span>
+        <div className="bg-slate-700/50 rounded-full transition-all duration-100 hover:bg-[#644DB3] p-2 flex items-center justify-center">
+          <div className="relative w-5 h-5 md:w-[25px] md:h-[25px]">
+            <Image
+              src="/icons/fastReservePage/moon.svg"
+              alt="moon"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
       ) : (
-        <span className="bg-orange-400  transition-colors">sun</span>
+        <div className="bg-orange-400 p-2 rounded-full transition-colors flex items-center justify-center">
+          <Image
+            src="/icons/fastReservePage/sun.svg"
+            alt="sun"
+            width={25}
+            height={25}
+            className="w-5 h-5 md:w-[25px] md:h-[25px]"
+          />
+        </div>
       )}
     </div>
   );

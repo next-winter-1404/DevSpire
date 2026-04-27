@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { IReserveCard } from "../types";
-import Tilt from "react-parallax-tilt";
-
+import Link from "next/link";
 type props = {
   className?: string;
   property: IReserveCard;
@@ -10,8 +9,8 @@ type props = {
 const FastReserveCard = ({ property, className }: props) => {
   return (
     <div
-      className={` ${className} flex flex-col bg-[#FFFFFF] rounded-2xl overflow-hidden border border-[#DDDDDD]
-     shadow-sm hover:shadow-md transition-shadow`}
+      className={` ${className} flex flex-col bg-[#FFFFFF] dark:bg-[#27272A] rounded-2xl overflow-hidden border
+       border-[#DDDDDD] dark:border-[#333333] shadow-sm hover:shadow-md transition-shadow`}
     >
       <div className="relative h-60 w-full">
         <Image
@@ -27,66 +26,81 @@ const FastReserveCard = ({ property, className }: props) => {
         )}
       </div>
 
-      <div className="px-8 py-6 flex flex-col gap-3">
+      <div className="px-8 pb-6 pt-5 flex flex-col gap-3  ">
         <div className=" flex items-center gap-4 text-[20px] font-bold">
           {property.oldPrice && (
-            <span className=" flex justify-start items-center gap-2 text-[#777777] line-through">
+            <span className=" flex justify-start items-center gap-2 text-[#777777] line-through decoration-1">
               {property.oldPrice.toLocaleString()}
-              <span className="text-[#777777]">تومان</span>
+              <span>تومان</span>
             </span>
           )}
-          <span className=" flex justify-start items-center gap-2  text-[#1E2022]">
+          <span className=" flex justify-start items-center gap-2  text-[#1E2022] dark:text-[#FAFAFA]">
             {property.price.toLocaleString()}
-            <span className=" text-[#777777]">تومان</span>
+            <span>تومان</span>
           </span>
         </div>
 
         <div className="flex flex-col justify-start items-start gap-3">
-          <h3 className="font-bold text-[20px] text-[#1E2022]">
+          <Link
+            href={`/fast-reserve/${property.id}`}
+            className="font-bold text-[20px] hover:text-[#0D3B66] transition transition-colors duration-200
+             text-[#1E2022] dark:text-[#FAFAFA] cursor-pointer "
+          >
             {property.title}
-          </h3>
-          <div className="flex items-center text-[#777777] text-[16px] gap-1">
-            <span>{property.location}</span>
-            <img
+          </Link>
+          <div className="flex items-center text-[#777777] text-[16px] gap-2">
+            <Image
               src="/icons/fastReservePage/location.png"
               alt="location"
-              className="w-4 h-4"
+              width={20}
+              height={20}
             />
+            <span>{property.location}</span>
           </div>
         </div>
 
-        <hr className="border-[#DDDDDD] my-2" />
+        <hr className="border-[#DDDDDD] dark:border-[#3F3F46] my-2" />
 
-        <div className="flex items-center justify-between text-[#777777] text-[16px]">
+        <div
+          className="flex flex-wrap items-center
+         gap-y-3 gap-x-6
+       text-[#777777]
+       text-[16px]
+         lg:flex-nowrap lg:justify-between"
+        >
           <div className="flex items-center gap-1">
-            <img
+            <Image
               src="/icons/fastReservePage/car.png"
               alt="car"
-              className="w-5 h-5"
+              width={20}
+              height={20}
             />
             <span>{property.parking} پارکینگ</span>
           </div>
           <div className="flex items-center gap-1">
-            <img
+            <Image
               src="/icons/fastReservePage/customers.png"
               alt="customers"
-              className="w-5 h-5"
+              width={20}
+              height={20}
             />
             <span>{property.guests} نفر</span>
           </div>
           <div className="flex items-center gap-1">
-            <img
+            <Image
               src="/icons/fastReservePage/bath.png"
               alt="bath"
-              className="w-5 h-5"
+              width={20}
+              height={20}
             />
             <span>{property.bathrooms} حمام</span>
           </div>
           <div className="flex items-center gap-1">
-            <img
+            <Image
               src="/icons/fastReservePage/bed.png"
               alt="bed"
-              className="w-5 h-5"
+              width={20}
+              height={20}
             />
             <span>{property.bedrooms} خواب</span>
           </div>
