@@ -6,8 +6,8 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div className="flex flex-col gap-10 w-[1344px] mt-30 mx-auto pt-20 pb-10 px-10 rounded-[24px] bg-[#0D3B66]">
-      <div className="flex justify-between">
+    <div className="flex flex-col gap-10 mt-30 mx-auto pt-20 pb-10 px-10 rounded-[24px] bg-[#0D3B66]">
+      <div className="flex flex-col justify-between   sm:flex sm:flex-row">
         <div className="flex flex-col gap-8">
           <div className="flex gap-2 text-[#FF7F11]">
             <Home />
@@ -21,9 +21,9 @@ const Footer = () => {
             </p>
           </div>
           <div className="flex gap-8">
-            <Telegram />
-            <Instagram />
-            <Linkedin />
+            <Telegram/>
+            <Instagram/>
+            <Linkedin/>
           </div>
         </div>
         <div className="flex gap-6">

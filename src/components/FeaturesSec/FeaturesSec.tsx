@@ -6,7 +6,8 @@ import Tick from '../../../public/icons/Tick'
 const FeaturesSec = () => {
   return (
     <div className='flex gap-30 w-full mt-24 mx-auto px-[144px]'>
-        <Image src={FeatureSecImg} alt='featureSec' width={480} height={480}/>
+        <Image src={FeatureSecImg} alt='featureSec' width={480} height={480}
+        className='hidden w-[120px] h-[120px]   sm:block sm:w-[480px] h-[480px]'/>
         <div className='flex flex-col gap-10'>
             <h2 className='font-bold text-[32px] text-[#1E2022]'>ویژگی هایی که ما را متفاوت می سازد</h2>
             <div className='flex flex-col gap-10'>

@@ -11,7 +11,7 @@ const HeroSectionForm = () => {
     <Formik initialValues={{selectDestination: "" , peopleNumber: "" , arrivalDate: "", departureDate: ""}} onSubmit={onSubmitForm}>
       <Form className='flex flex-col gap-5 p-6 bg-white rounded-[24px]'>
         <h2 className='font-bold text-[20px] text-primary'>همین حالا رزرو کنید!</h2>
-        <div>
+        <div className='flex flex-col gap-4'>
           <div className='flex flex-col items-start gap-2'>
             <label htmlFor='selectDestination'>انتخاب مقصد</label>
             <Field className='w-[455px] h-[46px] bg-[#F5F5F5] rounded-[40px]' name='selectDestination'/>
@@ -29,7 +29,7 @@ const HeroSectionForm = () => {
             <Field className='w-[455px] h-[46px] bg-[#F5F5F5] rounded-[40px]' name='departureDate'/>
           </div>          
         </div>
-        <button className='w-full py-4 text-white bg-primary rounded-[40px]'>جستجو کنید</button>
+        <button className='w-full py-4 text-[#FFFFFF] bg-[#0D3B66] rounded-[40px]'>جستجو کنید</button>
       </Form>
     </Formik>
   )
