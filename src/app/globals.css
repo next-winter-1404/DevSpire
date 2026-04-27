@@ -6,24 +6,31 @@
   --danger: #ff5555;
   --white: #ffffff;
 }
+
 .text-primary {
   color: var(--primary);
 }
+
 .text-secondary {
   color: var(--secondary);
 }
+
 .text-white {
   color: var(--white);
 }
+
 .bg-primary {
   background-color: var(--primary);
 }
+
 .bg-white {
   background-color: var(--white);
 }
+
 .border-primary {
   border-color: var(--primary);
 }
+
 .text-danger {
   color: var(--danger);
 }
@@ -39,6 +46,27 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  }
+}
+@keyframes imageReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeText {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
