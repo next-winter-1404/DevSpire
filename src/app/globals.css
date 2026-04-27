@@ -3,11 +3,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 
-.heroSectionBG {
-  background-size: 100%;
-  background-image: url('/images/landing/herosection-image.jpg');
-}
-
 
 
 

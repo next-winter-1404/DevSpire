@@ -1,12 +1,12 @@
-import HeroSection from "@/components/HeroSection/HeroSection";
-import Categories from "@/components/Categories/Categories";
-import SpecialOffers from "@/components/SpecialOffers/SpecialOffers";
-import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
-import RentVilla from "@/components/RentVilla/RentVilla";
-import BestChoice from "@/components/BestChoice/BestChoice";
-import FeaturesSec from "@/components/FeaturesSec/FeaturesSec";
-import NeedHelp from "@/components/NeedHelp/NeedHelp";
-import SayAboutUs from "@/components/SayAboutUs/SayAboutUs";
+import HeroSection from "@/components/landing/HeroSection/HeroSection";
+import Categories from "@/components/landing/Categories/Categories";
+import SpecialOffers from "@/components/landing/SpecialOffers/SpecialOffers";
+import WhyChooseUs from "@/components/landing/WhyChooseUs/WhyChooseUs";
+import RentVilla from "@/components/landing/RentVilla/RentVilla";
+import BestChoice from "@/components/landing/BestChoice/BestChoice";
+import FeaturesSec from "@/components/landing/FeaturesSec/FeaturesSec";
+import NeedHelp from "@/components/landing/NeedHelp/NeedHelp";
+import SayAboutUs from "@/components/landing/SayAboutUs/SayAboutUs";
 
 
 export default function Landing() {
@@ -16,8 +16,8 @@ export default function Landing() {
       <Categories/>
       <SpecialOffers/>
       <WhyChooseUs/>
-      <RentVilla/>
       <BestChoice/>
+      <RentVilla/>
       <FeaturesSec/>
       <NeedHelp/>
       <SayAboutUs/>
