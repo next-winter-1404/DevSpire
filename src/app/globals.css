@@ -2,11 +2,15 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  --primary: #0d3b66;
+  --secondary: #ff7f11;
+  --danger: #ff5555;
+  --white: #ffffff;
 
-
-
-
-
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -22,6 +26,30 @@
   }
 }
 
+.text-primary {
+  color: var(--primary);
+}
+.text-secondary {
+  color: var(--secondary);
+}
+.text-white {
+  color: var(--white);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.bg-white {
+  background-color: var(--white);
+}
+.border-white {
+  border-color: var(--white);
+}
+.border-primary {
+  border-color: var(--primary);
+}
+.text-danger {
+  color: var(--danger);
+}
 .dark {
   --background: #1e1e1e;
   --foreground: #ededed;
