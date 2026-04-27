@@ -9,9 +9,6 @@ const Header = () => {
       <div className="flex items-center gap-2">
         <Home />
         <span className="font-medium text-primary">لوگو</span>
-        <div>
-          <ToggleThem />
-        </div>
       </div>
       <div className="flex items-center gap-8">
         <span className="cursor-pointer">خانه</span>
@@ -27,6 +24,9 @@ const Header = () => {
         <span className="cursor-pointer">درباره ما</span>
       </div>
       <div className="flex gap-6">
+        <div>
+          <ToggleThem />
+        </div>
         <button className="py-2 px-6 text-[#FFFFFF] bg-primary rounded-[48px] cursor-pointer">
           ورود
         </button>
