@@ -1,11 +1,12 @@
 "use client";
+
 import { useState } from "react";
-import AuthLayout from "./components/AuthLayout";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
+import AuthLayout from "../register/components/AuthLayout"; 
 
-export default function RegisterPage() {
+export default function ForgotPasswordPage() {
     const [step, setStep] = useState(1);
 
     return (

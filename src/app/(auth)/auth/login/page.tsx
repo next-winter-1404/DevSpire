@@ -1,16 +1,19 @@
+
 import Image from "next/image";
 import { shabnam } from "@/Fonts";
+import Link from "next/link";
 export default function LoginPage() {
     return (
         <div className={`w-full min-h-screen bg-gray-100 flex items-center justify-center ${shabnam.className}`}>
-            <div className="w-[1344px] h-[880px] flex gap-[40px]">
-                <div
-                    className="w-[648px] h-full bg-white rounded-[40px] px-[48px] pt-[30px] pb-[48px] shadow-[2px_4px_8px_0px_#00000026]"
-                    dir="rtl"
+            <div className="w-full max-w-[1344px] min-h-screen lg:h-[880px] flex flex-col lg:flex-row gap-[24px] lg:gap-[40px] px-4 ">
+
+                <div className="w-full lg:w-[648px] h-full bg-white rounded-[40px] px-[24px] sm:px-[32px] lg:px-[48px] pt-[24px] lg:pt-[30px] pb-[32px] lg:pb-[48px] shadow-[2px_4px_8px_0px_#00000026]"
                 >
+
                     <div className="flex flex-col">
-                        <div className="flex items-center gap-[3px] mt-[110px]
- h-[24px] mb-[40px] animate-[fadeText_0.7s_ease]">
+                        <div className="flex items-center gap-[3px] mt-[16px] lg:mt-[110px] animate-[fadeText_0.7s_ease]
+ h-[24px] mb-[20px] lg:mb-[40px]
+ animate-[fadeText_0.7s_ease]">
                             <Image
                                 src="/icons/fastReservePage/home.png"
                                 alt="home icon"
@@ -22,7 +25,17 @@ export default function LoginPage() {
                                 صفحه اصلی
                             </span>
                         </div>
-                        <div className="w-[552px] flex gap-3 flex-col mb-[40px] animate-[fadeText_0.7s_ease] ">
+                        <div className="lg:hidden relative w-full h-[180px] rounded-[24px] overflow-hidden mb-[24px]">
+                            <Image
+                                src="/images/fastReservePage/login.jpg"
+                                alt="login"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+
+                        <div className="w-full lg:w-[552px] flex gap-3 flex-col mb-[20px] lg:mb-[40px] animate-[fadeText_0.7s_ease]
+">
                             <p className="text-[#1E2022] text-[24px] font-bold leading-[32px] 
  ">
                                 ورود به حساب کاربری
@@ -32,10 +45,12 @@ export default function LoginPage() {
                                 برای دسترسی به خدمات و تجربه بهتر در سایت، وارد حساب خود شوید.
                             </p>
                         </div>
-                        <div className="w-[552px] flex flex-col gap-[32px] mb-[32px]">
+                        <div className="w-full lg:w-[552px] flex flex-col gap-[20px] lg:gap-[32px]
+ mb-[20px] lg:mb-[32px]
+">
                             <div className="relative">
                                 <input
-                                    type="text"
+                                    type="email"
                                     placeholder="ایمیل خود را وارد کنید..."
                                     className="
 w-full h-[62px] rounded-[40px]
@@ -82,7 +97,7 @@ animate-[fadeText_0.7s_ease]
                                 />
                             </div>
                             <p
-                                className="text-[#0D3B66] text-[14px] leading-[100%] text-right -mt-[16px] animate-[fadeText_0.7s_ease]"
+                                className="text-[#0D3B66] text-[14px] leading-[100%] text-right -mt-[14px] animate-[fadeText_0.7s_ease]"
                             >
                                 رمز عبور خود را فراموش کرده‌اید؟
                             </p>
@@ -100,15 +115,17 @@ animate-[fadeText_0.7s_ease]
                                 ورود به حساب کاربری
                             </button>
                         </div>
-                        <div className="flex items-center w-[551px] h-[22px] gap-[24px] mb-[24px] animate-[fadeText_0.7s_ease]">
+                        <div className="flex items-center w-full lg:w-[551px] h-[22px] mb-[24px] gap-[24px] animate-[fadeText_0.7s_ease]">
                             <div className="h-[1px] bg-[#777777] flex-1" />
                             <span className="text-[#777777] text-base font-normal">یا</span>
                             <div className="h-[1px] bg-[#777777] flex-1" />
                         </div>
-                        <div className="w-[552px] flex gap-[16px] mb-[24px]">
+                        <div className="flex flex-col sm:flex-row gap-[16px]
+ mb-[24px]">
                             <button
                                 className="
-    w-[264px] h-[62px] rounded-[40px]
+    w-full sm:w-[264px]
+ h-[62px] rounded-[40px]
     border border-[#1E2022]
     text-[#1E2022] text-base
     flex items-center justify-center
@@ -129,7 +146,8 @@ animate-[fadeText_0.7s_ease]
                             </button>
                             <button
                                 className="
-    w-[264px] h-[62px] rounded-[40px]
+       w-full sm:w-[264px]
+ h-[62px] rounded-[40px]
     border border-[#1E2022]
     text-[#1E2022] text-base
     flex items-center justify-center
@@ -152,15 +170,19 @@ animate-[fadeText_0.7s_ease]
                         <div className="w-full flex justify-center">
                             <div className="flex items-center gap-[4px] animate-[fadeText_0.7s_ease]" dir="rtl">
                                 <span className="text-[16px] text-black">حساب کاربری ندارید؟</span>
-                                <a className="text-[16px] text-[#0D3B66] underline cursor-pointer hover:opacity-70 transition">
+
+                                <Link href="/auth/register" className="text-[#0D3B66] underline cursor-pointer hover:opacity-70 transition" >
                                     ثبت نام کنید
-                                </a>
+                                </Link>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="relative w-[648px] h-full rounded-[40px] overflow-hidden shadow-[2px_4px_8px_0px_#00000026]  transition-transform duration-700 ease-out
-    hover:scale-[1.01] ">
+                <div
+                    className="relative hidden lg:block  w-full lg:w-[648px] h-[260px] sm:h-[320px] lg:h-full rounded-[40px] overflow-hidden shadow-[2px_4px_8px_0px_#00000026] transition-transform duration-700 ease-out hover:scale-[1.01]"
+                >
+
                     <Image
                         src="/images/fastReservePage/login.jpg"
                         alt="login"
@@ -171,7 +193,7 @@ animate-[fadeText_0.7s_ease]
                     <div
                         className="
       absolute bottom-[40px] left-1/2 -translate-x-1/2
-      w-[599px]
+w-[90%] lg:w-[599px]
       h-[113px]
       flex
       items-center
@@ -225,6 +247,7 @@ hover:text-white/90
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
+
