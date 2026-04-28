@@ -55,11 +55,15 @@ function LocationMarker({
   );
 }
 
-export default function LeafletMap() {
+export default function LeafletMap({
+  getLoc,
+}: {
+  getLoc: (values: [number, number]) => void;
+}) {
   const [position, setPosition] = useState<[number, number]>(defaultPosition);
 
   useEffect(() => {
-    console.log("موقعیت جدید:", position);
+    getLoc(position);
   }, [position]);
 
   return (

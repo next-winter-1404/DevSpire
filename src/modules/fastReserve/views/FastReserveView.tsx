@@ -5,6 +5,7 @@ import LeafletMapClientWrapper from "@/components/common/LeafletMapClientWrapper
 import BreadCrumbs from "@/components/common/BreadCrumbs";
 import { breadcrumbItemsMock } from "../mocks/data";
 import Container from "@/components/common/Container";
+import FastReserveFilters from "../components/Filters";
 
 const FastReserveView = () => {
   return (
@@ -18,14 +19,7 @@ const FastReserveView = () => {
         </h2>
         <span className="lg:text-[20px] text-[#0D3B66] ">16 نتیجه</span>
       </div>
-      <div className="w-full flex flex-col lg:flex-row items-start lg:justify-between  h-auto lg:h-[235px] mb-10 ">
-        <div className=" w-full lg:w-[60%] h-full">
-          <FastReserveSideFilters />
-        </div>
-        <div className=" w-full lg:w-[37%] h-[300px] lg:h-full mt-4 lg:mt-0 ">
-          <LeafletMapClientWrapper />
-        </div>
-      </div>
+      <FastReserveFilters />
       <div>
         <ReserveCardList />
       </div>

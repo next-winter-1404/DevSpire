@@ -1,4 +1,4 @@
-import CommentForm from "./CommentForm";
+import CommentForm from "../../../components/common/CommentForm";
 
 const CommentsSection = () => {
   return (

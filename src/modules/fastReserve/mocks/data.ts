@@ -82,3 +82,14 @@ export const breadcrumbItemsMock = [
   { label: "رزرو هتل", href: "/hotels" },
   { label: "رزرو هتل رشت" },
 ];
+
+export const locationOptions = [
+  { value: "tehran", label: "تهران" },
+  { value: "isfahan", label: "اصفهان" },
+  { value: "shiraz", label: "شیراز" },
+];
+
+export const sortOptions = [
+  { value: "desc", label: "جدید ترین ها" },
+  { value: "cheapest", label: "ارزان ترین ها" },
+];
