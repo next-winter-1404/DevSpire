@@ -11,3 +11,14 @@ export interface IReserveCard {
   parking: number;
   imageUrl: string;
 }
+
+export interface IFastReserveParams {
+  page?: string;
+  sort?: string;
+  option?: string;
+  limit?: string;
+  query?: string;
+  maxPrice?: string;
+  minPrice?: string;
+  location?: string;
+}
