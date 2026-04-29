@@ -1,20 +1,9 @@
-import path from 'path';
-import type { NextConfig } from "next";
+import { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  i18n: {
-    defaultLocale: 'fa',
-    locales: ['en', 'fa'], 
-    localeDetection: false, 
-  },
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
-};
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-export default nextConfig;
+/** @type {import('next').NextConfig} */
+const nextConfig: NextConfig = {};
 
-
-
-
+export default withNextIntl(nextConfig);

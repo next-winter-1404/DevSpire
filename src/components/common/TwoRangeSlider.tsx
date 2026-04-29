@@ -50,14 +50,14 @@ const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
       <div className="flex justify-between text-[14px]">
         <span className="text-[#777777]">
           حداقل :
-          <span className=" text-[#000000] text-16px ">
+          <span className=" text-foreground text-16px ">
             {" "}
             {FormatPrice(range[0])}
           </span>
         </span>
         <span className="text-[#777777] ">
           حداکثر :
-          <span className="text-[#000000] text-16px ">
+          <span className="text-foreground text-16px ">
             {" "}
             {FormatPrice(range[1])}
           </span>

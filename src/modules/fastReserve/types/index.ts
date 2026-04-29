@@ -20,6 +20,5 @@ export interface IFastReserveParams {
   query?: string;
   maxPrice?: string;
   minPrice?: string;
-  lat?: string;
-  lng?: string;
+  location?: string;
 }

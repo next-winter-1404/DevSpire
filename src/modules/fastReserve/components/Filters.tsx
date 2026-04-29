@@ -12,14 +12,14 @@ const FastReserveFilters = () => {
   const getParamsLoc = (values: [number, number]) => {
     console.log("موقعیت جدید:", values);
 
-    if (values) {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("lat", String(values[0]));
-      params.set("lng", String(values[1]));
-      params.set("page", "1");
-      params.set("limit", "12");
-      router.push(`${pathname}?${params.toString()}`);
-    }
+    // if (values) {
+    //   const params = new URLSearchParams(searchParams.toString());
+    //   params.set("lat", String(values[0]));
+    //   params.set("lng", String(values[1]));
+    //   params.set("page", "1");
+    //   params.set("limit", "12");
+    //   router.push(`${pathname}?${params.toString()}`);
+    // }
   };
   return (
     <div className="w-full flex flex-col lg:flex-row items-start lg:justify-between  h-auto lg:h-[235px] mb-10 ">

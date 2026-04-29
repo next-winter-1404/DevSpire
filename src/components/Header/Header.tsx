@@ -6,6 +6,7 @@ import ToggleThem from "../common/ToggleTheme";
 import Image from "next/image";
 import Menu from "../../../public/icons/menu-2.svg";
 import HeaderMenu from "./HeaderMenu";
+import LanguageSwitcher from "../common/LanguageSwitcher";
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState<string>("خانه");
@@ -79,6 +80,9 @@ const Header = () => {
             </span>
           </div>
           <div className="flex gap-2 sm:gap-6">
+            <div className=" hidden md:block ">
+              <LanguageSwitcher />
+            </div>
             <div className=" hidden md:block ">
               <ToggleThem />
             </div>
