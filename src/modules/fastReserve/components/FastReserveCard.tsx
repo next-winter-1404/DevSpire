@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { IReserveCard } from "../types";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 type props = {
   className?: string;
   property: IReserveCard;

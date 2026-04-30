@@ -6,7 +6,8 @@ import { locationOptions, sortOptions } from "../mocks/data";
 import { ChangeEvent, useEffect, useState } from "react";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useDebounce } from "use-debounce";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/routing";
 
 const FastReserveSideFilters = () => {
   const searchParams = useSearchParams();
@@ -18,7 +19,6 @@ const FastReserveSideFilters = () => {
     parseInt(searchParams.get("maxPrice") ?? "25000000"),
   ]);
 
-  // final values for queries
   const [sort, setSort] = useState<string>(
     searchParams.get("sort") ?? sortOptions[0].value,
   );
@@ -55,9 +55,8 @@ const FastReserveSideFilters = () => {
     if (currentQueryString !== newQueryString) {
       router.push(`${pathname}?${newQueryString}`, { scroll: false });
     }
-  }, [search, finalRange, sort, hotelOptions, pathname, router, searchParams]);
+  }, [search, finalRange, sort, hotelOptions]);
 
-  // function for get values
   const getSliderValues = (values: [number, number]) => setRange(values);
   const getQuery = (e: ChangeEvent<HTMLInputElement>) =>
     setQuery(e.target.value);

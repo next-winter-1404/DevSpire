@@ -6,6 +6,7 @@ import BreadCrumbs from "@/components/common/BreadCrumbs";
 import { breadcrumbItemsMock } from "../mocks/data";
 import Container from "@/components/common/Container";
 import FastReserveFilters from "../components/Filters";
+import FastReservePagination from "../components/FastReservePagination";
 
 const FastReserveView = () => {
   return (
@@ -22,6 +23,9 @@ const FastReserveView = () => {
       <FastReserveFilters />
       <div>
         <ReserveCardList />
+      </div>
+      <div className="mx-auto mt-10">
+        <FastReservePagination />
       </div>
     </Container>
   );
