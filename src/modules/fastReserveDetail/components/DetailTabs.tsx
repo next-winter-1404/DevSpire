@@ -6,6 +6,7 @@ import FacilitiesTab from "./FacilitiesTab";
 import { facilitiesMock } from "../mocks";
 import { IFacilitiesTabProps } from "../types";
 import CommentsSection from "./CommentsSection";
+import { useTranslations } from "next-intl";
 
 type Tab = "about" | "facilities" | "reviews";
 
@@ -14,6 +15,8 @@ const DetailTabs = ({
   aboutContent,
   reviews,
 }: IFacilitiesTabProps) => {
+  const t = useTranslations("fastReserveDetail");
+
   const [activeTab, setActiveTab] = useState<Tab>("about");
 
   return (
@@ -27,7 +30,7 @@ const DetailTabs = ({
               : " bg-[#F5F5F5] text-[#777777] hover:text-gray-700"
           }`}
         >
-          درباره ملک
+          {t("aboutHouse")}
         </button>
         <button
           onClick={() => setActiveTab("facilities")}
@@ -37,7 +40,7 @@ const DetailTabs = ({
               : " bg-[#F5F5F5] text-[#777777] hover:text-gray-700"
           }`}
         >
-          امکانات اقامتگاه
+          {t("options")}
         </button>
         <button
           onClick={() => setActiveTab("reviews")}
@@ -47,7 +50,7 @@ const DetailTabs = ({
               : " bg-[#F5F5F5] text-[#777777] hover:text-gray-700"
           }`}
         >
-          نظرات کاربران
+          {t("comments")}
         </button>
       </div>
 

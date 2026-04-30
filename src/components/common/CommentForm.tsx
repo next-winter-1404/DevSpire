@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 const CommentForm = ({
   isReply = false,
   onCancel,
@@ -5,6 +7,7 @@ const CommentForm = ({
   isReply?: boolean;
   onCancel?: () => void;
 }) => {
+  const t = useTranslations("fastReserveDetail");
   return (
     <form className="w-full">
       <div
@@ -13,12 +16,12 @@ const CommentForm = ({
         <div className={` ${!isReply && "flex flex-col gap-3"} w-full`}>
           {!isReply && (
             <label className="text-[16px] text-foreground font-bold ">
-              عنوان دیدگاه
+              {t("seeTitle")}
             </label>
           )}
           <input
             type="text"
-            placeholder={isReply ? "عنوان پاسخ..." : "عنوان دیدگاه شما..."}
+            placeholder={isReply ? t("replyTitle") : t("seeTitlePlaceHolder")}
             className="w-full p-4 text-sm rounded-[25px]  bg-background text-foreground
             transition-colors dark:bg-[#3F3F46] "
           />
@@ -26,15 +29,13 @@ const CommentForm = ({
         <div className={` ${!isReply && "flex flex-col gap-3"} w-full`}>
           {!isReply && (
             <label className="text-[16px] text-foreground font-bold ">
-              متن دیدگاه
+              {t("seeCaption")}
             </label>
           )}
           <textarea
             rows={isReply ? 3 : 5}
             placeholder={
-              isReply
-                ? "متن پاسخ خود را بنویسید..."
-                : "متن دیدگاه خود را بنویسید..."
+              isReply ? t("replyCaption") : t("seeCaptionPlaceHolder")
             }
             className="w-full p-4 text-sm rounded-[25px] bg-background text-foreground dark:bg-[#3F3F46]
             resize-none leading-loose"
@@ -47,7 +48,7 @@ const CommentForm = ({
               onClick={onCancel}
               className="px-4 py-2 text-sm text-muted-foreground hover:bg-muted rounded-lg transition-colors"
             >
-              انصراف
+              {t("cancel")}
             </button>
           )}
           <button
@@ -55,7 +56,7 @@ const CommentForm = ({
             className="px-5 py-2 text-sm bg-primary text-[#ffff] rounded-lg
            font-medium hover:bg-primary/90 transition-colors"
           >
-            ارسال {isReply ? "پاسخ" : "دیدگاه"}
+            {t("send")} {isReply ? t("reply") : t("comment")}
           </button>
         </div>
       </div>

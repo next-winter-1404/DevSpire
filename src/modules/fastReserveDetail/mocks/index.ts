@@ -2,12 +2,6 @@ export interface IBredCrumbsItems {
   label: string;
   href?: string;
 }
-export const breadcrumbItemsMock2: IBredCrumbsItems[] = [
-  { label: "خانه", href: "/" },
-  { label: "رزرو هتل", href: "/hotels" },
-  { label: "رزرو هتل رشت", href: "/fast-reserve" },
-  { label: "رزرو هتل رشت سراوان رایان" },
-];
 
 export const facilitiesMock = [
   { id: "1", name: "سن و سال نوسازی", icon: "🏠" },

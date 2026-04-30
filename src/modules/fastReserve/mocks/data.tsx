@@ -77,12 +77,6 @@ export const MOCK_DATA: IReserveCard[] = [
   },
 ];
 
-export const breadcrumbItemsMock = [
-  { label: "خانه", href: "/" },
-  { label: "رزرو هتل", href: "/hotels" },
-  { label: "رزرو هتل رشت" },
-];
-
 export const locationOptions = [
   { value: "tehran", label: "تهران" },
   { value: "isfahan", label: "اصفهان" },

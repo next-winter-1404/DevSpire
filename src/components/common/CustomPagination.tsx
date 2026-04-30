@@ -21,7 +21,8 @@ const CustomPagination = ({
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage == 1}
         className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 dark:bg-[#27272A]
-         text-slate-600 transition-colors hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+         text-slate-600 transition-colors hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed
+         cursor-pointer"
       >
         <ChevronLeftIcon className="w-5 h-5" />
       </button>
@@ -30,12 +31,14 @@ const CustomPagination = ({
         const isActive = page == currentPage;
         return (
           <button
+            onClick={() => onPageChange(page)}
             key={i}
-            className={`flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium transition-colors dark:bg-[#27272A]
+            className={`flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium transition-colors
+               dark:bg-[#27272A] cursor-pointer
                     ${
                       isActive
                         ? "bg-primary text-white shadow-md"
-                        : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                        : "bg-slate-50 text-slate-600 hover:bg-slate-100 "
                     }
                     `}
           >
@@ -48,7 +51,8 @@ const CustomPagination = ({
         disabled={currentPage == totalPages}
         onClick={() => onPageChange(currentPage + 1)}
         className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 dark:bg-[#27272A]
-         text-slate-600 transition-colors hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+         text-slate-600 transition-colors hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed 
+         cursor-pointer"
       >
         <ChevronRightIcon className="w-5 h-5" />
       </button>

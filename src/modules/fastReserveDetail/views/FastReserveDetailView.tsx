@@ -3,6 +3,7 @@ import {
   AboutMock,
   breadcrumbItemsMock2,
   facilitiesMock,
+  IBredCrumbsItems,
   reviewsMock,
 } from "../mocks";
 import ImageBox from "../components/ImageBox";
@@ -14,8 +15,17 @@ import SliderWrapper from "@/components/common/SliderWrapper";
 import { MOCK_DATA } from "@/modules/fastReserve/mocks/data";
 import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import Container from "@/components/common/Container";
+import { useTranslations } from "next-intl";
 
 const FastReserveDetailView = () => {
+  const t = useTranslations("fastReserveDetail");
+
+  const breadcrumbItemsMock2: IBredCrumbsItems[] = [
+    { label: t("home"), href: "/" },
+    { label: t("hotelReserve"), href: "/hotels" },
+    { label: `${t("hotelReserve")} رشت`, href: "/fast-reserve" },
+    { label: `${t("hotelReserve")} رشت سراوان رایان` },
+  ];
   return (
     <Container className="w-full flex flex-col">
       <div className="w-full mb-8 md:mb-6">
@@ -45,13 +55,13 @@ const FastReserveDetailView = () => {
       <div className="flex flex-col w-full gap-6">
         <div className="flex items-center justify-between w-full ">
           <h2 className="text-[24px] font-bold text-foreground ">
-            آگهی های مشابه
+            {t("commertials")}
           </h2>
           <button
             className="px-3 py-2 text-[20px] border border-[#0D3B66] text-[#0D3B66] dark:text-gray-300
          dark:border-gray-600 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           >
-            مشاهده همه
+            {t("seeAll")}
           </button>
         </div>
         <div className="w-full">

@@ -8,6 +8,7 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useDebounce } from "use-debounce";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 const FastReserveSideFilters = () => {
   const searchParams = useSearchParams();
@@ -62,6 +63,7 @@ const FastReserveSideFilters = () => {
     setQuery(e.target.value);
   const getHotelOptions = (value: string) => setHotelOptions(value);
   const getSortOptions = (value: string) => setSort(value);
+  const t = useTranslations("fastReserve");
   return (
     <div
       className="border border-[#dddd] dark:border-[#333333] bg-[#ffff]  dark:bg-[#27272A]
@@ -71,12 +73,12 @@ const FastReserveSideFilters = () => {
         <div className="flex flex-col gap-6 lg:w-[50%]">
           <div className="flex flex-col gap-4 justify-start items-start">
             <h2 className="text-[16px] text-[#1E2022] font-bold dark:text-[#FAFAFA] ">
-              جستجو
+              {t("search")}
             </h2>
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="نام هتل مورد نظر"
+                placeholder={t("searchPlaceholder")}
                 onChange={(
                   e: ChangeEvent<HTMLInputElement, HTMLInputElement>,
                 ) => getQuery(e)}
@@ -89,11 +91,11 @@ const FastReserveSideFilters = () => {
           </div>
           <div className="flex flex-col gap-4 justify-start items-start">
             <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-              امکانات هتل
+              {t("options")}
             </label>
             <div className="relative w-full">
               <CustomSelect
-                placeholder="استان شهر ...."
+                placeholder={t("optionsPlaceholder")}
                 options={locationOptions}
                 onValueChange={getHotelOptions}
               />
@@ -103,7 +105,7 @@ const FastReserveSideFilters = () => {
         <div className="flex flex-col gap-6 lg:w-[50%]">
           <div className="flex flex-col gap-4 justify-start items-start">
             <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-              مرتب سازی بر اساس
+              {t("sort")}
             </label>
             <div className="relative w-full">
               <CustomSelect
@@ -116,7 +118,7 @@ const FastReserveSideFilters = () => {
           </div>
           <div className="flex flex-col gap-4 justify-start items-start">
             <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-              رنج قیمت
+              {t("priceRange")}
             </label>
             <div className="w-full">
               <TwoRangeSlider

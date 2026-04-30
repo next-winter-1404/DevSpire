@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { IAbout } from "../types";
+import { useTranslations } from "next-intl";
 
 const ReserveInfo = ({ content }: { content: IAbout }) => {
+  const t = useTranslations("fastReserveDetail");
+
   const [more, setMore] = useState<boolean>(false);
 
   return (
@@ -25,7 +28,7 @@ const ReserveInfo = ({ content }: { content: IAbout }) => {
         className="rounded-[24px] text-[#777777] text-[16px] text-center mx-auto px-3 py-2 border
         text-muted-foreground hover:text-foreground border-[#777777] mt-2 hover:border-foreground transition-colors"
       >
-        {more ? "مشاهده کمتر" : "مشاهده بیشتر"}
+        {more ? t("seeLess") : t("seeMore")}
       </button>
     </div>
   );

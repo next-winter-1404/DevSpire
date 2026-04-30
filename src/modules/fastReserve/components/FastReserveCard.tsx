@@ -1,12 +1,14 @@
 import Image from "next/image";
 import { IReserveCard } from "../types";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 type props = {
   className?: string;
   property: IReserveCard;
 };
 
 const FastReserveCard = ({ property, className }: props) => {
+  const t = useTranslations("fastReserve");
   return (
     <div
       className={` ${className} flex flex-col bg-[#FFFFFF] dark:bg-[#27272A] rounded-2xl overflow-hidden border
@@ -27,16 +29,16 @@ const FastReserveCard = ({ property, className }: props) => {
       </div>
 
       <div className="px-8 pb-6 pt-5 flex flex-col gap-3  ">
-        <div className=" flex items-center gap-4 text-[20px] font-bold">
+        <div className=" flex flex-wrap items-center gap-4 text-[20px] font-bold">
           {property.oldPrice && (
             <span className=" flex justify-start items-center gap-2 text-[#777777] line-through decoration-1">
               {property.oldPrice.toLocaleString()}
-              <span>تومان</span>
+              <span>{t("toman")}</span>
             </span>
           )}
           <span className=" flex justify-start items-center gap-2  text-[#1E2022] dark:text-[#FAFAFA]">
             {property.price.toLocaleString()}
-            <span>تومان</span>
+            <span>{t("toman")}</span>
           </span>
         </div>
 
@@ -75,7 +77,9 @@ const FastReserveCard = ({ property, className }: props) => {
               width={20}
               height={20}
             />
-            <span>{property.parking} پارکینگ</span>
+            <span>
+              {property.parking} {t("parking")}
+            </span>
           </div>
           <div className="flex items-center gap-1">
             <Image
@@ -84,7 +88,9 @@ const FastReserveCard = ({ property, className }: props) => {
               width={20}
               height={20}
             />
-            <span>{property.guests} نفر</span>
+            <span>
+              {property.guests} {t("person")}
+            </span>
           </div>
           <div className="flex items-center gap-1">
             <Image
@@ -93,7 +99,9 @@ const FastReserveCard = ({ property, className }: props) => {
               width={20}
               height={20}
             />
-            <span>{property.bathrooms} حمام</span>
+            <span>
+              {property.bathrooms} {t("bath")}
+            </span>
           </div>
           <div className="flex items-center gap-1">
             <Image
@@ -102,7 +110,9 @@ const FastReserveCard = ({ property, className }: props) => {
               width={20}
               height={20}
             />
-            <span>{property.bedrooms} خواب</span>
+            <span>
+              {property.bedrooms} {t("sleep")}
+            </span>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 import { FormatPrice } from "@/utils/helper/FormatPrice";
 import * as Slider from "@radix-ui/react-slider";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 
@@ -11,6 +12,7 @@ interface IPros {
 }
 
 const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
+  const locale = useLocale();
   const Min = 0;
   const Max = 100_000_000;
   const Step = 100_000;
@@ -18,11 +20,11 @@ const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
   const [range, setRange] = useState<[number, number]>(
     defaultValues ?? [0, 20_000_000],
   );
-
+  const t = useTranslations("fastReserve");
   return (
     <div className={` ${className} w-full flex flex-col gap-3 `}>
       <Slider.Root
-        dir="rtl"
+        dir={locale === "fa" ? "rtl" : "ltr"}
         className="relative flex items-center select-none touch-none w-full h-5"
         value={range}
         onValueChange={(newValues: [number, number]) => {
@@ -49,17 +51,17 @@ const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
       </Slider.Root>
       <div className="flex justify-between text-[14px]">
         <span className="text-[#777777]">
-          حداقل :
+          {t("min")} :
           <span className=" text-foreground text-16px ">
             {" "}
-            {FormatPrice(range[0])}
+            {locale == "fa" ? FormatPrice(range[0]) : range[0].toLocaleString()}
           </span>
         </span>
         <span className="text-[#777777] ">
-          حداکثر :
+          {t("max")} :
           <span className="text-foreground text-16px ">
             {" "}
-            {FormatPrice(range[1])}
+            {locale == "fa" ? FormatPrice(range[1]) : range[1].toLocaleString()}
           </span>
         </span>
       </div>
