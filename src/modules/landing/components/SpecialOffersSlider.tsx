@@ -1,9 +1,9 @@
 import SliderWrapper from "@/components/common/SliderWrapper";
-import { MOCK_DATA } from "../../../modules/fastReserve/mocks/data";
+import { MOCK_DATA } from "../../fastReserve/mocks/data";
 import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import React from "react";
 
-const BestChoiceSlider = () => {
+const SpecialOffersSlider = () => {
   return (
     <div className="px-12">
       <SliderWrapper>
@@ -21,4 +21,4 @@ const BestChoiceSlider = () => {
   );
 };
 
-export default BestChoiceSlider;
+export default SpecialOffersSlider;

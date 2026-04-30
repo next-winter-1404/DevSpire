@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import Home from "../../../public/icons/Home";
-import Arrow from "../../../public/icons/Arrow";
-import ToggleThem from "../common/ToggleTheme";
+import Home from "../../../../public/icons/Home";
+import Arrow from "../../../../public/icons/Arrow";
+import ToggleThem from "../../common/ToggleTheme";
 import Image from "next/image";
 import Menu from "../../../public/icons/menu-2.svg";
 import HeaderMenu from "./HeaderMenu";
-import LanguageSwitcher from "../common/LanguageSwitcher";
+import LanguageSwitcher from "../../common/LanguageSwitcher";
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState<string>("خانه");

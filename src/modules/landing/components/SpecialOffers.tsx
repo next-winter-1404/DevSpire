@@ -1,5 +1,5 @@
 import React from 'react'
-import SpecialOffersSlider from './SpecialOffersSlider'
+import SpecialOffersSlider from '../../../components/landing/SpecialOffers/SpecialOffersSlider'
 
 const SpecialOffers = () => {
   return (
