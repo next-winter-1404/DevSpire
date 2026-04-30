@@ -1,5 +1,5 @@
 import React from 'react'
-import Arrow from '../../../public/icons/Arrow'
+import Arrow from '../../../../public/icons/Arrow'
 import Close from '../../../public/icons/close.svg'
 import Image from 'next/image'
 

@@ -1,12 +1,12 @@
-import HeroSection from "@/components/landing/HeroSection/HeroSection";
-import Categories from "@/components/landing/Categories/Categories";
-import SpecialOffers from "@/components/landing/SpecialOffers/SpecialOffers";
-import WhyChooseUs from "@/components/landing/WhyChooseUs/WhyChooseUs";
-import RentVilla from "@/components/landing/RentVilla/RentVilla";
-import BestChoice from "@/components/landing/BestChoice/BestChoice";
-import FeaturesSec from "@/components/landing/FeaturesSec/FeaturesSec";
-import NeedHelp from "@/components/landing/NeedHelp/NeedHelp";
-import SayAboutUs from "@/components/landing/SayAboutUs/SayAboutUs";
+import HeroSection from "@/modules/landing/components/HeroSection";
+import Categories from "@/modules/landing/components/Categories";
+import SpecialOffers from "@/modules/landing/components/SpecialOffers";
+import WhyChooseUs from "@/modules/landing/components/WhyChooseUs";
+import RentVilla from "@/modules/landing/components/RentVilla";
+import BestChoice from "@/modules/landing/components/BestChoice";
+import FeaturesSec from "@/modules/landing/components/FeaturesSec";
+import NeedHelp from "@/modules/landing/components/NeedHelp";
+import SayAboutUs from "@/modules/landing/components/SayAboutUs";
 
 
 export default function Landing() {

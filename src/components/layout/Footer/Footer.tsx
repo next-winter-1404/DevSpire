@@ -1,7 +1,7 @@
-import Home from "../../../public/icons/Home";
-import Telegram from "../../../public/icons/Telegram";
-import Instagram from "../../../public/icons/Instagram";
-import Linkedin from "../../../public/icons/Linkedin";
+import Home from "../../../../public/icons/Home";
+import Telegram from "../../../../public/icons/Telegram";
+import Instagram from "../../../../public/icons/Instagram";
+import Linkedin from "../../../../public/icons/Linkedin";
 import Image from "next/image";
 
 const Footer = () => {
