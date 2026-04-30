@@ -1,5 +1,6 @@
 import React from 'react'
-import RentVillaCard from '../../../components/landing/RentVilla/RentVillaCard'
+import RentVillaCard from './RentVillaCard'
+
 
 const RentVilla = () => {
   return (

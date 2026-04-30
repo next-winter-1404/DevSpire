@@ -25,10 +25,11 @@ export default function LanguageSwitcher() {
         onChange={onSelectChange}
         className={`w-full  border border-[#143D59]
           appearance-none cursor-pointer outline-none
- text-[#143D59] bg-transparent
+          text-[#143D59] bg-transparent
           hover:bg-[#143D59] hover:text-white transition-colors duration-300
           rounded-full px-5  h-full text-[16px] font-semibold
           disabled:opacity-50 disabled:cursor-not-allowed
+          dark:text-[#E4E4E4] dark:border-[#E4E4E4]
         `}
       >
         <option value="fa" className="text-black bg-white">

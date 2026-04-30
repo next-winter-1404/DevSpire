@@ -1,6 +1,8 @@
 import React from 'react'
-import CategoryBigCard from '../../../components/landing/Categories/CategoryBigCard'
-import CategorySmallCard from '../../../components/landing/Categories/CategorySmallCard'
+import CategoryBigCard from './CategoryBigCard'
+import CategorySmallCard from './CategorySmallCard'
+
+
 
 const Categories = () => {
   return (

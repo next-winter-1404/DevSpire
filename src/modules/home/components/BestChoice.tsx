@@ -1,5 +1,6 @@
 import React from 'react'
-import BestChoiceSlider from '../../components/landing/BestChoice/BestChoiceSlider'
+import BestChoiceSlider from './BestChoiceSlider'
+
 
 const BestChoice = () => {
   return (

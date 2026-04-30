@@ -1,5 +1,5 @@
 import React from 'react'
-import SayAboutUsSlider from '../../../components/landing/SayAboutUs/SayAboutUsSlider'
+import SayAboutUsSlider from './SayAboutUsSlider'
 import BigArrowRight from '../../../../public/icons/BigArrowRight'
 import BigArrowLeft from '../../../../public/icons/BigArrowLeft'
 
