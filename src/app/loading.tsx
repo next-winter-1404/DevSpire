@@ -1,3 +1,5 @@
+import "./[locale]/globals.css";
+
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 export default function Loading() {

@@ -1,5 +1,6 @@
 "use client";
 
+import "./[locale]/globals.css";
 import {
   ExclamationTriangleIcon,
   ReloadIcon,
