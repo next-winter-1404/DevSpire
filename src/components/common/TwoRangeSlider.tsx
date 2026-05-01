@@ -12,7 +12,9 @@ interface IPros {
 }
 
 const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
+
   const locale = useLocale();
+
   const Min = 0;
   const Max = 100_000_000;
   const Step = 100_000;
@@ -51,14 +53,14 @@ const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
       </Slider.Root>
       <div className="flex justify-between text-[14px]">
         <span className="text-[#777777]">
-          {t("min")} :
+          {t("min")}
           <span className=" text-foreground text-16px ">
             {" "}
             {locale == "fa" ? FormatPrice(range[0]) : range[0].toLocaleString()}
           </span>
         </span>
         <span className="text-[#777777] ">
-          {t("max")} :
+          {t("max")}
           <span className="text-foreground text-16px ">
             {" "}
             {locale == "fa" ? FormatPrice(range[1]) : range[1].toLocaleString()}

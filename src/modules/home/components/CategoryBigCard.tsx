@@ -1,5 +1,7 @@
+'use client'
 import React from 'react'
 import BigArrowLink from '../../../../public/icons/BigArrowLink'
+import { useLocale } from 'next-intl'
 
 
 interface ICategoryBigCard{
@@ -8,6 +10,9 @@ interface ICategoryBigCard{
 }
 
 const CategoryBigCard = ({imageUrl , title}: ICategoryBigCard) => {
+
+    const locale = useLocale()
+
     return (
         <div 
         style={{ backgroundImage: `url('${imageUrl}')` }}
@@ -18,7 +23,7 @@ const CategoryBigCard = ({imageUrl , title}: ICategoryBigCard) => {
                     <span className='font-regular text-[20px] text-[#1E2022]   dark:text-[#F5F5F5]'>{title}</span>
                 </div>
                 <div className='flex justify-center items-center w-[43px] h-[43px] bg-[#FFFFFF] rounded-[48px]   dark:bg-[#262626]'>
-                    <BigArrowLink color='#1E2022' className='dark:text-[#E4E4E4]'/>
+                    <BigArrowLink color='#1E2022' className={`${locale == 'en' ? 'scale-x-[-1]' : ''}`}/>
                 </div>
             </div>
         </div>  

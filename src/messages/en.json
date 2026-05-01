@@ -1,85 +1,18 @@
 {
   "header": {
+    "logo": "Logo",
     "home": "Home",
     "fastReserve": "Fast Reserve",
     "mortgageAndRent": "Mortgage and Rent",
-    "blogs": "Blogs",
-    "aboutUs": "About US",
+    "articles": "Articles",
+    "aboutUs": "About Us",
     "login": "Login",
     "signUp": "Sign Up"
   },
-  "heroSection": {
-    "title": "Find your dream home or favorite hotel here.",
-    "description": "From buying and selling property to short-term hotel and apartment rentals; easily search, compare, and make the best choice.",
-    "mortgageButton": "Mortgage and Property Lease"
-  },
-  "heroSectionForm": {
-    "title": "Reserve Now!",
-    "title1": "Select destination",
-    "placeholder1": "Select the destination",
-    "title2": "Number of people",
-    "placeholder2": "Select the number of people.",
-    "title3": "Date of arrival",
-    "placeholder3": "Select the arrival date",
-    "title4": "Departure date",
-    "placeholder4": "Select the departure date",
-    "searchButton": "Search"
-  },
-  "categories": {
-    "title": "Categories",
-    "apartment": "Apartment",
-    "villaEstate": "Villa Estate",
-    "withSwimmingPool": "With Swimming Pool",
-    "cottageEstate": "Cottage Estate",
-    "coastalEstate": "Coastal Estate",
-    "ecotourism": "Ecotourism"
-  },
-  "specialOffers": {
-    "title": "Special villa rental offers",
-    "seeAllButton": "See All"
-  },
-  "whyChooseUs": {
-    "title": "Why should you choose us?",
-    "text": "Finding the right villa is not always easy. We are here to make things easy for you. From hundreds of files, we select only the best and most reliable options so that you do not waste your valuable time searching endlessly. Whether you are looking for a short-term vacation rental or thinking of buying or renting long-term, we introduce the best choices according to your budget and needs. Our 24-hour support and step-by-step guidance will ensure that you are never alone and find your dream villa with confidence."
-  },
-  "bestChoice": {
-    "title": "The best choice for vacation and stay",
-    "seeAllButton": "See All"
-  },
-  "rentVilla": {
-    "title": "Rent a villa in the most popular destinations in Iran"
-  },
-  "differentFeatures": {
-    "title": "Features that make us different",
-    "title1": "Full support and transparency",
-    "title1text1": "Fast and 24-hour response",
-    "title1text2": "Detailed description of the property conditions",
-    "title1text3": "Transparency in pricing and contracts",
-    "title2": "Real and up-to-date files",
-    "title2text1": "Only authentic and approved villas",
-    "title2text2": "Continuously updating files",
-    "title2text3": "Delete duplicate and invalid files",
-    "title3": "Wide variety of villas",
-    "title3text1": "Beach, forest and urban villas",
-    "title3text2": "Economical to luxurious options",
-    "title3text3": "A choice that suits your lifestyle",
-    "title4": "Free expert advice",
-    "title4text1": "Guidance based on your budget and needs",
-    "title4text2": "Suggest the best areas to stay",
-    "title4text3": "Accompanying until the contract is signed"
-  },
-  "needHelp": {
-    "title": "Need help?",
-    "description": "Our experts are always ready to answer your questions.",
-    "freeConsultationBtn": "Get Free Consultation"
-  },
-  "sayAboutUs": {
-    "title": "What customers say about us?"
-  },
   "footer": {
     "logo": "Logo",
-    "footerNote": "We are with you on the path of renting, buying, and selling villas, so that you can have a pleasant experience of choosing a memorable residence or investment with confidence and peace of mind.",
-    "accommodationReservation": "Accommondation Reservation",
+    "footerText": "We are with you on the path of renting, buying, and selling villas, so that you can have a pleasant experience of choosing a memorable residence or investment with confidence and peace of mind.",
+    "accReservation": "Accommondation Reservation",
     "accReservationText1": "Accommodation booking guide",
     "accReservationText2": "Payment method",
     "accReservationText3": "Cancellation of accommodation reservation",
@@ -93,6 +26,80 @@
     "contactUsText2": "Delta@gmail.com",
     "contactUsText3": "Gilan, Rasht, Azadi Square, next to Azimizadeh Crossroads",
     "law": "All material and intellectual property rights of this work are reserved for your brand."
+  },
+  "home": {
+    "heroSection": {
+      "title": "Find your dream home or favorite hotel here.",
+      "description": "From buying and selling property to short-term hotel and apartment rentals; easily search, compare, and make the best choice.",
+      "mortgageButton": "Mortgage and Property Lease"
+    },
+    "heroSectionForm": {
+      "title": "Reserve Now!",
+      "selectDestination": "Select destination",
+      "selectDestinationPlc": "Select the destination",
+      "numOfPeople": "Number of people",
+      "numOfPeoplePlc": "Select the number of people.",
+      "arrivalDate": "Date of arrival",
+      "arrivalDatePlc": "Select the arrival date",
+      "departureDate": "Departure date",
+      "departureDatePlc": "Select the departure date",
+      "searchButton": "Search"
+    },
+    "categories": {
+      "title": "Categories",
+      "apartment": "Apartment",
+      "villaEstate": "Villa Estate",
+      "withSwimmingPool": "With Swimming Pool",
+      "cottageEstate": "Cottage Estate",
+      "coastalEstate": "Coastal Estate",
+      "ecotourism": "Ecotourism"
+    },
+    "specialOffers": {
+      "redTitle": "Special",
+      "darkTitle": "villa rental offers",
+      "seeAllButton": "See All"
+    },
+    "whyChooseUs": {
+      "title": "Why should you choose us?",
+      "text": "Finding the right villa is not always easy. We are here to make things easy for you. From hundreds of files, we select only the best and most reliable options so that you do not waste your valuable time searching endlessly. Whether you are looking for a short-term vacation rental or thinking of buying or renting long-term, we introduce the best choices according to your budget and needs. Our 24-hour support and step-by-step guidance will ensure that you are never alone and find your dream villa with confidence."
+    },
+    "bestChoice": {
+      "title": "The best choice for vacation and stay",
+      "seeAllButton": "See All"
+    },
+    "rentVilla": {
+      "title": "Rent a villa in the most popular destinations in Iran"
+    },
+    "rentVillaCard": {
+      "seeButton": "See"
+    },
+    "featureSec": {
+      "title": "Features that make us different",
+      "title1": "Full support and transparency",
+      "title1text1": "Fast and 24-hour response",
+      "title1text2": "Detailed description of the property conditions",
+      "title1text3": "Transparency in pricing and contracts",
+      "title2": "Real and up-to-date files",
+      "title2text1": "Only authentic and approved villas",
+      "title2text2": "Continuously updating files",
+      "title2text3": "Delete duplicate and invalid files",
+      "title3": "Wide variety of villas",
+      "title3text1": "Beach, forest and urban villas",
+      "title3text2": "Economical to luxurious options",
+      "title3text3": "A choice that suits your lifestyle",
+      "title4": "Free expert advice",
+      "title4text1": "Guidance based on your budget and needs",
+      "title4text2": "Suggest the best areas to stay",
+      "title4text3": "Accompanying until the contract is signed"
+    },
+    "needHelp": {
+      "title": "Need help?",
+      "description": "Our experts are always ready to answer your questions.",
+      "freeConsultationBtn": "Get Free Consultation"
+    },
+    "sayAboutUs": {
+      "title": "What customers say about us?"
+    }
   },
   "fastReserve": {
     "filters": "Filters",
@@ -142,5 +149,27 @@
     "membersCount": "Number of Guests",
     "discount": "discount",
     "submit": "submit reservation"
+  },
+  "mortgageAndRent": {
+    "filters": {
+      "title": "Filters",
+      "result": "Result",
+      "search": "Search",
+      "searchPlaceholder": "Search...",
+      "sortBy": "Sort By",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "estateType": "Estate Type",
+      "apartment": "Apartment",
+      "transactionType": "Transaction Type",
+      "mortgageAndRent": "Mortgage and Rent",
+      "desiredLocation": "Disired Location",
+      "provinceCity": "Province, City...",
+      "mortgageAmountRange": "Mortgage Amount Range",
+      "rentAmountRange": "Rent Amount Range",
+      "estateMeterageRange": "Estate Meterage",
+      "min": "Min",
+      "max": "Max"
+    }
   }
 }

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import Person1 from '../../../../public/images/landing/person1.png'
+import Person1 from '../../../../public/images/home/person1.png'
 import Virgule from '../../../../public/icons/Virgule'
 
 

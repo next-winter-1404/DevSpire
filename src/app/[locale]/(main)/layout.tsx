@@ -8,11 +8,11 @@ export default function MainLayout({
 }) {
   return (
     <>
-      <header className="px-4 sm:px-6 lg:px-10 pt-8 sm:pt-5  ">
+      <header className="px-4 sm:px-6 lg:px-12 pt-8 sm:pt-6">
         <Header />
       </header>
       <main>{children}</main>
-      <footer className="px-4 sm:px-6 lg:px-10 pb-8 pt-10 sm:py-5 ">
+      <footer className="px-4 sm:px-6 lg:px-12 pb-8 pt-10 sm:py-6">
         <Footer />
       </footer>
     </>
