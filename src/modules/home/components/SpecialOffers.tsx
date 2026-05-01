@@ -15,7 +15,9 @@ const SpecialOffers = () => {
             <h2 className='text-[#FF5555]'>{t('redTitle')}</h2>
             <h2 className='text-[#1E2022]'>{t('darkTitle')}</h2>
           </div>
-          <button className='w-[137px] py-2 text-[#0D3B66] border border-[#0D3B66] rounded-[40px]
+          <button className='w-[137px] py-2 text-[#0D3B66] border border-[#0D3B66] rounded-[40px] cursor-pointer transition-all 
+          duration-300 ease-in-out
+          hover:text-[#FFFFFF] hover:bg-[#0D3B66]
           dark:text-[#E4E4E4] dark:border-[#E4E4E4]'>{t('seeAllButton')}</button>
         </div>
         <SpecialOffersSlider />

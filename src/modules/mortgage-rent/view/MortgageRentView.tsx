@@ -2,6 +2,7 @@ import BreadCrumbs from '@/components/common/BreadCrumbs'
 import { useTranslations } from 'next-intl'
 import React from 'react'
 import Filters from '../components/Filters'
+import MortgageRentList from '../components/MortgageRentList'
 
 const MortgageRentView = () => {
 
@@ -20,6 +21,7 @@ const MortgageRentView = () => {
                 />
             </div>
             <Filters/>
+            <MortgageRentList/>
         </div>
     )
 

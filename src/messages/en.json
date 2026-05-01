@@ -35,6 +35,9 @@
     },
     "heroSectionForm": {
       "title": "Reserve Now!",
+      "estateReserveTab": "Estate Reserve",
+      "mortgageRentTab": "Mortgage and Rent",
+      "buySellTab": "Buy and Sell",
       "selectDestination": "Select destination",
       "selectDestinationPlc": "Select the destination",
       "numOfPeople": "Number of people",

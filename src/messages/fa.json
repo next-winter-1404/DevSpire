@@ -35,6 +35,9 @@
     },
     "heroSectionForm": {
       "title": "همین حالا رزرو کنید!",
+      "estateReserveTab": "رزرو ملک",
+      "mortgageRentTab": "رهن و اجاره",
+      "buySellTab": "خرید و فروش",
       "selectDestination": "انتخاب مقصد",
       "selectDestinationPlc": "مقصد را انتخاب کنید",
       "numOfPeople": "تعداد نفرات",

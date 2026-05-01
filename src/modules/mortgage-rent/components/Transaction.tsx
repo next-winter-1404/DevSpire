@@ -9,7 +9,7 @@ const Transaction = () => {
     const locale = useLocale()
 
     return (
-        <div className='flex flex-col flex-grow gap-4'>
+        <div className='flex flex-col flex-grow gap-4 min-w-[168px]'>
             <span className='font-bold text-[16px] text-[#1E2022]'>{t('transactionType')}</span>
             <div className='relative'>
                 <select className='w-full h-[46px] font-regular text-[16px] text-[#777777] indent-5 bg-[#F5F5F5] rounded-[40px] 

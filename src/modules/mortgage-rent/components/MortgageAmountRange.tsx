@@ -19,7 +19,7 @@ const MortgageAmountRange = () => {
 
 
     return (
-        <div className="flex flex-col flex-grow justify-start items-start gap-4">
+        <div className="flex flex-col flex-grow justify-start items-start gap-4 min-w-[168px]">
             <label className="font-bold text-[16px] text-[#1E2022]   dark:text-[#FAFAFA]">{t('mortgageAmountRange')}</label>
             <div className="w-full">
                 <TwoRangeSlider

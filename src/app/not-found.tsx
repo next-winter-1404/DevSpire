@@ -1,7 +1,7 @@
 import "./[locale]/globals.css";
-
 import { Link } from "@/i18n/routing";
 import { QuestionMarkCircledIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
+
 
 export default function NotFound() {
   return (
