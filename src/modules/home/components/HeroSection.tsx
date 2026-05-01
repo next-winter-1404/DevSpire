@@ -6,14 +6,14 @@ import { useTranslations } from "next-intl";
 
 const HeroSection = () => {
 
-  const t = useTranslations("heroSection");
+  const t = useTranslations("home.heroSection");
   
   return (
     <div className="flex justify-center mt-6 px-12">
       <div
       className="heroSectionBG relative flex flex-col gap-4 items-center py-6 px-14 bg-cover rounded-[48px] overflow-hidden 
       md:flex md:flex-row md:gap-16"
-      style={{ backgroundImage: `url('/images/landing/herosection.jpg')` }}>
+      style={{ backgroundImage: `url('/images/home/herosection.jpg')` }}>
         <div className="absolute inset-0 bg-black/50 z-0"></div>
         <div className="relative z-10 flex flex-col gap-4 items-center py-6 px-14  
         lg:flex-row lg:gap-16">

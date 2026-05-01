@@ -1,6 +1,7 @@
 "use client";
 import { FormatPrice } from "@/utils/helper/FormatPrice";
 import * as Slider from "@radix-ui/react-slider";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 
@@ -11,6 +12,9 @@ interface IPros {
 }
 
 const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
+
+  const t = useTranslations('mortgageAndRent.filters')
+
   const Min = 0;
   const Max = 100_000_000;
   const Step = 100_000;
@@ -49,14 +53,14 @@ const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
       </Slider.Root>
       <div className="flex justify-between text-[14px]">
         <span className="text-[#777777]">
-          حداقل :
+          {t('min')}
           <span className=" text-foreground text-16px ">
             {" "}
             {FormatPrice(range[0])}
           </span>
         </span>
         <span className="text-[#777777] ">
-          حداکثر :
+          {t('max')}
           <span className="text-foreground text-16px ">
             {" "}
             {FormatPrice(range[1])}

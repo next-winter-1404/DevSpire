@@ -1,10 +1,12 @@
 import React from "react";
-import WhyChooseUsImg from "../../../../public/images/landing/Furniture store-amico 1.svg";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
+
+
 const WhyChooseUs = () => {
-  const t = useTranslations("whyChooseUs");
+
+  const t = useTranslations("home.whyChooseUs");
   return (
     <div className="flex justify-between items-center w-full mt-30 mx-auto p-12 bg-[#F5F5F5]   dark:bg-[#404040]">
       <div className="flex flex-col gap-6 w-[723px]">
@@ -16,7 +18,7 @@ const WhyChooseUs = () => {
         </p>
       </div>
       <Image
-        src={WhyChooseUsImg}
+        src={'/images/home/Furniture store-amico 1.svg'}
         alt="whyChooseUsImg"
         width={480}
         height={480}
@@ -24,6 +26,7 @@ const WhyChooseUs = () => {
       />
     </div>
   );
+
 };
 
 export default WhyChooseUs;
