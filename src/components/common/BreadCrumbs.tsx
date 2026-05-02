@@ -11,7 +11,10 @@ export type TBreadCrumbPros = {
 
 const BreadCrumbs = ({ items }: TBreadCrumbPros) => {
   return (
-    <nav className=" md:text-[16px] flex items-center gap-3  ">
+    <nav
+      className=" text-[14px] md:text-[16px] flex items-center gap-3 overflow-x-auto scroll-smooth whitespace-nowrap
+    no-scrollbar "
+    >
       {items.map((item, index) => {
         const isLast = index == items.length - 1;
 

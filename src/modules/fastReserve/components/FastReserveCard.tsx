@@ -11,8 +11,8 @@ const FastReserveCard = ({ property, className }: props) => {
   const t = useTranslations("fastReserve");
   return (
     <div
-      className={` ${className} flex flex-col bg-[#FFFFFF] dark:bg-[#27272A] rounded-2xl overflow-hidden border
-       border-[#DDDDDD] dark:border-[#333333] shadow-sm hover:shadow-md transition-shadow`}
+      className={` ${className} flex flex-col bg-[#FFFFFF] dark:bg-[#27272A] rounded-2xl overflow-hidden 
+       shadow hover:shadow-lg transition-shadow`}
     >
       <div className="relative h-60 w-full">
         <Image

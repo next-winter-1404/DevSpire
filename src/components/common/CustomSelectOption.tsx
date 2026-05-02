@@ -4,6 +4,7 @@ import * as React from "react";
 import * as Select from "@radix-ui/react-select";
 import Image from "next/image";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+import { useLocale } from "next-intl";
 
 interface Option {
   value: string;
@@ -25,9 +26,10 @@ const CustomSelect = ({
   onValueChange,
   className,
 }: CustomSelectProps) => {
+  const locale = useLocale();
   return (
     <Select.Root
-      dir="rtl"
+      dir={locale == "fa" ? "rtl" : "ltr"}
       defaultValue={defaultValue}
       onValueChange={onValueChange}
     >

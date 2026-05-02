@@ -8,9 +8,10 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useDebounce } from "use-debounce";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const FastReserveSideFilters = () => {
+  const locale = useLocale();
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -18,6 +19,10 @@ const FastReserveSideFilters = () => {
   const [range, setRange] = useState<[number, number]>([
     parseInt(searchParams.get("minPrice") ?? "0"),
     parseInt(searchParams.get("maxPrice") ?? "25000000"),
+  ]);
+  const [Area, setArea] = useState<[number, number]>([
+    parseInt(searchParams.get("minArea") ?? "0"),
+    parseInt(searchParams.get("maxArea") ?? "1000000"),
   ]);
 
   const [sort, setSort] = useState<string>(
@@ -29,6 +34,7 @@ const FastReserveSideFilters = () => {
   );
   const [search] = useDebounce(query, 850);
   const [finalRange] = useDebounce(range, 850);
+  const [finalArea] = useDebounce(Area, 850);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -46,6 +52,10 @@ const FastReserveSideFilters = () => {
       params.set("minPrice", String(finalRange[0]));
       params.set("maxPrice", String(finalRange[1]));
     }
+    if (finalArea) {
+      params.set("minArea", String(finalArea[0]));
+      params.set("maxArea", String(finalArea[1]));
+    }
 
     params.set("page", "1");
     params.set("limit", "12");
@@ -56,52 +66,45 @@ const FastReserveSideFilters = () => {
     if (currentQueryString !== newQueryString) {
       router.push(`${pathname}?${newQueryString}`, { scroll: false });
     }
-  }, [search, finalRange, sort, hotelOptions]);
+  }, [search, finalRange, sort, Area]);
 
   const getSliderValues = (values: [number, number]) => setRange(values);
+  const getAreaValues = (values: [number, number]) => setArea(values);
   const getQuery = (e: ChangeEvent<HTMLInputElement>) =>
     setQuery(e.target.value);
-  const getHotelOptions = (value: string) => setHotelOptions(value);
   const getSortOptions = (value: string) => setSort(value);
   const t = useTranslations("fastReserve");
+
   return (
-    <div
-      className="border border-[#dddd] dark:border-[#333333] bg-[#ffff]  dark:bg-[#27272A]
-     rounded-[24px] p-4 "
-    >
-      <div className="flex flex-col gap-2 lg:flex-row  lg:gap-6  lg:justify-between w-full ">
+    <div className="border border-[#dddd] dark:border-[#333333] bg-[#ffff] dark:bg-[#27272A] rounded-[24px] p-4">
+      <div className="flex flex-col gap-2 lg:flex-row lg:gap-6 lg:justify-between w-full">
         <div className="flex flex-col gap-6 lg:w-[50%]">
           <div className="flex flex-col gap-4 justify-start items-start">
-            <h2 className="text-[16px] text-[#1E2022] font-bold dark:text-[#FAFAFA] ">
+            <h2 className="text-[16px] text-[#1E2022] font-bold dark:text-[#FAFAFA]">
               {t("search")}
             </h2>
             <div className="relative w-full">
               <input
                 type="text"
                 placeholder={t("searchPlaceholder")}
-                onChange={(
-                  e: ChangeEvent<HTMLInputElement, HTMLInputElement>,
-                ) => getQuery(e)}
-                className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46] border-none rounded-[40px] py-3 px-5
-                 placeholder:text-[#777777] placeholder:text-[16px] text-right  outline-none text-foreground
-                  text-[16px] focus:ring-1 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-black "
+                onChange={(e: ChangeEvent<HTMLInputElement>) => getQuery(e)}
+                className={`w-full bg-[#F5F5F5] dark:bg-[#3F3F46] border-none rounded-[40px] py-3 px-5 placeholder:text-[#777777] placeholder:text-[16px] ${locale == "fa" ? "text-right" : "text-left"} outline-none text-foreground text-[16px] focus:ring-1 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-black`}
               />
-              <MagnifyingGlassIcon className="w-5 h-5 absolute top-[50%] translate-y-[-50%] left-5" />
+              <MagnifyingGlassIcon
+                className={`w-5 h-5 absolute top-[50%] translate-y-[-50%] ${locale == "fa" ? "left-5" : "right-5"}`}
+              />
             </div>
           </div>
-          <div className="flex flex-col gap-4 justify-start items-start">
+          <div className="flex flex-col gap-4 justify-start items-start w-full">
             <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-              {t("options")}
+              {`رنج متراژ ((متر مربع))`}
             </label>
-            <div className="relative w-full">
-              <CustomSelect
-                placeholder={t("optionsPlaceholder")}
-                options={locationOptions}
-                onValueChange={getHotelOptions}
-              />
+            <div className="w-full">
+              <TwoRangeSlider defaultValues={Area} getValues={getAreaValues} />
             </div>
           </div>
         </div>
+
         <div className="flex flex-col gap-6 lg:w-[50%]">
           <div className="flex flex-col gap-4 justify-start items-start">
             <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
@@ -116,7 +119,7 @@ const FastReserveSideFilters = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-4 justify-start items-start">
+          <div className="flex flex-col gap-4 justify-start items-start w-full">
             <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
               {t("priceRange")}
             </label>
