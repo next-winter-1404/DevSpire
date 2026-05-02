@@ -49,7 +49,7 @@ const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
           aria-label="حداکثر قیمت"
         />
       </Slider.Root>
-      <div className="flex justify-between text-[14px]">
+      <div className="flex justify-between text-[14px] w-full">
         <span className="text-[#777777]">
           {t("min")} :
           <span className=" text-foreground text-16px ">
