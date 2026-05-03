@@ -8,20 +8,22 @@ type Props = {
 const FastReserve = async ({ searchParams }: Props) => {
   const params: IFastReserveParams = await searchParams;
   const payLoad = {
-    query: params.query ?? "",
-    sort: params.sort ?? "desc",
-    option: params.option ?? "",
-    lat: params.lat ?? "",
-    lng: params.lng ?? "",
+    search: params.search ?? "",
+    sort: params.sort ?? "",
+    order: params.order ?? "DESC",
     minPrice: params.minPrice ?? "0",
-    maxPrice: params.maxPrice ?? "25000000",
+    maxPrice: params.maxPrice ?? "",
     limit: params.limit ?? "12",
     page: params.page ?? "1",
-  } as IFastReserveParams;
+    propertyType: params.propertyType ?? "",
+    maxArea: params.maxArea ?? "",
+    minArea: params.minArea ?? "",
+    location: params.location ?? "",
+  };
   console.log("payload : ", payLoad);
   return (
     <div>
-      <FastReserveView />
+      <FastReserveView location={payLoad.location} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/routing";
 
-interface IOption {
+export interface IOption {
   label: string;
   value: string;
 }
@@ -150,18 +150,17 @@ const FastSearchForm = () => {
           <input
             type="text"
             name="location"
-            placeholder="...استان , شهر"
+            placeholder="استان شهر ..."
             className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
               focus:ring-2 focus:ring-blue-100 outline-none"
           />
         </div>
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            {`((تومان)) حداکثر قیمت`}
+            {`حداکثر قیمت ((تومان))`}
           </label>
           <input
             type="number"
-            step={100000}
             name="maxPrice"
             className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
               focus:ring-2 focus:ring-blue-100 outline-none"
@@ -169,12 +168,12 @@ const FastSearchForm = () => {
         </div>
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            {`((متر مرع)) حداکثر متراژ`}
+            {`حداکثر متراژ ((متر مربع))`}
           </label>
           <input
             type="number"
             name="maxArea"
-            step={50}
+            step={1}
             className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
               focus:ring-2 focus:ring-blue-100 outline-none"
           />

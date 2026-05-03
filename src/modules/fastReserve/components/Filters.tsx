@@ -22,11 +22,11 @@ const FastReserveFilters = () => {
     // }
   };
   return (
-    <div className="w-full flex flex-col lg:flex-row items-start lg:justify-between  h-auto lg:h-[235px] mb-10 ">
+    <div className="w-full flex flex-col lg:flex-row items-start lg:justify-between  h-auto lg:h-[350px] mb-10 ">
       <div className=" w-full lg:w-[60%] h-full">
         <FastReserveSideFilters />
       </div>
-      <div className=" w-full lg:w-[37%] h-[300px] lg:h-full mt-4 lg:mt-0 ">
+      <div className=" w-full lg:w-[38%] h-[300px] lg:h-full mt-4 lg:mt-0 ">
         <LeafletMapClientWrapper getParamsLoc={getParamsLoc} />
       </div>
     </div>

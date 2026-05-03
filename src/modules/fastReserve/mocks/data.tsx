@@ -82,8 +82,3 @@ export const locationOptions = [
   { value: "isfahan", label: "اصفهان" },
   { value: "shiraz", label: "شیراز" },
 ];
-
-export const sortOptions = [
-  { value: "desc", label: "جدید ترین ها" },
-  { value: "cheapest", label: "ارزان ترین ها" },
-];

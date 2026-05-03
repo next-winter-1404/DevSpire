@@ -15,10 +15,13 @@ export interface IReserveCard {
 export interface IFastReserveParams {
   page?: string;
   sort?: string;
-  option?: string;
+  order?: string;
   limit?: string;
-  query?: string;
+  search?: string;
   maxPrice?: string;
   minPrice?: string;
+  maxArea?: string;
+  minArea?: string;
   location?: string;
+  propertyType?: string;
 }

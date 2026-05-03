@@ -1,17 +1,25 @@
 import ReserveCardList from "../components/ReserveCardList";
-import BreadCrumbs from "@/components/common/BreadCrumbs";
+import BreadCrumbs, { IBreadCrumbItem } from "@/components/common/BreadCrumbs";
 import Container from "@/components/common/Container";
 import FastReserveFilters from "../components/Filters";
 import FastReservePagination from "../components/FastReservePagination";
 import { useTranslations } from "next-intl";
 
-const FastReserveView = () => {
+interface Iprops {
+  location?: string;
+}
+const FastReserveView = ({ location }: Iprops) => {
   const t = useTranslations("fastReserve");
-  const breadcrumbItemsMock = [
+  const breadcrumbItemsMock: IBreadCrumbItem[] = [
     { label: t("home"), href: "/" },
-    { label: t("hotelReserve"), href: "/hotels" },
-    { label: "رزرو هتل رشت" },
+    {
+      label: t("hotelReserve"),
+      href: location ? "/fast-reserve" : "",
+    },
   ];
+  if (location) {
+    breadcrumbItemsMock.push({ label: `${t("hotelReserve")} ${location}` });
+  }
   return (
     <Container>
       <div className="mb-8">

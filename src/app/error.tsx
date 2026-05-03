@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "@/i18n/routing";
 import "./[locale]/globals.css";
 import {
   ExclamationTriangleIcon,
@@ -7,7 +8,6 @@ import {
   ArrowLeftIcon,
 } from "@radix-ui/react-icons";
 import { useEffect } from "react";
-import Link from "next/link";
 
 export default function Error({
   error,

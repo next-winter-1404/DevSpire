@@ -13,7 +13,7 @@ const BreadCrumbs = ({ items }: TBreadCrumbPros) => {
   return (
     <nav
       className=" text-[14px] md:text-[16px] flex items-center gap-3 overflow-x-auto scroll-smooth whitespace-nowrap
-    no-scrollbar "
+    no-scrollbar transition-all duration-200 "
     >
       {items.map((item, index) => {
         const isLast = index == items.length - 1;

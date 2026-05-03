@@ -2,22 +2,28 @@
 import { FormatPrice } from "@/utils/helper/FormatPrice";
 import * as Slider from "@radix-ui/react-slider";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
-import { useDebounce } from "use-debounce";
+import { useState } from "react";
 
 interface IPros {
   className?: string;
   getValues: (values: [number, number]) => void;
   defaultValues?: [number, number];
+  max?: number;
+  step?: number;
 }
 
-const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
-
+const TwoRangeSlider = ({
+  defaultValues,
+  className,
+  getValues,
+  max,
+  step,
+}: IPros) => {
   const locale = useLocale();
 
   const Min = 0;
-  const Max = 100_000_000;
-  const Step = 100_000;
+  const Max = max ?? 20_000_000;
+  const Step = step ?? 100_000;
 
   const [range, setRange] = useState<[number, number]>(
     defaultValues ?? [0, 20_000_000],
@@ -31,8 +37,8 @@ const TwoRangeSlider = ({ defaultValues, className, getValues }: IPros) => {
         value={range}
         onValueChange={(newValues: [number, number]) => {
           setRange(newValues);
-          getValues(newValues);
         }}
+        onValueCommit={(newValues: [number, number]) => getValues(newValues)}
         min={Min}
         max={Max}
         step={Step}
