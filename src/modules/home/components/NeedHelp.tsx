@@ -7,12 +7,16 @@ const NeedHelp = () => {
 
   return (
     <div className='flex justify-center mt-30 px-12'>
-      <div className='flex justify-between items-center w-full py-12 px-20 bg-[#0D3B66] rounded-[24px]'>
+      <div className='flex flex-col gap-4 items-center w-full py-12 px-6 bg-[#0D3B66] rounded-[24px]
+      md:flex-row md:justify-between md:px-20'>
         <div className='flex flex-col items-start gap-4'>
           <h2 className='font-bold text-[32px] text-[#FFFFFF]'>{t('title')}</h2>
           <p className='font-regular text-[20px] text-[#FFFFFF]'>{t('description')}</p>
         </div>
-        <button className='h-[60px] px-20 font-regular text-[20px] text-[#FFFFFF] bg-[#FF7F11] rounded-[40px]'>{t('freeConsultationBtn')}</button>
+        <button className='h-[60px] px-8 font-regular text-[20px] text-[#FFFFFF] bg-[#FF7F11] rounded-[40px]
+        md:px-20'>
+          {t('freeConsultationBtn')}
+        </button>
       </div>
     </div>
   )

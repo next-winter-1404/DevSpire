@@ -9,8 +9,10 @@ import { Link } from "@/i18n/routing";
 import { usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { Links } from "@/modules/header/mock/Links";
+import HeaderMenu from "./HeaderMenu";
 
 const Header = () => {
+
   const [activeTab, setActiveTab] = useState<string>("خانه");
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const useToggleMenu = () => {
@@ -18,6 +20,7 @@ const Header = () => {
   };
 
   const pathname = usePathname();
+
   const t = useTranslations("header");
 
   return (
@@ -25,7 +28,9 @@ const Header = () => {
       <div className="flex justify-center">
         <div className="flex justify-between w-full">
           <div className="flex items-center gap-4">
-            <Menu onClick={useToggleMenu} className="block   sm:hidden" />
+            <div onClick={useToggleMenu} className="block   sm:hidden">
+              <Menu/>
+            </div>
             <div className="flex items-center gap-2 text-[#0D3B66]">
               <Home className="w-6 h-6 dark:text-[#E4E4E4]" />
               <span className="font-bold text-[24px]   dark:text-[#E4E4E4]">
@@ -71,7 +76,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {toggleMenu && <Menu useToggleMenu={useToggleMenu} />}
+      {toggleMenu && <HeaderMenu useToggleMenu={useToggleMenu}/>}
     </>
   );
 };

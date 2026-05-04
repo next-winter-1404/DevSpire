@@ -23,8 +23,8 @@ const EstateReserveForm = () => {
                     <div className='flex flex-col items-start gap-2'>
                         <CustomSelect placeholder={t('selectDestinationPlc')} 
                         options={[{value: "1", label: "گزینه اول" }, {value: "2", label: "گزینه دوم"}]}
-                        onValueChange={(value) => console.log(value)}>
-
+                        onValueChange={(value) => console.log(value)}
+                        className='w-[160px]   sm:w-[360px]   md:[455px]'>
                         </CustomSelect>
                     </div>
                     <div className='flex flex-col items-start gap-2'>
@@ -32,7 +32,7 @@ const EstateReserveForm = () => {
                             {t('numOfPeople')}
                         </label>
                         <Field placeholder={t('numOfPeoplePlc')} type='number'
-                        className='w-[320px] h-[46px] font-regular text-[16px] indent-4 bg-[#F5F5F5] outline-none focus:border-1 
+                        className='w-[160px] h-[46px] font-regular text-[16px] indent-4 bg-[#F5F5F5] outline-none focus:border-1 
                         focus:border-[#0D3B66] rounded-[40px]   
                         sm:w-[360px]   md:w-[455px]            
                         dark:bg-[#404040]'
@@ -44,7 +44,7 @@ const EstateReserveForm = () => {
                         </label>
                         <div className='relative'>
                             <Field placeholder={t('arrivalDate')}
-                            className='w-[320px] h-[46px] font-regular text-[16px] indent-4 bg-[#F5F5F5] outline-none focus:border-1 
+                            className='w-[160px] h-[46px] font-regular text-[16px] indent-4 bg-[#F5F5F5] outline-none focus:border-1 
                             focus:border-[#0D3B66] rounded-[40px]   
                             sm:w-[360px]   md:w-[455px]            
                             dark:bg-[#404040]'
@@ -58,7 +58,7 @@ const EstateReserveForm = () => {
                         </label>
                         <div className='relative'>
                             <Field placeholder={t('departureDatePlc')}
-                            className='w-[320px] h-[46px] font-regular text-[16px] indent-4 bg-[#F5F5F5] outline-none focus:border-1 
+                            className='w-[160px] h-[46px] font-regular text-[16px] indent-4 bg-[#F5F5F5] outline-none focus:border-1 
                             focus:border-[#0D3B66] rounded-[40px]   
                             sm:w-[360px]   md:w-[455px]            
                             dark:bg-[#404040]'

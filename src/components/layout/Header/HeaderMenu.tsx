@@ -36,6 +36,7 @@ const HeaderMenu = ({ useToggleMenu }: HeaderMenuProps) => {
           {
             Links.map((item, index) => (
               <Link 
+              onClick={useToggleMenu}
               key={index} 
               href={item.link}
               className='font-bold text-[#262626]   dark:text-[#E4E4E4]'>
