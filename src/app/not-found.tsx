@@ -1,5 +1,5 @@
+import Link from "next/link";
 import "./[locale]/globals.css";
-import { Link } from "@/i18n/routing";
 import { QuestionMarkCircledIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 
 

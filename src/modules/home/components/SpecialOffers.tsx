@@ -1,6 +1,7 @@
 import React from 'react'
 import SpecialOffersSlider from './SpecialOffersSlider'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/routing';
 
 
 const SpecialOffers = () => {
@@ -15,10 +16,13 @@ const SpecialOffers = () => {
             <h2 className='text-[#FF5555]'>{t('redTitle')}</h2>
             <h2 className='text-[#1E2022]'>{t('darkTitle')}</h2>
           </div>
-          <button className='w-[137px] py-2 text-[#0D3B66] border border-[#0D3B66] rounded-[40px] cursor-pointer transition-all 
-          duration-300 ease-in-out
+          <Link href={'/mortgage-rent'} 
+          className='py-2 px-4 font-regular text-[20px] text-[#0D3B66] border border-[#0D3B66] rounded-[40px] transition-all 
+          duration-300 ease-in-out cursor-pointer
           hover:text-[#FFFFFF] hover:bg-[#0D3B66]
-          dark:text-[#E4E4E4] dark:border-[#E4E4E4]'>{t('seeAllButton')}</button>
+          dark:text-[#E4E4E4] dark:border-[#E4E4E4]'>
+            {t('seeAllButton')}
+          </Link>
         </div>
         <SpecialOffersSlider />
       </div>
