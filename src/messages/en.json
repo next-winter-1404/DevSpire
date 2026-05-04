@@ -46,7 +46,20 @@
       "arrivalDatePlc": "Select the arrival date",
       "departureDate": "Departure date",
       "departureDatePlc": "Select the departure date",
-      "searchButton": "Search"
+      "searchButton": "Search",
+
+      "buyAndSell": "Buy and Sell",
+      "rent": "Rent",
+      "mortgage": "Mortgage",
+      "reserve": "Reserve",
+      "estateType": "Estate Type",
+      "estateTypePlc": "Select the estate type",
+      "desiredAddress": "Desired Address",
+      "desiredAddressPlc": "Province, City...",
+      "maxPrice": "Max Price",
+      "maxPricePlc": "Enter the max price",
+      "maxMeterage": "Max Meterage",
+      "maxMeteragePlc": "Enter the max meterage"
     },
     "categories": {
       "title": "Categories",

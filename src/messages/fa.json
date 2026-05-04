@@ -46,7 +46,20 @@
       "arrivalDatePlc": "تاریخ ورود را انتخاب کنید",
       "departureDate": "تاریخ خروج",
       "departureDatePlc": "تاریخ خروج را انتخاب کنید",
-      "searchButton": "جستجو کنید"
+      "searchButton": "جستجو کنید",
+
+      "buyAndSell": "خرید و فروش",
+      "rent": "اجاره",
+      "mortgage": "رهن",
+      "reserve": "رزرو",
+      "estateType": "نوع ملک",
+      "estateTypePlc": "نوع ملک را انتخاب کنید",
+      "desiredAddress": "آدرس مورد نظر",
+      "desiredAddressPlc": "استان ، شهر...",
+      "maxPrice": "حداکثر قیمت",
+      "maxPricePlc": "حداکثر قیمت را وارد کنید",
+      "maxMeterage": "حداکثر متراژ",
+      "maxMeteragePlc": "حداکثر متراژ را وارد کنید"
     },
     "categories": {
       "title": "دسته بندی ها",

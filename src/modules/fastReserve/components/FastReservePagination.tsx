@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const FastReservePagination = () => {
+  
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const router = useRouter();

@@ -60,19 +60,14 @@ const Header = () => {
             <div className="hidden md:block">
               <ToggleThem />
             </div>
-            <button
-              className="py-2 px-4 text-[#FFFFFF] bg-[#0D3B66] rounded-[48px] cursor-pointer
-            sm:px-6"
+            <Link href={'/auth/login'} className="py-2 px-4 text-[#FFFFFF] bg-[#0D3B66] rounded-[48px] cursor-pointer   sm:px-6"
             >
               {t("login")}
-            </button>
-            <button
-              className="py-2 px-4 text-[#0D3B66] border border-[#0D3B66] rounded-[48px] cursor-pointer
-            sm:px-6
-            dark:text-[#F5F5F5] dark:border-[#F5F5F5]"
-            >
+            </Link>
+            <Link href={'/auth/register'} className="py-2 px-4 text-[#0D3B66] border border-[#0D3B66] rounded-[48px] cursor-pointer   sm:px-6
+            dark:text-[#F5F5F5] dark:border-[#F5F5F5]">
               {t("signUp")}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

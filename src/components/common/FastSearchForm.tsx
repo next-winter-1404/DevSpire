@@ -1,7 +1,7 @@
 import * as Select from "@radix-ui/react-select";
 import CustomSelect from "./CustomSelectOption";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/routing";
@@ -11,16 +11,18 @@ export interface IOption {
   value: string;
 }
 const FastSearchForm = () => {
+
   const locale = useLocale();
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations('home.heroSectionForm')
 
   const transactionTypeOptions: IOption[] = [
-    { label: "رزرو", value: " reservation" },
-    { label: "رهن", value: "mortgage" },
-    { label: "اجاره", value: "reservation" },
-    { label: "خرید و فروش", value: "direct_purchase" },
+    { label: t('reserve'), value: " reservation" },
+    { label: t('mortgage'), value: "mortgage" },
+    { label: t('rent'), value: "reservation" },
+    { label: t('buyAndSell'), value: "direct_purchase" },
   ];
   const propertyOptions: IOption[] = [
     { value: "villa", label: `${locale == "fa" ? "ویلا" : "villa"}` },
@@ -68,10 +70,10 @@ const FastSearchForm = () => {
   return (
     <div
       className="md:w-[503px]  rounded-[24px] p-6 shadow-sm border border-[#dddd] dark:border-[#333333]
-       bg-[#ffff]  dark:bg-[#27272A] flex flex-col justify-center items-center gap-4 "
+       bg-[#ffff]  dark:bg-[#27272A] flex flex-col gap-4 "
     >
       <h2 className="text-[24px] text-[#0d3b66] font-bold ">
-        همین حالا پیدا کنید !
+        {t('title')}
       </h2>
       <div className="md:mx-auto flex items-center gap-3 ">
         {transactionTypeOptions.map((item, index) => (
@@ -81,8 +83,8 @@ const FastSearchForm = () => {
             }}
             className={`px-4 py-2  border border-2 rounded-[40px] whitespace-nowrap ${
               transactionType == item.value
-                ? "text-[#0d3b66] border-[#0d3b66]"
-                : "text-[#777777] border-[#777777] "
+                ? "text-[#FFFFFF] bg-[#0D3B66]"
+                : "text-[#777777] border-[#777777]"
             } `}
             key={index}
           >
@@ -93,7 +95,7 @@ const FastSearchForm = () => {
       <form action={handleSubmit} className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            نوع ملک
+            {t('estateType')}
           </label>
           <Select.Root dir={locale == "fa" ? "rtl" : "ltr"} name="propertyType">
             <Select.Trigger
@@ -105,7 +107,7 @@ const FastSearchForm = () => {
                           data-[placeholder]:text-[#777777] 
                         `}
             >
-              <Select.Value placeholder={"انتخاب نوع ملک "} />
+              <Select.Value placeholder={t('estateTypePlc')} />
               <Select.Icon>
                 <ChevronDownIcon className="w-5 h-5 transition-transform duration-200 data-[state=open]:rotate-180 text-[#1E2022]" />
               </Select.Icon>
@@ -145,46 +147,48 @@ const FastSearchForm = () => {
         </div>
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            ادرس موردنظر
+            {t('desiredAddress')}
           </label>
           <input
             type="text"
             name="location"
-            placeholder="استان شهر ..."
+            placeholder={t('desiredAddressPlc')}
             className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
               focus:ring-2 focus:ring-blue-100 outline-none"
           />
         </div>
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            {`حداکثر قیمت ((تومان))`}
+            {t('maxPrice')}
           </label>
           <input
             type="number"
             name="maxPrice"
+            placeholder={t('maxPricePlc')}
             className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
-              focus:ring-2 focus:ring-blue-100 outline-none"
+            focus:ring-2 focus:ring-blue-100 outline-none"
           />
         </div>
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            {`حداکثر متراژ ((متر مربع))`}
+            {t('maxMeterage')}
           </label>
           <input
             type="number"
             name="maxArea"
+            placeholder={t('maxMeteragePlc')}
             step={1}
             className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
-              focus:ring-2 focus:ring-blue-100 outline-none"
+            focus:ring-2 focus:ring-blue-100 outline-none"
           />
         </div>
 
         <button
           type="submit"
           className=" bg-primary 
-       hover:bg-[#0c2a4a] text-white py-2 w-full rounded-[24px] text-[16px] font-medium transition-colors"
+          hover:bg-[#0c2a4a] text-white py-2 w-full rounded-[24px] text-[16px] font-medium transition-colors cursor-pointer"
         >
-          جستجو کنید
+          {t('searchButton')}
         </button>
       </form>
     </div>

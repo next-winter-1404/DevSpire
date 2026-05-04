@@ -20,19 +20,19 @@ const HeroSectionForm = () => {
         <button 
         onClick={() => {setActiveTab('estateReserveForm')}}
         className={`py-[10px] px-[14px] font-regular text-[14px] rounded-[40px] 
-        ${activeTab == 'estateReserveForm' ? 'border border-[#0D3B66]' : ''}`}>
+        ${activeTab == 'estateReserveForm' ? 'text-[#FFFFFF] bg-[#0D3B66]' : ''}`}>
           {t('estateReserveTab')}
         </button>
         <button 
         onClick={() => {setActiveTab('mortgageRentForm')}}
         className={`py-[10px] px-[14px] font-regular text-[14px] rounded-[40px] 
-        ${activeTab == 'mortgageRentForm' ? 'border border-[#0D3B66]' : ''}`}>
+        ${activeTab == 'mortgageRentForm' ? 'text-[#FFFFFF] bg-[#0D3B66]' : ''}`}>
           {t('mortgageRentTab')}
         </button>
         <button 
         onClick={() => {setActiveTab('buySellForm')}}
         className={`py-[10px] px-[14px] font-regular text-[14px] rounded-[40px] 
-        ${activeTab == 'buySellForm' ? 'border border-[#0D3B66]' : ''}`}>
+        ${activeTab == 'buySellForm' ? 'text-[#FFFFFF] bg-[#0D3B66]' : ''}`}>
           {t('buySellTab')}
         </button>
       </div>
