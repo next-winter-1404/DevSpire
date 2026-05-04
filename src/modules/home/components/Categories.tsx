@@ -3,12 +3,15 @@ import React from 'react'
 import CategoryBigCard from './CategoryBigCard'
 import CategorySmallCard from './CategorySmallCard'
 import { useTranslations } from 'next-intl'
+import { GetAllCategories } from '@/core/api/get/GetAllCategories'
 
 
 
 const Categories = () => {
 
     const t = useTranslations('home.categories')
+
+    const {data , loading , error} = GetAllCategories()
 
     return (
         <div className='flex justify-center mt-30 px-12'>
@@ -23,6 +26,11 @@ const Categories = () => {
                     <div className='flex flex-col gap-10'>
                         <CategorySmallCard title={t('cottageEstate')} imageUrl='/images/home/cottage-estate.jpg'/>
                         <CategorySmallCard title={t('coastalEstate')} imageUrl='/images/home/coastal-estate.png'/>
+                        {
+                            data?.map((item , index) => (
+                                <CategorySmallCard imageUrl='/jjj' title={item.name} key={index}/>
+                            ))
+                        }
                     </div>
                     <CategoryBigCard title={t('ecotourism')} imageUrl='/images/home/ecotourism.png'/>
                 </div>
