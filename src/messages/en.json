@@ -135,7 +135,14 @@
     "sleep": "Bed",
     "bath": "Bath",
     "person": "Person",
-    "parking": "Parking"
+    "parking": "Parking",
+    "location": "location",
+    "locationPlaceholder": "Province City...",
+    "limit": "limit",
+    "propertyType": "property type",
+    "propertyTypePlaceholder": "choose one",
+    "order": "order",
+    "areaRange": "Area range ((square meters))"
   },
   "fastReserveDetail": {
     "home": "Home",

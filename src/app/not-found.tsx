@@ -13,7 +13,7 @@ export default function NotFound() {
         404
       </h1>
       <h2 className="text-2xl font-bold text-foreground ">
-        !مقصدی که به دنبالش بودید پیدا نشد
+        The page you were looking for was not found !
       </h2>
     </div>
   );

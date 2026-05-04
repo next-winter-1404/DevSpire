@@ -52,7 +52,7 @@ const FastReserveDetailView = () => {
           <BookingCard />
         </div>
       </div>
-      <div className="flex flex-col w-full gap-6">
+      <div className="flex flex-col w-full gap-6 mt-4">
         <div className="flex items-center justify-between w-full ">
           <h2 className="text-[24px] font-bold text-foreground ">
             {t("commertials")}

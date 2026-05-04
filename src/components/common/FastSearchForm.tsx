@@ -1,5 +1,6 @@
+"use client";
+
 import * as Select from "@radix-ui/react-select";
-import CustomSelect from "./CustomSelectOption";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
@@ -11,18 +12,17 @@ export interface IOption {
   value: string;
 }
 const FastSearchForm = () => {
-
   const locale = useLocale();
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const t = useTranslations('home.heroSectionForm')
+  const t = useTranslations("home.heroSectionForm");
 
   const transactionTypeOptions: IOption[] = [
-    { label: t('reserve'), value: " reservation" },
-    { label: t('mortgage'), value: "mortgage" },
-    { label: t('rent'), value: "reservation" },
-    { label: t('buyAndSell'), value: "direct_purchase" },
+    { label: t("reserve"), value: "reservation" },
+    { label: t("mortgage"), value: "mortgage" },
+    { label: t("rent"), value: "rental" },
+    { label: t("buyAndSell"), value: "direct_purchase" },
   ];
   const propertyOptions: IOption[] = [
     { value: "villa", label: `${locale == "fa" ? "ویلا" : "villa"}` },
@@ -72,9 +72,7 @@ const FastSearchForm = () => {
       className="md:w-[503px]  rounded-[24px] p-6 shadow-sm border border-[#dddd] dark:border-[#333333]
        bg-[#ffff]  dark:bg-[#27272A] flex flex-col gap-4 "
     >
-      <h2 className="text-[24px] text-[#0d3b66] font-bold ">
-        {t('title')}
-      </h2>
+      <h2 className="text-[24px] text-[#0d3b66] font-bold ">{t("title")}</h2>
       <div className="md:mx-auto flex items-center gap-3 ">
         {transactionTypeOptions.map((item, index) => (
           <button
@@ -95,7 +93,7 @@ const FastSearchForm = () => {
       <form action={handleSubmit} className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            {t('estateType')}
+            {t("estateType")}
           </label>
           <Select.Root dir={locale == "fa" ? "rtl" : "ltr"} name="propertyType">
             <Select.Trigger
@@ -107,7 +105,7 @@ const FastSearchForm = () => {
                           data-[placeholder]:text-[#777777] 
                         `}
             >
-              <Select.Value placeholder={t('estateTypePlc')} />
+              <Select.Value placeholder={t("estateTypePlc")} />
               <Select.Icon>
                 <ChevronDownIcon className="w-5 h-5 transition-transform duration-200 data-[state=open]:rotate-180 text-[#1E2022]" />
               </Select.Icon>
@@ -127,15 +125,18 @@ const FastSearchForm = () => {
                     <Select.Item
                       key={option.value}
                       value={option.value}
-                      className="
-                                  text-right text-[15px] p-2 pr-8 rounded-md relative select-none
+                      className={`
+                                  ${locale == "fa" ? "text-right  pr-8 " : "text-left pl-8 "} text-[15px] p-2 rounded-md
+                                   relative select-none
                                   text-gray-800 dark:text-gray-200 
                                   data-[highlighted]:bg-gray-100 dark:data-[highlighted]:bg-gray-600 
                                   data-[highlighted]:outline-none cursor-pointer
-                                "
+                                `}
                     >
                       <Select.ItemText>{option.label}</Select.ItemText>
-                      <Select.ItemIndicator className="absolute right-2 top-1/2 -translate-y-1/2">
+                      <Select.ItemIndicator
+                        className={`absolute ${locale == "fa" ? "right-2" : "left-2"} top-1/2 -translate-y-1/2`}
+                      >
                         <CheckIcon className="w-4 h-4" />
                       </Select.ItemIndicator>
                     </Select.Item>
@@ -147,36 +148,36 @@ const FastSearchForm = () => {
         </div>
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            {t('desiredAddress')}
+            {t("desiredAddress")}
           </label>
           <input
             type="text"
             name="location"
-            placeholder={t('desiredAddressPlc')}
+            placeholder={t("desiredAddressPlc")}
             className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
               focus:ring-2 focus:ring-blue-100 outline-none"
           />
         </div>
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            {t('maxPrice')}
+            {t("maxPrice")}
           </label>
           <input
             type="number"
             name="maxPrice"
-            placeholder={t('maxPricePlc')}
+            placeholder={t("maxPricePlc")}
             className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
             focus:ring-2 focus:ring-blue-100 outline-none"
           />
         </div>
         <div className="flex flex-col gap-3 w-full ">
           <label className=" text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-            {t('maxMeterage')}
+            {t("maxMeterage")}
           </label>
           <input
             type="number"
             name="maxArea"
-            placeholder={t('maxMeteragePlc')}
+            placeholder={t("maxMeteragePlc")}
             step={1}
             className="w-full bg-[#F5F5F5] dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
             focus:ring-2 focus:ring-blue-100 outline-none"
@@ -188,7 +189,7 @@ const FastSearchForm = () => {
           className=" bg-primary 
           hover:bg-[#0c2a4a] text-white py-2 w-full rounded-[24px] text-[16px] font-medium transition-colors cursor-pointer"
         >
-          {t('searchButton')}
+          {t("searchButton")}
         </button>
       </form>
     </div>

@@ -25,7 +25,7 @@ export default function Loading() {
         <div className="mt-12 flex items-center gap-3 rounded-2xl bg-card px-6 py-3 shadow-sm border border-border">
           <UpdateIcon className="h-5 w-5 animate-spin text-primary" />
           <span className="text-base font-semibold text-foreground">
-            در حال جستجوی بهترین نتایج...
+            Loading ....
           </span>
         </div>
       </div>

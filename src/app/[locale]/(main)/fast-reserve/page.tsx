@@ -19,6 +19,7 @@ const FastReserve = async ({ searchParams }: Props) => {
     maxArea: params.maxArea ?? "",
     minArea: params.minArea ?? "",
     location: params.location ?? "",
+    transactionType: "reservation",
   };
   console.log("payload : ", payLoad);
   return (

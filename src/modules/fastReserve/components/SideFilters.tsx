@@ -15,27 +15,33 @@ const FastReserveSideFilters = () => {
   const t = useTranslations("fastReserve");
 
   const sortOptions: IOption[] = [
-    { value: "last_updated", label: "آخرین به‌روزرسانی" },
-    { value: "price", label: "قیمت" },
-    { value: "area", label: "متراژ" },
-    { value: "created_at", label: "تاریخ ثبت آگهی" },
+    {
+      value: "last_updated",
+      label: locale == "en" ? "last updated" : "آخرین به‌روزرسانی",
+    },
+    { value: "price", label: locale == "en" ? "price" : "قیمت" },
+    { value: "area", label: locale == "en" ? "area" : "متراژ" },
+    {
+      value: "created_at",
+      label: locale == "en" ? "created at" : "تاریخ ثبت آگهی",
+    },
   ];
   const orderOptions: IOption[] = [
-    { value: "DESC", label: "نزولی" },
-    { value: "ASC", label: "صعودی" },
+    { value: "DESC", label: locale == "en" ? "desc" : "نزولی" },
+    { value: "ASC", label: locale == "en" ? "asc" : "صعودی" },
   ];
 
   const propertyOptions: IOption[] = [
-    { value: "villa", label: `${locale == "fa" ? "ویلا" : "villa"}` },
+    { value: "villa", label: locale == "en" ? "villa" : "ویلا" },
     {
       value: "apartment",
-      label: `${locale == "fa" ? "آپارتمان" : "apartment"}`,
+      label: locale == "en" ? "apartment" : "آپارتمان",
     },
-    { value: "house", label: `${locale == "fa" ? "خانه" : "house"}` },
-    { value: "land", label: `${locale == "fa" ? "زمین" : "land"}` },
+    { value: "house", label: locale == "en" ? "house" : "خانه" },
+    { value: "land", label: locale == "en" ? "land" : "زمین" },
     {
       value: "commercial",
-      label: `${locale == "fa" ? "تجاری" : "commercial"}`,
+      label: locale == "en" ? "commercial" : "اقتصادی",
     },
   ];
   const limitOptions: IOption[] = [
@@ -46,6 +52,7 @@ const FastReserveSideFilters = () => {
     },
     { value: "24", label: "24" },
   ];
+
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -157,7 +164,7 @@ const FastReserveSideFilters = () => {
               />
             </div>
           </div>
-          <div className="w-full flex items-center justify-start gap-6">
+          <div className="w-full flex lg:flex-row items-center lg:justify-center lg:gap-6 flex-col gap-4 justify-start ">
             <div className="flex flex-col gap-4 justify-start items-start w-full">
               <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
                 {t("sort")}
@@ -173,7 +180,7 @@ const FastReserveSideFilters = () => {
 
             <div className=" flex flex-col gap-4 justify-start items-start w-full">
               <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-                تعداد نمایش
+                {t("limit")}
               </label>
               <CustomSelect
                 defaultValue={limit}
@@ -183,20 +190,20 @@ const FastReserveSideFilters = () => {
             </div>
           </div>
 
-          <div className="w-full flex items-center justify-center gap-6 ">
+          <div className="w-full flex lg:flex-row items-center lg:justify-center lg:gap-6 flex-col gap-4 justify-start ">
             <div className="w-full flex flex-col gap-4 justify-start items-start">
               <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-                نوع ملک
+                {t("propertyType")}
               </label>
               <CustomSelect
                 options={propertyOptions}
-                placeholder={"انتخاب نوع ملک "}
+                placeholder={t("propertyTypePlaceholder")}
                 onValueChange={getPropertyType}
               />
             </div>
             <div className="w-full flex flex-col gap-4 justify-start items-start">
               <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-                ترتیب مرتب سازی
+                {t("order")}
               </label>
               <CustomSelect
                 defaultValue={orderOptions[0].value}
@@ -210,12 +217,12 @@ const FastReserveSideFilters = () => {
         <div className="flex flex-col gap-6 lg:w-[50%]">
           <div className="flex flex-col gap-4 justify-start items-start w-full">
             <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-              محل مورد نظر
+              {t("location")}
             </label>
             <input
               type="text"
               value={locQuery}
-              placeholder="استان شهر ..."
+              placeholder={t("locationPlaceholder")}
               onChange={getLocQuery}
               className={`w-full bg-[#F5F5F5] dark:bg-[#3F3F46] border-none rounded-[40px] py-3 px-5 placeholder:text-[#777777] placeholder:text-[16px] ${locale == "fa" ? "text-right" : "text-left"} outline-none text-foreground text-[16px] focus:ring-1 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-black`}
             />
@@ -235,7 +242,7 @@ const FastReserveSideFilters = () => {
           </div>
           <div className="flex flex-col gap-4 justify-start items-start w-full">
             <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-              {`رنج متراژ ((متر مربع))`}
+              {t("areaRange")}
             </label>
             <div className="w-full">
               <TwoRangeSlider

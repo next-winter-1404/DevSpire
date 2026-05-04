@@ -135,7 +135,14 @@
     "sleep": "خواب",
     "bath": "حمام",
     "person": "نفر",
-    "parking": "پارکینگ"
+    "parking": "پارکینگ",
+    "location": "محل مورد نظر",
+    "locationPlaceholder": "استان شهر ...",
+    "limit": "تعداد نمایش",
+    "propertyType": "نوع ملک",
+    "propertyTypePlaceholder": "انتخاب نوع ملک",
+    "order": "ترتیب مرتب سازی",
+    "areaRange": "رنج متراژ (( متر مربع ))"
   },
   "fastReserveDetail": {
     "home": "خانه",

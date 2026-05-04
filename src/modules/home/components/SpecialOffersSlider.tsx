@@ -5,7 +5,7 @@ import React from "react";
 
 const SpecialOffersSlider = () => {
   return (
-    <div className="px-12">
+    <div>
       <SliderWrapper>
         {MOCK_DATA.map((property) => (
           <div

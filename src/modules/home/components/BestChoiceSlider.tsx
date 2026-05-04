@@ -3,11 +3,9 @@ import { MOCK_DATA } from "../../fastReserve/mocks/data";
 import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import React from "react";
 
-
 const BestChoiceSlider = () => {
-  
   return (
-    <div className="px-12">
+    <div>
       <SliderWrapper>
         {MOCK_DATA.map((property) => (
           <div
