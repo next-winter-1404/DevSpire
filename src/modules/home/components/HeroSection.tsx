@@ -26,7 +26,7 @@ const HeroSection = () => {
               {t("description")}
             </p>
             <div>
-              <button className=" py-2 px-3 text-[#FFFFFF] border border-[#FFFFFF] rounded-[48px]">
+              <button className=" py-2 px-3 text-[#FFFFFF] border border-[#FFFFFF] rounded-[48px] cursor-pointer">
                 {t("mortgageButton")}
               </button>
             </div>
