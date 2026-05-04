@@ -69,11 +69,11 @@ const FastSearchForm = () => {
 
   return (
     <div
-      className="md:w-[503px]  rounded-[24px] p-6 shadow-sm border border-[#dddd] dark:border-[#333333]
+      className=" w-[350px]  md:w-[503px]  rounded-[24px] p-6 shadow-sm border border-[#dddd] dark:border-[#333333]
        bg-[#ffff]  dark:bg-[#27272A] flex flex-col gap-4 "
     >
       <h2 className="text-[24px] text-[#0d3b66] font-bold ">{t("title")}</h2>
-      <div className="md:mx-auto flex items-center gap-3 ">
+      <div className="md:mx-auto flex items-center gap-3 overflow-x-auto scroll-smooth pb-4 md:p-0 ">
         {transactionTypeOptions.map((item, index) => (
           <button
             onClick={() => {
