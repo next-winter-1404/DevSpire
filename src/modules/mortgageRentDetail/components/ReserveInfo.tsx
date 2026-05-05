@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { IAbout } from "../types";
+import { IAbout } from "../../fastReserveDetail/types";
 import { useTranslations } from "next-intl";
 
 const ReserveInfo = ({ content }: { content: IAbout }) => {

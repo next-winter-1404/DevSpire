@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <div className="flex justify-center mt-30">
       <div className="flex flex-col gap-10 w-full pt-20 pb-10 px-10 rounded-[24px] bg-[#0D3B66]">
-        <div className="flex flex-col justify-between   md:flex md:flex-row">
+        <div className="flex flex-col justify-between gap-12   md:flex md:flex-row">
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-2 text-[#FF7F11]">
               <Home className='w-10 h-10'/>

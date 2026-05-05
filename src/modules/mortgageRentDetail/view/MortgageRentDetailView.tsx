@@ -14,6 +14,7 @@ import { MOCK_DATA } from "@/modules/fastReserve/mocks/data";
 import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import Container from "@/components/common/Container";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 
 
@@ -58,12 +59,12 @@ const MortgageRentDetailViewx = () => {
           <h2 className="text-[24px] font-bold text-foreground ">
             {t("commertials")}
           </h2>
-          <button
-            className="px-3 py-2 text-[20px] border border-[#0D3B66] text-[#0D3B66] dark:text-gray-300
-         dark:border-gray-600 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
+          <Link href={'/mortgage-rent'}
+          className="px-3 py-2 text-[20px] border border-[#0D3B66] text-[#0D3B66] rounded-full transition-colors
+          hover:bg-blue-100
+          dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-800">
             {t("seeAll")}
-          </button>
+          </Link>
         </div>
         <div className="w-full">
           <SliderWrapper>

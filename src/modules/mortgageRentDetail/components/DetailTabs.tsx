@@ -6,6 +6,7 @@ import { facilitiesMock } from "../../fastReserveDetail/mocks";
 import { IFacilitiesTabProps } from "../../fastReserveDetail/types";
 import CommentsSection from "../components/CommentsSection";
 import { useTranslations } from "next-intl";
+import EstateLocation from "./EstateLocation";
 
 type Tab = "about" | "facilities" | "estateLocation" | "reviews";
 
@@ -65,11 +66,10 @@ const DetailTabs = ({facilities, aboutContent, reviews,}: IFacilitiesTabProps) =
       {/* content */}
 
       <div className="mt-4 w-full">
-        {activeTab === "about" && <ReserveInfo content={aboutContent} />}
-        {activeTab === "facilities" && (
-          <FacilitiesTab facilities={facilities} />
-        )}
-        {activeTab === "reviews" && <CommentsSection />}
+        {activeTab === "about" && <ReserveInfo content={aboutContent}/>}
+        {activeTab === "facilities" && (<FacilitiesTab facilities={facilities}/>)}
+        {activeTab === "estateLocation" && (<EstateLocation/>)}
+        {activeTab === "reviews" && <CommentsSection/>}
       </div>
     </div>
   );

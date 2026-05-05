@@ -1,4 +1,4 @@
-import { IFacility } from "../types";
+import { IFacility } from "../../fastReserveDetail/types";
 
 export function FacilityCard({ facility }: { facility: IFacility }) {
   return (

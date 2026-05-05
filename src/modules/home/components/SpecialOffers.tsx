@@ -19,7 +19,7 @@ const SpecialOffers = () => {
           <Link href={'/mortgage-rent'} 
           className='py-2 px-4 font-regular text-[20px] text-[#0D3B66] border border-[#0D3B66] rounded-[40px] transition-all 
           duration-300 ease-in-out cursor-pointer
-          hover:text-[#FFFFFF] hover:bg-[#0D3B66]
+          hover:bg-blue-100
           dark:text-[#E4E4E4] dark:border-[#E4E4E4]'>
             {t('seeAllButton')}
           </Link>
