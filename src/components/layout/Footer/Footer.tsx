@@ -1,9 +1,9 @@
-import Home from "../../../../public/icons/Home";
 import Telegram from "../../../../public/icons/Telegram";
 import Instagram from "../../../../public/icons/Instagram";
 import Linkedin from "../../../../public/icons/Linkedin";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Logo from "../../../../public/icons/Logo";
 
 
 
@@ -17,7 +17,7 @@ const Footer = () => {
         <div className="flex flex-col justify-between gap-12   md:flex md:flex-row">
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-2 text-[#FF7F11]">
-              <Home className='w-10 h-10'/>
+              <Logo className='w-10 h-10'/>
               <span className="text-[40px]">{t('logo')}</span>
             </div>
             <div className="md:w-[501px]">

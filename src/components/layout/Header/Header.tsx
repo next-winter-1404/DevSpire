@@ -1,8 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Home from "../../../../public/icons/Home";
-import Arrow from "../../../../public/icons/Arrow";
-import ToggleThem from "../../common/ToggleTheme";
 import LanguageSwitcher from "../../common/LanguageSwitcher";
 import Menu from "../../../../public/icons/Menu";
 import { Link } from "@/i18n/routing";
@@ -10,6 +7,10 @@ import { usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { Links } from "@/modules/header/mock/Links";
 import HeaderMenu from "./HeaderMenu";
+import ToggleTheme from "../../common/ToggleTheme";
+import Logo from "../../../../public/icons/Logo";
+
+
 
 const Header = () => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
@@ -30,7 +31,7 @@ const Header = () => {
               <Menu />
             </button>
             <div className="flex items-center gap-2 text-[#0D3B66]">
-              <Home className="w-6 h-6 dark:text-[#E4E4E4]" />
+              <Logo className="w-6 h-6 dark:text-[#E4E4E4]" />
               <span className="font-bold text-[24px]   dark:text-[#E4E4E4]">
                 {t("logo")}
               </span>
@@ -56,7 +57,7 @@ const Header = () => {
               <LanguageSwitcher />
             </div>
             <div className="hidden md:block">
-              <ToggleThem />
+              <ToggleTheme/>
             </div>
             <Link
               href={"/auth/login"}

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import EstateOwner from '../../../../public/images/mortgage-rent-detail/estate-owner.jpg'
+import EstateOwner from '../../../../public/images/mortgageRentDetail/estate-owner.jpg'
 import Money from '../../../../public/icons/Cash'
 import MoneyExchange from '../../../../public/icons/MoneyExchange'
 import MobileCall from '../../../../public/icons/MobileCall'
@@ -17,8 +17,8 @@ const MortgageRentCard = () => {
         <Image src={EstateOwner} alt='estateOwner' className='w-30 h-30 rounded-[120px]'/>
         <span className='font-regular text-[20px] text-[#1E2022]'>متین قربان زاده</span>
       </div>
-      <div className='flex justify-between w-full'>
-        <div className='flex gap-2 font-regular text-[16px] text-[#0D3B66]'>
+      <div className='flex justify-between items-center w-full'>
+        <div className='flex items-center gap-2 font-regular text-[16px] text-[#0D3B66]'>
           <Money/>
           <span>قیمت رهن از :</span>
         </div>
@@ -27,8 +27,8 @@ const MortgageRentCard = () => {
           <span>تومان</span>
         </div>
       </div>
-      <div className='flex justify-between w-full'>
-        <div className='flex gap-2 font-regular text-[16px] text-[#0D3B66]'>
+      <div className='flex justify-between items-center w-full'>
+        <div className='flex items-center gap-2 font-regular text-[16px] text-[#0D3B66]'>
           <MoneyExchange/>
           <span>قیمت اجاره از :</span>
         </div>
