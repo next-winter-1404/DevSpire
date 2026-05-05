@@ -7,7 +7,7 @@ import Home from '../../../../public/icons/Home'
 
 const DashboardHeader = () => {
   return (
-    <div className='flex justify-between w-full py-2 px-4 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[24px]   
+    <div className='flex justify-between py-2 px-4 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[24px]   
     dark:bg-[#404040] dark:border-[#777777]'>
       <div className='flex items-center gap-4'>
         <Image src={EstateOwner} alt='estateOwner' className='w-10 h-10 rounded-[40px]'/>
