@@ -4,10 +4,9 @@ import {
   facilitiesMock,
   IBredCrumbsItems,
   reviewsMock,
-} from "../mocks";
+} from "../../fastReserveDetail/mocks";
 import ImageBox from "../components/ImageBox";
-import BookingCard from "../components/BookingCard";
-import ReserveInfo from "../components/ReserveInfo";
+import BookingCard from "../components/MortgageRentCard";
 import DetailTitle from "../components/DetailTitle";
 import DetailTabs from "../components/DetailTabs";
 import SliderWrapper from "@/components/common/SliderWrapper";
@@ -16,7 +15,10 @@ import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import Container from "@/components/common/Container";
 import { useTranslations } from "next-intl";
 
-const FastReserveDetailView = () => {
+
+
+const MortgageRentDetailViewx = () => {
+  
   const t = useTranslations("fastReserveDetail");
 
   const breadcrumbItemsMock2: IBredCrumbsItems[] = [
@@ -71,7 +73,7 @@ const FastReserveDetailView = () => {
                 dir="rtl"
                 key={property.id}
               >
-                <FastReserveCard className="w-full" property={property} />
+                <FastReserveCard className="w-full" property={property} linkHref={`/mortgage-rent/${property.id}`}/>
               </div>
             ))}
           </SliderWrapper>
@@ -81,4 +83,4 @@ const FastReserveDetailView = () => {
   );
 };
 
-export default FastReserveDetailView;
+export default MortgageRentDetailViewx;
