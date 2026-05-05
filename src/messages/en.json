@@ -47,7 +47,6 @@
       "departureDate": "Departure date",
       "departureDatePlc": "Select the departure date",
       "searchButton": "Search",
-
       "buyAndSell": "Buy and Sell",
       "rent": "Rent",
       "mortgage": "Mortgage",
@@ -152,8 +151,9 @@
     "seeMore": "View More",
     "seeLess": "View less",
     "aboutHouse": "About the Property",
-    "comments": "User Reviews",
     "options": "Accommodation Facilities",
+    "estateLocation": "Estate Location",
+    "comments": "User Reviews",
     "allComments": "All Reviews",
     "seeTitle": "Review Title",
     "seeCaption": "Review Text",

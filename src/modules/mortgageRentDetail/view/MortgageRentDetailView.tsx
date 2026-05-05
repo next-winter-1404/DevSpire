@@ -4,10 +4,9 @@ import {
   facilitiesMock,
   IBredCrumbsItems,
   reviewsMock,
-} from "../mocks";
+} from "../../fastReserveDetail/mocks";
 import ImageBox from "../components/ImageBox";
-import BookingCard from "../components/BookingCard";
-import ReserveInfo from "../components/ReserveInfo";
+import BookingCard from "../components/MortgageRentCard";
 import DetailTitle from "../components/DetailTitle";
 import DetailTabs from "../components/DetailTabs";
 import SliderWrapper from "@/components/common/SliderWrapper";
@@ -15,8 +14,12 @@ import { MOCK_DATA } from "@/modules/fastReserve/mocks/data";
 import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import Container from "@/components/common/Container";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
-const FastReserveDetailView = () => {
+
+
+const MortgageRentDetailViewx = () => {
+  
   const t = useTranslations("fastReserveDetail");
 
   const breadcrumbItemsMock2: IBredCrumbsItems[] = [
@@ -51,17 +54,17 @@ const FastReserveDetailView = () => {
           <BookingCard />
         </div>
       </div>
-      <div className="flex flex-col w-full gap-6 mt-4">
+      <div className="flex flex-col w-full gap-6">
         <div className="flex items-center justify-between w-full ">
           <h2 className="text-[24px] font-bold text-foreground ">
             {t("commertials")}
           </h2>
-          <button
-            className="px-3 py-2 text-[20px] border border-[#0D3B66] text-[#0D3B66] dark:text-gray-300
-         dark:border-gray-600 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
+          <Link href={'/mortgage-rent'}
+          className="px-3 py-2 text-[20px] border border-[#0D3B66] text-[#0D3B66] rounded-full transition-colors
+          hover:bg-blue-100
+          dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-800">
             {t("seeAll")}
-          </button>
+          </Link>
         </div>
         <div className="w-full">
           <SliderWrapper>
@@ -71,7 +74,7 @@ const FastReserveDetailView = () => {
                 dir="rtl"
                 key={property.id}
               >
-                <FastReserveCard className="w-full" property={property} />
+                <FastReserveCard className="w-full" property={property} linkHref={`/mortgage-rent/${property.id}`}/>
               </div>
             ))}
           </SliderWrapper>
@@ -81,4 +84,4 @@ const FastReserveDetailView = () => {
   );
 };
 
-export default FastReserveDetailView;
+export default MortgageRentDetailViewx;

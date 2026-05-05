@@ -9,6 +9,7 @@ const ReserveCardList = () => {
           <FastReserveCard
             key={property.id}
             property={property}
+            linkHref={`/fast-reserve/${property.id}`}
             className="w-full lg:w-[32%]"
           />
         ))}
