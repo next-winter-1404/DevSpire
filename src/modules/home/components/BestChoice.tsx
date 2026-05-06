@@ -20,7 +20,7 @@ const BestChoice = () => {
           hover:bg-blue-100
           dark:text-[#F5F5F5] dark:border-[#F5F5F5]">
             {t('seeAllButton')}
-yy          </Link>
+          </Link>
         </div>
         <BestChoiceSlider />
       </div>

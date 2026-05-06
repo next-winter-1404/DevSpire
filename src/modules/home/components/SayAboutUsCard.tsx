@@ -1,13 +1,16 @@
 import Image from 'next/image'
-import React from 'react'
 import Person1 from '../../../../public/images/home/person1.png'
 import Virgule from '../../../../public/icons/Virgule'
 
 
-const SayAboutUsCard = () => {
+type props = {
+  className: string;
+};
+
+const SayAboutUsCard = ({className}: props) => {
   return (
-    <div className='flex flex-col gap-6 p-6 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]   
-    dark:bg-[#262626] dark:border-[#404040]'>
+    <div className={`flex flex-col gap-6 p-6 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]   
+    dark:bg-[#262626] dark:border-[#404040] ${className}`}>
       <div className='flex justify-between'>
         <Image src={Person1} alt='person1' width={100} height={100} className='rounded-[8px]'/>
         <Virgule/>

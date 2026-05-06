@@ -15,7 +15,7 @@ const SayAboutUs = () => {
           <h2 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">
             {t("title")}
           </h2>
-          <SayAboutUsSlider />
+          <SayAboutUsSlider/>
         </div>
         <div className="flex gap-8">
           <BigArrowRight className={locale === "en" ? "scale-x-[-1]" : ""} />

@@ -5,19 +5,17 @@ import React from "react";
 
 const BestChoiceSlider = () => {
   return (
-    <div>
-      <SliderWrapper>
-        {MOCK_DATA.map((property) => (
-          <div
-            className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
-            dir="rtl"
-            key={property.id}
-          >
-            <FastReserveCard className="w-full" property={property} />
-          </div>
-        ))}
-      </SliderWrapper>
-    </div>
+    <SliderWrapper>
+      {MOCK_DATA.map((property) => (
+        <div
+          className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
+          dir="rtl"
+          key={property.id}
+        >
+          <FastReserveCard className="w-full" property={property} />
+        </div>
+      ))}
+    </SliderWrapper>
   );
 };
 

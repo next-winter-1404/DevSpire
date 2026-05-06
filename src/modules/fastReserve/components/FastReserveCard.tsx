@@ -6,10 +6,9 @@ import { useTranslations } from "next-intl";
 type props = {
   className?: string;
   property: IReserveCard;
-  linkHref: string; 
 };
 
-const FastReserveCard = ({ property, className, linkHref }: props) => {
+const FastReserveCard = ({ property, className }: props) => {
   const t = useTranslations("fastReserve");
   return (
     <div
@@ -46,7 +45,7 @@ const FastReserveCard = ({ property, className, linkHref }: props) => {
 
         <div className="flex flex-col justify-start items-start gap-3">
           <Link
-            href={linkHref} 
+            href={`/fast-reserve/${property.id}`} 
             className="font-bold text-[20px] hover:text-[#0D3B66] transition transition-colors duration-200
              text-[#1E2022] dark:text-[#FAFAFA] cursor-pointer "
           >

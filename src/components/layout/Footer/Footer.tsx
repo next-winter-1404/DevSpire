@@ -14,13 +14,13 @@ const Footer = () => {
   return (
     <div className="flex justify-center mt-30">
       <div className="flex flex-col gap-10 w-full pt-20 pb-10 px-10 rounded-[24px] bg-[#0D3B66]">
-        <div className="flex flex-col justify-between gap-12   md:flex md:flex-row">
+        <div className="flex flex-col justify-between   lg:flex lg:flex-row">
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-2 text-[#FF7F11]">
               <Logo className='w-10 h-10'/>
               <span className="text-[40px]">{t('logo')}</span>
             </div>
-            <div className="md:w-[501px]">
+            <div className="lg:w-[501px]">
               <p className="text-[#FFFFFF]">{t('footerText')}</p>
             </div>
             <div className="flex gap-8">
@@ -29,7 +29,7 @@ const Footer = () => {
               <Linkedin/>
             </div>
           </div>
-          <div className="flex flex-col gap-6   md:flex-row">
+          <div className="flex flex-col gap-6   lg:flex-row">
             <div className="flex flex-col gap-4">
               <h3 className="text-[20px] text-[#FF7F11]">{t('accReservation')}</h3>
               <span className="text-[16px] text-[#FFFFFF]">{t('accReservationText1')}</span>
@@ -52,7 +52,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="w-full h-[0.5px] bg-[#FFFFFF]"></div>
-        <div className="flex flex-col gap-4   md:flex-row md:justify-between">
+        <div className="flex flex-col gap-4   lg:flex-row lg:justify-between">
           <p className="text-[#FFFFFF]">{t('law')}</p>
           <div className="flex gap-6">
             <div className="flex justify-center items-center p-2 bg-[#FFFFFF] rounded-[16px]">
