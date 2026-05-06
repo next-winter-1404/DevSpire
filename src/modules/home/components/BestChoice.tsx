@@ -7,7 +7,7 @@ const BestChoice = () => {
   const t = useTranslations("home.bestChoice");
 
   return (
-    <div className="flex justify-between mt-30 px-4 sm:px-6 lg:px-10 w-full">
+    <div className="flex justify-between w-full mt-30 px-4 sm:px-6 lg:px-10">
       <div className="flex flex-col gap-8 w-full">
         <div className="flex justify-between ">
           <h2 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">
