@@ -3,11 +3,13 @@ import Image from 'next/image'
 import EstateOwner from '../../../../public/images/mortgageRentDetail/estate-owner.jpg'
 import ToggleTheme from '@/components/common/ToggleTheme'
 import Home from '../../../../public/icons/Home'
+import Notification from '../../../../public/icons/Notification'
+import { Link } from '@/i18n/routing'
 
 
-const DashboardHeader = () => {
+const CusDashboardHeader = () => {
   return (
-    <div className='flex justify-between py-2 px-4 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[24px]   
+    <div className='flex justify-between w-full py-2 px-4 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[24px]   
     dark:bg-[#404040] dark:border-[#777777]'>
       <div className='flex items-center gap-4'>
         <Image src={EstateOwner} alt='estateOwner' className='w-10 h-10 rounded-[40px]'/>
@@ -24,12 +26,15 @@ const DashboardHeader = () => {
       </div>
       <div className='flex items-center gap-4'>
         <ToggleTheme/>
-        <div className='p-2 bg-[#0D3B66] rounded-[40px]'>
-          <Home color='#FFFFFF'/>
+        <div className='p-2 bg-[#0D3B66] rounded-[40px] cursor-pointer'>
+          <Notification color='#FFFFFF'/>
         </div>
+        <Link href={'/'} className='p-2 bg-[#0D3B66] rounded-[40px] cursor-pointer'>
+          <Home color='#FFFFFF'/>
+        </Link>
       </div>
     </div>
   )
 }
 
-export default DashboardHeader
+export default CusDashboardHeader
