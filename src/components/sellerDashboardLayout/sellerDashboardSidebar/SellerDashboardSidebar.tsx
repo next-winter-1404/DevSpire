@@ -18,7 +18,7 @@ const SellerDashboardSidebar = () => {
     const pathname = usePathname()
 
     const isActiveText = (path: string) => pathname === path ? 'font-bold text-[#1E2022]' : 'text-[#777777]'
-    const isActiveIcon = (path: string) => pathname === path ? 'text-[#0D3B66]' : 'text-[#777777]'
+    const isActiveIcon = (path: string) => pathname === path ? '#0D3B66' : '#777777'
 
 
     return (
@@ -31,12 +31,12 @@ const SellerDashboardSidebar = () => {
                 <h3 className='font-regular text-[16px] text-[#0D3B66]'>منو</h3>
                 <div className='flex flex-col gap-6 font-regular text-[16px]'>
                     <div className='flex items-center gap-4 text-[#777777]'>
-                        <Dashboard color={isActiveIcon('/dashboard')}/>
-                        <Link href={'/dashboard'} className={isActiveText('/dashboard')}>داشبورد</Link>
+                        <Dashboard color={isActiveIcon('/seller-dashboard')}/>
+                        <Link href={'/seller-dashboard'} className={isActiveText('/seller-dashboard')}>داشبورد</Link>
                     </div>
                     <div className='flex items-center gap-4 text-[#777777]'>
-                        <EditUser color={isActiveIcon('/userProfile')}/>
-                        <Link href={'/userProfile'} className={isActiveText('/userProfile')}>مشخصات کاربری</Link>
+                        <EditUser color={isActiveIcon('/user-profile')}/>
+                        <Link href={'/user-profile'} className={isActiveText('/user-profile')}>مشخصات کاربری</Link>
                     </div>
                     <div className='flex items-center gap-4 text-[#777777]'>
                         <Notification color={isActiveIcon('/notifications')}/>
@@ -48,24 +48,24 @@ const SellerDashboardSidebar = () => {
                 <h3 className='font-regular text-[16px] text-[#0D3B66]'>مدیریت</h3>
                 <div className='flex flex-col gap-6 font-regular text-[16px]'>
                     <div className='flex items-center gap-4 text-[#777777]'>
-                        <Estates color={isActiveIcon('/estatesManagement')}/>
-                        <Link href={'/estatesManagement'} className={isActiveText('/estatesManagement')}>مدیریت املاک</Link>
+                        <Estates color={isActiveIcon('/estates-management')}/>
+                        <Link href={'/estates-management'} className={isActiveText('/estates-management')}>مدیریت املاک</Link>
                     </div>
                     <div className='flex items-center gap-4 text-[#777777]'>
-                        <CheckList color={isActiveIcon('/reservesManagement')}/>
-                        <Link href={'/reservesManagement'} className={isActiveText('/reservesManagement')}>مدیریت رزرو ها</Link>
+                        <CheckList color={isActiveIcon('/reserves-management')}/>
+                        <Link href={'/reserves-management'} className={isActiveText('/reserves-management')}>مدیریت رزرو ها</Link>
                     </div>
                     <div className='flex items-center gap-4 text-[#777777]'>
-                        <FinantialManagement color={isActiveIcon('/finantialManagement')}/>
-                        <Link href={'/finantialManagement'} className={isActiveText('/finantialManagement')}>مدیریت مالی</Link>
+                        <FinantialManagement color={isActiveIcon('/finantial-management')}/>
+                        <Link href={'/finantial-management'} className={isActiveText('/finantial-management')}>مدیریت مالی</Link>
                     </div>
                     <div className='flex items-center gap-4 text-[#777777]'>
-                        <Chats color={isActiveIcon('/commentsManagement')}/>
-                        <Link href={'/commentsManagement'} className={isActiveText('/commentsManagement')}>مدیریت نظرات</Link>
+                        <Chats color={isActiveIcon('/comments-management')}/>
+                        <Link href={'/comments-management'} className={isActiveText('/comments-management')}>مدیریت نظرات</Link>
                     </div>
                     <div className='flex items-center gap-4 text-[#777777]'>
-                        <LogOut color={isActiveIcon('/logOu')}/>
-                        <Link href={'/logOut'} className={isActiveText('/logOut')}>خروج از حساب</Link>
+                        <LogOut color={isActiveIcon('/logout')}/>
+                        <Link href={'/logout'} className={isActiveText('/logout')}>خروج از حساب</Link>
                     </div>
                 </div>
             </div>
