@@ -223,5 +223,34 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     }
-  } 
+  },
+  "customerDashboard":{
+    "header":{
+      "balance": "Balance :"
+    },
+    "sidebar":{
+      "dashboard": "Dashboard",
+      "userProfile": "User Profile",
+      "notifications": "Notifications",
+      "estatesManagement": "Estates Management",
+      "reservesManagement": "Reserves Management",
+      "finantialManagement": "Finantial Management",
+      "commentsManagement": "Comments Management",
+      "logOut": "Log Out"
+    },
+    "dashboard":{
+      "allOfEstates": "All of Estates",
+      "activeReserves": "Active Reserves",
+      "pendingReservations": "Pending Reservations",
+      "todaysVisits": "Today Visits",
+      "incomeChart": "Income Chart",
+      "currentMonth": "Current Month",
+      "totalIncome": "Total Income",
+      "thisMonthsIncome": "This Month's Income",
+      "profCompletionChart": "Profile Completion Chart",
+      "EditProfileBtn": "Edit Profile",
+      "recentCustomerBookings": "Recent Customer Bookings",
+      "seeAllBtn": "See All"
+    }
+  }  
 }

@@ -3,7 +3,7 @@ import React from "react";
 import CategoryBigCard from "./CategoryBigCard";
 import CategorySmallCard from "./CategorySmallCard";
 import { useTranslations } from "next-intl";
-import { GetAllCategories } from "@/core/api/get/GetAllCategories";
+import { GetAllCategories } from "@/modules/services/api/get/GetAllCategories";
 
 const Categories = () => {
   const t = useTranslations("home.categories");

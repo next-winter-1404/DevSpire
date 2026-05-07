@@ -35,7 +35,7 @@ const InCome: React.FC<InComeProps> = ({
               <div className='w-4 h-4 bg-[#E6EDF5] rounded-full'></div>
               <span>درآمد کل</span>
             </div>
-            <div className='font-regular text-[14px] text-[#1E2022] dark:text-[#F5F5F5]'>
+            <div className='flex gap-2 font-regular text-[14px] text-[#1E2022] dark:text-[#F5F5F5]'>
               <span>{totalIncome}</span>
               <span>تومان</span>
             </div>
@@ -45,7 +45,7 @@ const InCome: React.FC<InComeProps> = ({
               <div className='w-4 h-4 bg-[#0D3B66] rounded-full'></div>
               <span>درآمد این ماه</span>
             </div>
-            <div className='font-regular text-[14px] text-[#1E2022] dark:text-[#F5F5F5]'>
+            <div className='flex gap-2 font-regular text-[14px] text-[#1E2022] dark:text-[#F5F5F5]'>
               <span>{currentIncome}</span>
               <span>تومان</span>
             </div>

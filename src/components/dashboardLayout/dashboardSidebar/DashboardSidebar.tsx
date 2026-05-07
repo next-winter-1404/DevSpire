@@ -12,14 +12,14 @@ import LogOut from '../../../../public/icons/LogOut'
 import Notification from '../../../../public/icons/Notification'
 import { useTranslations } from 'next-intl'
 
+interface IDashboardSidebar {
+    isSellerDashboard: boolean
+}
+
 const basePath = '/seller-dashboard'
 
-
-const SellerDashboardSidebar = () => {
-
-
+const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
     const pathname = usePathname()
-
     const t = useTranslations('sellerDashboard.sidebar')
 
     const isActiveText = (path: string) => pathname === path 
@@ -41,18 +41,33 @@ const SellerDashboardSidebar = () => {
         { href: `${basePath}/logout`, label: t('logOut'), Icon: LogOut },
     ]
 
+    const filteredItems = isSellerDashboard 
+        ? menuItems.filter(item => 
+        ![
+            `${basePath}/seller-dashboard/user-profile`, 
+            `${basePath}/estates-management`
+        ]
+        .includes(item.href))
+        : menuItems.filter(item => 
+        ![
+            `${basePath}/seller-dashboard/user-profile`, 
+            `${basePath}/seller-dashboard/estates-management`
+        ]
+        .includes(item.href))
 
-    return(
+
+    return (
         <div className='flex flex-col gap-8 w-[268px] h-screen p-8 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]
         dark:bg-[#404040] dark:border-[#777777]'>
             <div className='flex items-center gap-4'>
                 <Logo color='text-[#0D3B66]' className='w-8 h-8'/>
                 <h2 className='font-bold text-[32px] text-[#1E2022]   dark:text-[#F5F5F5]'>لوگو</h2>
             </div>      
+            
             <div className='flex flex-col gap-4'>
                 <h3 className='font-regular text-[16px] text-[#0D3B66]   dark:text-[#E6EDF5]'>منو</h3>
                 <div className='flex flex-col gap-6 font-regular text-[16px]'>
-                    {menuItems.slice(0, 3).map(({ href, label, Icon }) => (
+                    {filteredItems.slice(0, 3).map(({ href, label, Icon }) => (
                         <div key={href} className='flex items-center gap-4 text-[#777777]'>
                             <Icon className={isActiveIcon(href)}/>
                             <Link href={href} className={isActiveText(href)}>{label}</Link>
@@ -60,10 +75,11 @@ const SellerDashboardSidebar = () => {
                     ))}
                 </div>
             </div>
+
             <div className='flex flex-col gap-4'>
                 <h3 className='font-regular text-[16px] text-[#0D3B66]   dark:text-[#E6EDF5]'>مدیریت</h3>
                 <div className='flex flex-col gap-6 font-regular text-[16px]'>
-                    {menuItems.slice(3).map(({ href, label, Icon }) => (
+                    {filteredItems.slice(3).map(({ href, label, Icon }) => (
                         <div key={href} className='flex items-center gap-4 text-[#777777]'>
                             <Icon className={isActiveIcon(href)}/>
                             <Link href={href} className={isActiveText(href)}>{label}</Link>
@@ -75,4 +91,4 @@ const SellerDashboardSidebar = () => {
     )
 }
 
-export default SellerDashboardSidebar
+export default DashboardSidebar
