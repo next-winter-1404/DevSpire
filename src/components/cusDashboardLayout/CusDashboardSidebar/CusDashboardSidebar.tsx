@@ -16,19 +16,22 @@ const CusDashboardSidebar = () => {
 
 
     const pathname = usePathname()
-
-    const isActiveText = (path: string) => pathname === path ? 'font-bold text-[#1E2022]' : 'text-[#777777]'
-    const isActiveIcon = (path: string) => pathname === path ? '#0D3B66' : '#777777'
+    
+    const isActiveText = (path: string) => pathname === path 
+    ? 'font-bold text-[#1E2022]   dark:text-[#E4E4E4]' 
+    : 'text-[#777777]   dark:text-[#A3A3A3]'
+    const isActiveIcon = (path: string) => pathname === path ? 'text-[#0D3B66]   dark:text-[#E4E4E4]' : 'dark:text-[#A3A3A3]'
 
 
     return (
-        <div className='flex flex-col gap-8 w-[268px] p-8 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]'>
+        <div className='flex flex-col gap-8 w-[268px] h-screen p-8 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]   
+        dark:bg-[#404040] dark:border-[#777777]'>
             <div className='flex items-center gap-4'>
                 <Logo color='text-[#0D3B66]' className='w-8 h-8'/>
-                <h2 className='font-bold text-[32px] text-[#1E2022]'>لوگو</h2>
+                <h2 className='font-bold text-[32px] text-[#1E2022]   dark:text-[#F5F5F5]'>لوگو</h2>
             </div>
             <div className='flex flex-col gap-4'>
-                <h3 className='font-regular text-[16px] text-[#0D3B66]'>منو</h3>
+                <h3 className='font-regular text-[16px] text-[#0D3B66]   dark:text-[#E6EDF5]'>منو</h3>
                 <div className='flex flex-col gap-6 font-regular text-[16px]'>
                     <div className='flex items-center gap-4 text-[#777777]'>
                         <Dashboard color={isActiveIcon('/customer-dashboard')}/>
@@ -45,7 +48,7 @@ const CusDashboardSidebar = () => {
                 </div>
             </div>
             <div className='flex flex-col gap-4'>
-                <h3 className='font-regular text-[16px] text-[#0D3B66]'>مدیریت</h3>
+                <h3 className='font-regular text-[16px] text-[#0D3B66]   dark:text-[#E6EDF5]'>مدیریت</h3>
                 <div className='flex flex-col gap-6 font-regular text-[16px]'>
                     <div className='flex items-center gap-4 text-[#777777]'>
                         <CheckList color={isActiveIcon('/reserves-management')}/>
