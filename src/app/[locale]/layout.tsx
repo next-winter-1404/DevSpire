@@ -11,6 +11,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { Toaster } from "react-hot-toast";
+import { ToasterProvider } from "@/components/common/ToasterProvider";
 
 export default async function LocaleLayout({
   children,
@@ -35,7 +37,7 @@ export default async function LocaleLayout({
     >
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ToasterProvider>{children}</ToasterProvider>
         </NextIntlClientProvider>
       </body>
     </html>

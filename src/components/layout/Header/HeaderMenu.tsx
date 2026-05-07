@@ -52,7 +52,11 @@ const HeaderMenu = ({ useToggleMenu }: HeaderMenuProps) => {
                 key={index}
                 href={item.link}
                 className={` cursor-pointer block w-full px-4 py-3 rounded-xl font-semibold text-[16px] transition-all duration-200 ${
-                  isActive
+                  (
+                    item.link == "/"
+                      ? pathname == "/"
+                      : pathname.includes(item.link)
+                  )
                     ? "text-[#0D3B66] bg-blue-50 dark:text-white dark:bg-gray-700"
                     : "text-[#777777] dark:text-gray-300 "
                 }`}

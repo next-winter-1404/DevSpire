@@ -42,7 +42,11 @@ const Header = () => {
                 key={index}
                 href={item.link}
                 className={`${
-                  pathname == item.link
+                  (
+                    item.link == "/"
+                      ? pathname == "/"
+                      : pathname.includes(item.link)
+                  )
                     ? "font-bold text-[#0D3B66] border-b-2 border-[#0D3B66] pb-2 "
                     : "hover:font-bold  "
                 } transition-all `}
