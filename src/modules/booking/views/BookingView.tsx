@@ -9,6 +9,7 @@ import BookingStepper from "../components/BookingStepper";
 import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import BookingStepTwo from "../components/BookingStepTwo";
+import BookingStepThree from "../components/BookingStepThree";
 
 interface IProps {
   location: string;
@@ -51,7 +52,7 @@ const BookingView = ({ location }: IProps) => {
       <BookingContainer>
         {/* <div>{renderStepsContent() ?? "gg"}</div> */}
         <div className="w-full h-full">
-          <BookingStepTwo />
+          <BookingStepThree />
         </div>
       </BookingContainer>
     </Container>
