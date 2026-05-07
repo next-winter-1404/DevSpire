@@ -1,8 +1,12 @@
 'use client';
-
-import CompleteProfile from "../components/CompleteProfile";
-import InCome from "../components/InCome";
-import TopCards from "../components/TopCards";
+import CheckList from "../../../../public/icons/CheckList";
+import Estates from "../../../../public/icons/Estates";
+import Eye from "../../../../public/icons/Eye";
+import HourGlass from "../../../../public/icons/HourGlass";
+import CompleteProfile from "../../../components/common/CompleteProfile";
+import InCome from "../../../components/common/InCome";
+import TopCards from "../../../components/common/TopCards";
+import { useTranslations } from "next-intl";
 
 
 const columns = [
@@ -22,12 +26,22 @@ const data = [
 
 
 const SellerDashboardView = () => {
+
+  const t = useTranslations('sellerDashboard.dashboard')
+
   return (
-    <div className='flex flex-col gap-4 p-6 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]'>
-      <TopCards />
+    <div className='flex flex-col gap-4 p-6 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]   dark:bg-[#404040] dark:border-[#777777]'>
+      <TopCards items={[
+        {icon: Estates, title: t('allOfEstates'), value: '30'},
+        {icon: CheckList, title: t('activeReserves'), value: '30'},
+        {icon: HourGlass, title: t('pendingReservations'), value: '30'},
+        {icon: Eye, title: t('todaysVisits'), value: '3000'}
+      ]}/>
       <div className='flex gap-4'>
-        <InCome />
-        <CompleteProfile />
+        <InCome title={t('incomeChart')} dateRange='از تاریخ 1 تا 31 مهر 1404' totalIncome='300,000,000' currentIncome='60,000,000'
+        percentage={64}/>
+        <CompleteProfile title={t('profCompletionChart')} description='پروفایل باید حداقل ۷۰٪ تکمیل شده باشد.'
+        lastEditText='آخرین ویرایش 3 روز پیش' percentage={64} linkHref='/seller-dashboard/edit-profile'/>
       </div>
     </div>
   );

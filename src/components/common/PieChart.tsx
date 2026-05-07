@@ -1,8 +1,9 @@
 'use client';
-
 import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 
-const EnergyChart = ({ percentage = 0, color = '#10B981', bgColor = '#E5E7EB', size = 200 }) => {
+
+const EnergyChart = ({ percentage = 0, size = 200, color = '#10B981', bgColor = '#E6EDF5' }) => {
+
 
   const radius = size / 2;
   const stroke = 8;
@@ -13,8 +14,9 @@ const EnergyChart = ({ percentage = 0, color = '#10B981', bgColor = '#E5E7EB', s
     { name: 'باقی‌مانده', value: 100 - percentage, fill: bgColor },
   ];
 
+
   return (
-    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+    <div className="flex items-center justify-center relative" style={{width: size, height: size}}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
@@ -32,9 +34,8 @@ const EnergyChart = ({ percentage = 0, color = '#10B981', bgColor = '#E5E7EB', s
           />
         </PieChart>
       </ResponsiveContainer>
-      
       <div className="absolute flex flex-col items-center justify-center text-[#1E2022]">
-        <span className="text-2xl font-bold">{percentage}%</span>
+        <span className="font-bold text-[20px] text-[#0D3B66]   dark:text-[#E4E4E4]">{percentage}%</span>
       </div>
     </div>
   );

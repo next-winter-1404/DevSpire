@@ -195,5 +195,34 @@
       "min": "حداقل",
       "max": "حداکثر"
     }
-  }
+  },
+  "sellerDashboard":{
+    "header":{
+      "balance": "موجودی :"
+    },
+    "sidebar":{
+      "dashboard": "داشبورد",
+      "userProfile": "مشخصات کاربری",
+      "notifications": "اعلان ها",
+      "estatesManagement": "مدیریت املاک",
+      "reservesManagement": "مدیریت رزرو ها",
+      "finantialManagement": "مدیریت مالی",
+      "commentsManagement": "مدیریت نظرات",
+      "logOut": "خروج از حساب"
+    },
+    "dashboard":{
+      "allOfEstates": "کل ملک ها",
+      "activeReserves": "رزرو های فعال",
+      "pendingReservations": "رزرو های در انتظار",
+      "todaysVisits": "ویزیت های امروز",
+      "incomeChart": "نمودار درآمد",
+      "currentMonth": "ماه جاری",
+      "totalIncome": "درآمد کل",
+      "thisMonthsIncome": "درآمد این ماه",
+      "profCompletionChart": "نمودار تکمیل پروفایل",
+      "EditProfileBtn": "ویرایش پروفایل",
+      "recentCustomerBookings": "رزرو های اخیر مشتریان",
+      "seeAllBtn": "مشاهده همه"
+    }
+  } 
 }
