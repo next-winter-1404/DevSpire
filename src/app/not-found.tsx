@@ -1,6 +1,5 @@
 import "./[locale]/globals.css";
-import Link from "next/link";
-import { QuestionMarkCircledIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
+import { QuestionMarkCircledIcon } from "@radix-ui/react-icons";
 
 export default function NotFound() {
   return (
