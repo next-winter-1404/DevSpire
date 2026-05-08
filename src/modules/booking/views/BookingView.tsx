@@ -10,6 +10,8 @@ import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import BookingStepTwo from "../components/BookingStepTwo";
 import BookingStepThree from "../components/BookingStepThree";
+import BookingStepFour from "../components/BookingStepFour";
+import BookingStepFive from "../components/BookingStepFive";
 
 interface IProps {
   location: string;
@@ -22,22 +24,22 @@ const BookingView = ({ location }: IProps) => {
     { label: t("hotelReserve"), href: "/fast-reserve" },
     { label: `${t("hotelReserve")} ${location || "gg"}` },
   ];
-  const [currentStep, setCurrentStep] = useState<number>(2);
+  const [currentStep, setCurrentStep] = useState<number>(3);
 
   const renderStepsContent = () => {
     switch (currentStep) {
       case 1:
         return router.push("/fast-reserve");
       case 2:
-        return;
+        return <BookingStepTwo />;
       case 3:
-        return;
+        return <BookingStepThree />;
       case 4:
-        return;
+        return <BookingStepFour />;
       case 5:
-        return;
+        return <BookingStepFive />;
       default:
-        return;
+        return <BookingStepTwo />;
     }
   };
 
@@ -50,9 +52,8 @@ const BookingView = ({ location }: IProps) => {
         <BookingStepper currentStep={currentStep} />
       </div>
       <BookingContainer>
-        {/* <div>{renderStepsContent() ?? "gg"}</div> */}
         <div className="w-full h-full">
-          <BookingStepThree />
+          {renderStepsContent() ?? "page not found !"}
         </div>
       </BookingContainer>
     </Container>
