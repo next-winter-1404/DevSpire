@@ -3,6 +3,7 @@ import Virgule from '../../../../public/icons/Virgule'
 
 
 type CardData = {
+  id: number
   image: string;
   quote: string;
   name: string;

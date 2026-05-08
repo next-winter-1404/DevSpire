@@ -1,11 +1,11 @@
 'use client';
-import CheckList from "../../../../public/icons/CheckList";
-import Estates from "../../../../public/icons/Estates";
-import Eye from "../../../../public/icons/Eye";
-import HourGlass from "../../../../public/icons/HourGlass";
-import CompleteProfile from "../../../components/common/CompleteProfile";
-import InCome from "../../../components/common/InCome";
-import TopCards from "../../../components/common/TopCards";
+import CheckList from "../../../../../public/icons/CheckList";
+import Estates from "../../../../../public/icons/Estates";
+import Eye from "../../../../../public/icons/Eye";
+import HourGlass from "../../../../../public/icons/HourGlass";
+import CompleteProfile from "../../../../components/common/CompleteProfile";
+import InCome from "../../../../components/common/InCome";
+import TopCards from "../../../../components/common/TopCards";
 import { useTranslations } from "next-intl";
 
 

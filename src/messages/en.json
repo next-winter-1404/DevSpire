@@ -195,20 +195,26 @@
       "max": "Max"
     }
   },
-  "sellerDashboard":{
+  "dashboard":{
     "header":{
       "balance": "Balance :"
     },
     "sidebar":{
+      "logo": "Logo",
+      "menu": "Menu",
       "dashboard": "Dashboard",
       "userProfile": "User Profile",
       "notifications": "Notifications",
+      "management": "Management",
       "estatesManagement": "Estates Management",
       "reservesManagement": "Reserves Management",
       "finantialManagement": "Finantial Management",
       "commentsManagement": "Comments Management",
+      "favorites": "Favorites",
       "logOut": "Log Out"
-    },
+    }
+  },
+  "sellerDashboard":{
     "dashboard":{
       "allOfEstates": "All of Estates",
       "activeReserves": "Active Reserves",
@@ -222,25 +228,20 @@
       "EditProfileBtn": "Edit Profile",
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
+    },
+    "estatesManagement":{
+      "estatesManagement":"Estates Management",
+      "searchPlaceholder": "Search...",
+      "filtersBtn": "Filters",
+      "addEstateBtn": "Add Estate"
     }
   },
   "customerDashboard":{
-    "header":{
-      "balance": "Balance :"
-    },
-    "sidebar":{
-      "dashboard": "Dashboard",
-      "userProfile": "User Profile",
-      "notifications": "Notifications",
-      "estatesManagement": "Estates Management",
-      "reservesManagement": "Reserves Management",
-      "finantialManagement": "Finantial Management",
-      "commentsManagement": "Comments Management",
-      "logOut": "Log Out"
-    },
     "dashboard":{
-      "allOfEstates": "All of Estates",
+      "allOfReserves": "All of Reserves",
       "activeReserves": "Active Reserves",
+      "notPaid": "Not Paid",
+      "favorites": "Favorites",
       "pendingReservations": "Pending Reservations",
       "todaysVisits": "Today Visits",
       "incomeChart": "Income Chart",

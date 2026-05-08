@@ -15,7 +15,7 @@ interface IDashboardHeader{
 
 const DashboardHeader = ({hasNotification}: IDashboardHeader) => {
 
-  const t = useTranslations('sellerDashboard.header')
+  const t = useTranslations('dashboard.header')
 
   return (
     <div className='flex justify-between w-full py-2 px-4 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[24px]   

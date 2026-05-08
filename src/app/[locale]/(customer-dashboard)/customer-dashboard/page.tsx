@@ -1,4 +1,4 @@
-import CustomerDashboardView from '@/modules/customerDashboard/view/CustomerDashboardView'
+import CustomerDashboardView from '@/modules/customerDashboard/dashboard/view/CustomerDashboardView'
 
 
 const page = () => {
