@@ -1,32 +1,128 @@
-
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { shabnam } from "@/Fonts";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
 interface Props {
     next: () => void;
     back: () => void;
 }
+
 export default function Step2({ next, back }: Props) {
     const [timeLeft, setTimeLeft] = useState(60);
+    const [storedTempUserId, setStoredTempUserId] = useState<number | null>(null);
+
+    // ✔️ ۶ رقمی
+    const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+    const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
+    const inputRefs = Array.from({ length: 6 }, () => useRef<HTMLInputElement>(null));
+    const t = useTranslations("auth.step2");
+    const locale = useLocale();
+    const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
+    const handleChange = (value: string, index: number) => {
+        const persian = "۰۱۲۳۴۵۶۷۸۹";
+        const english = "0123456789";
+        value = value.replace(/[۰-۹]/g, (d) => english[persian.indexOf(d)]);
+
+        if (!/^[0-9]?$/.test(value)) return;
+
+        const newOtp = [...otp];
+        newOtp[index] = value;
+        setOtp(newOtp);
+
+        // اگر رقم وارد شد → برو input بعدی
+        if (value && index < 5) {
+            inputRefs[index + 1].current?.focus();
+        }
+    };
+    useEffect(() => {
+        const savedId = localStorage.getItem("tempUserId");
+        if (savedId) {
+            setStoredTempUserId(Number(savedId));
+        }
+    }, []);
+
+    const handleVerify = async () => {
+        const code = otp.join("");
+        console.log({
+            tempUserId: storedTempUserId,
+            verificationCode: code
+        });
+
+        // ✔️ چک ۶ رقمی
+        if (code.length !== 6) {
+            setErrorMsg("کد ۶ رقمی را کامل کنید");
+            return;
+        }
+        if (!storedTempUserId) {
+            setErrorMsg("شناسه کاربر پیدا نشد. لطفاً دوباره ثبت‌نام را انجام دهید.");
+            return;
+        }
+        setLoading(true);
+        setErrorMsg("");
+
+        try {
+            const res = await fetch("http://next.genzuni.website/api/auth/verify-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    tempUserId: storedTempUserId,
+                    verificationCode: code
+                })
+
+
+            });
+
+            const data = await res.json();
+
+            console.log("verify response:", data);
+            console.log("VERIFY STEP2 userId:", data.userId);
+
+            if (!res.ok) {
+                setErrorMsg(data.message || data.error || "کد صحیح نیست");
+                return;
+            }
+
+            const returnedUserId = data.userId;
+            console.log("returned userId:", returnedUserId);
+
+            if (!returnedUserId) {
+                setErrorMsg("شناسه کاربر از سرور دریافت نشد");
+                return;
+            }
+
+            localStorage.setItem("userId", String(returnedUserId));
+            next();
+
+
+        } catch (err) {
+            setErrorMsg("ارتباط با سرور برقرار نشد");
+        } finally {
+            setLoading(false);
+        }
+
+    };
 
     useEffect(() => {
         if (timeLeft === 0) return;
         const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
         return () => clearTimeout(timer);
     }, [timeLeft]);
+
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
+
     return (
-        <div className={shabnam.className} dir="rtl">
+        <div className={shabnam.className} dir={direction}>
             <div className="flex flex-col">
                 <div
                     onClick={back}
                     className="
                         flex items-center gap-[3px]
-                      mt-[16px] lg:mt-60
-
- mb-[24px]       /* موبایل */
-                        lg:mb-[40px] /* دسکتاپ */
+                        mt-[16px] lg:mt-60
+                        mb-[24px]
+                        lg:mb-[40px]
                         h-[24px]
                         cursor-pointer
                         animate-[fadeText_0.7s_ease]
@@ -38,10 +134,9 @@ export default function Step2({ next, back }: Props) {
                         width={22}
                         height={22}
                     />
-                    <span className="text-[#0D3B66] text-[16px]">
-                        بازگشت
-                    </span>
+                    <span className="text-[#0D3B66] text-[16px]">{t("back")}</span>
                 </div>
+
                 <div className="lg:hidden relative w-full h-[180px] rounded-[24px] overflow-hidden mb-[24px]">
                     <Image
                         src="/images/fastReservePage/login.jpg"
@@ -50,6 +145,7 @@ export default function Step2({ next, back }: Props) {
                         className="object-cover"
                     />
                 </div>
+
                 <div
                     className="
                         w-full
@@ -60,15 +156,16 @@ export default function Step2({ next, back }: Props) {
                     "
                 >
                     <p className="text-[#1E2022] text-[20px] lg:text-[24px] font-bold leading-[28px] lg:leading-[32px]">
-                        ایجاد حساب کاربری (مرحله دوم)
+                        {t("title")}
                     </p>
                     <p className="text-[#1E2022] text-[14px] lg:text-[16px] leading-[22px] lg:leading-[24px]">
-                        کد تایید به ایمیل شما ارسال شد.
+                        {t("description")}
                     </p>
                     <p className="text-[#0D3B66] text-[14px] lg:text-[16px] cursor-pointer">
-                        تغییر ایمیل
+                        {t("changeEmail")}
                     </p>
                 </div>
+
                 <div
                     className="
                         w-full
@@ -78,37 +175,50 @@ export default function Step2({ next, back }: Props) {
                         mb-[24px] lg:mb-[32px]
                     "
                 >
-                    <div className="w-full flex justify-between gap-2">
-                        {[...Array(5)].map((_, i) => (
+                    {/* ✔️ 6 input */}
+                    <div className="w-full flex justify-between gap-2" dir="ltr">
+                        {otp.map((digit, i) => (
                             <input
                                 key={i}
+                                ref={inputRefs[i]}
                                 maxLength={1}
                                 type="text"
                                 inputMode="numeric"
+                                value={digit}
+                                onChange={(e) => handleChange(e.target.value, i)}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Backspace" && !otp[i] && i > 0) {
+                                        inputRefs[i - 1].current?.focus();
+                                    }
+                                }}
                                 className="
-                                    w-full
-                                    max-w-[52px] h-[52px]     /* موبایل */
-                                    lg:max-w-none lg:w-[78px] lg:h-[59px]
-                                    text-center text-[18px] lg:text-[22px]
-                                    font-bold
-                                    bg-[#F5F5F5]
-                                    rounded-[40px] border border-[#E0E0E0]
-                                    outline-none
-                                    transition-all duration-300
-                                    focus:border-[#0D3B66]
-                                    focus:bg-[#eef4fa]
-                                    animate-[fadeText_0.7s_ease]
-                                "
+                w-full max-w-[52px] h-[52px]
+                lg:max-w-none lg:w-[78px] lg:h-[59px]
+                text-center text-[18px] lg:text-[22px]
+                font-bold bg-[#F5F5F5]
+                rounded-[40px] border border-[#E0E0E0]
+                outline-none transition-all duration-300
+                focus:border-[#0D3B66] focus:bg-[#eef4fa]
+                animate-[fadeText_0.7s_ease]
+            "
                             />
                         ))}
                     </div>
+
+
                     <div className="w-full flex justify-center">
                         <span className="text-[14px] text-[#1E2022]">
-                            زمان باقی‌مانده: {minutes}:{seconds.toString().padStart(2, "0")}
+                            {t("timeLeft")}: {minutes}:{seconds.toString().padStart(2, "0")}
                         </span>
                     </div>
+
+                    {errorMsg && (
+                        <p className="text-red-500 text-center text-sm">{errorMsg}</p>
+                    )}
+
                     <button
-                        onClick={next}
+                        onClick={handleVerify}
+                        disabled={loading}
                         className="
                             w-full h-[52px] lg:h-[62px]
                             rounded-[40px]
@@ -119,11 +229,10 @@ export default function Step2({ next, back }: Props) {
                             animate-[fadeText_0.7s_ease]
                         "
                     >
-                        تایید و ادامه
+                        {loading ? "در حال بررسی..." : t("confirmContinue")}
                     </button>
                 </div>
             </div>
         </div>
     );
 }
-

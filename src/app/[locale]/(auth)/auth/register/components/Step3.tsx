@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { shabnam } from "@/Fonts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 
 interface Props {
     back: () => void;
@@ -9,9 +10,110 @@ interface Props {
 export default function Step3({ back }: Props) {
     const [showPass1, setShowPass1] = useState(false);
     const [showPass2, setShowPass2] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [storedUserId, setStoredUserId] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
+
+    const t = useTranslations("auth.step3");
+    const locale = useLocale();
+    const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
+    useEffect(() => {
+        const userId = localStorage.getItem("userId");
+        setStoredUserId(userId);
+    }, []);
+    const toEnglishDigits = (value: string) => {
+        return value
+            .replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d).toString())
+            .replace(/[٠-٩]/g, (d) => "٠١٢٣٤٥٦٧٨٩".indexOf(d).toString());
+    };
+
+    const handleSubmit = async () => {
+        setErrorMsg("");
+
+        console.log("STEP3 localStorage userId:", localStorage.getItem("userId"));
+
+        const userIdFromStorage = localStorage.getItem("userId");
+        console.log("Submit userIdFromStorage:", userIdFromStorage);
+
+        if (!userIdFromStorage) {
+            setErrorMsg("شناسه کاربر پیدا نشد");
+            return;
+        }
+
+        if (!phoneNumber.trim()) {
+            setErrorMsg("شماره موبایل را وارد کنید");
+            return;
+        }
+
+        const normalizedPassword = toEnglishDigits(password);
+        const normalizedConfirmPassword = toEnglishDigits(confirmPassword);
+
+        if (!normalizedPassword || !normalizedConfirmPassword) {
+            setErrorMsg("لطفاً رمز عبور و تکرار آن را وارد کنید");
+            return;
+        }
+
+        if (normalizedPassword !== normalizedConfirmPassword) {
+            setErrorMsg("رمز عبور و تکرار آن یکسان نیستند");
+            return;
+        }
+
+        if (normalizedPassword.length < 8) {
+            setErrorMsg("رمز عبور باید حداقل ۸ کاراکتر باشد");
+            return;
+        }
+
+        try {
+            setLoading(true);
+
+            const res = await fetch("http://next.genzuni.website/api/auth/complete-registration", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId: Number(userIdFromStorage),
+                    password: normalizedPassword,
+                    phoneNumber: toEnglishDigits(phoneNumber.trim()),
+                }),
+            });
+
+            const data = await res.json();
+            console.log("complete-registration response:", data);
+
+            if (!res.ok) {
+                setErrorMsg(data.message || data.error || "ثبت‌نام کامل نشد");
+                return;
+            }
+
+            if (data.accessToken) {
+                localStorage.setItem("accessToken", data.accessToken);
+            }
+
+            if (data.refreshToken) {
+                localStorage.setItem("refreshToken", data.refreshToken);
+            }
+
+            localStorage.removeItem("tempUserId");
+            localStorage.removeItem("userId");
+
+            alert("ثبت‌نام با موفقیت کامل شد");
+
+        } catch (error) {
+            console.error(error);
+            setErrorMsg("خطا در ارتباط با سرور");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
 
     return (
-        <div className={`${shabnam.className}`} dir="rtl">
+        <div className={`${shabnam.className}`} dir={direction}>
             <div className="flex flex-col">
                 <div
                     onClick={back}
@@ -30,7 +132,7 @@ export default function Step3({ back }: Props) {
                         height={22}
                     />
                     <span className="text-[#0D3B66] text-[16px] leading-[24px]">
-                        بازگشت
+                        {t("back")}
                     </span>
                 </div>
 
@@ -53,10 +155,10 @@ export default function Step3({ back }: Props) {
           "
                 >
                     <p className="text-[#1E2022] text-[20px] lg:text-[24px] font-bold leading-[28px] lg:leading-[32px]">
-                        ایجاد حساب کاربری (مرحله آخر)
+                        {t("title")}
                     </p>
                     <p className="text-[#1E2022] text-[14px] lg:text-[16px] leading-[22px] lg:leading-[24px]">
-                        برای تکمیل ثبت‌نام، ایمیل و رمز عبور خود را وارد کنید.
+                        {t("description")}
                     </p>
                 </div>
 
@@ -72,25 +174,32 @@ export default function Step3({ back }: Props) {
                     <div className="relative">
                         <input
                             type="text"
-                            placeholder="ایمیل خود را وارد کنید..."
-                            className="
-                w-full h-[52px] lg:h-[62px] rounded-[40px]
-                bg-[#F5F5F5]
-                px-[20px] pl-[55px]
-                outline-none text-right
-                placeholder:text-[#665d55] text-[14px]
-                transition-all duration-300
-                focus:scale-[1.01]
-                focus:shadow-[0_0_10px_rgba(13,59,102,0.15)]
-                animate-[fadeText_0.7s_ease]
-              "
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(toEnglishDigits(e.target.value))}
+                            placeholder={t("phonPlaceholder")}
+                            className={`
+w-full h-[52px] lg:h-[62px] rounded-[40px]
+bg-[#F5F5F5]
+p-[20px]
+${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"}
+outline-none
+placeholder:text-[#665d55] text-[14px]
+transition-all duration-300
+focus:scale-[1.01]
+focus:shadow-[0_0_10px_rgba(13,59,102,0.15)]
+animate-[fadeText_0.7s_ease]
+`}
+
                         />
                         <Image
                             src="/icons/fastReservePage/Frame.svg"
                             alt="email icon"
                             width={20}
                             height={20}
-                            className="absolute left-[20px] top-1/2 -translate-y-1/2"
+                            className={`
+absolute top-1/2 -translate-y-1/2
+${direction === "rtl" ? "left-[20px]" : "right-[20px]"}
+`}
                         />
                     </div>
 
@@ -98,25 +207,33 @@ export default function Step3({ back }: Props) {
                     <div className="relative">
                         <input
                             type={showPass1 ? "text" : "password"}
-                            placeholder="رمز خود را وارد کنید..."
-                            className="
-                w-full h-[52px] lg:h-[62px] rounded-[40px]
-                bg-[#F5F5F5]
-                px-[20px] pl-[55px]
-                outline-none text-right
-                placeholder:text-[#665d55] text-[14px]
-                transition-all duration-300
-                focus:scale-[1.01]
-                focus:shadow-[0_0_10px_rgba(13,59,102,0.15)]
-                animate-[fadeText_0.7s_ease]
-              "
+                            value={password}
+                            onChange={(e) => setPassword(toEnglishDigits(e.target.value))}
+
+                            placeholder={t("passwordPlaceholder")}
+                            className={`
+w-full h-[52px] lg:h-[62px] rounded-[40px]
+bg-[#F5F5F5]
+p-[20px]
+${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"}
+outline-none
+placeholder:text-[#665d55] text-[14px]
+transition-all duration-300
+focus:scale-[1.01]
+focus:shadow-[0_0_10px_rgba(13,59,102,0.15)]
+animate-[fadeText_0.7s_ease]
+`}
+
                         />
 
                         <button
                             type="button"
                             onClick={() => setShowPass1(!showPass1)}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer"
-                            aria-label={showPass1 ? "مخفی کردن رمز" : "نمایش رمز"}
+                            className={`
+absolute top-1/2 -translate-y-1/2 cursor-pointer
+${direction === "rtl" ? "left-4" : "right-4"}
+`}
+                            aria-label={showPass1 ? t("hidePassword") : t("showPassword")}
                         >
                             <Image
                                 src="/icons/fastReservePage/Frame (1).svg"
@@ -130,34 +247,31 @@ export default function Step3({ back }: Props) {
                     <div className="relative">
                         <input
                             type={showPass2 ? "text" : "password"}
-                            placeholder="تکرار رمز عبور..."
-                            className="
-                w-full h-[52px] lg:h-[62px] rounded-[40px]
-                bg-[#F5F5F5]
-                px-[20px] pl-[55px]
-                outline-none text-right
-                placeholder:text-[#665d55] text-[14px]
-                transition-all duration-300
-                focus:scale-[1.01]
-                focus:shadow-[0_0_10px_rgba(13,59,102,0.15)]
-                animate-[fadeText_0.7s_ease]
-              "
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(toEnglishDigits(e.target.value))}
+                            placeholder={t("confirmPassPlaceholder")}
+                            className={`
+      w-full h-[52px] lg:h-[62px] rounded-[40px]
+      bg-[#F5F5F5]
+      p-[20px]
+      ${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"}
+      outline-none
+      placeholder:text-[#665d55] text-[14px]
+      transition-all duration-300
+      focus:scale-[1.01]
+      focus:shadow-[0_0_10px_rgba(13,59,102,0.15)]
+      animate-[fadeText_0.7s_ease]
+    `}
                         />
+
                         <button
                             type="button"
                             onClick={() => setShowPass2(!showPass2)}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer"
-                            aria-label={showPass2 ? "مخفی کردن رمز" : "نمایش رمز"}
-                        >
-
-
-                        </button>
-                        {/* دکمه چشم - کلیک برای نمایش/مخفی */}
-                        <button
-                            type="button"
-                            onClick={() => setShowPass2(!showPass2)}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer"
-                            aria-label={showPass2 ? "مخفی کردن رمز" : "نمایش رمز"}
+                            className={`
+      absolute top-1/2 -translate-y-1/2 cursor-pointer
+      ${direction === "rtl" ? "left-4" : "right-4"}
+    `}
+                            aria-label={showPass2 ? t("hidePassword") : t("showPassword")}
                         >
                             <Image
                                 src="/icons/fastReservePage/Frame (1).svg"
@@ -168,20 +282,28 @@ export default function Step3({ back }: Props) {
                         </button>
                     </div>
 
+                    {errorMsg && (
+                        <p className="text-red-500 text-sm text-right">{errorMsg}</p>
+                    )}
                     <button
-                        onClick={() => { }}
+                        onClick={handleSubmit}
+                        disabled={loading}
                         className="
-              w-full h-[52px] lg:h-[62px]
-              rounded-[40px] px-[20px]
-              flex justify-center items-center
-              bg-[#0D3B66] text-white text-base
-              cursor-pointer
-              transition-all duration-200
-              hover:bg-[#0D3B66]/80
-              animate-[fadeText_0.7s_ease]
-            "
+  w-full h-[52px] lg:h-[62px]
+  rounded-[40px] px-[20px]
+  flex justify-center items-center
+  bg-[#0D3B66] text-white text-base
+  cursor-pointer
+  transition-all duration-200
+  hover:bg-[#0D3B66]/80
+  disabled:opacity-50 disabled:cursor-not-allowed
+  animate-[fadeText_0.7s_ease]
+"
+
                     >
-                        ایجاد حساب کاربری
+
+
+                        {loading ? "در حال ثبت..." : t("submit")}
                     </button>
                 </div>
             </div>

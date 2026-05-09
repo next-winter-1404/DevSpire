@@ -171,5 +171,88 @@
       "min": "Min",
       "max": "Max"
     }
+  },
+  "auth": {
+    "login": {
+      "ftitle": "Home",
+      "title": "Sign in to your account",
+      "description": "Welcome! Please enter your information.",
+      "emailPlaceholder": "Enter your email...",
+      "passwordPlaceholder": "Enter your password...",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "enterEmailPassword": "Please enter your email and password",
+      "loginError": "Login failed",
+      "serverError": "Server connection error",
+      "successMessage": "Login successful",
+      "signUp": "Sign up",
+      "or": "or",
+      "loginWithGoogle": "Sign in with Google",
+      "loginWithApple": "Sign in with Apple"
+    },
+    "register": {
+      "ftitle": "Home",
+      "title": "Create an account (Step 1)",
+      "description": "Enter your email and take the first step when you receive the code.",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "submit": "Register",
+      "hasAccount": "Already have an account?",
+      "login": "Sign in",
+      "loading": "Registering..."
+    },
+    "layout": {
+      "imageTitle": "Join us now!",
+      "imageDesc": "Use our services alongside thousands of users."
+    },
+    "step2": {
+      "back": "Back",
+      "title": "Create Account (Step 2)",
+      "description": "Verification code has been sent to your email.",
+      "changeEmail": "Change Email",
+      "timeLeft": "Time remaining",
+      "confirmContinue": "Confirm and Continue"
+    },
+    "step3": {
+      "back": "Back",
+      "title": "Create an account (Final Step)",
+      "description": "To complete your registration, enter your phon numbeer and password.",
+      "phonPlaceholder": "Enter your phom number...",
+      "passwordPlaceholder": "Enter your password...",
+      "confirmPassPlaceholder": "Repeat your password...",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "submit": "Create Account"
+    },
+    "forgotPassword": {
+      "step1": {
+        "home": "Home",
+        "title": "Forgot Password (Step 1)",
+        "description": "Enter your email and take the first step by receiving a code.",
+        "emailPlaceholder": "Enter your email...",
+        "submit": "Send verification code"
+      },
+      "step2": {
+        "back": "Back",
+        "title": "Forgot Password (Step 2)",
+        "description": "A verification code has been sent to your email.",
+        "changeEmail": "Change email",
+        "timeLeft": "Time left",
+        "confirmContinue": "Confirm and continue"
+      },
+      "step3": {
+        "back": "Back",
+        "title": "Forgot Password (Final Step)",
+        "description": "To complete the recovery, please enter your new password.",
+        "passwordPlaceholder": "Enter your new password...",
+        "confirmPassPlaceholder": "Repeat your password...",
+        "showPassword": "Show password",
+        "hidePassword": "Hide password",
+        "submit": "Set new password"
+      }
+    }
   }
 }
