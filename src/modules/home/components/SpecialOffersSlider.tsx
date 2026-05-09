@@ -1,19 +1,27 @@
-import SliderWrapper from "@/components/common/SliderWrapper";
-import { MOCK_DATA } from "../../fastReserve/mocks/data";
-import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
-import React from "react";
+'use client'
+import { useState, useEffect } from 'react';
+import { GetHouses } from '../../services/api/get/GetHouses';
+import SliderWrapper from '@/components/common/SliderWrapper';
+import FastReserveCard from '@/modules/fastReserve/components/FastReserveCard';
+
+
 
 const SpecialOffersSlider = () => {
+
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    GetHouses({ transactionType: 'rental', propertyType: 'villa' }).then(setData);
+  }, []);
+
+  if (!data || data.length === 0) return <div>در حال بارگذاری...</div>;
+
   return (
     <div>
       <SliderWrapper>
-        {MOCK_DATA.map((property) => (
-          <div
-            className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
-            dir="rtl"
-            key={property.id}
-          >
-            <FastReserveCard className="w-full" property={property} />
+        {data?.slice(0, 5).map((property) => (
+          <div key={property.id} dir='rtl' className='shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]'>
+            <FastReserveCard className='w-full' property={property} />
           </div>
         ))}
       </SliderWrapper>
@@ -21,4 +29,4 @@ const SpecialOffersSlider = () => {
   );
 };
 
-export default SpecialOffersSlider;
+export default SpecialOffersSlider
