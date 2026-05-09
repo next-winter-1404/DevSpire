@@ -8,7 +8,7 @@ interface Category {
   updated_at: string;
 }
 
-export const GetAllCategories = () => {
+export const GetCategories = () => {
   const [data, setData] = useState<Category[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

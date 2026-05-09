@@ -3,12 +3,14 @@ import React from "react";
 import CategoryBigCard from "./CategoryBigCard";
 import CategorySmallCard from "./CategorySmallCard";
 import { useTranslations } from "next-intl";
-import { GetAllCategories } from "@/modules/services/api/get/GetAllCategories";
+import { GetCategories } from "@/modules/services/api/get/GetCategories";
+
 
 const Categories = () => {
+
   const t = useTranslations("home.categories");
 
-  const { data, loading, error } = GetAllCategories();
+  const { data, loading, error } = GetCategories();
 
   return (
     <div className="flex justify-center mt-30">

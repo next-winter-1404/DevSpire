@@ -1,12 +1,13 @@
-import EstateManagementDetailV from '@/modules/sellerDashboard/estateManagementDetail/view/EstateManagementDetailV'
+import EstateManagementEditV from '@/modules/sellerDashboard/estateManagementEdit/view/EstateManagementEditV'
 import React from 'react'
+
 
 
 const page = () => {
 
     return (
         <div>
-            <EstateManagementDetailV/>
+            <EstateManagementEditV/>
         </div>
     )
 
