@@ -1,4 +1,4 @@
-import SellerDashboardView from '@/modules/sellerDashboard/view/SellerDashboardView'
+import SellerDashboardView from '@/modules/sellerDashboard/dashboard/view/SellerDashboardView'
 
 
 const page = () => {

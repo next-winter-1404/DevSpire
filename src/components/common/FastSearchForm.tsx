@@ -72,17 +72,17 @@ const FastSearchForm = () => {
       className=" w-[350px]  md:w-[503px]  rounded-[24px] p-6 shadow-sm border border-[#dddd] dark:border-[#333333]
        bg-[#ffff]  dark:bg-[#27272A] flex flex-col gap-4 "
     >
-      <h2 className="text-[24px] text-[#0d3b66] font-bold ">{t("title")}</h2>
+      <h2 className="text-[24px] text-[#0d3b66] font-bold   dark:text-[#F5F5F5]">{t("title")}</h2>
       <div className="md:mx-auto flex items-center gap-3 overflow-x-auto scroll-smooth pb-4 md:p-0 ">
         {transactionTypeOptions.map((item, index) => (
           <button
             onClick={() => {
               setTransactionType(item.value);
             }}
-            className={`px-4 py-2  border border-2 rounded-[40px] whitespace-nowrap ${
+            className={`px-4 py-2 rounded-[40px] whitespace-nowrap ${
               transactionType == item.value
-                ? "text-[#FFFFFF] bg-[#0D3B66]"
-                : "text-[#777777] border-[#777777]"
+                ? "text-[#FFFFFF] bg-[#0D3B66]   dark:border-none"
+                : "text-[#777777]"
             } `}
             key={index}
           >
@@ -107,7 +107,8 @@ const FastSearchForm = () => {
             >
               <Select.Value placeholder={t("estateTypePlc")} />
               <Select.Icon>
-                <ChevronDownIcon className="w-5 h-5 transition-transform duration-200 data-[state=open]:rotate-180 text-[#1E2022]" />
+                <ChevronDownIcon className="w-5 h-5 transition-transform duration-200 data-[state=open]:rotate-180 text-[#1E2022]
+                dark:text-[#E4E4E4]"/>
               </Select.Icon>
             </Select.Trigger>
 
