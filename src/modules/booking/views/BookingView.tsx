@@ -24,7 +24,7 @@ const BookingView = ({ location }: IProps) => {
     { label: t("hotelReserve"), href: "/fast-reserve" },
     { label: `${t("hotelReserve")} ${location || "gg"}` },
   ];
-  const [currentStep, setCurrentStep] = useState<number>(3);
+  const [currentStep, setCurrentStep] = useState<number>(2);
 
   const renderStepsContent = () => {
     switch (currentStep) {

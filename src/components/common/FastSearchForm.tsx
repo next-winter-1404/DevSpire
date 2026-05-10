@@ -46,25 +46,24 @@ const FastSearchForm = () => {
     const maxArea = formData.get("maxArea")?.toString() || "";
 
     const params = new URLSearchParams(searchParams.toString());
-    if (transactionType === "reservation") {
-      if (propertyType) params.set("propertyType", propertyType);
-      else params.delete("propertyType");
+    if (propertyType) params.set("propertyType", propertyType);
+    else params.delete("propertyType");
 
-      if (location) params.set("location", location);
-      else params.delete("location");
+    if (location) params.set("location", location);
+    else params.delete("location");
 
-      if (maxPrice) params.set("maxPrice", maxPrice);
-      else params.delete("maxPrice");
+    if (maxPrice) params.set("maxPrice", maxPrice);
+    else params.delete("maxPrice");
 
-      if (maxArea) params.set("maxArea", maxArea);
-      else params.delete("maxArea");
+    if (maxArea) params.set("maxArea", maxArea);
+    else params.delete("maxArea");
 
+    if (transactionType !== "reservation")
       params.set("transactionType", transactionType);
 
-      router.push(`${pathname}/fast-reserve?${params.toString()}`);
-    } else {
-      return;
-    }
+    router.push(
+      `${pathname}/${transactionType == "reservation" ? "fast-reserve" : "mortgage-rent"}?${params.toString()}`,
+    );
   };
 
   return (
@@ -72,7 +71,9 @@ const FastSearchForm = () => {
       className=" w-[350px]  md:w-[503px]  rounded-[24px] p-6 shadow-sm border border-[#dddd] dark:border-[#333333]
        bg-[#ffff]  dark:bg-[#27272A] flex flex-col gap-4 "
     >
-      <h2 className="text-[24px] text-[#0d3b66] font-bold   dark:text-[#F5F5F5]">{t("title")}</h2>
+      <h2 className="text-[24px] text-[#0d3b66] font-bold   dark:text-[#F5F5F5]">
+        {t("title")}
+      </h2>
       <div className="md:mx-auto flex items-center gap-3 overflow-x-auto scroll-smooth pb-4 md:p-0 ">
         {transactionTypeOptions.map((item, index) => (
           <button
@@ -107,8 +108,10 @@ const FastSearchForm = () => {
             >
               <Select.Value placeholder={t("estateTypePlc")} />
               <Select.Icon>
-                <ChevronDownIcon className="w-5 h-5 transition-transform duration-200 data-[state=open]:rotate-180 text-[#1E2022]
-                dark:text-[#E4E4E4]"/>
+                <ChevronDownIcon
+                  className="w-5 h-5 transition-transform duration-200 data-[state=open]:rotate-180 text-[#1E2022]
+                dark:text-[#E4E4E4]"
+                />
               </Select.Icon>
             </Select.Trigger>
 

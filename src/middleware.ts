@@ -7,13 +7,13 @@ const intlMiddleware = createMiddleware(routing);
 
 const API_URL = process.env.NEXT_APP_BASE_URL;
 
-const protectedRoutes = ["/dashboard", "/fast-reserve"];
+const protectedRoutes = ["/dashboard"];
 
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isProtectedRoute = protectedRoutes.some((route) =>
-    pathname.includes(route),
+    pathname.startsWith(route),
   );
   // if is not protected continue
   if (!isProtectedRoute) {
@@ -54,10 +54,7 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  const loginUrl = new URL("/auth/login", request.url);
-  loginUrl.searchParams.set("callbackUrl", pathname);
-
-  const response = NextResponse.redirect(loginUrl);
+  const response = NextResponse.redirect(new URL("/auth/login", request.url));
 
   response.cookies.delete("accessToken");
   response.cookies.delete("refreshToken");

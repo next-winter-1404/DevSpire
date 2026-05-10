@@ -11,15 +11,12 @@ import DetailTitle from "../components/DetailTitle";
 import DetailTabs from "../components/DetailTabs";
 import SliderWrapper from "@/components/common/SliderWrapper";
 import { MOCK_DATA } from "@/modules/fastReserve/mocks/data";
-import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import Container from "@/components/common/Container";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-
-
+import HouseCard from "@/components/common/HouseCard";
 
 const MortgageRentDetailViewx = () => {
-  
   const t = useTranslations("fastReserveDetail");
 
   const breadcrumbItemsMock2: IBredCrumbsItems[] = [
@@ -59,10 +56,12 @@ const MortgageRentDetailViewx = () => {
           <h2 className="text-[24px] font-bold text-foreground ">
             {t("commertials")}
           </h2>
-          <Link href={'/mortgage-rent'}
-          className="px-3 py-2 text-[20px] border border-[#0D3B66] text-[#0D3B66] rounded-full transition-colors
+          <Link
+            href={"/mortgage-rent"}
+            className="px-3 py-2 text-[20px] border border-[#0D3B66] text-[#0D3B66] rounded-full transition-colors
           hover:bg-blue-100
-          dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-800">
+          dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-800"
+          >
             {t("seeAll")}
           </Link>
         </div>
@@ -74,7 +73,11 @@ const MortgageRentDetailViewx = () => {
                 dir="rtl"
                 key={property.id}
               >
-                <FastReserveCard className="w-full" property={property} linkHref={`/mortgage-rent/${property.id}`}/>
+                <HouseCard
+                  className="w-full"
+                  property={property}
+                  transactionType="mortgage"
+                />
               </div>
             ))}
           </SliderWrapper>

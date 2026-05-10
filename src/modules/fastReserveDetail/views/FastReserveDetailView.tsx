@@ -6,18 +6,17 @@ import {
   reviewsMock,
 } from "../mocks";
 import ImageBox from "../components/ImageBox";
-import ReserveInfo from "../components/ReserveInfo";
 import DetailTitle from "../components/DetailTitle";
 import DetailTabs from "../components/DetailTabs";
 import SliderWrapper from "@/components/common/SliderWrapper";
 import { MOCK_DATA } from "@/modules/fastReserve/mocks/data";
-import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import Container from "@/components/common/Container";
 import { useTranslations } from "next-intl";
 import BookingCard from "../components/BookingCard";
+import HouseCard from "@/components/common/HouseCard";
 
 interface IProps {
-  location: string;
+  location?: string;
 }
 const FastReserveDetailView = ({ location }: IProps) => {
   const t = useTranslations("fastReserveDetail");
@@ -72,7 +71,11 @@ const FastReserveDetailView = ({ location }: IProps) => {
                 dir="rtl"
                 key={property.id}
               >
-                <FastReserveCard className="w-full" property={property} />
+                <HouseCard
+                  className="w-full"
+                  property={property}
+                  transactionType="reservation"
+                />
               </div>
             ))}
           </SliderWrapper>

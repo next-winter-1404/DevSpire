@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { buildQuery } from "@/utils/helper/buildQuery";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -16,12 +17,9 @@ const API_URL = process.env.NEXT_APP_BASE_URL;
 function buildUrl(url: string, params?: FetchOptions["params"]) {
   if (!params) return url;
 
-  const search = new URLSearchParams();
-  Object.entries(params).forEach(([key, value]) => {
-    search.set(key, String(value));
-  });
+  const queries = buildQuery(params);
 
-  return `${url}?${search.toString()}`;
+  return `${url}?${queries}`;
 }
 
 export async function apiFetch<T = any>(
@@ -49,6 +47,7 @@ export async function apiFetch<T = any>(
   if (options.body) {
     requestInit.body = JSON.stringify(options.body);
   }
+  console.log(url);
 
   let res = await fetch(url, requestInit);
 

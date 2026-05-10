@@ -1,3 +1,4 @@
+import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { IFastReserveParams } from "@/modules/fastReserve/types";
 import FastReserveView from "@/modules/fastReserve/views/FastReserveView";
 
@@ -22,6 +23,9 @@ const FastReserve = async ({ searchParams }: Props) => {
     transactionType: "reservation",
   };
   console.log("payload : ", payLoad);
+  // const data = await apiFetch("/houses", {
+  //   params: payLoad,
+  // });
   return (
     <div>
       <FastReserveView location={payLoad.location} />

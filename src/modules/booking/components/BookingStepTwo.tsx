@@ -1,11 +1,24 @@
+"use client";
 import { useFieldArray, useForm } from "react-hook-form";
 import HotelSummeryCard from "./HotelSummeryCard";
 import { IFormProps } from "@/modules/booking/types";
 import PassengerFormCard from "./PassengerFormCard";
 import SharedBookingCard from "./SharedBookingCard";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+import { notFound } from "next/navigation";
 
 const BookingStepTwo = () => {
+  const bookingData = useSelector((state: RootState) => state.booking);
+  if (
+    bookingData.exitDate == null ||
+    bookingData.insertDate == null ||
+    bookingData.travelersCount == 0
+  ) {
+    notFound();
+  }
+
   const {
     register,
     setValue,
@@ -14,15 +27,16 @@ const BookingStepTwo = () => {
     formState: { errors },
   } = useForm<IFormProps>({
     defaultValues: {
-      traveler_details: [
-        {
+      traveler_details: Array.from(
+        { length: bookingData.travelersCount },
+        () => ({
           firstName: "",
           lastName: "",
           nationalId: "",
           gender: "male",
           birthDate: "",
-        },
-      ],
+        }),
+      ),
     },
   });
 

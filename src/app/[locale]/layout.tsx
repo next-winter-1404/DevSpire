@@ -11,8 +11,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Toaster } from "react-hot-toast";
 import { ToasterProvider } from "@/components/common/ToasterProvider";
+import { ReduxProvider } from "@/components/common/ReduxProvider";
 
 export default async function LocaleLayout({
   children,
@@ -30,16 +30,16 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
   return (
-    <html
+    <div
       className={`${locale === "fa" ? shabnam.className : ""} h-full antialiased`}
       lang={locale}
       dir={locale === "fa" ? "rtl" : "ltr"}
     >
-      <body>
-        <NextIntlClientProvider messages={messages}>
+      <NextIntlClientProvider messages={messages}>
+        <ReduxProvider>
           <ToasterProvider>{children}</ToasterProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+        </ReduxProvider>
+      </NextIntlClientProvider>
+    </div>
   );
 }

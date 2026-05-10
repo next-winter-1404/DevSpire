@@ -1,14 +1,15 @@
 import Image from "next/image";
-import { IReserveCard } from "../types";
+import { IReserveCard } from "../../modules/fastReserve/types";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
 type props = {
   className?: string;
   property: IReserveCard;
+  transactionType: "rental" | "mortgage" | "reservation" | "direct_purchase";
 };
 
-const FastReserveCard = ({ property, className }: props) => {
+const HouseCard = ({ property, className, transactionType }: props) => {
   const t = useTranslations("fastReserve");
   return (
     <div
@@ -45,7 +46,11 @@ const FastReserveCard = ({ property, className }: props) => {
 
         <div className="flex flex-col justify-start items-start gap-3">
           <Link
-            href={`/fast-reserve/${property.id}`} 
+            href={
+              transactionType == "reservation"
+                ? `/fast-reserve/${property.id}`
+                : `/mortgage-rent/${property.id}`
+            }
             className="font-bold text-[20px] hover:text-[#0D3B66] transition transition-colors duration-200
              text-[#1E2022] dark:text-[#FAFAFA] cursor-pointer "
           >
@@ -121,4 +126,4 @@ const FastReserveCard = ({ property, className }: props) => {
   );
 };
 
-export default FastReserveCard;
+export default HouseCard;

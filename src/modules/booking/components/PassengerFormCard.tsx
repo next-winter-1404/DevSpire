@@ -159,6 +159,7 @@ const PassengerFormCard = ({
                   rules={{ required: "تاریخ تولد الزامی است" }}
                   render={({ field: { onChange, value } }) => (
                     <DatePicker
+                      containerClassName="w-full"
                       calendar={locale === "fa" ? persian : gregorian}
                       locale={locale === "fa" ? persian_fa : gregorian_en}
                       calendarPosition="bottom-center"
