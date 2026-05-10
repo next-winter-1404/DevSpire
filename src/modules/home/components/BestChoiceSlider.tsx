@@ -1,19 +1,20 @@
-"use client";
-import React, { useEffect, useState } from "react";
 import SliderWrapper from "@/components/common/SliderWrapper";
 import { GetHouses } from "@/modules/services/api/get/GetHouses";
 import HouseCard from "@/components/common/HouseCard";
+import { apiFetch } from "@/core/Server-fetch/fetchApi";
 
-const BestChoiceSlider = () => {
-  const [data, setData] = useState<any>();
+const BestChoiceSlider = async () => {
+  const data = await apiFetch("/houses", {
+    params: {
+      limit: 5,
+    },
+    body: {},
+    next: {
+      revalidate: 60,
+    },
+  });
 
-  useEffect(() => {
-    GetHouses({ transactionType: "reservation", propertyType: "" }).then(
-      setData,
-    );
-  }, []);
-
-  if (!data || data.houses.length === 0) return <div>در حال بارگذاری...</div>;
+  console.log(data);
 
   return (
     <SliderWrapper>
@@ -25,8 +26,8 @@ const BestChoiceSlider = () => {
         >
           <HouseCard
             className="w-full"
-            transactionType="reservation"
             property={property}
+            transactionType="reservation"
           />
         </div>
       ))}

@@ -20,9 +20,9 @@ const MortgageRentList = () => {
           className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
         >
           <HouseCard
-            transactionType="rental"
             className="w-full"
             property={property}
+            transactionType="rental"
           />
         </div>
       ))}
