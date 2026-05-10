@@ -1,24 +1,23 @@
-"use client";
-import { useState, useEffect } from "react";
-import { GetHouses } from "../../services/api/get/GetHouses";
 import SliderWrapper from "@/components/common/SliderWrapper";
 import HouseCard from "@/components/common/HouseCard";
+import { apiFetch } from "@/core/Server-fetch/fetchApi";
 
-const SpecialOffersSlider = () => {
-  const [data, setData] = useState<any>();
+const SpecialOffersSlider = async () => {
 
-  useEffect(() => {
-    GetHouses({ transactionType: "rental", propertyType: "villa" }).then(
-      setData,
-    );
-  }, []);
 
-  if (!data || data.houses.length === 0) return <div>در حال بارگذاری...</div>;
+  const data = await apiFetch("/houses", {
+    params: {
+      limit: 5,
+    },
+    next: {
+      revalidate: 60,
+    },
+  });
 
   return (
     <div>
       <SliderWrapper>
-        {data.houses?.slice(0, 5).map((property: any) => (
+        {data.map((property: any) => (
           <div
             key={property.id}
             dir="rtl"
