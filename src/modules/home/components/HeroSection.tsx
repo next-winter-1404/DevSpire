@@ -1,32 +1,36 @@
 "use client";
 import React from "react";
-import HeroSectionForm from "./HeroSectionForm";
 import { useTranslations } from "next-intl";
-
+import FastSearchForm from "@/components/common/FastSearchForm";
 
 const HeroSection = () => {
-
   const t = useTranslations("home.heroSection");
-  
+
   return (
-    <div className="flex justify-center mt-6 px-12">
+    <div className="flex justify-center mt-6 px-4 sm:px-6 lg:px-10 w-full">
       <div
-      className="heroSectionBG relative flex flex-col gap-4 items-center py-6 px-14 bg-cover rounded-[48px] overflow-hidden 
-      md:flex md:flex-row md:gap-16"
-      style={{ backgroundImage: `url('/images/home/herosection.jpg')` }}>
+        className="heroSectionBG w-full  flex flex-col items-center bg-cover rounded-[32px] md:rounded-[48px] overflow-hidden relative"
+        style={{ backgroundImage: `url('/images/home/herosection.jpg')` }}
+      >
         <div className="absolute inset-0 bg-black/50 z-0"></div>
-        <div className="relative z-10 flex flex-col gap-4 items-center py-6 px-14  
-        lg:flex-row lg:gap-16">
-          <HeroSectionForm/>
-          <div className="flex flex-col gap-6">
-            <h1 className="font-bold text-[36px] text-[#FFFFFF]">
+
+        <div
+          className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-10 items-center
+         justify-between w-full py-10 px-6 sm:px-10 lg:px-14 relative z-10"
+        >
+          <div className="w-full lg:w-auto flex justify-center">
+            <FastSearchForm />
+          </div>
+
+          <div className="flex flex-col gap-4 md:gap-6 w-full max-w-full lg:max-w-[600px] xl:max-w-[650px] text-center lg:text-start items-center lg:items-start">
+            <h1 className="font-bold text-[24px] md:text-[36px] text-white leading-tight">
               {t("title")}
             </h1>
-            <p className="font-regular text-[24px] text-[#FFFFFF]">
+            <p className="font-regular text-[16px] md:text-[24px] text-white">
               {t("description")}
             </p>
             <div>
-              <button className=" py-2 px-3 text-[#FFFFFF] border border-[#FFFFFF] rounded-[48px]">
+              <button className="mt-2 py-2 px-6 text-white border border-white rounded-[48px] cursor-pointer hover:bg-white/20 hover:text-black transition-colors duration-300">
                 {t("mortgageButton")}
               </button>
             </div>

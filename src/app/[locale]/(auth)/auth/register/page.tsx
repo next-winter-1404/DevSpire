@@ -6,7 +6,7 @@ import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 
 export default function RegisterPage() {
-    const [step, setStep] = useState(3);
+    const [step, setStep] = useState(1);
 
     return (
         <AuthLayout>

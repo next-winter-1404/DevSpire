@@ -9,7 +9,7 @@
   --white: #ffffff;
 
   --background: #ffffff;
-  --foreground: #0a0a0a;
+  --foreground: #1e2022;
 }
 
 @theme inline {
@@ -113,7 +113,7 @@
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 2s ease-in-out infinite;
 }
 
 body {

@@ -1,9 +1,16 @@
 "use client";
+import CustomDatepicker from "@/components/common/CustomDatePicker";
 import { FormatPrice } from "@/utils/helper/FormatPrice";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
 const BookingCard = () => {
+  const getInsertDate = (date: Date | null) => {
+    console.log("insertDate : ", date);
+  };
+  const getExitDate = (date: Date | null) => {
+    console.log("ExitDate : ", date);
+  };
   const locale = useLocale();
   const t = useTranslations("fastReserveDetail");
   return (
@@ -12,12 +19,8 @@ const BookingCard = () => {
        bg-[#ffff]  dark:bg-[#27272A]"
     >
       <div className="flex flex-col gap-5 mb-6">
-        <div>
-          <label className="block text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA] mb-3">
-            {t("insertDate")}
-          </label>
-          <div className="relative">
-            <input
+        <div className="w-full">
+          {/* <input
               type="text"
               placeholder="۱۴۰۴/۰۶/۱۰"
               className={`w-full bg-gray-50 dark:bg-[#3F3F46]  border-none rounded-[24px] py-3 px-5 text-sm 
@@ -29,29 +32,12 @@ const BookingCard = () => {
               className={`absolute ${locale == "fa" ? "left-5" : "right-5"} top-1/2 -translate-y-1/2 w-5 h-5 opacity-50`}
               width={18}
               height={18}
-            />
-          </div>
+            /> */}
+          <CustomDatepicker onChange={getInsertDate} label={t("insertDate")} />
         </div>
 
-        <div>
-          <label className="block text-[16px] font-bold text-[#1E2022] dark:text-[#FAFAFA] mb-3">
-            {t("exitDate")}
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="۱۴۰۴/۰۶/۱۵"
-              className="w-full bg-gray-50 border-none rounded-[24px] py-3 px-5 text-sm focus:ring-2
-               focus:ring-blue-100 outline-none dark:bg-[#3F3F46] "
-            />
-            <Image
-              src="/icons/fastReservePage/calendar.png"
-              alt="Calendar"
-              className={`absolute ${locale == "fa" ? "left-5" : "right-5"} top-1/2 -translate-y-1/2 w-5 h-5 opacity-50`}
-              width={18}
-              height={18}
-            />
-          </div>
+        <div className="w-full">
+          <CustomDatepicker onChange={getExitDate} label={t("exitDate")} />
         </div>
 
         <div>

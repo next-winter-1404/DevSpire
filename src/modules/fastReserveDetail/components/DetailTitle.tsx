@@ -14,6 +14,7 @@ const DetailTitle = ({ title, location }: Tprops) => {
           alt="location"
           width={17}
           height={17}
+          className="hidden md:block"
         />
         <p className="text-[#777777] text-[16px]">{location}</p>
       </div>

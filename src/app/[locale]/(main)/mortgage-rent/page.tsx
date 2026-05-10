@@ -1,4 +1,4 @@
-import MortgageRentView from '@/modules/mortgage-rent/view/MortgageRentView'
+import MortgageRentView from '@/modules/mortgageRent/view/MortgageRentView'
 import React from 'react'
 
 const page = () => {

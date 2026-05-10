@@ -35,6 +35,9 @@
     },
     "heroSectionForm": {
       "title": "Reserve Now!",
+      "estateReserveTab": "Estate Reserve",
+      "mortgageRentTab": "Mortgage and Rent",
+      "buySellTab": "Buy and Sell",
       "selectDestination": "Select destination",
       "selectDestinationPlc": "Select the destination",
       "numOfPeople": "Number of people",
@@ -43,7 +46,19 @@
       "arrivalDatePlc": "Select the arrival date",
       "departureDate": "Departure date",
       "departureDatePlc": "Select the departure date",
-      "searchButton": "Search"
+      "searchButton": "Search",
+      "buyAndSell": "Buy and Sell",
+      "rent": "Rent",
+      "mortgage": "Mortgage",
+      "reserve": "Reserve",
+      "estateType": "Estate Type",
+      "estateTypePlc": "Select the estate type",
+      "desiredAddress": "Desired Address",
+      "desiredAddressPlc": "Province, City...",
+      "maxPrice": "Max Price",
+      "maxPricePlc": "Enter the max price",
+      "maxMeterage": "Max Meterage",
+      "maxMeteragePlc": "Enter the max meterage"
     },
     "categories": {
       "title": "Categories",
@@ -109,7 +124,7 @@
     "sort": "Sort by",
     "search": "Search",
     "options": "Hotel Facilities",
-    "priceRange": "Price Range",
+    "priceRange": "Price Range ((Toman))",
     "min": "Minimum",
     "max": "Maximum",
     "searchPlaceholder": "Hotel name",
@@ -119,7 +134,14 @@
     "sleep": "Bed",
     "bath": "Bath",
     "person": "Person",
-    "parking": "Parking"
+    "parking": "Parking",
+    "location": "location",
+    "locationPlaceholder": "Province City...",
+    "limit": "limit",
+    "propertyType": "property type",
+    "propertyTypePlaceholder": "choose one",
+    "order": "order",
+    "areaRange": "Area range ((square meters))"
   },
   "fastReserveDetail": {
     "home": "Home",
@@ -129,8 +151,9 @@
     "seeMore": "View More",
     "seeLess": "View less",
     "aboutHouse": "About the Property",
-    "comments": "User Reviews",
     "options": "Accommodation Facilities",
+    "estateLocation": "Estate Location",
+    "comments": "User Reviews",
     "allComments": "All Reviews",
     "seeTitle": "Review Title",
     "seeCaption": "Review Text",
@@ -255,4 +278,64 @@
       }
     }
   }
+}
+  "dashboard":{
+    "header":{
+      "balance": "Balance :"
+    },
+    "sidebar":{
+      "logo": "Logo",
+      "menu": "Menu",
+      "dashboard": "Dashboard",
+      "userProfile": "User Profile",
+      "notifications": "Notifications",
+      "management": "Management",
+      "estatesManagement": "Estates Management",
+      "reservesManagement": "Reserves Management",
+      "finantialManagement": "Finantial Management",
+      "commentsManagement": "Comments Management",
+      "favorites": "Favorites",
+      "logOut": "Log Out"
+    }
+  },
+  "sellerDashboard":{
+    "dashboard":{
+      "allOfEstates": "All of Estates",
+      "activeReserves": "Active Reserves",
+      "pendingReservations": "Pending Reservations",
+      "todaysVisits": "Today Visits",
+      "incomeChart": "Income Chart",
+      "currentMonth": "Current Month",
+      "totalIncome": "Total Income",
+      "thisMonthsIncome": "This Month's Income",
+      "profCompletionChart": "Profile Completion Chart",
+      "EditProfileBtn": "Edit Profile",
+      "recentCustomerBookings": "Recent Customer Bookings",
+      "seeAllBtn": "See All"
+    },
+    "estatesManagement":{
+      "estatesManagement":"Estates Management",
+      "searchPlaceholder": "Search...",
+      "filtersBtn": "Filters",
+      "addEstateBtn": "Add Estate"
+    }
+  },
+  "customerDashboard":{
+    "dashboard":{
+      "allOfReserves": "All of Reserves",
+      "activeReserves": "Active Reserves",
+      "notPaid": "Not Paid",
+      "favorites": "Favorites",
+      "pendingReservations": "Pending Reservations",
+      "todaysVisits": "Today Visits",
+      "incomeChart": "Income Chart",
+      "currentMonth": "Current Month",
+      "totalIncome": "Total Income",
+      "thisMonthsIncome": "This Month's Income",
+      "profCompletionChart": "Profile Completion Chart",
+      "EditProfileBtn": "Edit Profile",
+      "recentCustomerBookings": "Recent Customer Bookings",
+      "seeAllBtn": "See All"
+    }
+  }  
 }

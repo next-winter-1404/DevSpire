@@ -2,6 +2,7 @@ import Image from "next/image";
 import { IReserveCard } from "../types";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+
 type props = {
   className?: string;
   property: IReserveCard;
@@ -11,8 +12,8 @@ const FastReserveCard = ({ property, className }: props) => {
   const t = useTranslations("fastReserve");
   return (
     <div
-      className={` ${className} flex flex-col bg-[#FFFFFF] dark:bg-[#27272A] rounded-2xl overflow-hidden border
-       border-[#DDDDDD] dark:border-[#333333] shadow-sm hover:shadow-md transition-shadow`}
+      className={` ${className} flex flex-col bg-[#FFFFFF] dark:bg-[#27272A] rounded-2xl overflow-hidden 
+       shadow hover:shadow-lg transition-shadow`}
     >
       <div className="relative h-60 w-full">
         <Image
@@ -44,7 +45,7 @@ const FastReserveCard = ({ property, className }: props) => {
 
         <div className="flex flex-col justify-start items-start gap-3">
           <Link
-            href={`/fast-reserve/${property.id}`}
+            href={`/fast-reserve/${property.id}`} 
             className="font-bold text-[20px] hover:text-[#0D3B66] transition transition-colors duration-200
              text-[#1E2022] dark:text-[#FAFAFA] cursor-pointer "
           >

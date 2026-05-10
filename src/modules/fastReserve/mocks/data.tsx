@@ -76,14 +76,3 @@ export const MOCK_DATA: IReserveCard[] = [
     imageUrl: "/images/fastReservePage/house1.png",
   },
 ];
-
-export const locationOptions = [
-  { value: "tehran", label: "تهران" },
-  { value: "isfahan", label: "اصفهان" },
-  { value: "shiraz", label: "شیراز" },
-];
-
-export const sortOptions = [
-  { value: "desc", label: "جدید ترین ها" },
-  { value: "cheapest", label: "ارزان ترین ها" },
-];

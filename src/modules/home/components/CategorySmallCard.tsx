@@ -19,10 +19,11 @@ const CategorySmallCard = ({imageUrl , title}: ICategorySmallCard) => {
         className='flex flex-col justify-end w-[305px] h-[251px] pb-4 px-4 bg-cover bg-center rounded-[24px] 
         before:absolute before:inset-0 before:bg-black/50 overflow-hidden relative'>
             <div className='flex justify-between items-center relative z-10'>
-                <div className='py-2 px-4 bg-[#FFFFFF] rounded-[48px]   dark:bg-[#262626]'>
+                <div className='py-2 px-4 bg-[#FFFFFF] rounded-[48px] cursor-pointer   dark:bg-[#262626]'>
                     <span className='font-regular text-[20px] text-[#1E2022]   dark:text-[#F5F5F5]'>{title}</span>
                 </div>
-                <div className='flex justify-center items-center w-[43px] h-[43px] bg-[#FFFFFF] rounded-[48px]   dark:bg-[#262626]'>
+                <div className='flex justify-center items-center w-[43px] h-[43px] bg-[#FFFFFF] rounded-[48px] cursor-pointer
+                dark:bg-[#262626]'>
                     <BigArrowLink color='#1E2022' className={`${locale == 'en' ? 'scale-x-[-1]' : ''}`}/>
                 </div>
             </div>

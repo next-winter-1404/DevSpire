@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import * as Select from "@radix-ui/react-select";
-import Image from "next/image";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+import { useLocale } from "next-intl";
 
 interface Option {
   value: string;
@@ -11,7 +11,7 @@ interface Option {
 }
 
 interface CustomSelectProps {
-  placeholder: string;
+  placeholder?: string;
   options: Option[];
   defaultValue?: string;
   onValueChange?: (value: string) => void;
@@ -25,17 +25,33 @@ const CustomSelect = ({
   onValueChange,
   className,
 }: CustomSelectProps) => {
+  const locale = useLocale();
+  const [selectedValue, setSelectedValue] = React.useState<string>(
+    defaultValue || "",
+  );
+  const onSelect = (value: string) => {
+    if (value == "clearFilter") {
+      setSelectedValue("");
+      if (onValueChange) {
+        onValueChange("");
+      }
+    } else {
+      setSelectedValue(value);
+      if (onValueChange) onValueChange(value);
+    }
+  };
+
   return (
     <Select.Root
-      dir="rtl"
-      defaultValue={defaultValue}
-      onValueChange={onValueChange}
+      dir={locale == "fa" ? "rtl" : "ltr"}
+      value={selectedValue}
+      onValueChange={onSelect}
     >
       <Select.Trigger
         className={`
           flex items-center justify-between w-full bg-[#F5F5F5] dark:bg-[#3F3F46] 
           border-none rounded-[40px] py-3 px-5 text-right
-          outline-none text-[#777777] dark:text-gray-300 text-[16px] 
+          outline-none text-[#777777] dark:text-gray-300 text-[16px]
           focus:ring-1 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-black
           data-[placeholder]:text-[#777777] ${className}
         `}
@@ -73,6 +89,22 @@ const CustomSelect = ({
                 </Select.ItemIndicator>
               </Select.Item>
             ))}
+            {selectedValue && placeholder && (
+              <Select.Item
+                value="clearFilter"
+                className="
+                  text-right text-[15px] p-2 pr-8 rounded-md relative select-none
+                  text-gray-800 dark:text-gray-200 
+                  data-[highlighted]:bg-gray-100 dark:data-[highlighted]:bg-gray-600 
+                  data-[highlighted]:outline-none cursor-pointer
+                "
+              >
+                <Select.ItemText>حذف این فیلتر</Select.ItemText>
+                <Select.ItemIndicator className="absolute right-2 top-1/2 -translate-y-1/2">
+                  <CheckIcon className="w-4 h-4" />
+                </Select.ItemIndicator>
+              </Select.Item>
+            )}
           </Select.Viewport>
         </Select.Content>
       </Select.Portal>

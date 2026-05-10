@@ -2,6 +2,7 @@ import Image from "next/image";
 import { shabnam } from "@/Fonts";
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import httpClient from "@/core/interceptor/axios";
 
 interface Props {
     back: () => void;
@@ -16,7 +17,6 @@ export default function Step3({ back }: Props) {
     const [storedUserId, setStoredUserId] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
-
     const t = useTranslations("auth.step3");
     const locale = useLocale();
     const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
@@ -34,7 +34,6 @@ export default function Step3({ back }: Props) {
         setErrorMsg("");
 
         console.log("STEP3 localStorage userId:", localStorage.getItem("userId"));
-
         const userIdFromStorage = localStorage.getItem("userId");
         console.log("Submit userIdFromStorage:", userIdFromStorage);
 
@@ -68,26 +67,17 @@ export default function Step3({ back }: Props) {
 
         try {
             setLoading(true);
+          const res = await httpClient.post("/auth/complete-registration", {
+    userId: Number(userIdFromStorage),
+    password: normalizedPassword,
+    phoneNumber: toEnglishDigits(phoneNumber.trim()),
+});
 
-            const res = await fetch("http://next.genzuni.website/api/auth/complete-registration", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userId: Number(userIdFromStorage),
-                    password: normalizedPassword,
-                    phoneNumber: toEnglishDigits(phoneNumber.trim()),
-                }),
-            });
+const data = res.data;
 
-            const data = await res.json();
             console.log("complete-registration response:", data);
 
-            if (!res.ok) {
-                setErrorMsg(data.message || data.error || "ثبت‌نام کامل نشد");
-                return;
-            }
+           
 
             if (data.accessToken) {
                 localStorage.setItem("accessToken", data.accessToken);
@@ -102,29 +92,21 @@ export default function Step3({ back }: Props) {
 
             alert("ثبت‌نام با موفقیت کامل شد");
 
-        } catch (error) {
-            console.error(error);
-            setErrorMsg("خطا در ارتباط با سرور");
+        }catch (error: any) {
+    console.error("Complete registration error:", error);
+    setErrorMsg(error.response?.data?.message || "خطا در ارتباط با سرور");
+
         } finally {
             setLoading(false);
         }
     };
-
-
 
     return (
         <div className={`${shabnam.className}`} dir={direction}>
             <div className="flex flex-col">
                 <div
                     onClick={back}
-                    className="
-            flex items-center gap-[3px]
-            mt-[16px] lg:mt-32 mb-[24px] lg:mb-[40px]
-            h-[24px]
-            animate-[fadeText_0.7s_ease]
-            cursor-pointer
-          "
-                >
+                    className=" flex items-center gap-[3px] mt-[16px] lg:mt-32 mb-[24px] lg:mb-[40px] h-[24px] animate-[fadeText_0.7s_ease] cursor-pointer" >
                     <Image
                         src="/icons/fastReservePage/Frame (2).svg"
                         alt="back icon"
@@ -135,7 +117,6 @@ export default function Step3({ back }: Props) {
                         {t("back")}
                     </span>
                 </div>
-
                 <div className="lg:hidden relative w-full h-[180px] rounded-[24px] overflow-hidden mb-[24px]">
                     <Image
                         src="/images/fastReservePage/login.jpg"
@@ -144,16 +125,7 @@ export default function Step3({ back }: Props) {
                         className="object-cover"
                     />
                 </div>
-
-                <div
-                    className="
-            w-full
-            lg:w-[552px]
-            flex flex-col gap-2
-            mb-[24px] lg:mb-[40px]
-            animate-[fadeText_0.7s_ease]
-          "
-                >
+                <div className=" w-full lg:w-[552px] flex flex-col gap-2 mb-[24px] lg:mb-[40px] animate-[fadeText_0.7s_ease]" >
                     <p className="text-[#1E2022] text-[20px] lg:text-[24px] font-bold leading-[28px] lg:leading-[32px]">
                         {t("title")}
                     </p>
@@ -161,80 +133,32 @@ export default function Step3({ back }: Props) {
                         {t("description")}
                     </p>
                 </div>
-
-                <div
-                    className="
-            w-full
-            lg:w-[552px]
-            flex flex-col
-            gap-[20px] lg:gap-[32px]
-            mb-[24px] lg:mb-[32px]
-          "
-                >
+                <div className=" w-full lg:w-[552px] flex flex-col gap-[20px] lg:gap-[32px] mb-[24px] lg:mb-[32px]" >
                     <div className="relative">
                         <input
                             type="text"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(toEnglishDigits(e.target.value))}
                             placeholder={t("phonPlaceholder")}
-                            className={`
-w-full h-[52px] lg:h-[62px] rounded-[40px]
-bg-[#F5F5F5]
-p-[20px]
-${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"}
-outline-none
-placeholder:text-[#665d55] text-[14px]
-transition-all duration-300
-focus:scale-[1.01]
-focus:shadow-[0_0_10px_rgba(13,59,102,0.15)]
-animate-[fadeText_0.7s_ease]
-`}
-
-                        />
+                            className={`w-full h-[52px] lg:h-[62px] rounded-[40px] bg-[#F5F5F5] p-[20px] ${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"} outline-none placeholder:text-[#665d55] text-[14px] transition-all duration-300 focus:scale-[1.01] focus:shadow-[0_0_10px_rgba(13,59,102,0.15)] animate-[fadeText_0.7s_ease]`} />
                         <Image
                             src="/icons/fastReservePage/Frame.svg"
                             alt="email icon"
                             width={20}
                             height={20}
-                            className={`
-absolute top-1/2 -translate-y-1/2
-${direction === "rtl" ? "left-[20px]" : "right-[20px]"}
-`}
-                        />
+                            className={`absolute top-1/2 -translate-y-1/2 ${direction === "rtl" ? "left-[20px]" : "right-[20px]"}`} />
                     </div>
-
-                    {/* input رمز با قابلیت toggle */}
                     <div className="relative">
                         <input
                             type={showPass1 ? "text" : "password"}
                             value={password}
                             onChange={(e) => setPassword(toEnglishDigits(e.target.value))}
-
                             placeholder={t("passwordPlaceholder")}
-                            className={`
-w-full h-[52px] lg:h-[62px] rounded-[40px]
-bg-[#F5F5F5]
-p-[20px]
-${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"}
-outline-none
-placeholder:text-[#665d55] text-[14px]
-transition-all duration-300
-focus:scale-[1.01]
-focus:shadow-[0_0_10px_rgba(13,59,102,0.15)]
-animate-[fadeText_0.7s_ease]
-`}
-
-                        />
-
+                            className={`w-full h-[52px] lg:h-[62px] rounded-[40px] bg-[#F5F5F5] p-[20px] ${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"} outline-none placeholder:text-[#665d55] text-[14px] transition-all duration-300 focus:scale-[1.01] focus:shadow-[0_0_10px_rgba(13,59,102,0.15)] animate-[fadeText_0.7s_ease]`} />
                         <button
                             type="button"
                             onClick={() => setShowPass1(!showPass1)}
-                            className={`
-absolute top-1/2 -translate-y-1/2 cursor-pointer
-${direction === "rtl" ? "left-4" : "right-4"}
-`}
-                            aria-label={showPass1 ? t("hidePassword") : t("showPassword")}
-                        >
+                            className={`absolute top-1/2 -translate-y-1/2 cursor-pointer ${direction === "rtl" ? "left-4" : "right-4"}`} aria-label={showPass1 ? t("hidePassword") : t("showPassword")}>
                             <Image
                                 src="/icons/fastReservePage/Frame (1).svg"
                                 alt="toggle password visibility"
@@ -243,36 +167,17 @@ ${direction === "rtl" ? "left-4" : "right-4"}
                             />
                         </button>
                     </div>
-
                     <div className="relative">
                         <input
                             type={showPass2 ? "text" : "password"}
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(toEnglishDigits(e.target.value))}
                             placeholder={t("confirmPassPlaceholder")}
-                            className={`
-      w-full h-[52px] lg:h-[62px] rounded-[40px]
-      bg-[#F5F5F5]
-      p-[20px]
-      ${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"}
-      outline-none
-      placeholder:text-[#665d55] text-[14px]
-      transition-all duration-300
-      focus:scale-[1.01]
-      focus:shadow-[0_0_10px_rgba(13,59,102,0.15)]
-      animate-[fadeText_0.7s_ease]
-    `}
-                        />
-
+                            className={` w-full h-[52px] lg:h-[62px] rounded-[40px] bg-[#F5F5F5] p-[20px] ${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"} outline-none placeholder:text-[#665d55] text-[14px] transition-all duration-300 focus:scale-[1.01] focus:shadow-[0_0_10px_rgba(13,59,102,0.15)] animate-[fadeText_0.7s_ease]`} />
                         <button
                             type="button"
                             onClick={() => setShowPass2(!showPass2)}
-                            className={`
-      absolute top-1/2 -translate-y-1/2 cursor-pointer
-      ${direction === "rtl" ? "left-4" : "right-4"}
-    `}
-                            aria-label={showPass2 ? t("hidePassword") : t("showPassword")}
-                        >
+                            className={` absolute top-1/2 -translate-y-1/2 cursor-pointer ${direction === "rtl" ? "left-4" : "right-4"}`} aria-label={showPass2 ? t("hidePassword") : t("showPassword")} >
                             <Image
                                 src="/icons/fastReservePage/Frame (1).svg"
                                 alt="toggle password visibility"
@@ -281,28 +186,13 @@ ${direction === "rtl" ? "left-4" : "right-4"}
                             />
                         </button>
                     </div>
-
                     {errorMsg && (
                         <p className="text-red-500 text-sm text-right">{errorMsg}</p>
                     )}
                     <button
                         onClick={handleSubmit}
                         disabled={loading}
-                        className="
-  w-full h-[52px] lg:h-[62px]
-  rounded-[40px] px-[20px]
-  flex justify-center items-center
-  bg-[#0D3B66] text-white text-base
-  cursor-pointer
-  transition-all duration-200
-  hover:bg-[#0D3B66]/80
-  disabled:opacity-50 disabled:cursor-not-allowed
-  animate-[fadeText_0.7s_ease]
-"
-
-                    >
-
-
+                        className=" w-full h-[52px] lg:h-[62px] rounded-[40px] px-[20px] flex justify-center items-center bg-[#0D3B66] text-white text-base cursor-pointer transition-all duration-200 hover:bg-[#0D3B66]/80 disabled:opacity-50 disabled:cursor-not-allowed animate-[fadeText_0.7s_ease]">
                         {loading ? "در حال ثبت..." : t("submit")}
                     </button>
                 </div>
@@ -310,3 +200,4 @@ ${direction === "rtl" ? "left-4" : "right-4"}
         </div>
     );
 }
+

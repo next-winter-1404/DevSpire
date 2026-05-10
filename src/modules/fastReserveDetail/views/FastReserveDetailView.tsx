@@ -1,13 +1,11 @@
 import BreadCrumbs from "@/components/common/BreadCrumbs";
 import {
   AboutMock,
-  breadcrumbItemsMock2,
   facilitiesMock,
   IBredCrumbsItems,
   reviewsMock,
 } from "../mocks";
 import ImageBox from "../components/ImageBox";
-import BookingCard from "../components/BookingCard";
 import ReserveInfo from "../components/ReserveInfo";
 import DetailTitle from "../components/DetailTitle";
 import DetailTabs from "../components/DetailTabs";
@@ -16,15 +14,17 @@ import { MOCK_DATA } from "@/modules/fastReserve/mocks/data";
 import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import Container from "@/components/common/Container";
 import { useTranslations } from "next-intl";
+import BookingCard from "../components/BookingCard";
 
-const FastReserveDetailView = () => {
+interface IProps {
+  location: string;
+}
+const FastReserveDetailView = ({ location }: IProps) => {
   const t = useTranslations("fastReserveDetail");
-
   const breadcrumbItemsMock2: IBredCrumbsItems[] = [
     { label: t("home"), href: "/" },
-    { label: t("hotelReserve"), href: "/hotels" },
-    { label: `${t("hotelReserve")} رشت`, href: "/fast-reserve" },
-    { label: `${t("hotelReserve")} رشت سراوان رایان` },
+    { label: t("hotelReserve"), href: "/fast-reserve" },
+    { label: `${t("hotelReserve")} ${location || "gg"}` },
   ];
   return (
     <Container className="w-full flex flex-col">
@@ -52,7 +52,7 @@ const FastReserveDetailView = () => {
           <BookingCard />
         </div>
       </div>
-      <div className="flex flex-col w-full gap-6">
+      <div className="flex flex-col w-full gap-6 mt-4">
         <div className="flex items-center justify-between w-full ">
           <h2 className="text-[24px] font-bold text-foreground ">
             {t("commertials")}

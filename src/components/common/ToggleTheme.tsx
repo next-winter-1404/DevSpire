@@ -2,7 +2,7 @@
 import { useTheme } from "@/utils/helper/useTheme";
 import Image from "next/image";
 
-const ToggleThem = () => {
+const ToggleTheme = () => {
   const { theme, setTheme, mounted } = useTheme();
   if (!mounted) return null;
   return (
@@ -36,4 +36,4 @@ const ToggleThem = () => {
   );
 };
 
-export default ToggleThem;
+export default ToggleTheme;

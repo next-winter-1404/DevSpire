@@ -35,6 +35,9 @@
     },
     "heroSectionForm": {
       "title": "همین حالا رزرو کنید!",
+      "estateReserveTab": "رزرو ملک",
+      "mortgageRentTab": "رهن و اجاره",
+      "buySellTab": "خرید و فروش",
       "selectDestination": "انتخاب مقصد",
       "selectDestinationPlc": "مقصد را انتخاب کنید",
       "numOfPeople": "تعداد نفرات",
@@ -43,7 +46,20 @@
       "arrivalDatePlc": "تاریخ ورود را انتخاب کنید",
       "departureDate": "تاریخ خروج",
       "departureDatePlc": "تاریخ خروج را انتخاب کنید",
-      "searchButton": "جستجو کنید"
+      "searchButton": "جستجو کنید",
+
+      "buyAndSell": "خرید و فروش",
+      "rent": "اجاره",
+      "mortgage": "رهن",
+      "reserve": "رزرو",
+      "estateType": "نوع ملک",
+      "estateTypePlc": "نوع ملک را انتخاب کنید",
+      "desiredAddress": "آدرس مورد نظر",
+      "desiredAddressPlc": "استان ، شهر...",
+      "maxPrice": "حداکثر قیمت",
+      "maxPricePlc": "حداکثر قیمت را وارد کنید",
+      "maxMeterage": "حداکثر متراژ",
+      "maxMeteragePlc": "حداکثر متراژ را وارد کنید"
     },
     "categories": {
       "title": "دسته بندی ها",
@@ -109,7 +125,7 @@
     "sort": "مرتب سازی بر اساس",
     "search": "جستجو",
     "options": "امکانات هتل",
-    "priceRange": "رنج قیمت",
+    "priceRange": "رنج قیمت ((تومان))",
     "min": "حداقل",
     "max": "حداکثر",
     "searchPlaceholder": "نام هتل مورد نظر",
@@ -119,7 +135,14 @@
     "sleep": "خواب",
     "bath": "حمام",
     "person": "نفر",
-    "parking": "پارکینگ"
+    "parking": "پارکینگ",
+    "location": "محل مورد نظر",
+    "locationPlaceholder": "استان شهر ...",
+    "limit": "تعداد نمایش",
+    "propertyType": "نوع ملک",
+    "propertyTypePlaceholder": "انتخاب نوع ملک",
+    "order": "ترتیب مرتب سازی",
+    "areaRange": "رنج متراژ (( متر مربع ))"
   },
   "fastReserveDetail": {
     "home": "خانه",
@@ -129,8 +152,9 @@
     "seeMore": "مشاهده بیشتر",
     "seeLess": "مشاهده کمتر",
     "aboutHouse": "درباره ملک",
-    "comments": "نظرات کاربران",
     "options": "امکانات اقامتگاه",
+    "estateLocation": "موقعیت ملک",
+    "comments": "نظرات کاربران",
     "allComments": "همه ی نظرات",
     "seeTitle": "عنوان دیدگاه",
     "seeCaption": "متن دیدگاه",
@@ -256,4 +280,62 @@
       }
     }
   }
+}
+  "dashboard":{
+    "header":{
+      "balance": "موجودی :"
+    },
+    "sidebar":{
+      "logo": "لوگو",
+      "menu": "منو",
+      "dashboard": "داشبورد",
+      "userProfile": "مشخصات کاربری",
+      "notifications": "اعلان ها",
+      "management": "مدیریت",
+      "estatesManagement": "مدیریت املاک",
+      "reservesManagement": "مدیریت رزرو ها",
+      "finantialManagement": "مدیریت مالی",
+      "commentsManagement": "مدیریت نظرات",
+      "favorites": "علاقه مندی ها",
+      "logOut": "خروج از حساب"
+    }
+  },
+  "sellerDashboard":{
+    "dashboard":{
+      "allOfEstates": "کل ملک ها",
+      "activeReserves": "رزرو های فعال",
+      "pendingReservations": "رزرو های در انتظار",
+      "todaysVisits": "ویزیت های امروز",
+      "incomeChart": "نمودار درآمد",
+      "currentMonth": "ماه جاری",
+      "totalIncome": "درآمد کل",
+      "thisMonthsIncome": "درآمد این ماه",
+      "profCompletionChart": "نمودار تکمیل پروفایل",
+      "EditProfileBtn": "ویرایش پروفایل",
+      "recentCustomerBookings": "رزرو های اخیر مشتریان",
+      "seeAllBtn": "مشاهده همه"
+    },
+    "estatesManagement":{
+      "estatesManagement":"مدیریت املاک",
+      "searchPlaceholder": "جستجو کنید...",
+      "filtersBtn": "فیلتر ها",
+      "addEstateBtn": "افزودن ملک"
+    }
+  },
+  "customerDashboard":{
+    "dashboard":{
+      "allOfReserves": "کل رزرو ها",
+      "activeReserves": "رزرو های فعال",
+      "notPaid": "پرداخت نشده",
+      "favorites": "علاقه مندی ها",
+      "incomeChart": "نمودار درآمد",
+      "currentMonth": "ماه جاری",
+      "totalIncome": "درآمد کل",
+      "thisMonthsIncome": "درآمد این ماه",
+      "profCompletionChart": "نمودار تکمیل پروفایل",
+      "EditProfileBtn": "ویرایش پروفایل",
+      "recentCustomerBookings": "رزرو های اخیر مشتریان",
+      "seeAllBtn": "مشاهده همه"
+    }
+  }  
 }

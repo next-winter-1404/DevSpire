@@ -1,25 +1,33 @@
 import "./[locale]/globals.css";
 
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { HomeIcon, UpdateIcon } from "@radix-ui/react-icons";
 
 export default function Loading() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-8">
-      <div className="relative flex items-center justify-center w-24 h-24 animate-float">
-        <div className="absolute inset-0 bg-primary/30 rounded-full animate-ripple"></div>
+    <div
+      className="fixed inset-0 z-50 flex min-h-screen w-full flex-col items-center 
+    justify-center bg-background/80 backdrop-blur-md"
+    >
+      <div className="relative flex flex-col items-center justify-center">
+        <div className="absolute h-32 w-32 animate-ripple rounded-full bg-primary/20"></div>
+        <div
+          className="absolute h-32 w-32 animate-ripple rounded-full bg-primary/10"
+          style={{ animationDelay: "1s" }}
+        ></div>
 
-        <div className="relative flex items-center justify-center w-16 h-16 bg-primary rounded-full text-primary-foreground shadow-xl shadow-primary/30">
-          <MagnifyingGlassIcon className="w-8 h-8" />
+        <div
+          className="z-10 flex h-20 w-20 animate-float items-center justify-center rounded-full
+         bg-primary text-primary-foreground shadow-2xl"
+        >
+          <HomeIcon className="h-10 w-10" />
         </div>
-      </div>
 
-      <div className="flex flex-col items-center gap-2">
-        <h3 className="text-lg font-bold text-foreground">
-          در حال جستجوی بهترین‌ها...
-        </h3>
-        <p className="text-sm text-muted-foreground font-medium">
-          لطفا چند لحظه منتظر بمانید
-        </p>
+        <div className="mt-12 flex items-center gap-3 rounded-2xl bg-card px-6 py-3 shadow-sm border border-border">
+          <UpdateIcon className="h-5 w-5 animate-spin text-primary" />
+          <span className="text-base font-semibold text-foreground">
+            Loading ....
+          </span>
+        </div>
       </div>
     </div>
   );

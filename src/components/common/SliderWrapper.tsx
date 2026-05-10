@@ -55,7 +55,7 @@ const SliderWrapper = ({ children }: { children: ReactNode }) => {
       } else {
         scroll("right");
       }
-    }, 1500);
+    }, 1200);
     return () => clearInterval(interval);
   }, [isHovered]);
 
