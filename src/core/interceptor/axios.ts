@@ -3,7 +3,7 @@ import { getCookie, setCookie, deleteCookie } from "cookies-next";
 import toast from "react-hot-toast";
 
 const httpClient = axios.create({
-  baseURL: process.env.NEXT_APP_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_APP_BASE_URL, 
 });
 
 let isRefreshing = false;
