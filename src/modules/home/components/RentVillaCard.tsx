@@ -6,7 +6,15 @@ import RentVillaImg from '../../../../public/images/home/villa-estate.png'
 import { useLocale, useTranslations } from 'next-intl'
 
 
-const RentVillaCard = () => {
+interface IRentVillaCard{
+    item:{
+        title: string
+        count: string
+        link: string
+    }
+}
+
+const RentVillaCard = ({item}: IRentVillaCard) => {
 
     const t = useTranslations('home.rentVillaCard')
     const locale = useLocale()

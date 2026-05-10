@@ -8,7 +8,7 @@ export default function MainLayout({
 }) {
   return (
     <>
-      <header className="pt-8 px-4 sm:px-6 sm:pt-6 lg:px-12">
+      <header className="pt-8 px-4 sm:pt-6 sm:px-6 lg:px-12">
         <Header />
       </header>
       <main>{children}</main>

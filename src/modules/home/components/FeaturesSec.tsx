@@ -10,7 +10,7 @@ const FeaturesSec = () => {
     const t = useTranslations('home.featureSec')
 
     return (
-        <div className='flex justify-center mt-24 px-12'>
+        <div className='flex justify-center mt-24 px-40'>
             <div className='flex gap-30 w-full'>
                 <Image src={FeatureSecImg} alt='featureSec' width={480} height={480}
                 className='hidden w-[120px] h-[120px]   lg:block lg:w-[480px] lg:h-[480px]'/>

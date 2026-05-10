@@ -1,25 +1,27 @@
-import HouseCard from "@/components/common/HouseCard";
-import { MOCK_DATA } from "@/modules/fastReserve/mocks/data";
-import React from "react";
+import FastReserveCard from '@/modules/fastReserve/components/FastReserveCard'
+import { MOCK_DATA } from '@/modules/fastReserve/mocks/data'
+import { GetHouses } from '@/modules/services/api/get/GetHouses';
+import React, { useEffect, useState } from 'react'
+
 
 const MortgageRentList = () => {
-  return (
-    <div className="flex flex-wrap gap-6 w-full mt-10">
-      {MOCK_DATA.map((property) => (
-        <div
-          dir="rtl"
-          key={property.id}
-          className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
-        >
-          <HouseCard
-            className="w-full"
-            transactionType="rental"
-            property={property}
-          />
+
+    const [data, setData] = useState<any>();
+
+    useEffect(() => {
+        GetHouses({ transactionType: 'rental', propertyType: '' }).then(setData);
+    }, []);
+
+    if (!data || data.houses?.length === 0) return <div>در حال بارگذاری...</div>;
+
+    return (
+        <div className='flex flex-wrap gap-6 w-full mt-10'>
+            {data.houses?.map((property: any) => (
+                <div dir="rtl" key={property.id} className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]">
+                    <FastReserveCard className="w-full" property={property}/>
+                </div>
+            ))}        
         </div>
-      ))}
-    </div>
-  );
-};
+    )
 
 export default MortgageRentList;
