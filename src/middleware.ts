@@ -7,7 +7,7 @@ const intlMiddleware = createMiddleware(routing);
 
 const API_URL = process.env.NEXT_APP_BASE_URL;
 
-const protectedRoutes = ["/dashboard", "/fast-reserve"];
+const protectedRoutes = ["/dashboard"];
 
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
