@@ -8,13 +8,13 @@ const RentVilla = () => {
 
   const t = useTranslations("home.rentVilla");
 
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<any>();
 
   useEffect(() => {
     GetHouses({ transactionType: 'rental', propertyType: 'villa' }).then(setData);
   }, []);
 
-  if (!data || data.length === 0) return <div>در حال بارگذاری...</div>;
+  if (!data || data.houses?.length === 0) return <div>در حال بارگذاری...</div>;
 
   return (
     <div className="  mt-30 px-4 sm:px-6 lg:px-10 w-full">
@@ -24,7 +24,7 @@ const RentVilla = () => {
         </h2>
         <div className="flex flex-row flex-wrap gap-6 justify-between w-full">
           {
-            data?.slice(0,5).map((item) => (
+            data.houses?.slice(0,5).map((item: any) => (
               <RentVillaCard key={item.id} item={item}/>
             ))
           }

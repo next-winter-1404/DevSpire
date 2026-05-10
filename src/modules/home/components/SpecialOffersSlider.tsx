@@ -8,18 +8,18 @@ import FastReserveCard from '@/modules/fastReserve/components/FastReserveCard';
 
 const SpecialOffersSlider = () => {
 
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<any>();
 
   useEffect(() => {
     GetHouses({ transactionType: 'rental', propertyType: 'villa' }).then(setData);
   }, []);
 
-  if (!data || data.length === 0) return <div>در حال بارگذاری...</div>;
+  if (!data || data.houses.length === 0) return <div>در حال بارگذاری...</div>;
 
   return (
     <div>
       <SliderWrapper>
-        {data?.slice(0, 5).map((property) => (
+        {data.houses?.slice(0, 5).map((property:any) => (
           <div key={property.id} dir='rtl' className='shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]'>
             <FastReserveCard className='w-full' property={property} />
           </div>
