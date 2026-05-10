@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import SliderWrapper from "@/components/common/SliderWrapper";
-import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
 import { GetHouses } from "@/modules/services/api/get/GetHouses";
+import HouseCard from "@/components/common/HouseCard";
 
 const BestChoiceSlider = () => {
   const [data, setData] = useState<any>();
@@ -23,7 +23,11 @@ const BestChoiceSlider = () => {
           dir="rtl"
           className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
         >
-          <FastReserveCard className="w-full" property={property} />
+          <HouseCard
+            className="w-full"
+            transactionType="reservation"
+            property={property}
+          />
         </div>
       ))}
     </SliderWrapper>

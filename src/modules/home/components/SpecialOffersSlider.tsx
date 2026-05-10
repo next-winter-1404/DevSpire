@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { GetHouses } from "../../services/api/get/GetHouses";
 import SliderWrapper from "@/components/common/SliderWrapper";
-import FastReserveCard from "@/modules/fastReserve/components/FastReserveCard";
+import HouseCard from "@/components/common/HouseCard";
 
 const SpecialOffersSlider = () => {
   const [data, setData] = useState<any>();
@@ -24,7 +24,11 @@ const SpecialOffersSlider = () => {
             dir="rtl"
             className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
           >
-            <FastReserveCard className="w-full" property={property} />
+            <HouseCard
+              transactionType="rental"
+              className="w-full"
+              property={property}
+            />
           </div>
         ))}
       </SliderWrapper>
