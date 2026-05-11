@@ -104,7 +104,13 @@ export async function apiFetch<T = any>(
     }
 
     if (!res.ok) {
-      console.log(res.status, "error on API:", url);
+      const text = await res.text();
+      console.error("API ERROR:", {
+        url,
+        status: res.status,
+        body: text,
+      });
+
       return null;
     }
 
