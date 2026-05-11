@@ -4,11 +4,14 @@ import Container from "@/components/common/Container";
 import FastReserveFilters from "../components/Filters";
 import FastReservePagination from "../components/FastReservePagination";
 import { useTranslations } from "next-intl";
+import { THousesResponse } from "@/components/common/types";
 
 interface Iprops {
   location?: string;
+  limit: number;
+  data: THousesResponse;
 }
-const FastReserveView = ({ location }: Iprops) => {
+const FastReserveView = ({ data, location, limit }: Iprops) => {
   const t = useTranslations("fastReserve");
   const breadcrumbItemsMock: IBreadCrumbItem[] = [
     { label: t("home"), href: "/" },
@@ -29,14 +32,18 @@ const FastReserveView = ({ location }: Iprops) => {
         <h2 className="text-[#1E2022] dark:text-[#FAFAFA] lg:text-[24px] font-bold ">
           {t("filters")}
         </h2>
-        <span className="lg:text-[20px] text-[#0D3B66] ">16 {t("result")}</span>
+        <span className="lg:text-[20px] text-[#0D3B66] ">
+          {data?.houses?.length || 0} {t("result")}
+        </span>
       </div>
       <FastReserveFilters />
       <div>
-        <ReserveCardList />
+        <ReserveCardList houses={data?.houses} />
       </div>
       <div className="mx-auto mt-10">
-        <FastReservePagination />
+        <FastReservePagination
+          totalPages={Math.ceil(data?.totalCount / limit)}
+        />
       </div>
     </Container>
   );
