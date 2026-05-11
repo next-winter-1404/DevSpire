@@ -17,7 +17,7 @@ const SpecialOffersSlider = async () => {
   return (
     <div>
       <SliderWrapper>
-        {data.map((property: any) => (
+        {data.houses.map((property: any) => (
           <div
             key={property.id}
             dir="rtl"

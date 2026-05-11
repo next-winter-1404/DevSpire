@@ -11,7 +11,7 @@ const SayAboutUsSlider = async () => {
     },
   })
 
-  return <SayAboutUsSliderClient initialData={data} />
+  return <SayAboutUsSliderClient initialData={data.houses} />
 }
 
 export default SayAboutUsSlider
