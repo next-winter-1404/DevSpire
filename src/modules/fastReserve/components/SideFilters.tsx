@@ -59,7 +59,7 @@ const FastReserveSideFilters = () => {
 
   const [range, setRange] = useState<[number, number]>([
     parseInt(searchParams.get("minPrice") ?? "0"),
-    parseInt(searchParams.get("maxPrice") ?? "25000000"),
+    parseInt(searchParams.get("maxPrice") ?? "50000000000"),
   ]);
   const [Area, setArea] = useState<[number, number]>([
     parseInt(searchParams.get("minArea") ?? "0"),
@@ -157,7 +157,10 @@ const FastReserveSideFilters = () => {
                 placeholder={t("searchPlaceholder")}
                 value={query}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => getQuery(e)}
-                className={`w-full bg-[#F5F5F5] dark:bg-[#3F3F46] border-none rounded-[40px] py-3 px-5 placeholder:text-[#777777] placeholder:text-[16px] ${locale == "fa" ? "text-right" : "text-left"} outline-none text-foreground text-[16px] focus:ring-1 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-black`}
+                className={`w-full bg-[#F5F5F5] dark:bg-[#3F3F46] border-none rounded-[40px] py-3 px-5
+                   placeholder:text-[#777777] placeholder:text-[16px] ${locale == "fa" ? "text-right" : "text-left"} 
+                   outline-none text-foreground text-[16px] focus:ring-1 focus:ring-blue-500 focus:ring-offset-2
+                    dark:focus:ring-offset-black`}
               />
               <MagnifyingGlassIcon
                 className={`w-5 h-5 absolute top-[50%] translate-y-[-50%] ${locale == "fa" ? "left-5" : "right-5"}`}
@@ -234,7 +237,7 @@ const FastReserveSideFilters = () => {
             </label>
             <div className="w-full">
               <TwoRangeSlider
-                max={50000000}
+                max={50000000000}
                 defaultValues={range}
                 getValues={getSliderValues}
               />

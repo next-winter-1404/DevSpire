@@ -5,8 +5,7 @@ import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-const FastReservePagination = () => {
-  
+const FastReservePagination = ({ totalPages }: { totalPages: number }) => {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const router = useRouter();
@@ -26,7 +25,7 @@ const FastReservePagination = () => {
     <>
       <CustomPagination
         currentPage={currentPage}
-        totalPages={2}
+        totalPages={totalPages}
         onPageChange={onPageChange}
       />
     </>
