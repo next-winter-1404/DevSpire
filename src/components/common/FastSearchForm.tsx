@@ -82,7 +82,7 @@ const FastSearchForm = () => {
             }}
             className={`px-4 py-2 rounded-[40px] whitespace-nowrap ${
               transactionType == item.value
-                ? "text-[#FFFFFF] bg-[#0D3B66]   dark:border-none"
+                ? "text-[#0B3B66] border border-[#0D3B66]   dark:text-[#E4E4E4] dark:border-[#E4E4E4]"
                 : "text-[#777777]"
             } `}
             key={index}
