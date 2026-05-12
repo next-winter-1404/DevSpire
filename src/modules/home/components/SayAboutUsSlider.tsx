@@ -1,17 +1,17 @@
-import { apiFetch } from '@/core/Server-fetch/fetchApi'
-import SayAboutUsSliderClient from './SayAboutUsSliderClient'
+import { apiFetch } from "@/core/Server-fetch/fetchApi";
+import SayAboutUsSliderClient from "./SayAboutUsSliderClient";
 
 const SayAboutUsSlider = async () => {
-  const data = await apiFetch("/houses", {
-    params: {
-      limit: 5,
-    },
-    next: {
-      revalidate: 60,
-    },
-  })
+  // const data = await apiFetch("/houses", {
+  //   params: {
+  //     limit: 5,
+  //   },
+  //   next: {
+  //     revalidate: 60,
+  //   },
+  // })
 
-  return <SayAboutUsSliderClient initialData={data.houses} />
-}
+  return <SayAboutUsSliderClient initialData={data.houses} />;
+};
 
-export default SayAboutUsSlider
+export default SayAboutUsSlider;

@@ -4,9 +4,7 @@ import CategoryBigCard from "./CategoryBigCard";
 import CategorySmallCard from "./CategorySmallCard";
 import { useTranslations } from "next-intl";
 
-
 const Categories = () => {
-
   const t = useTranslations("home.categories");
 
   return (
@@ -39,13 +37,13 @@ const Categories = () => {
               title={t("coastalEstate")}
               imageUrl="/images/home/coastal-estate.png"
             />
-            {data?.map((item, index) => (
+            {/* {data?.map((item, index) => (
               <CategorySmallCard
                 imageUrl="/jjj"
                 title={item.name}
                 key={index}
               />
-            ))}
+            ))} */}
           </div>
           <CategoryBigCard
             title={t("ecotourism")}

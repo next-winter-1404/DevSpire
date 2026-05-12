@@ -3,20 +3,18 @@ import HouseCard from "@/components/common/HouseCard";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 
 const SpecialOffersSlider = async () => {
-
-
-  const data = await apiFetch("/houses", {
-    params: {
-      limit: 5,
-    },
-    next: {
-      revalidate: 60,
-    },
-  });
+  // const data = await apiFetch("/houses", {
+  //   params: {
+  //     limit: 5,
+  //   },
+  //   next: {
+  //     revalidate: 60,
+  //   },
+  // });
 
   return (
     <div>
-      <SliderWrapper>
+      {/* <SliderWrapper>
         {data.houses.map((property: any) => (
           <div
             key={property.id}
@@ -30,7 +28,7 @@ const SpecialOffersSlider = async () => {
             />
           </div>
         ))}
-      </SliderWrapper>
+      </SliderWrapper> */}
     </div>
   );
 };

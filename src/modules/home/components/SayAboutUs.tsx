@@ -4,9 +4,7 @@ import BigArrowRight from "../../../../public/icons/BigArrowRight";
 import BigArrowLeft from "../../../../public/icons/BigArrowLeft";
 import { useLocale, useTranslations } from "next-intl";
 
-
 const SayAboutUs = () => {
-  
   const t = useTranslations("home.sayAboutUs");
   const locale = useLocale();
 
@@ -16,7 +14,7 @@ const SayAboutUs = () => {
         <h2 className="font-bold text-[24px] text-[#1E2022] dark:text-[#F5F5F5]">
           {t("title")}
         </h2>
-        <SayAboutUsSlider/>
+        {/* <SayAboutUsSlider/> */}
       </div>
     </div>
   );
