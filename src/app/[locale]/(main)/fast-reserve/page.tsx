@@ -1,6 +1,7 @@
 import { IFastReserveParams, THousesResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import FastReserveView from "@/modules/fastReserve/views/FastReserveView";
+import { cookies } from "next/headers";
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -28,6 +29,7 @@ const FastReserve = async ({ searchParams }: Props) => {
   });
 
   console.log("data ", data);
+
   return (
     <div>
       <FastReserveView

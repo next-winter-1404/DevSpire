@@ -165,13 +165,13 @@ const PassengerFormCard = ({
                       calendarPosition="bottom-center"
                       value={value || Item.birthDate}
                       onChange={(date) => {
-                        onChange(date?.toDate?.() || date);
+                        onChange(date?.toDate?.().toISOString() || date);
                       }}
                       className={locale === "fa" ? "rmdp-persian" : ""}
                       render={(datePickerValue, openCalendar) => (
                         <div
                           onClick={openCalendar}
-                          className={`w-full  relative  bg-[#F5F5F5] dark:bg-[#3F3F46] rounded-[40px] py-2.5 
+                          className={`w-full  relative  bg-[#F5F5F5] dark:bg-[#3F3F46] rounded-[40px] p-3.5 
                             text-[14px] cursor-pointer outline-none focus-within:ring-2 px-3 ${
                               passengerErrors?.birthDate
                                 ? "border border-red-500 focus-within:ring-red-500"

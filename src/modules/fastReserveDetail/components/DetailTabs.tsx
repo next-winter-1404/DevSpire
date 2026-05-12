@@ -7,14 +7,11 @@ import { facilitiesMock } from "../mocks";
 import { IFacilitiesTabProps } from "../types";
 import CommentsSection from "./CommentsSection";
 import { useTranslations } from "next-intl";
+import { THouse } from "@/components/common/types";
 
 type Tab = "about" | "facilities" | "reviews";
 
-const DetailTabs = ({
-  facilities,
-  aboutContent,
-  reviews,
-}: IFacilitiesTabProps) => {
+const DetailTabs = ({ house }: { house: THouse }) => {
   const t = useTranslations("fastReserveDetail");
 
   const [activeTab, setActiveTab] = useState<Tab>("about");
@@ -57,10 +54,8 @@ const DetailTabs = ({
       {/* content */}
 
       <div className="mt-4 w-full">
-        {activeTab === "about" && <ReserveInfo content={aboutContent} />}
-        {activeTab === "facilities" && (
-          <FacilitiesTab facilities={facilities} />
-        )}
+        {activeTab === "about" && <ReserveInfo house={house} />}
+        {activeTab === "facilities" && <FacilitiesTab tags={house.tags} />}
         {activeTab === "reviews" && <CommentsSection />}
       </div>
     </div>

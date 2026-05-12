@@ -12,7 +12,7 @@ type FetchOptions = {
   next?: NextFetchRequestConfig;
 };
 
-const API_URL = process.env.NEXT_APP_BASE_URL;
+const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function buildUrl(url: string, params?: FetchOptions["params"]) {
   if (!params) return url;

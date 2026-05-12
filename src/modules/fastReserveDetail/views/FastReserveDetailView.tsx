@@ -14,16 +14,17 @@ import Container from "@/components/common/Container";
 import { useTranslations } from "next-intl";
 import BookingCard from "../components/BookingCard";
 import HouseCard from "@/components/common/HouseCard";
+import { THouse } from "@/components/common/types";
 
 interface IProps {
-  location?: string;
+  house: THouse;
 }
-const FastReserveDetailView = ({ location }: IProps) => {
+const FastReserveDetailView = ({ house }: IProps) => {
   const t = useTranslations("fastReserveDetail");
   const breadcrumbItemsMock2: IBredCrumbsItems[] = [
     { label: t("home"), href: "/" },
     { label: t("hotelReserve"), href: "/fast-reserve" },
-    { label: `${t("hotelReserve")} ${location || "gg"}` },
+    { label: `${t("hotelReserve")} ${house.title}` },
   ];
   return (
     <Container className="w-full flex flex-col">
@@ -31,24 +32,20 @@ const FastReserveDetailView = ({ location }: IProps) => {
         <BreadCrumbs items={breadcrumbItemsMock2} />
       </div>
       <div className="w-full mb-10 md:mb-8">
-        <ImageBox />
+        <ImageBox photos={house.photos} />
       </div>
       <div className="flex flex-col gap-6 md:gap-0  md:flex-row  md:justify-between w-full mb-8">
         <div className="w-full md:w-[67%] ">
           <div className=" mb-10 md:mb-8">
-            <DetailTitle
-              location="گیلان ، رشت ، میدان آزادی ، جنب چهار راه عظ....گیلان ، رشت ، میدان آزادی ، جنب چهار راه"
-              title="هتل همایون فر کیش ایران"
-            />
+            <DetailTitle location={house.address} title={house.title} />
           </div>
-          <DetailTabs
-            facilities={facilitiesMock}
-            aboutContent={AboutMock}
-            reviews={reviewsMock}
-          />
+          <DetailTabs house={house} />
         </div>
         <div className="w-full md:w-[31%] ">
-          <BookingCard />
+          <BookingCard
+            price={parseInt(house.price)}
+            discountedPrice={parseInt(house.discounted_price)}
+          />
         </div>
       </div>
       <div className="flex flex-col w-full gap-6 mt-4">

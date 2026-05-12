@@ -5,7 +5,7 @@ import { routing } from "./i18n/routing";
 
 const intlMiddleware = createMiddleware(routing);
 
-const API_URL = process.env.NEXT_APP_BASE_URL;
+const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const protectedRoutes = ["/dashboard"];
 

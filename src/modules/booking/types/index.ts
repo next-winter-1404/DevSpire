@@ -7,17 +7,30 @@ export interface IPassenger {
 }
 
 export interface IFormProps {
-  traveler_details: IPassenger[];
+  traveler_details: TravelerDetail[];
   sharedEmail?: string;
   sharedMobile?: string;
 }
 
-type TReservedDates = Date;
+export type TravelerDetail = {
+  firstName: string;
+  lastName: string;
+  gender: "male" | "female" | string;
+  birthDate: string;
+  nationalId: string;
+};
 
-export interface IBookingRequest {
-  houseId: string;
-  reservedDates: TReservedDates[];
-  traveler_details: IPassenger[];
-  sharedEmail: string;
-  sharedMobile: string;
+export type TBookingRequest = {
+  houseId: number;
+  reservedDates: string[];
+  traveler_details: TravelerDetail[];
+  sharedEmail?: string;
+  sharedMobile?: string;
+};
+
+export interface IPaymentRequest {
+  amount: number;
+  description: string;
+  callbackUrl: string;
+  bookingId: number;
 }

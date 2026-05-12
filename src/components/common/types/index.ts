@@ -20,7 +20,7 @@ export type THouse = {
   rate: string;
   discounted_price: string;
   price: string;
-  tags: string;
+  tags: string[] | string;
   last_updated: string;
   capacity: number;
   location: string;
