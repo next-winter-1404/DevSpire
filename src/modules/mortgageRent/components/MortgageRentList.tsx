@@ -1,19 +1,13 @@
 import HouseCard from "@/components/common/HouseCard";
-import { GetHouses } from "@/modules/services/api/get/GetHouses";
 import React, { useEffect, useState } from "react";
 
 const MortgageRentList = () => {
-  const [data, setData] = useState<any>();
 
-  useEffect(() => {
-    GetHouses({ transactionType: "rental", propertyType: "" }).then(setData);
-  }, []);
-
-  if (!data || data.houses?.length === 0) return <div>در حال بارگذاری...</div>;
+  
 
   return (
     <div className="flex flex-wrap gap-6 w-full mt-10">
-      {data.houses?.map((property: any) => (
+      {/* {data.houses?.map((property: any) => (
         <div
           dir="rtl"
           key={property.id}
@@ -25,7 +19,7 @@ const MortgageRentList = () => {
             transactionType="rental"
           />
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import FastSearchForm from "@/components/common/FastSearchForm";
+import { Link } from "@/i18n/routing";
 
 const HeroSection = () => {
   const t = useTranslations("home.heroSection");
@@ -30,9 +31,11 @@ const HeroSection = () => {
               {t("description")}
             </p>
             <div>
-              <button className="mt-2 py-2 px-6 text-white border border-white rounded-[48px] cursor-pointer hover:bg-white/20 hover:text-black transition-colors duration-300">
+              <Link href={'/mortgage-rent'} 
+              className="mt-2 py-2 px-6 text-white border border-white rounded-[48px] cursor-pointer hover:bg-white/20 hover:text-black 
+              transition-colors duration-300">
                 {t("mortgageButton")}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

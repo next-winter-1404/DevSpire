@@ -15,8 +15,11 @@ interface Props {
   initialData: Property[];
 }
 
-const SayAboutUsSliderClient: React.FC<Props> = ({ initialData }) => {
+
+const SayAboutUsSliderClient = ({ initialData } : Props) => {
+
   const locale = useLocale();
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerView = 3;
   const totalSlides = Math.ceil(initialData.length / itemsPerView);
@@ -35,17 +38,17 @@ const SayAboutUsSliderClient: React.FC<Props> = ({ initialData }) => {
 
   return (
     <div className="flex flex-col items-center gap-10">
-      {/* <SliderWrapper>
-        {initialData.map((property: any) => (
+      <SliderWrapper>
+        {initialData?.map((data: any) => (
           <div
             className='shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]'
             dir='rtl'
-            key={property.id}
+            key={data.id}
           >
-            <SayAboutUsCard className='w-full' data={property}/>
+            <SayAboutUsCard data={data}/>
           </div>
         ))}
-      </SliderWrapper> */}
+      </SliderWrapper>
       <div className="flex gap-8">
         <div onClick={nextSlide}>
           <BigArrowRight className={locale === "en" ? "scale-x-[-1]" : ""} />
