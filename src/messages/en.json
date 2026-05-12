@@ -120,7 +120,7 @@
     "filters": "Filters",
     "result": "Result",
     "home": "Home",
-    "hotelReserve": "Hotel Reservation",
+    "hotelReserve": "Reservation",
     "sort": "Sort by",
     "search": "Search",
     "options": "Hotel Facilities",
@@ -145,7 +145,7 @@
   },
   "fastReserveDetail": {
     "home": "Home",
-    "hotelReserve": "Hotel Reservation",
+    "hotelReserve": "Reservation",
     "commertials": "Similar Listings",
     "seeAll": "View All",
     "seeMore": "View More",

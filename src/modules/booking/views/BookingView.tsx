@@ -6,40 +6,87 @@ import { IBredCrumbsItems } from "@/modules/fastReserveDetail/mocks";
 import { useTranslations } from "next-intl";
 import BookingContainer from "../components/BookingContainer";
 import BookingStepper from "../components/BookingStepper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import BookingStepTwo from "../components/BookingStepTwo";
 import BookingStepThree from "../components/BookingStepThree";
 import BookingStepFour from "../components/BookingStepFour";
 import BookingStepFive from "../components/BookingStepFive";
+import { THouse } from "@/components/common/types";
+import { TBookingRequest } from "../types";
+import { notFound, useSearchParams } from "next/navigation";
 
 interface IProps {
-  location: string;
+  house: THouse | null;
+  houseId: number;
 }
-const BookingView = ({ location }: IProps) => {
+const BookingView = ({ house, houseId }: IProps) => {
   const t = useTranslations("fastReserveDetail");
   const router = useRouter();
   const breadcrumbItemsMock2: IBredCrumbsItems[] = [
     { label: t("home"), href: "/" },
     { label: t("hotelReserve"), href: "/fast-reserve" },
-    { label: `${t("hotelReserve")} ${location || "gg"}` },
+    {
+      label: `${t("hotelReserve")} ${house?.title ?? "موردی با این شناسه یافت نشد"}`,
+    },
   ];
-  const [currentStep, setCurrentStep] = useState<number>(2);
+  const searchParams = useSearchParams();
 
+  const stepFromUrl = Number(searchParams.get("step")) || 2;
+
+  const [currentStep, setCurrentStep] = useState<number>(stepFromUrl);
+  const [bookingData, setBookingData] = useState<TBookingRequest | null>(null);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  const changeTab = (tab: number) => {
+    setCurrentStep(tab);
+  };
+  const getBookingData = (data: TBookingRequest) => {
+    setBookingData(data);
+  };
+  const getTotalPrice = (price: number) => {
+    setTotalPrice(price);
+  };
+
+  useEffect(() => {
+    if (currentStep === 1) {
+      router.push("/fast-reserve");
+    }
+  }, [currentStep]);
   const renderStepsContent = () => {
     switch (currentStep) {
-      case 1:
-        return router.push("/fast-reserve");
       case 2:
-        return <BookingStepTwo />;
+        return (
+          <BookingStepTwo
+            getBookingData={getBookingData}
+            changeTab={changeTab}
+            house={house}
+            houseId={houseId}
+            getTotalPrice={getTotalPrice}
+          />
+        );
       case 3:
-        return <BookingStepThree />;
+        return (
+          <BookingStepThree
+            totalPrice={totalPrice}
+            changeTab={changeTab}
+            bookingData={bookingData}
+          />
+        );
       case 4:
         return <BookingStepFour />;
       case 5:
         return <BookingStepFive />;
       default:
-        return <BookingStepTwo />;
+        return (
+          <BookingStepTwo
+            getTotalPrice={getTotalPrice}
+            houseId={houseId}
+            changeTab={changeTab}
+            getBookingData={getBookingData}
+            house={house}
+          />
+        );
     }
   };
 
@@ -53,7 +100,7 @@ const BookingView = ({ location }: IProps) => {
       </div>
       <BookingContainer>
         <div className="w-full h-full">
-          {renderStepsContent() ?? "page not found !"}
+          {renderStepsContent() ?? notFound()}
         </div>
       </BookingContainer>
     </Container>

@@ -3,7 +3,7 @@ import { getCookie, setCookie, deleteCookie } from "cookies-next";
 import toast from "react-hot-toast";
 
 const httpClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_APP_BASE_URL, 
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 });
 
 let isRefreshing = false;
@@ -64,13 +64,13 @@ httpClient.interceptors.response.use(
       if (!refreshToken) {
         deleteCookie("accessToken");
         toast.error("unAuthorized");
-        window.location.href = "/login";
+        window.location.href = "/auth/login";
         return Promise.reject(error);
       }
 
       try {
         const res = await axios.post(
-          `${process.env.NEXT_APP_BASE_URL}/auth/refresh`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/refresh`,
           {
             refreshToken,
           },
@@ -91,7 +91,7 @@ httpClient.interceptors.response.use(
         deleteCookie("accessToken");
         deleteCookie("refreshToken");
         toast.error("please login again ");
-        window.location.href = "/login";
+        window.location.href = "/auth/login";
         return Promise.reject(err);
       } finally {
         isRefreshing = false;

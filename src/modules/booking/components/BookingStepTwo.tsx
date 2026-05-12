@@ -1,15 +1,30 @@
 "use client";
 import { useFieldArray, useForm } from "react-hook-form";
 import HotelSummeryCard from "./HotelSummeryCard";
-import { IFormProps } from "@/modules/booking/types";
+import { IFormProps, TBookingRequest } from "@/modules/booking/types";
 import PassengerFormCard from "./PassengerFormCard";
 import SharedBookingCard from "./SharedBookingCard";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { notFound } from "next/navigation";
+import { THouse } from "@/components/common/types";
+import { Link } from "@/i18n/routing";
 
-const BookingStepTwo = () => {
+interface IProps {
+  changeTab: (tab: number) => void;
+  house: THouse | null;
+  getBookingData: (data: TBookingRequest) => void;
+  houseId: number;
+  getTotalPrice: (price: number) => void;
+}
+const BookingStepTwo = ({
+  house,
+  changeTab,
+  getBookingData,
+  houseId,
+  getTotalPrice,
+}: IProps) => {
   const bookingData = useSelector((state: RootState) => state.booking);
   if (
     bookingData.exitDate == null ||
@@ -19,6 +34,8 @@ const BookingStepTwo = () => {
     notFound();
   }
 
+  const insertDate = bookingData.insertDate;
+  const exitDate = bookingData.exitDate;
   const {
     register,
     setValue,
@@ -44,17 +61,55 @@ const BookingStepTwo = () => {
     control,
     name: "traveler_details",
   });
+  if (!house) {
+    return (
+      <div className="flex min-h-[350px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-6 text-center">
+        <div className="mb-4 text-6xl">🏠</div>
+
+        <h3 className="mb-2 text-xl font-bold text-gray-800">
+          خانه‌ای با این شناسه پیدا نشد
+        </h3>
+
+        <p className="mb-6 max-w-md text-sm leading-7 text-gray-500">
+          در حال حاضر موردی برای نمایش وجود ندارد
+        </p>
+
+        <Link
+          href="/fast-reserve"
+          className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition hover:opacity-90"
+        >
+          انتخاب مجدد
+        </Link>
+      </div>
+    );
+  }
+  const basePrice = house.discounted_price
+    ? parseInt(house.discounted_price)
+    : parseInt(house?.price);
+  const totalPrice = basePrice * fields.length;
 
   const onSubmit = (data: IFormProps) => {
     console.log(data);
-    toast.success("submitted");
+    getBookingData({
+      houseId,
+      reservedDates: [insertDate, exitDate],
+      traveler_details: data.traveler_details,
+      sharedEmail: data.sharedEmail,
+      sharedMobile: data.sharedMobile,
+    });
+    getTotalPrice(totalPrice);
+    toast.success("اطلاعات شما با موفقیت ثبت شد");
+    changeTab(3);
   };
-  const basePrice = 2_500_000;
-  const totalPrice = basePrice * fields.length;
+
   return (
     <div className="w-full ">
       <div className="w-full mb-8">
-        <HotelSummeryCard />
+        <HotelSummeryCard
+          insertDate={bookingData.insertDate}
+          exitDate={bookingData.exitDate}
+          house={house}
+        />
       </div>
       <form
         className=" w-full flex flex-col gap-10"

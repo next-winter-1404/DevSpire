@@ -121,7 +121,7 @@
     "filters": "فیلتر ها",
     "result": "نتیجه",
     "home": "خانه",
-    "hotelReserve": "رزرو هتل",
+    "hotelReserve": "رزرو",
     "sort": "مرتب سازی بر اساس",
     "search": "جستجو",
     "options": "امکانات هتل",
@@ -146,7 +146,7 @@
   },
   "fastReserveDetail": {
     "home": "خانه",
-    "hotelReserve": "رزرو هتل",
+    "hotelReserve": "رزرو",
     "commertials": "آگهی های مشابه",
     "seeAll": "مشاهده همه",
     "seeMore": "مشاهده بیشتر",

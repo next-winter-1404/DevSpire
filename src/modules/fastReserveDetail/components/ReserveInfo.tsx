@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { IAbout } from "../types";
 import { useTranslations } from "next-intl";
+import { THouse } from "@/components/common/types";
 
-const ReserveInfo = ({ content }: { content: IAbout }) => {
+const ReserveInfo = ({ house }: { house: THouse }) => {
   const t = useTranslations("fastReserveDetail");
 
   const [more, setMore] = useState<boolean>(false);
@@ -12,7 +13,7 @@ const ReserveInfo = ({ content }: { content: IAbout }) => {
   return (
     <div className=" w-full flex flex-col gap-3 items-start overflow-hidden">
       <h2 className="text-foreground text-[24px] font-bold ">
-        {content.title}
+        {`چرا  ${house.title}  رو انتخاب کنیم؟`}
       </h2>
       <div
         className={` transition-all duration-500 ease-in-out w-full overflow-hidden  ${
@@ -20,7 +21,7 @@ const ReserveInfo = ({ content }: { content: IAbout }) => {
         } `}
       >
         <p className="text-[16px] w-full text-muted-foreground leading-loose text-start  ">
-          {content.caption}
+          {house.caption}
         </p>
       </div>
       <button

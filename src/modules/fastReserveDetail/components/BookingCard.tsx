@@ -20,7 +20,12 @@ interface IFormRes {
   travelersCount: number;
 }
 
-const BookingCard = () => {
+interface IProps {
+  price: number;
+  discountedPrice?: number;
+}
+
+const BookingCard = ({ price, discountedPrice }: IProps) => {
   const locale = useLocale();
   const t = useTranslations("fastReserveDetail");
   const isRtl = locale === "fa";
@@ -209,27 +214,35 @@ const BookingCard = () => {
         <hr className="my-4 border-[#DDDDDD] dark:border-[#454545]" />
 
         <div className="mb-6">
-          <div className="flex justify-between items-center mb-1">
-            <span className="bg-red-500 text-white text-[14px] font-bold px-2 py-1 rounded-full">
-              60٪ {t("discount")}
-            </span>
-            <span className="text-[#777777] text-[24px] line-through decoration-1">
-              {locale === "fa" ? FormatPrice(5_000_000) : "5,000,000"}{" "}
-              {t("toman")}
-            </span>
-          </div>
-          <div className="flex justify-end items-center">
-            <span className="text-[24px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
-              {locale === "fa" ? FormatPrice(2_500_000) : "2,500,000"}{" "}
-              <span>{t("toman")}</span>
-            </span>
-          </div>
+          {discountedPrice && discountedPrice > 0 ? (
+            <>
+              <div className="flex justify-between items-center mb-1">
+                <span className="bg-red-500 text-white text-[14px] font-bold px-2 py-1 rounded-full">
+                  60٪ {t("discount")}
+                </span>
+                <span className="text-[#777777] text-[24px] line-through decoration-1">
+                  {price.toLocaleString()} {t("toman")}
+                </span>
+              </div>
+              <div className="flex justify-end items-center">
+                <span className="text-[24px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
+                  {discountedPrice.toLocaleString()} <span>{t("toman")}</span>
+                </span>
+              </div>
+            </>
+          ) : (
+            <div className="flex justify-end items-center">
+              <span className="text-[24px] font-bold text-[#1E2022] dark:text-[#FAFAFA]">
+                {price.toLocaleString()} <span>{t("toman")}</span>
+              </span>
+            </div>
+          )}
         </div>
 
         <button
           type="submit"
           className="w-full bg-primary hover:bg-[#0c2a4a] text-white py-3 rounded-[24px] text-[16px] font-medium
-           transition-colors"
+           transition-colors cursor-pointer "
         >
           {t("submit")}
         </button>

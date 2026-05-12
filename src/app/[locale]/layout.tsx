@@ -11,8 +11,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { ToasterProvider } from "@/components/common/ToasterProvider";
+import { ToasterProvider } from "@/components/Providers/ToasterProvider";
 import { ReduxProvider } from "@/components/common/ReduxProvider";
+import ReactQueryProvider from "@/components/Providers/ReactQueryProvider";
 
 export default async function LocaleLayout({
   children,
@@ -35,11 +36,13 @@ export default async function LocaleLayout({
       lang={locale}
       dir={locale === "fa" ? "rtl" : "ltr"}
     >
-      <NextIntlClientProvider messages={messages}>
-        <ReduxProvider>
-          <ToasterProvider>{children}</ToasterProvider>
-        </ReduxProvider>
-      </NextIntlClientProvider>
+      <ReactQueryProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ReduxProvider>
+            <ToasterProvider>{children}</ToasterProvider>
+          </ReduxProvider>
+        </NextIntlClientProvider>
+      </ReactQueryProvider>
     </div>
   );
 }

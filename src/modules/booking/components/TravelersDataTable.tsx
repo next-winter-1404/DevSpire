@@ -1,11 +1,17 @@
-import { IPassenger } from "../types";
+"use client";
+
+import { getAgeRange } from "@/utils/helper/getAgeRange";
+import { IPassenger, TravelerDetail } from "../types";
+import { useLocale } from "next-intl";
+import moment from "jalali-moment";
 
 interface Iprops {
-  traveler_details: IPassenger[];
-  basePrice: number;
+  traveler_details: TravelerDetail[];
+  totalPrice: number;
 }
 
-const TravelersDataTable = ({ traveler_details, basePrice }: Iprops) => {
+const TravelersDataTable = ({ traveler_details, totalPrice }: Iprops) => {
+  const locale = useLocale();
   return (
     <div className="w-full">
       <div className="hidden lg:block w-full rounded-[24px] border border-[#DDDDDD] overflow-hidden">
@@ -26,7 +32,9 @@ const TravelersDataTable = ({ traveler_details, basePrice }: Iprops) => {
           <tbody className="text-[16px] text-foreground">
             {traveler_details.map((item, i) => (
               <tr key={i} className="border-t border-[#DDDDDD]">
-                <td className="p-4 whitespace-nowrap">بزرگسال</td>
+                <td className="p-4 whitespace-nowrap">
+                  {getAgeRange(item.birthDate)}
+                </td>
                 <td className="p-4 whitespace-nowrap">
                   {item.firstName} {item.lastName}
                 </td>
@@ -35,12 +43,15 @@ const TravelersDataTable = ({ traveler_details, basePrice }: Iprops) => {
                 </td>
                 <td className="p-4 whitespace-nowrap">{item.nationalId}</td>
                 <td className="p-4 whitespace-nowrap">
-                  {item.birthDate.toString()}
+                  {locale == "fa"
+                    ? moment(item.birthDate).locale("fa").format("YYYY/MM/DD")
+                    : moment(item.birthDate).locale("en").format("YYYY/MM/DD")}
                 </td>
                 <td className="p-4 text-center whitespace-nowrap">-</td>
                 <td className="p-4 text-center whitespace-nowrap">-</td>
                 <td className="p-4 whitespace-nowrap">
-                  {basePrice.toLocaleString()} تومان
+                  {(totalPrice / traveler_details.length).toLocaleString()}{" "}
+                  تومان
                 </td>
               </tr>
             ))}
@@ -61,7 +72,8 @@ const TravelersDataTable = ({ traveler_details, basePrice }: Iprops) => {
                 </div>
 
                 <div className="mt-1 text-sm text-gray-600">
-                  <span className="font-medium">بازه سنی:</span> بزرگسال
+                  <span className="font-medium">بازه سنی:</span>{" "}
+                  {getAgeRange(item.birthDate)}
                 </div>
 
                 <div className="mt-1 text-sm text-gray-600">
@@ -73,7 +85,8 @@ const TravelersDataTable = ({ traveler_details, basePrice }: Iprops) => {
               <div className="text-right">
                 <div className="text-sm text-gray-600">قیمت</div>
                 <div className="text-[16px] font-bold text-gray-900">
-                  {basePrice.toLocaleString()} تومان
+                  {(totalPrice / traveler_details.length).toLocaleString()}{" "}
+                  تومان
                 </div>
               </div>
             </div>
@@ -89,7 +102,9 @@ const TravelersDataTable = ({ traveler_details, basePrice }: Iprops) => {
               <div className="flex justify-between gap-4">
                 <span className="font-medium text-gray-600">تاریخ تولد</span>
                 <span className="whitespace-nowrap">
-                  {item.birthDate.toString()}
+                  {locale == "fa"
+                    ? moment(item.birthDate).locale("fa").format("YYYY/MM/DD")
+                    : moment(item.birthDate).locale("en").format("YYYY/MM/DD")}
                 </span>
               </div>
 
