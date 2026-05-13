@@ -1,4 +1,4 @@
-import HomeView from "@/modules/home/view/HomeView";
+import HomeView from "@/modules/home/views/HomeView";
 
 
 export default function Home() {

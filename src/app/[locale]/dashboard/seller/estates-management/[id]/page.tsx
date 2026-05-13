@@ -1,4 +1,4 @@
-import EstateManagementEditV from '@/modules/sellerDashboard/estateManagementEdit/view/EstateManagementEditV'
+import EstateManagementEditV from '@/modules/sellerDashboard/estateManagementEdit/views/EstateManagementEditV'
 import React from 'react'
 
 

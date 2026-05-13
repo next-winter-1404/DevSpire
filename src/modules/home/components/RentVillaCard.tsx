@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from 'next-intl'
 
 interface IRentVillaCard{
     item:{
+        id: number
         title: string
         location: string
         link: string
@@ -26,7 +27,7 @@ const RentVillaCard = ({item}: IRentVillaCard) => {
                     <span className='font-regular text-[20px] text-[1E2022] truncate   dark:text-[#E4E4E4]'>{item.title}</span>
                     <span className='font-regular text-[16px] text-[#777777]'>{item.location}</span>
                 </div>
-                <Link href={''} className='flex justify-between items-center w-full'>
+                <Link href={`mortgage-rent/${item.id}`} className='flex justify-between items-center w-full'>
                     <span className='font-regular text-[16px] text-[#0D3B66]   
                     dark:text-[#E4E4E4] dark:border-[#E4E4E4]'>{t('seeButton')}</span>
                     <BigArrowLink color='#0D3B66' className={`${locale == 'en' ? 'scale-x-[-1]' : ''}`}/>

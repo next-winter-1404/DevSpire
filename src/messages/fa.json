@@ -176,7 +176,7 @@
   },
   "mortgageAndRent": {
     "filters": {
-      "title": "فیلترها",
+      "title": "فیلتر ها",
       "result": "نتیجه",
       "search": "جستجو",
       "searchPlaceholder": "جستجو کنید...",
@@ -194,6 +194,17 @@
       "estateMeterageRange": "متراژ ملک",
       "min": "حداقل",
       "max": "حداکثر"
+    }
+  },
+  "articles":{
+    "filters":{
+      "title": "فیلتر ها",
+      "result": "نتیجه",
+      "search": "جستجو",
+      "searchPlaceholder": "جستجو کنید...",
+      "sortBy": "مرتب سازی بر اساس",
+      "newest": "جدیدترین ها",
+      "oldest": "قدیمی ترین ها"
     }
   },
   "auth": {
@@ -226,8 +237,7 @@
       "hasAccount": "قبلاً ثبت نام کرده‌اید؟",
       "login": "وارد شوید",
       "submit": "ثبت نام",
-"loading": "در حال ثبت نام..."
-
+      "loading": "در حال ثبت نام..."
     },
     "layout": {
       "imageTitle": "همین حالا به ما بپیوند!",
@@ -279,8 +289,7 @@
         "submit": "ثبت رمز جدید"
       }
     }
-  }
-}
+  },
   "dashboard":{
     "header":{
       "balance": "موجودی :"
@@ -339,3 +348,4 @@
     }
   }  
 }
+

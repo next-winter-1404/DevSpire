@@ -12,6 +12,15 @@ export interface IFastReserveParams {
   propertyType?: string;
 }
 
+export interface IArticlesParams{
+  page?: string;
+  sort?: string;
+  order?: string;
+  limit?: string;
+  search?: string;
+  propertyType?: string;
+}
+
 export type THouse = {
   id: number;
   title: string;
@@ -44,3 +53,18 @@ export type THousesResponse = {
   houses: THouse[];
   totalCount: number;
 };
+
+export type TArticle = {
+  id: number,
+  title: string,
+  caption: string,
+  estimated_reading_time: string,
+  author_id: number,
+  created_at: string,
+  category_id: number
+}
+
+export type TArticlesResponse = {
+  data: TArticle[];
+  totalCount: number;
+}

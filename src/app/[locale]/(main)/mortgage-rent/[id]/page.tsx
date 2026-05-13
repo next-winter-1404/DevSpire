@@ -1,4 +1,4 @@
-import MortgageRentDetailView from "@/modules/mortgageRentDetail/view/MortgageRentDetailView";
+import MortgageRentDetailView from "@/modules/mortgageRentDetail/views/MortgageRentDetailView";
 
 const MortgageRentDetail = async ({
   params,

@@ -195,6 +195,17 @@
       "max": "Max"
     }
   },
+  "articles":{
+    "filters":{
+      "title": "Filters",
+      "result": "Result",
+      "search": "Search",
+      "searchPlaceholder": "Search...",
+      "sortBy": "Sort By",
+      "newest": "Newest",
+      "oldest": "Oldest"
+    }
+  },
   "auth": {
     "login": {
       "ftitle": "Home",
@@ -277,8 +288,7 @@
         "submit": "Set new password"
       }
     }
-  }
-}
+  },
   "dashboard":{
     "header":{
       "balance": "Balance :"
@@ -339,3 +349,4 @@
     }
   }  
 }
+

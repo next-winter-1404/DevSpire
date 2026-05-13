@@ -1,4 +1,4 @@
-import EstatesManagementView from '@/modules/sellerDashboard/estatesManagement/view/EstatesManagementView'
+import EstatesManagementView from '@/modules/sellerDashboard/estatesManagement/views/EstatesManagementView'
 import React from 'react'
 
 
