@@ -37,7 +37,7 @@ const SayAboutUsSliderClient = ({ initialData } : Props) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-10">
+    <div className="flex flex-col items-center gap-10 w-full">
       <SliderWrapper>
         {initialData?.map((data: any) => (
           <div

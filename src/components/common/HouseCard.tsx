@@ -1,9 +1,8 @@
-import Image from "next/image";
-import { IReserveCard } from "../../modules/fastReserve/types";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { THouse } from "./types";
 import { getDiscount } from "@/utils/helper/getDiscount";
+import Image from "next/image";
 
 type props = {
   className?: string;
@@ -23,7 +22,7 @@ const HouseCard = ({ property, className, transactionType }: props) => {
           src={property.photos?.[0] ?? "/images/fastReservePage/house1.png"}
           alt={property.title}
           fill
-          className="object-cover "
+          className="object-cover"
         />
         {property.discounted_price && (
           <div className="absolute top-3 left-3 bg-[#FF5555] text-white rounded-full text-[16px] w-13 h-13 flex items-center justify-center">

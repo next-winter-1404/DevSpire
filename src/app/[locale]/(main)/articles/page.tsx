@@ -20,6 +20,9 @@ const page = async ({ searchParams }: Props) => {
     const data = await apiFetch<TArticlesResponse>("/blogs", {
         params: payLoad,
         cache: "no-cache",
+        next:{
+            revalidate: 60*2
+        } 
     });
 
     return (
