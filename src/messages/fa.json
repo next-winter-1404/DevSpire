@@ -207,6 +207,12 @@
       "oldest": "قدیمی ترین ها"
     }
   },
+  "articleDetail":{
+    "articleText": "متن مقاله",
+    "userComments": "نظرات کاربران",
+    "seeMore": "مشاهده بیشتر",
+    "seeLess": "مشاهده کمتر"
+  },
   "auth": {
     "login": {
       "ftitle": "صفحه اصلی",

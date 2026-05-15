@@ -206,6 +206,12 @@
       "oldest": "Oldest"
     }
   },
+  "articleDetail":{
+    "articleText": "Article Text",
+    "userComments": "User Comments",
+    "seeMore": "See More",
+    "seeLess": "See Less"
+  },
   "auth": {
     "login": {
       "ftitle": "Home",
