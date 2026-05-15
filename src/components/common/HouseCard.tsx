@@ -19,7 +19,7 @@ const HouseCard = ({ property, className, transactionType }: props) => {
     >
       <div className="relative h-60 w-full">
         <Image
-          src={property.photos?.[0] ?? "/images/fastReservePage/house1.png"}
+          src={"/images/fastReservePage/house1.png"}
           alt={property.title}
           fill
           className="object-cover"

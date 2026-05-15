@@ -20,10 +20,8 @@ const page = async ({ searchParams }: Props) => {
     const data = await apiFetch<TArticlesResponse>("/blogs", {
         params: payLoad,
         cache: "no-cache",
-        next:{
-            revalidate: 60*2
-        } 
     });
+    const categories = await apiFetch("/categories")
 
     return (
         <ArticlesView         
@@ -35,6 +33,7 @@ const page = async ({ searchParams }: Props) => {
             }
             limit={parseInt(payLoad.limit)}
             totalCount={data?.totalCount ?? 0}
+            categories={categories}
         />
     )
 

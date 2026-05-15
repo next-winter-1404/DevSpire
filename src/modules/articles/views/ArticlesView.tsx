@@ -9,10 +9,11 @@ import Filters from "../components/Filters";
 interface Iprops {
     data: TArticlesResponse;
     limit: number;
-    totalCount: number
+    totalCount: number;
+    categories: []
 }
 
-const ArticlesView = ({ data, limit, totalCount }: Iprops) => {
+const ArticlesView = ({ data, limit, totalCount, categories }: Iprops) => {
 
     const t = useTranslations("header")
     
@@ -26,7 +27,7 @@ const ArticlesView = ({ data, limit, totalCount }: Iprops) => {
                     ]} 
                 />
             </div>             
-            <Filters totalCount={totalCount}/>
+            <Filters totalCount={totalCount} categories={categories}/>
             <div className="flex flex-wrap gap-10 mt-10">
                 {
                     data.data?.map((item) => (
