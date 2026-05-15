@@ -11,16 +11,6 @@ export interface IFastReserveParams {
   location?: string;
   propertyType?: string;
 }
-
-export interface IArticlesParams{
-  page?: string;
-  sort?: string;
-  order?: string;
-  limit?: string;
-  search?: string;
-  propertyType?: string;
-}
-
 export type THouse = {
   id: number;
   title: string;
@@ -48,12 +38,20 @@ export type THouse = {
   favoriteId: number | null;
   isFavorite: boolean;
 };
-
 export type THousesResponse = {
   houses: THouse[];
   totalCount: number;
 };
 
+
+export interface IArticlesParams{
+  page?: string;
+  sort?: string;
+  order?: string;
+  limit?: string;
+  search?: string;
+  propertyType?: string;
+}
 export type TArticle = {
   id: number,
   title: string,
@@ -62,8 +60,8 @@ export type TArticle = {
   author_id: number,
   created_at: string,
   category_id: number
+  photos: string[] | null
 }
-
 export type TArticlesResponse = {
   data: TArticle[];
   totalCount: number;

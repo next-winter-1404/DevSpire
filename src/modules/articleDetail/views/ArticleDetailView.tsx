@@ -1,9 +1,17 @@
+import { TArticle } from "@/components/common/types"
+import ImageBox from "../components/ImageBox"
 
 
-const ArticleDetailView = () => {
+interface IProps {
+    article: TArticle 
+}
+
+const ArticleDetailView = ({article}:IProps) => {
 
     return (
-        <div>ArticleDetailView</div>
+        <div className="flex flex-col">
+            <ImageBox photos={article.photos}/>
+        </div>
     )
 
 }
