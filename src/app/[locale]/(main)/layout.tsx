@@ -1,17 +1,20 @@
 import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
+import { cookies } from "next/headers";
 
-export default function MainLayout({
+export default async function MainLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
   return (
     <>
-      <header className="pt-8 px-4 sm:pt-6 sm:px-6 lg:px-12">
-        <Header />
+      <header>
+        <Header token={token} />
       </header>
-      <main>{children}</main>
+      <main className="pt-[60px]">{children}</main>
       <footer className="pt-10 pb-8 px-4 sm:py-6 sm:px-6 lg:px-12">
         <Footer />
       </footer>

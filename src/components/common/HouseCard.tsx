@@ -4,6 +4,7 @@ import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { THouse } from "./types";
 import { getDiscount } from "@/utils/helper/getDiscount";
+import AddHouseFavorites from "./AddHouseFavorites";
 
 type props = {
   className?: string;
@@ -20,11 +21,17 @@ const HouseCard = ({ property, className, transactionType }: props) => {
     >
       <div className="relative h-60 w-full">
         <Image
-          src={property.photos?.[0] ?? "/images/fastReservePage/house1.png"}
+          src={"/images/fastReservePage/house1.png"}
           alt={property.title}
           fill
           className="object-cover "
         />
+        <div className="relative right-3 top-3">
+          <AddHouseFavorites
+            houseId={property.id}
+            isFavorite={property.isFavorite}
+          />
+        </div>
         {property.discounted_price && (
           <div className="absolute top-3 left-3 bg-[#FF5555] text-white rounded-full text-[16px] w-13 h-13 flex items-center justify-center">
             {getDiscount(

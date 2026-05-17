@@ -1,0 +1,108 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { deleteCookie } from "cookies-next";
+import toast from "react-hot-toast";
+import { LogOut, Settings, User } from "lucide-react";
+import { DashboardIcon } from "@radix-ui/react-icons";
+import { IDecodedToken } from "@/modules/fastReserveDetail/types";
+import { useRouter } from "@/i18n/routing";
+import { useLocale } from "next-intl";
+
+export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  const locale = useLocale();
+  return (
+    <div
+      className={`relative inline-block ${locale == "fa" ? "text-right" : "text-left"} `}
+      ref={dropdownRef}
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-center w-10 h-10 rounded-full overflow-hidden 
+        border border-[#777777] hover:border-[#10375c] focus:outline-none focus:border-[#10375c]
+         transition-all duration-300 ring-2 ring-transparent focus:ring-blue-100 "
+      >
+        {data.profilePicture ? (
+          <Image
+            src="/images"
+            alt="پروفایل"
+            width={50}
+            height={50}
+            className="object-cover bg-[#777777]/50 "
+          />
+        ) : (
+          <User size={30} />
+        )}
+      </button>
+      {isOpen && (
+        <div
+          className="absolute left-0 mt-3 w-50 p-2 bg-white border border-gray-100 rounded-2xl
+         shadow-[0_8px_30px_rgb(0,0,0,0.08)] z-50 animate-in fade-in zoom-in-95 duration-200"
+        >
+          <div className="px-4 py-3 border-b border-gray-50 text-right">
+            <p className="text-sm font-semibold text-gray-800">{data.name}</p>
+            <p className="text-xs text-gray-500 mt-0.5 truncate">
+              {data.email}
+            </p>
+          </div>
+
+          <div className="py-2 text-right">
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#10375c] transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              <DashboardIcon />
+              پنل کاربری
+            </Link>
+
+            <Link
+              href="/dashboard/settings"
+              className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50
+               hover:text-[#10375c] transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              <Settings size={18} />
+              تنظیمات
+            </Link>
+          </div>
+
+          <div className="border-t border-gray-50 py-1 text-right">
+            <button
+              className="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-red-600
+               hover:bg-red-50 transition-colors cursor-pointer "
+              onClick={() => {
+                setIsOpen(false);
+                deleteCookie("refreshToken");
+                deleteCookie("accessToken");
+                toast.success("با موفقیت از حسابتان خارج شدید");
+                router.refresh();
+              }}
+            >
+              <LogOut size={18} />
+              خروج از حساب
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

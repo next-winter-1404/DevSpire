@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LanguageSwitcher from "../../common/LanguageSwitcher";
 import Menu from "../../../../public/icons/Menu";
 import { Link } from "@/i18n/routing";
@@ -9,22 +9,36 @@ import { Links } from "@/modules/header/mock/Links";
 import HeaderMenu from "./HeaderMenu";
 import ToggleTheme from "../../common/ToggleTheme";
 import Logo from "../../../../public/icons/Logo";
+import { jwtDecode } from "jwt-decode";
+import ProfileDropdown from "./ProfileDropdown";
+import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 
+const Header = ({ token }: { token: string | undefined }) => {
+  const pathname = usePathname();
+  const t = useTranslations("header");
 
-
-const Header = () => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+
   const useToggleMenu = () => {
     setToggleMenu(!toggleMenu);
   };
 
-  const pathname = usePathname();
+  let decodedToken = null;
 
-  const t = useTranslations("header");
+  if (token) {
+    try {
+      decodedToken = jwtDecode<IDecodedToken>(token);
+    } catch {
+      decodedToken = null;
+    }
+  }
 
   return (
     <>
-      <div className="flex justify-center">
+      <div
+        className="flex justify-center fixed w-full top-0 left-0 pb-4 pt-5 px-4
+       sm:px-6 lg:px-12 z-50 bg-background shadow "
+      >
         <div className="flex justify-between w-full">
           <div className="flex items-center gap-4">
             <button onClick={useToggleMenu} className="block md:hidden p-1">
@@ -61,21 +75,27 @@ const Header = () => {
               <LanguageSwitcher />
             </div>
             <div className="hidden md:block">
-              <ToggleTheme/>
+              <ToggleTheme />
             </div>
-            <Link
-              href={"/auth/login"}
-              className="py-2 px-4 text-[#FFFFFF] bg-[#0D3B66] rounded-[48px] cursor-pointer   md:px-6"
-            >
-              {t("login")}
-            </Link>
-            <Link
-              href={"/auth/register"}
-              className="py-2 px-4 text-[#0D3B66] border border-[#0D3B66] rounded-[48px] cursor-pointer   md:px-6
+            {decodedToken ? (
+              <ProfileDropdown data={decodedToken} />
+            ) : (
+              <>
+                <Link
+                  href={"/auth/login"}
+                  className="py-2 px-4 text-[#FFFFFF] bg-[#0D3B66] rounded-[48px] cursor-pointer   md:px-6"
+                >
+                  {t("login")}
+                </Link>
+                <Link
+                  href={"/auth/register"}
+                  className="py-2 px-4 text-[#0D3B66] border border-[#0D3B66] rounded-[48px] cursor-pointer   md:px-6
             dark:text-[#F5F5F5] dark:border-[#F5F5F5]"
-            >
-              {t("signUp")}
-            </Link>
+                >
+                  {t("signUp")}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

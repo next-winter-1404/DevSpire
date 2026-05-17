@@ -4,29 +4,32 @@ import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 
 const intlMiddleware = createMiddleware(routing);
-
 const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
-const protectedRoutes = ["/dashboard"];
 
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const isProtectedRoute = protectedRoutes.some((route) =>
-    pathname.startsWith(route),
+  const protectedPaths = ["/dashboard", "/fast-reserve/[id]/:path"];
+
+  const pathnameWithoutLocale = pathname.replace(/^\/(fa|en)/, "") || "/";
+
+  const isProtectedRoute = protectedPaths.some(
+    (path) =>
+      pathnameWithoutLocale === path ||
+      pathnameWithoutLocale.startsWith(`${path}/`),
   );
-  // if is not protected continue
+
   if (!isProtectedRoute) {
     return intlMiddleware(request);
   }
 
   const accessToken = request.cookies.get("accessToken")?.value;
   const refreshToken = request.cookies.get("refreshToken")?.value;
-  // continue if have accessToken
+
   if (accessToken) {
     return intlMiddleware(request);
   }
-  // get new accessToken
+
   if (!accessToken && refreshToken) {
     try {
       const res = await fetch(`${API_URL}/auth/refresh`, {
@@ -37,6 +40,8 @@ export default async function middleware(request: NextRequest) {
 
       if (res.ok) {
         const data = await res.json();
+
+        request.cookies.set("accessToken", data.accessToken);
 
         const response = intlMiddleware(request);
 
@@ -50,11 +55,15 @@ export default async function middleware(request: NextRequest) {
         return response;
       }
     } catch (error) {
-      console.error("Refresh token failed:", error);
+      console.log("Refresh token failed:", error);
     }
   }
 
-  const response = NextResponse.redirect(new URL("/auth/login", request.url));
+  const loginUrl = new URL(
+    pathname.startsWith("/en") ? "/en/auth/login" : "/fa/auth/login",
+    request.url,
+  );
+  const response = NextResponse.redirect(loginUrl);
 
   response.cookies.delete("accessToken");
   response.cookies.delete("refreshToken");

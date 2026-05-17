@@ -1,53 +1,41 @@
-'use client'
-import BreadCrumbs from '@/components/common/BreadCrumbs'
-import { useTranslations } from 'next-intl'
-import Filters from '../components/Filters'
-import MortgageRentList from '../components/MortgageRentList'
-import { useState } from 'react'
-import CustomPagination from '@/components/common/CustomPagination'
-import { usePathname, useRouter } from "@/i18n/routing";
-import { useSearchParams } from 'next/navigation'
+import BreadCrumbs, { IBreadCrumbItem } from "@/components/common/BreadCrumbs";
+import { useTranslations } from "next-intl";
+import Filters from "../components/Filters";
+import MortgageRentList from "../components/MortgageRentList";
+import MortgagePagination from "../components/MortgagePagination";
+import { THouse, THousesResponse } from "@/components/common/types";
 
-
-const MortgageRentView = () => {
-
-    const t = useTranslations('header')
-    const searchParams = useSearchParams();
-    const pathName = usePathname();
-    const router = useRouter();
-
-    const [currentPage, setCurrentPage] = useState<number>(
-    parseInt(searchParams.get("page") ?? "1"),
-    );
-
-    const onPageChange = (page: number) => {
-    if (currentPage == page) return;
-    setCurrentPage(page);
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("page", String(page));
-    router.push(`${pathName}?${params.toString()}`);
-    };
-
-    return (
-        <div className='flex flex-col px-12'>
-            <div className='flex justify-start mt-10'>
-                <BreadCrumbs
-                items={[
-                {label: t('home'), href: '/'},
-                {label: t('mortgageAndRent'), href: '/mortgage-rent'},
-                {label: 'رهن و اجاره آپارتمان رشت', href: '/'},
-                {label: 'رهن و اجاره آپارتمان رشت', href: '/'}
-                ]} 
-                />
-            </div>
-            <Filters/>
-            <MortgageRentList/>
-            <div className='mt-10'>
-                <CustomPagination currentPage={currentPage} totalPages={2} onPageChange={onPageChange}/>
-            </div>
-        </div>
-    )
-
+interface IProps {
+  data: THouse[] | undefined;
+  totalPages: number;
+  location: string;
 }
+const MortgageRentView = ({ data, totalPages, location }: IProps) => {
+  const t = useTranslations("header");
+  const MockBreadCrumbs: IBreadCrumbItem[] = [
+    { label: t("home"), href: "/" },
+    { label: t("mortgageAndRent"), href: location ? "/mortgage-rent" : "" },
+  ];
+  if (location) {
+    MockBreadCrumbs.push({
+      label: `${t("mortgageAndRent")} ${location}`,
+    });
+  }
 
-export default MortgageRentView
+  return (
+    <div className="flex flex-col px-12">
+      <div className="flex justify-start mt-10">
+        <BreadCrumbs items={MockBreadCrumbs} />
+      </div>
+      <Filters resultLength={data?.length} />
+      <div className="mt-10 w-full">
+        <MortgageRentList data={data} />
+      </div>
+      <div className="mt-10">
+        <MortgagePagination totalPages={totalPages} />
+      </div>
+    </div>
+  );
+};
+
+export default MortgageRentView;

@@ -16,8 +16,14 @@ interface IProps {
   bookingData: TBookingRequest | null;
   changeTab: (tab: number) => void;
   totalPrice: number;
+  getBookingId: (id: string | number) => void;
 }
-const BookingStepThree = ({ bookingData, changeTab, totalPrice }: IProps) => {
+const BookingStepThree = ({
+  bookingData,
+  changeTab,
+  totalPrice,
+  getBookingId,
+}: IProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -25,24 +31,13 @@ const BookingStepThree = ({ bookingData, changeTab, totalPrice }: IProps) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  if (totalPrice == 0 || !bookingData) {
-    notFound();
-  }
-
-  const {
-    mutate: postBooking,
-    isPending,
-    error,
-  } = useMutation({
+  const { mutate: postBooking, isPending } = useMutation({
     mutationKey: ["ADDBOOKING"],
     mutationFn: async (data: TBookingRequest) => await AddBooking(data),
     onSuccess: (res) => {
       if (res.status === 200 || res.status === 201) {
         toast.success("اطلاعات شما با موفقیت ثبت شد");
-        console.log(res.data);
-        router.push(
-          `${pathname}?bookingId=${res.data.id}&amount=${totalPrice}`,
-        );
+        getBookingId(res.data.id);
         changeTab(4);
       } else {
         return;
@@ -60,6 +55,9 @@ const BookingStepThree = ({ bookingData, changeTab, totalPrice }: IProps) => {
       }
     },
   });
+  if (!bookingData) {
+    return null;
+  }
 
   return (
     <div className="w-full">
@@ -94,7 +92,7 @@ const BookingStepThree = ({ bookingData, changeTab, totalPrice }: IProps) => {
               شماره تلفن
             </label>
             <p className="text-[#777777] text-[16px] ">
-              {bookingData.sharedEmail}
+              {bookingData.sharedMobile}
             </p>
           </div>
           <div className="flex flex-col gap-2 items-start  ">
@@ -102,7 +100,7 @@ const BookingStepThree = ({ bookingData, changeTab, totalPrice }: IProps) => {
               ایمیل
             </label>
             <p className="text-[#777777] text-[16px] ">
-              {bookingData.sharedMobile}
+              {bookingData.sharedEmail}
             </p>
           </div>
         </div>

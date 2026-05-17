@@ -1,21 +1,22 @@
 import SliderWrapper from "@/components/common/SliderWrapper";
 import HouseCard from "@/components/common/HouseCard";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
+import { THouse, THousesResponse } from "@/components/common/types";
 
 const SpecialOffersSlider = async () => {
-  // const data = await apiFetch("/houses", {
-  //   params: {
-  //     limit: 5,
-  //   },
-  //   next: {
-  //     revalidate: 60,
-  //   },
-  // });
+  const data = await apiFetch<THousesResponse>("/houses", {
+    params: {
+      limit: "12",
+      order: "DESC",
+      sort: "price",
+    },
+    cache: "no-store",
+  });
 
   return (
     <div>
-      {/* <SliderWrapper>
-        {data.houses.map((property: any) => (
+      <SliderWrapper>
+        {data?.houses.map((property: THouse) => (
           <div
             key={property.id}
             dir="rtl"
@@ -28,7 +29,7 @@ const SpecialOffersSlider = async () => {
             />
           </div>
         ))}
-      </SliderWrapper> */}
+      </SliderWrapper>
     </div>
   );
 };

@@ -37,7 +37,7 @@ const FastReserveView = ({ data, location, limit }: Iprops) => {
         </span>
       </div>
       <FastReserveFilters />
-      <div>
+      <div className="w-full">
         <ReserveCardList houses={data?.houses} />
       </div>
       <div className="mx-auto mt-10">

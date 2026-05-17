@@ -10,8 +10,7 @@ const SayAboutUsSlider = async () => {
   //     revalidate: 60,
   //   },
   // })
-
-  return <SayAboutUsSliderClient initialData={data.houses} />;
+  // return <SayAboutUsSliderClient initialData={data.houses} />;
 };
 
 export default SayAboutUsSlider;
