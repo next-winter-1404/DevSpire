@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl'
 
 const CustomerDashboardView = () => {
 
-  const t = useTranslations('customerDashboard')
+  const t = useTranslations('customerDashboard.dashboard')
 
   return(
     <div className='flex flex-col gap-4 p-6 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]   dark:bg-[#404040] dark:border-[#777777]'>

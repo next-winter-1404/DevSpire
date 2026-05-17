@@ -31,7 +31,7 @@ const InCome: React.FC<InComeProps> = ({
       <div className='flex justify-between items-end'>
         <div className='flex gap-4'>
           <div className='flex flex-col gap-2'>
-            <div className='flex gap-2'>
+            <div className='flex items-center gap-2'>
               <div className='w-4 h-4 bg-[#E6EDF5] rounded-full'></div>
               <span>درآمد کل</span>
             </div>
@@ -41,7 +41,7 @@ const InCome: React.FC<InComeProps> = ({
             </div>
           </div>
           <div className='flex flex-col gap-2'>
-            <div className='flex gap-2'>
+            <div className='flex items-center gap-2'>
               <div className='w-4 h-4 bg-[#0D3B66] rounded-full'></div>
               <span>درآمد این ماه</span>
             </div>
