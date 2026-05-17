@@ -37,6 +37,7 @@ const BookingView = ({ house, houseId }: IProps) => {
   const [currentStep, setCurrentStep] = useState<number>(stepFromUrl);
   const [bookingData, setBookingData] = useState<TBookingRequest | null>(null);
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [bookingId, setBookingId] = useState<number | string>("");
 
   const changeTab = (tab: number) => {
     setCurrentStep(tab);
@@ -46,6 +47,9 @@ const BookingView = ({ house, houseId }: IProps) => {
   };
   const getTotalPrice = (price: number) => {
     setTotalPrice(price);
+  };
+  const getBookingId = (id: number | string) => {
+    setBookingId(id);
   };
 
   useEffect(() => {
@@ -71,10 +75,17 @@ const BookingView = ({ house, houseId }: IProps) => {
             totalPrice={totalPrice}
             changeTab={changeTab}
             bookingData={bookingData}
+            getBookingId={getBookingId}
           />
         );
       case 4:
-        return <BookingStepFour />;
+        return (
+          <BookingStepFour
+            amount={totalPrice}
+            bookingId={bookingId}
+            houseId={houseId}
+          />
+        );
       case 5:
         return <BookingStepFive />;
       default:
@@ -99,9 +110,7 @@ const BookingView = ({ house, houseId }: IProps) => {
         <BookingStepper currentStep={currentStep} />
       </div>
       <BookingContainer>
-        <div className="w-full h-full">
-          {renderStepsContent() ?? notFound()}
-        </div>
+        <div className="w-full h-full">{renderStepsContent()}</div>
       </BookingContainer>
     </Container>
   );

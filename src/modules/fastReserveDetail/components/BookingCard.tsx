@@ -196,11 +196,12 @@ const BookingCard = ({ price, discountedPrice }: IProps) => {
                   min: { value: 1, message: "حداقل باید ۱ نفر باشد" },
                   valueAsNumber: true,
                 })}
-                className={`w-full bg-[#F5F5F5] rounded-[40px] py-2.5 px-5 text-[14px] outline-none dark:bg-[#3F3F46] border border-transparent ${
-                  errors.travelersCount
-                    ? "border-red-500 focus:ring-2 focus:ring-red-500"
-                    : "focus:ring-2 focus:ring-blue-500"
-                }`}
+                className={`w-full bg-[#F5F5F5] rounded-[40px] py-2.5 px-5 text-[14px] outline-none
+                   dark:bg-[#3F3F46] border border-transparent ${
+                     errors.travelersCount
+                       ? "border-red-500 focus:ring-2 focus:ring-red-500"
+                       : "focus:ring-2 focus:ring-blue-500"
+                   }`}
               />
             </div>
             {errors.travelersCount?.message && (

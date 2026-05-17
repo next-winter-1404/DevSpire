@@ -1,21 +1,22 @@
 import SliderWrapper from "@/components/common/SliderWrapper";
 import HouseCard from "@/components/common/HouseCard";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
+import { THouse, THousesResponse } from "@/components/common/types";
 
 const BestChoiceSlider = async () => {
-  
-  const data = await apiFetch("/houses", {
+  const data = await apiFetch<THousesResponse>("/houses", {
     params: {
-      limit: 5,
+      limit: "12",
+      order: "DESC",
+      sort: "price",
+      transactionType: "reservation",
     },
-    next: {
-      revalidate: 60,
-    },
+    cache: "no-store",
   });
 
   return (
     <SliderWrapper>
-      {data.houses?.map((property: any) => (
+      {data?.houses.map((property: THouse) => (
         <div
           key={property.id}
           dir="rtl"

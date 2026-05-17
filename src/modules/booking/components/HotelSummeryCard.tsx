@@ -27,7 +27,7 @@ const HotelSummeryCard = ({ house, insertDate, exitDate }: IProps) => {
       <div className="w-full md:w-2/3 h-full flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6">
         <div className="w-full sm:w-[180px] md:w-[30%] h-[180px] sm:h-full relative shrink-0">
           <Image
-            src={house?.photos?.[0] ?? "/images/fastReservePage/bigHouse.png"}
+            src={"/images/fastReservePage/bigHouse.png"}
             alt="house"
             fill
             className="object-cover rounded-[16px] md:rounded-[8px]"

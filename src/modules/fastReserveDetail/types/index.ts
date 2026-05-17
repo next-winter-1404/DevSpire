@@ -25,3 +25,58 @@ export interface IFacilitiesTabProps {
   facilities: IFacility[];
   reviews: IReview[];
 }
+
+export interface ICommentUser {
+  firstName: string;
+  lastName: string;
+  profilePicture: string | null;
+}
+
+export interface IParentComment {
+  id: number;
+  house_id: number;
+  title: string;
+  caption: string;
+  rating: string;
+  created_at: string;
+  parent_comment_id: number | null;
+  user: ICommentUser;
+}
+
+export interface ICommentItem {
+  id: number;
+  house_id: number;
+  title: string;
+  caption: string;
+  rating: string;
+  created_at: string;
+  parent_comment_id: number | null;
+  user: ICommentUser;
+  parent_comment: IParentComment | null;
+}
+
+export interface ICommentsResponse {
+  comments: ICommentItem[];
+  totalCount: number;
+  currentPage: number;
+  totalPages: number;
+}
+
+export interface ICommentTreeItem extends ICommentItem {
+  children: ICommentTreeItem[];
+}
+
+export type TAddFavoriteHouse = {
+  house_id: number;
+  user_id: number | string | null;
+};
+
+export interface IDecodedToken {
+  email: string;
+  exp: number;
+  iat: number;
+  id: number;
+  name: string;
+  profilePicture: string | null;
+  role: "buyer" | "seller" | "admin";
+}

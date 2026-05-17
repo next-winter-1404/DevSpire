@@ -17,7 +17,7 @@ const ReserveInfo = ({ house }: { house: THouse }) => {
       </h2>
       <div
         className={` transition-all duration-500 ease-in-out w-full overflow-hidden  ${
-          more ? "max-h-[1000px]" : "max-h-[130px]"
+          more ? "max-h-[1000px]" : "max-h-[100px]"
         } `}
       >
         <p className="text-[16px] w-full text-muted-foreground leading-loose text-start  ">
