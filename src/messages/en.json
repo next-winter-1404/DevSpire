@@ -295,7 +295,7 @@
       }
     }
   },
-  "dashboard":{
+  "sellerDashboard":{
     "header":{
       "balance": "Balance :"
     },
@@ -312,9 +312,7 @@
       "commentsManagement": "Comments Management",
       "favorites": "Favorites",
       "logOut": "Log Out"
-    }
-  },
-  "sellerDashboard":{
+    },
     "dashboard":{
       "allOfEstates": "All of Estates",
       "activeReserves": "Active Reserves",

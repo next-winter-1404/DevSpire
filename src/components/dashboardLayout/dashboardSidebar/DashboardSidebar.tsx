@@ -21,8 +21,9 @@ interface IDashboardSidebar {
 const basePath = '/seller-dashboard'
 
 const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
+
     const pathname = usePathname()
-    const t = useTranslations('dashboard.sidebar')
+    const t = useTranslations('sellerDashboard.sidebar')
 
     const isActiveText = (path: string) => pathname === path 
         ? 'font-bold text-[#1E2022] dark:text-[#E4E4E4]' 

@@ -296,7 +296,7 @@
       }
     }
   },
-  "dashboard":{
+  "sellerDashboard":{
     "header":{
       "balance": "موجودی :"
     },
@@ -313,9 +313,7 @@
       "commentsManagement": "مدیریت نظرات",
       "favorites": "علاقه مندی ها",
       "logOut": "خروج از حساب"
-    }
-  },
-  "sellerDashboard":{
+    },
     "dashboard":{
       "allOfEstates": "کل ملک ها",
       "activeReserves": "رزرو های فعال",
