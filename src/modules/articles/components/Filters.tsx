@@ -1,7 +1,6 @@
 "use client"
 import { useLocale, useTranslations } from "next-intl"
 import Search from "../../../../public/icons/Search"
-import Arrow from "../../../../public/icons/Arrow"
 import { IOption } from "@/components/common/FastSearchForm"
 import { useSearchParams } from "next/navigation"
 import { usePathname, useRouter } from "@/i18n/routing"
@@ -21,6 +20,10 @@ const Filters = ({totalCount, categories}:{totalCount: number, categories: []}) 
     const pathname = usePathname();
 
 
+    // const categoryOptions: IOption[] = categories.map((item) => ({
+    //     label: item.label,
+    //     value: item.value
+    // }));
     const sortOptions: IOption[] = [
         {value: "created_at", label: locale == "en" ? "created at" : "تاریخ ثبت آگهی"},
         {value: "updated_at", label: locale == "en" ? "last updated" : "آخرین به‌روزرسانی"},
@@ -29,10 +32,6 @@ const Filters = ({totalCount, categories}:{totalCount: number, categories: []}) 
         { value: "DESC", label: locale == "en" ? "desc" : "نزولی" },
         { value: "ASC", label: locale == "en" ? "asc" : "صعودی" },
     ];
-    // const categoryOptions: IOption[] = categories.map((item) => ({
-    //     label: item.label,
-    //     value: item.value
-    // }));
     const authorOptions: IOption[] = [
         {value: "villa", label: locale == "en" ? "villa" : "ویلا"},
         {value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان"},
@@ -118,8 +117,9 @@ const Filters = ({totalCount, categories}:{totalCount: number, categories: []}) 
                     sm:w-[320px]   lg:w-[510px]">
                         <span className="font-bold text-[16px] text-[#1E2022]">{t("search")}</span>
                         <div className="relative">
-                            <input onChange={(e: ChangeEvent<HTMLInputElement>) => getQuery(e)}
+                            <input 
                             value={query}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => getQuery(e)}
                             placeholder={t("searchPlaceholder")} 
                             className="w-full h-[46px] indent-5 bg-[#F5F5F5] rounded-[40px]   dark:bg-[#404040]"/>
                             <Search className={`absolute ${locale == "en" ? "right-5" : "left-5"} top-[30%]`}/>
