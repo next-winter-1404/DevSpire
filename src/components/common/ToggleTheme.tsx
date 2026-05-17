@@ -28,7 +28,7 @@ const ToggleTheme = () => {
             alt="sun"
             width={25}
             height={25}
-            className="w-5 h-5 md:w-[25px] md:h-[25px]"
+            className="w-5 h-5   md:w-[25px] md:h-[25px]"
           />
         </div>
       )}
