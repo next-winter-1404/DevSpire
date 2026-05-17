@@ -56,7 +56,7 @@ const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
     const menuItems = isSellerDashboard ? sellerMenuItems : buyerMenuItems
 
     return (
-        <div className='flex flex-col gap-8 w-[268px] h-screen p-8 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]
+        <div className='flex flex-col gap-8 w-[268px] max-h-screen p-8 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]
         dark:bg-[#404040] dark:border-[#777777]'>
             <div className='flex items-center gap-4'>
                 <Logo color='text-[#0D3B66]' className='w-8 h-8'/>
