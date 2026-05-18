@@ -132,3 +132,19 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-in-out;
 }
+
+.ol-overlaycontainer,
+.ol-overlaycontainer-stopevent {
+  z-index: 10 !important;
+}
+.ol-attribution,
+.ol-attribution a,
+.ol-attribution span {
+  z-index: 5 !important;
+}
+div[style*="z-index: 999999"] {
+  z-index: 5 !important;
+}
+div[style*="z-index:999999"] {
+  z-index: 5 !important;
+}

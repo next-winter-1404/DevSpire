@@ -68,8 +68,8 @@ const FastSearchForm = () => {
 
   return (
     <div
-      className=" w-[350px]  md:w-[503px]  rounded-[24px] p-6 shadow-sm border border-[#dddd] dark:border-[#333333]
-       bg-[#ffff]  dark:bg-[#27272A] flex flex-col gap-4 "
+      className=" w-[350px]  md:w-[523px]  rounded-[24px] p-6 shadow-sm border border-[#dddd] dark:border-[#333333]
+       bg-[#ffff]  dark:bg-[#27272A] flex flex-col gap-3 "
     >
       <h2 className="text-[24px] text-[#0d3b66] font-bold   dark:text-[#F5F5F5]">
         {t("title")}

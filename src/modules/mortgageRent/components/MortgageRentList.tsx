@@ -1,25 +1,42 @@
 import HouseCard from "@/components/common/HouseCard";
-import React, { useEffect, useState } from "react";
+import { THouse } from "@/components/common/types";
+import { Link } from "@/i18n/routing";
 
-const MortgageRentList = () => {
-
-  
-
+const MortgageRentList = ({ data }: { data: THouse[] | undefined }) => {
   return (
-    <div className="flex flex-wrap gap-6 w-full mt-10">
-      {/* {data.houses?.map((property: any) => (
-        <div
-          dir="rtl"
-          key={property.id}
-          className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
-        >
-          <HouseCard
-            className="w-full"
-            property={property}
-            transactionType="rental"
-          />
+    <div className="w-full">
+      {data && data.length > 0 ? (
+        <div className="grid grid-cols-1 gap-5 sm:gap-7 lg:grid-cols-3">
+          {data.map((property) => (
+            <HouseCard
+              key={property.id}
+              property={property}
+              transactionType="reservation"
+              className="w-full"
+            />
+          ))}
         </div>
-      ))} */}
+      ) : (
+        <div className="flex min-h-[350px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-6 text-center">
+          <div className="mb-4 text-6xl">🏠</div>
+
+          <h3 className="mb-2 text-xl font-bold text-gray-800">
+            خانه‌ای پیدا نشد
+          </h3>
+
+          <p className="mb-6 max-w-md text-sm leading-7 text-gray-500">
+            در حال حاضر موردی برای نمایش وجود ندارد. فیلترها را تغییر بده یا
+            دوباره تلاش کن.
+          </p>
+
+          <Link
+            href="/"
+            className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition hover:opacity-90"
+          >
+            بازگشت به صفحه اصلی
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

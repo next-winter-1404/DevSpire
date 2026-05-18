@@ -3,8 +3,6 @@
 import { useState } from "react";
 import ReserveInfo from "./ReserveInfo";
 import FacilitiesTab from "./FacilitiesTab";
-import { facilitiesMock } from "../mocks";
-import { IFacilitiesTabProps } from "../types";
 import CommentsSection from "./CommentsSection";
 import { useTranslations } from "next-intl";
 import { THouse } from "@/components/common/types";
@@ -51,12 +49,10 @@ const DetailTabs = ({ house }: { house: THouse }) => {
         </button>
       </div>
 
-      {/* content */}
-
       <div className="mt-4 w-full">
         {activeTab === "about" && <ReserveInfo house={house} />}
         {activeTab === "facilities" && <FacilitiesTab tags={house.tags} />}
-        {activeTab === "reviews" && <CommentsSection />}
+        {activeTab === "reviews" && <CommentsSection houseId={house.id} />}
       </div>
     </div>
   );

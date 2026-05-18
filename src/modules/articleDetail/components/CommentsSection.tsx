@@ -1,8 +1,7 @@
+import CommentForm from "@/components/common/HouseCommentForm";
 import { useTranslations } from "next-intl";
-import CommentForm from "../../../components/common/CommentForm";
 
 const CommentsSection = () => {
-  
   const t = useTranslations("fastReserveDetail");
   return (
     <div className="w-full  p-6 md:p-8 bg-[#F5F5F5] dark:bg-[#27272A] rounded-[24px] shadow">

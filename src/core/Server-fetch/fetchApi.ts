@@ -105,7 +105,7 @@ export async function apiFetch<T = any>(
 
     if (!res.ok) {
       const text = await res.text();
-      console.error("API ERROR:", {
+      console.log("API ERROR:", {
         url,
         status: res.status,
         body: text,

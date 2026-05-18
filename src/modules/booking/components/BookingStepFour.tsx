@@ -1,22 +1,22 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { PostPayment } from "../services/Post/PostPayment";
 import { IPaymentRequest } from "../types";
 import toast from "react-hot-toast";
 import { usePathname } from "@/i18n/routing";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store/store";
-import { notFound, useSearchParams } from "next/navigation";
+import { notFound } from "next/navigation";
 
-const BookingStepFour = () => {
+interface IProps {
+  amount: number | string;
+  bookingId: number | string;
+  houseId: number;
+}
+const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
   const pathname = usePathname();
-
-  const bookingId = useSearchParams().get("bookingId");
-  const amount = useSearchParams().get("amount");
-
+  const isRequested = useRef<boolean>(false);
   const {
     mutate: paymentReq,
     isPending,
@@ -26,6 +26,8 @@ const BookingStepFour = () => {
     mutationFn: (data: IPaymentRequest) => PostPayment(data),
     onSuccess: (res) => {
       toast.success("به صفحه پرداخت هدایت میشوید");
+      console.log(res.data);
+      localStorage.setItem("houseId", String(houseId));
       window.location.href = res.data.paymentUrl;
     },
     onError: (err) => {
@@ -35,22 +37,24 @@ const BookingStepFour = () => {
         } else if (err.response?.status == 400) {
           toast.error(err.response?.data?.message || "400 bad request");
         } else {
-          toast.error("مشکلی در ارسال اطلاعات پیش آمد");
+          toast.error("خطا در اتصال به درگاه پرداخت");
         }
       }
     },
   });
   useEffect(() => {
-    if (!bookingId || !amount) return;
-
+    if (!bookingId || !amount) {
+      notFound();
+    }
+    if (isRequested.current) return;
+    isRequested.current = true;
     paymentReq({
       bookingId: Number(bookingId),
       amount: Number(amount),
       description: "رزرو خانه",
-      callbackUrl: `${window.location.origin}${pathname}?bookingId=${bookingId}`,
+      callbackUrl: `${window.location.origin}${pathname}?bookingId=${bookingId}&houseId=${houseId}`,
     });
-  }, [bookingId]);
-
+  }, [bookingId, amount, pathname, houseId, paymentReq]);
   return (
     <>
       {isPending ? (
@@ -76,22 +80,6 @@ const BookingStepFour = () => {
           <p className="text-lg font-semibold text-gray-800 mb-2">
             مشکلی در اتصال به درگاه پرداخت پیش آمد
           </p>
-          <p className="text-sm text-gray-500 mb-6">
-            لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.
-          </p>
-          <button
-            onClick={() =>
-              paymentReq({
-                description: "رزرو خانه از سایت لوگو",
-                amount,
-                callbackUrl: pathname,
-                bookingId,
-              })
-            }
-            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
-          >
-            تلاش مجدد
-          </button>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">

@@ -34,3 +34,22 @@ export interface IPaymentRequest {
   callbackUrl: string;
   bookingId: number;
 }
+
+export interface IHouseCMPayload {
+  title: string;
+  caption: string;
+  rating: number;
+  parent_comment_id?: number;
+}
+export interface IGetPayment {
+  id: number;
+  userId: number;
+  bookingId: number;
+  amount: string;
+  description: string;
+  status: string;
+  paymentUrl: string;
+  transactionId: string | number | null;
+  created_at: string;
+  updated_at: string;
+}

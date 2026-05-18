@@ -11,7 +11,7 @@ const ImageBox = ({ photos }: { photos: string[] | null }) => {
     <div className="flex flex-col md:flex-row gap-4 md:gap-0 md:justify-between w-full h-auto md:h-[439px]">
       <div className=" relative w-full md:w-[67%] h-[250px] sm:h-[350px] md:h-full">
         <Image
-          src={photos?.[0] ?? "/images/fastReservePage/bigHouse.png"}
+          src={photos?.[3] ?? "/images/fastReservePage/bigHouse.png"}
           alt="bigImage"
           fill
           className="object-cover rounded-[24px]"
@@ -36,7 +36,7 @@ const ImageBox = ({ photos }: { photos: string[] | null }) => {
             fill
             className="object-cover rounded-[24px]"
           />
-          {photos && photos?.length > 0 && (
+          {photos && photos?.slice(3).length > 0 && (
             <div
               className="absolute inset-0 bg-black/40 rounded-[24px] flex items-center justify-center 
           text-[12px] sm:text-[14px] md:text-[16px] "

@@ -10,8 +10,9 @@ const BookingPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     notFound();
   }
   const data = await apiFetch<THouse | null>(`/houses/${param}`, {
-    next: { revalidate: 60 * 2 },
+    next: { revalidate: 80 },
   });
+
   return (
     <>
       <BookingView houseId={param} house={data} />
