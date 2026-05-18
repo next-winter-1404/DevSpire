@@ -1,26 +1,29 @@
-import React from 'react'
+import { IDataTableHeaderItem } from "@/components/common/types"
+import TableRow from "./TableRow"
 
 
-const DataTable = () => {
 
-    const dataTableHeaderItems = [
-        {id:1, label: "نام اقامتگاه", marginRight: "24"},
-        {id:2, label: "تاریخ رزرو", marginRight: "64"},
-        {id:3, label: "قیمت", marginRight: "64"},
-        {id:4, label: "وضعیت", marginRight: "64"},
-        {id:5, label: "عملیات", marginRight: "64"}
-    ]
+
+interface IDataTableProps {
+  dataTableHeaderItems: IDataTableHeaderItem[]
+}
+
+const DataTable = ({dataTableHeaderItems}:IDataTableProps) => {
 
     return (
-        <div className="flex flex-col">
-            <div className="w-full">
+        <div className="flex flex-col p-6 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]">
+            <div className="flex w-full px-6">
                 {
                     dataTableHeaderItems.map((item) => (
-                        <span className={`mr-[${item.marginRight}px]`}>{item.label}</span>
+                        <span key={item.id} className={item.className}>{item.label}</span>
                     ))
                 }
             </div>
-            <div></div>
+            <div>
+                {
+                    <TableRow/>
+                }
+            </div>
         </div>
     )
 

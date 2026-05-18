@@ -13,7 +13,7 @@ const EstatesManagementView = () => {
   const locale = useLocale()
 
   return (
-    <div className='flex flex-col p-6 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]   
+    <div className='flex flex-col gap-4 p-6 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]   
     dark:bg-[#404040] dark:border-[#777777]'>
       <div className='flex justify-between items-center'>
         <h1 className='font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]'>{t('estatesManagement')}</h1>
@@ -36,7 +36,13 @@ const EstatesManagementView = () => {
           </button>
         </div>
       </div>
-      <DataTable/>
+      <DataTable dataTableHeaderItems={[
+        {id:1, label: "نام اقامتگاه", className: "w-[320px]"},
+        {id:2, label: "تاریخ رزرو", className: "w-[240px]"},
+        {id:3, label: "قیمت", className: "w-[240px]"},
+        {id:4, label: "وضعیت", className: "w-[224px]"},
+        {id:5, label: "عملیات", className: "w-[48px]"}
+      ]}/>
     </div>
   )
 
