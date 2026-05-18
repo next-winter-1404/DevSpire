@@ -1,4 +1,4 @@
-export interface IFastReserveParams {
+export type IFastReserveParams = {
   page?: string;
   sort?: string;
   order?: string;
@@ -44,7 +44,7 @@ export type THousesResponse = {
 };
 
 
-export interface IArticlesParams{
+export type IArticlesParams = {
   page?: string;
   sort?: string;
   order?: string;
@@ -64,5 +64,49 @@ export type TArticle = {
 }
 export type TArticlesResponse = {
   data: TArticle[];
+  totalCount: number;
+}
+
+
+
+export type IDataTableHeaderItem = {
+  id: number
+  label: string
+  className: string
+}
+export type  IUserHouseParams = {
+  page?: string;
+  sort?: string;
+  order?: string;
+  limit?: string;
+  search?: string;
+  propertyType?: string;
+}
+export type TUserHouse = {
+  id: number,
+  title: string,
+  address: string,
+  photos: null,
+  rate: number,
+  discounted_price: null,
+  price: number,
+  tags: [],
+  last_updated: string,
+  capacity: number,
+  location: string,
+  categories: string,
+  bathrooms: number,
+  parking: number,
+  rooms: number,
+  yard_type: null,
+  num_comments: number,
+  discount_id: null,
+  transaction_type: string,
+  sellerId: number,
+  sellerName: string,
+  caption: string
+}
+export type TUserHouseResponse = {
+  houses: TUserHouse[];
   totalCount: number;
 }

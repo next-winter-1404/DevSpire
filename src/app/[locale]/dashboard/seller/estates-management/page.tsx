@@ -1,12 +1,35 @@
-import EstatesManagementView from "@/modules/sellerDashboard/estatesManagement/views/EstatesManagementView";
-import React from "react";
+import { IUserHouseParams, TUserHouseResponse } from '@/components/common/types';
+import { apiFetch } from '@/core/Server-fetch/fetchApi';
+import EstatesManagementView from '../../../../../modules/sellerDashboard/estatesManagement/views/EstatesManagementView';
 
-const page = () => {
-  return (
-    <div className="h-full">
-      <EstatesManagementView />
-    </div>
-  );
+
+type Props = {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 };
 
-export default page;
+
+const page = async ({searchParams}:Props) => {
+
+    const params: IUserHouseParams = await searchParams;
+    const payLoad = {
+        search: params.search ?? "",
+        sort: params.sort ?? "",
+        order: params.order ?? "DESC",
+        limit: params.limit ?? "9",
+        page: params.page ?? "1",
+        propertyType: params.propertyType ?? "",
+    };
+    const data = await apiFetch<TUserHouseResponse>("/houses/seller/user", {
+        params: payLoad,
+        cache: "no-cache",
+    });
+
+    return (
+        <div>
+            <EstatesManagementView data={data ?? {houses: [], totalCount: 0,}} limit={parseInt(payLoad.limit)}/>
+        </div>
+    )
+
+}
+
+export default page

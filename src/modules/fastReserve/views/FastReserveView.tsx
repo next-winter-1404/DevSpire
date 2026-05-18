@@ -29,21 +29,19 @@ const FastReserveView = ({ data, location, limit }: Iprops) => {
         <BreadCrumbs items={breadcrumbItemsMock} />
       </div>
       <div className=" w-full lg:w-[60%] flex items-center justify-between mb-8">
-        <h2 className="text-[#1E2022] dark:text-[#FAFAFA] lg:text-[24px] font-bold ">
+        <h2 className="text-[#1E2022] dark:text-[#FAFAFA] lg:text-[24px] font-bold">
           {t("filters")}
         </h2>
-        <span className="lg:text-[20px] text-[#0D3B66] ">
+        <span className="lg:text-[20px] text-[#0D3B66]">
           {data?.houses?.length || 0} {t("result")}
         </span>
       </div>
-      <FastReserveFilters />
-      <div className="w-full">
-        <ReserveCardList houses={data?.houses} />
+      <FastReserveFilters/>
+      <div>
+        <ReserveCardList houses={data?.houses}/>
       </div>
       <div className="mx-auto mt-10">
-        <FastReservePagination
-          totalPages={Math.ceil(data?.totalCount / limit)}
-        />
+        <FastReservePagination totalPages={Math.ceil(data?.totalCount / limit)}/>
       </div>
     </Container>
   );
