@@ -1,6 +1,6 @@
 "use client"
 import Search from '../../../../../public/icons/Search'
-import { useLocale, useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
 import Filter from '../../../../../public/icons/Filter'
 import Plus from '../../../../../public/icons/Plus'
 import DataTable from '../components/DataTable'
