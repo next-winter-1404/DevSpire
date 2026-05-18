@@ -1,12 +1,20 @@
-import React from 'react'
+"use client"
 import Search from '../../../../../public/icons/Search'
 import { useLocale, useTranslations } from 'next-intl'
 import Filter from '../../../../../public/icons/Filter'
 import Plus from '../../../../../public/icons/Plus'
 import DataTable from '../components/DataTable'
+import { TUserHouseResponse } from '@/components/common/types'
+import EstManagementPagination from '../components/EstManagementPagination'
 
 
-const EstatesManagementView = () => {
+interface IProps{
+  data: TUserHouseResponse;
+  limit: number;
+}
+
+
+const EstatesManagementView = ({data, limit}:IProps) => {
 
   const t = useTranslations('sellerDashboard.estatesManagement')
 
@@ -25,11 +33,13 @@ const EstatesManagementView = () => {
             <Search className={`absolute top-[30%] ${locale == 'en' ? 'right-5' : 'left-5'}`}/>
           </div>
           <button className='flex items-center gap-3 py-[13px] px-3 text-[#1E2022] bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]
+          cursor-pointer
           dark:text-[#E6EDF5] dark:bg-transparent dark:border-[#E6EDF5]'>
             <Filter/>
             <span className='font-regular text-[16px]'>{t('filtersBtn')}</span>
           </button>
           <button className='flex items-center gap-3 py-[13px] px-3 text-[#FFFFFF] bg-[#0D3B66] rounded-[16px]
+          cursor-pointer
           dark:text-[#0D3B66] dark:bg-[#E6EDF5]'>
             <Plus/>
             <span className='font-regular text-[16px]'>{t('addEstateBtn')}</span>
@@ -42,7 +52,9 @@ const EstatesManagementView = () => {
         {id:3, label: "قیمت", className: "w-[240px]"},
         {id:4, label: "وضعیت", className: "w-[224px]"},
         {id:5, label: "عملیات", className: "w-[48px]"}
-      ]}/>
+      ]}
+      houses={data?.houses}/>
+      <EstManagementPagination totalPages={Math.ceil(data?.totalCount / limit)}/>
     </div>
   )
 

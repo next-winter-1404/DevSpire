@@ -85,14 +85,28 @@ export type  IUserHouseParams = {
 export type TUserHouse = {
   id: number,
   title: string,
-  caption: string,
-  estimated_reading_time: string,
-  author_id: number,
-  created_at: string,
-  category_id: number
-  photos: string[] | null
+  address: string,
+  photos: null,
+  rate: number,
+  discounted_price: null,
+  price: number,
+  tags: [],
+  last_updated: string,
+  capacity: number,
+  location: string,
+  categories: string,
+  bathrooms: number,
+  parking: number,
+  rooms: number,
+  yard_type: null,
+  num_comments: number,
+  discount_id: null,
+  transaction_type: string,
+  sellerId: number,
+  sellerName: string,
+  caption: string
 }
 export type TUserHouseResponse = {
-  data: TUserHouse[];
+  houses: TUserHouse[];
   totalCount: number;
 }

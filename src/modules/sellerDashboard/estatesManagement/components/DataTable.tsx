@@ -1,17 +1,17 @@
-import { IDataTableHeaderItem } from "@/components/common/types"
+import { IDataTableHeaderItem, TUserHouse } from "@/components/common/types"
 import TableRow from "./TableRow"
 
 
-
-
-interface IDataTableProps {
+interface IProps {
   dataTableHeaderItems: IDataTableHeaderItem[]
+  houses: TUserHouse[];
 }
 
-const DataTable = ({dataTableHeaderItems}:IDataTableProps) => {
+
+const DataTable = ({dataTableHeaderItems, houses}:IProps) => {
 
     return (
-        <div className="flex flex-col p-6 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]">
+        <div className="flex flex-col gap-4 p-6 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]">
             <div className="flex w-full px-6">
                 {
                     dataTableHeaderItems.map((item) => (
@@ -21,7 +21,9 @@ const DataTable = ({dataTableHeaderItems}:IDataTableProps) => {
             </div>
             <div>
                 {
-                    <TableRow/>
+                    houses?.map((item) => (
+                        <TableRow item={item} key={item.id}/>
+                    ))
                 }
             </div>
         </div>

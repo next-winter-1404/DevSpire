@@ -3,10 +3,10 @@ import { apiFetch } from '@/core/Server-fetch/fetchApi';
 import EstatesManagementView from '@/modules/sellerDashboard/estatesManagement/views/EstatesManagementView'
 
 
-
 type Props = {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 };
+
 
 const page = async ({searchParams}:Props) => {
 
@@ -19,14 +19,14 @@ const page = async ({searchParams}:Props) => {
         page: params.page ?? "1",
         propertyType: params.propertyType ?? "",
     };
-    const data = await apiFetch<TUserHouseResponse>("/blogs", {
+    const data = await apiFetch<TUserHouseResponse>("/houses/seller/user", {
         params: payLoad,
         cache: "no-cache",
     });
 
     return (
         <div>
-            <EstatesManagementView/>
+            <EstatesManagementView data={data ?? {houses: [], totalCount: 0,}} limit={parseInt(payLoad.limit)}/>
         </div>
     )
 
