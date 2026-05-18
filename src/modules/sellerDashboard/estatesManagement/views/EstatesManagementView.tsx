@@ -3,6 +3,7 @@ import Search from '../../../../../public/icons/Search'
 import { useLocale, useTranslations } from 'next-intl'
 import Filter from '../../../../../public/icons/Filter'
 import Plus from '../../../../../public/icons/Plus'
+import DataTable from '../components/DataTable'
 
 
 const EstatesManagementView = () => {
@@ -35,6 +36,7 @@ const EstatesManagementView = () => {
           </button>
         </div>
       </div>
+      <DataTable/>
     </div>
   )
 
