@@ -1,5 +1,5 @@
 "use client";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Dashboard from "../../../../public/icons/Dashboard";
@@ -12,6 +12,10 @@ import Chats from "../../../../public/icons/Chats";
 import LogOut from "../../../../public/icons/LogOut";
 import Heart from "../../../../public/icons/Heart";
 import Logo from "../../../../public/icons/Logo";
+import toast from "react-hot-toast";
+import { deleteCookie } from "cookies-next";
+import { useState } from "react";
+import LogoutModal from "@/components/common/LogoutModal";
 
 interface IDashboardSidebar {
   isSellerDashboard: boolean;
@@ -21,8 +25,11 @@ const sellerBasePath = "/dashboard/seller";
 const customerBasePath = "/dashboard/customer";
 
 const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
+  const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("sellerDashboard.sidebar");
+
+  const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
 
   const isActiveText = (path: string) =>
     pathname === path
@@ -132,7 +139,7 @@ const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
           {t("management")}
         </h3>
         <div className="flex flex-col gap-6 font-regular text-[16px]">
-          {menuItems.slice(3).map(({ href, label, Icon }) => (
+          {menuItems.slice(3, 6).map(({ href, label, Icon }) => (
             <div key={href} className="flex items-center gap-4 text-[#777777]">
               <Icon className={isActiveIcon(href)} />
               <Link href={href} className={isActiveText(href)}>
@@ -140,7 +147,27 @@ const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
               </Link>
             </div>
           ))}
+          <button
+            className=" cursor-pointer flex items-center gap-4
+             text-[#777777] dark:text-[#A3A3A3] "
+            onClick={() => setOpenLogoutModal(true)}
+          >
+            <LogOut />
+            <h2>{t("logOut")}</h2>
+          </button>
         </div>
+        {openLogoutModal && (
+          <LogoutModal
+            onClose={() => setOpenLogoutModal(false)}
+            open={openLogoutModal}
+            onConfirm={() => {
+              deleteCookie("refreshToken");
+              deleteCookie("accessToken");
+              toast.success("با موفقیت از حسابتان خارج شدید");
+              router.push("/");
+            }}
+          />
+        )}
       </div>
     </div>
   );
