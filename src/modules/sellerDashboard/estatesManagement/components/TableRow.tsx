@@ -4,14 +4,11 @@ import Image from 'next/image'
 import Dots from '../../../../../public/icons/Dots'
 import { useState } from "react";
 import ActionsModal from "./ActionsModal";
+import { TUserHouse } from "@/components/common/types";
 
 
 interface IProps{
-    item:{
-        title: string;
-        last_updated: string;
-        price: number;
-    }
+    item: TUserHouse
 }
 
 const TableRow = ({item}: IProps) => {
@@ -38,7 +35,7 @@ const TableRow = ({item}: IProps) => {
                 <Dots/>
             </div>
             {
-                isOpenActionsModal && <ActionsModal setIsOpenActionsModal={setIsOpenActionsModal}/>
+                isOpenActionsModal && <ActionsModal setIsOpenActionsModal={setIsOpenActionsModal} item={item}/>
             }
         </div>    
     )

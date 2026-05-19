@@ -1,26 +1,44 @@
-import { apiFetch } from "@/core/Server-fetch/fetchApi"
 import CircleTick from "../../../../../public/icons/CircleTick"
 import Edit from "../../../../../public/icons/Edit"
 import Trash from "../../../../../public/icons/Trash"
 import { useState } from "react"
 import DeleteModal from "./DeleteModal"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { DeleteHouse } from "../services/DELETE/deleteHouse"
+import toast from "react-hot-toast"
+import { useRouter } from "@/i18n/routing"
+import axios from "axios"
+import { TUserHouse } from "@/components/common/types"
 
 
 interface IProps{
   setIsOpenActionsModal: (value: boolean) => void
+  item: TUserHouse
 }
 
-const ActionsModal = ({setIsOpenActionsModal}:IProps) => {
+const ActionsModal = ({setIsOpenActionsModal, item}:IProps) => {
 
-  // const data = await apiFetch("/houses", {
-  //   cache: "no-cache",
-  // });
+
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
-  const handleModals = () => {
-    setIsOpenDeleteModal(true)  
-    setIsOpenActionsModal(false); 
-  } 
 
+
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const deleteHouseMutation = useMutation({
+    mutationFn: () => DeleteHouse(item.id),
+    onSuccess: (res) => {
+      toast.success(res?.data?.message || "رزرو مورد نظر با موفقیت حذف شد");
+      queryClient.invalidateQueries({
+        queryKey: ["DELETEHOUSE"],
+      });
+      router.refresh();
+    },
+    onError: (err) => {
+      if (axios.isAxiosError(err)) {
+        toast.error(err?.response?.data?.message || "مشکلی در حذف پیش امد");
+      }
+    },
+  });
   
   return (
     <>
@@ -41,7 +59,7 @@ const ActionsModal = ({setIsOpenActionsModal}:IProps) => {
           <span className="font-regular text-[14px]">ویرایش</span>
         </div>
         <div 
-        onClick={handleModals}
+        onClick={() => {setIsOpenDeleteModal(true)}}
         className="flex items-center gap-2 py-1 pr-2 text-[#1E2022] rounded-[8px] cursor-pointer   hover:text-[#0D3B66] hover:bg-[#E6EDF5]">
           <Trash/>
           <span className="font-regular text-[14px]">حذف</span>
@@ -49,7 +67,7 @@ const ActionsModal = ({setIsOpenActionsModal}:IProps) => {
       </div>
 
       {
-        isOpenDeleteModal && <DeleteModal setIsOpenDeleteModal={setIsOpenDeleteModal}/>
+        isOpenDeleteModal && <DeleteModal setIsOpenDeleteModal={setIsOpenDeleteModal} deleteHouseMutation={() => {deleteHouseMutation.mutate()}}/>
       }
     </>
   )
