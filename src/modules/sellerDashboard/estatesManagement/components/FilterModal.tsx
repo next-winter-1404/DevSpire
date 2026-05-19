@@ -19,7 +19,10 @@ const FilterModal = ({setIsOpenFilterModal}:IProps) => {
     const router = useRouter();
     const pathname = usePathname();
 
-
+    const [range, setRange] = useState<[number, number]>([
+        parseInt(searchParams.get("minPrice") ?? "0"),
+        parseInt(searchParams.get("maxPrice") ?? "50000000000"),
+    ]);
     const estateTypeOptions = [
         {value: "created_at", label: locale == "en" ? "created at" : "زمان ایجاد شده"},
         {value: "updated_at", label: locale == "en" ? "last updated" : "زمان بروز شده"},
@@ -47,6 +50,10 @@ const FilterModal = ({setIsOpenFilterModal}:IProps) => {
         };
         setOrDelete("estateType", estateType);
         setOrDelete("estateStatus", estateStatus);
+        if (range) {
+        params.set("minPrice", String(range[0]));
+        params.set("maxPrice", String(range[1]));
+        }
         params.set("page", "1");
         const currentQueryString = searchParams.toString();
         const newQueryString = params.toString();
@@ -70,11 +77,12 @@ const FilterModal = ({setIsOpenFilterModal}:IProps) => {
     const getEstateStatusOptions = (value: string) => {
         setEstateStatus(value);
     };
+    const getSliderValues = (values: [number, number]) => setRange(values);
 
 
     return (
         <>
-            <div className="flex flex-col gap-8 p-8 bg-[#FFFFFF] rounded-[24px] absolute top-40 right-140">
+            <div className="flex flex-col gap-8 w-[563px] p-8 bg-[#FFFFFF] rounded-[24px] absolute top-40 right-124 z-30">
                 <div className="flex justify-between items-center">
                     <h2 className="font-bold text-[24px] text-[#1E2022]">فیلتر ها</h2>
                     <div onClick={() => {setIsOpenFilterModal(false)}} className="flex items-center p-4 bg-[#F5F5F5] rounded-full">
@@ -85,15 +93,17 @@ const FilterModal = ({setIsOpenFilterModal}:IProps) => {
                     <CustomSelect options={estateTypeOptions} defaultValue={estateTypeOptions[0].value} onValueChange={getEstateTypeOptions}/>
                     <CustomSelect options={estateStatusOptions} defaultValue={estateStatusOptions[0].value} onValueChange={getEstateStatusOptions}/>
                 </div>
-                <TwoRangeSlider/>
+                <TwoRangeSlider max={50000000000} defaultValues={range} getValues={getSliderValues}/>
                 <div className="flex gap-6 font-regular text-[16px]">
-                    <button className="w-full py-[13px] text-[#777777] border border-[#777777] rounded-[16px]">انصراف</button>
-                    <button className="w-full py-[13px] text-[#FFFFFF] bg-[#0D3B66] rounded-[16px]">اعمال فیلتر</button>
+                    <button 
+                    onClick={() => {setIsOpenFilterModal(false)}}
+                    className="w-full py-[13px] text-[#777777] border border-[#777777] rounded-[16px] cursor-pointer">
+                        انصراف
+                    </button>
+                    <button className="w-full py-[13px] text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer">اعمال فیلتر</button>
                 </div>
             </div>
-            <div className="w-full h-full absolute top-0 right-0">
-
-            </div>
+            <div className="w-full h-full fixed inset-0 bg-black/40 backdrop-blur-sm z-0 animate-fadeIn"></div>
         </>
     )
 

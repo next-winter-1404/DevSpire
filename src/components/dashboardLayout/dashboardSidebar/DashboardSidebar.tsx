@@ -94,8 +94,8 @@ const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
       Icon: CheckList,
     },
     {
-      href: `${customerBasePath}/finantial-management`,
-      label: t("finantialManagement"),
+      href: `${customerBasePath}/payments-management`,
+      label: t("paymentsManagement"),
       Icon: FinantialManagement,
     },
     {
