@@ -103,7 +103,7 @@ const FilterModal = ({setIsOpenFilterModal}:IProps) => {
                     <button className="w-full py-[13px] text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer">اعمال فیلتر</button>
                 </div>
             </div>
-            <div className="w-full h-full fixed inset-0 bg-black/40 backdrop-blur-sm z-0 animate-fadeIn"></div>
+            <div className="w-full h-full bg-black/40 backdrop-blur-sm fixed inset-0 z-0 animate-fadeIn"></div>
         </>
     )
 
