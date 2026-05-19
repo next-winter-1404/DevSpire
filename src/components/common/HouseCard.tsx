@@ -89,54 +89,51 @@ const HouseCard = ({ property, className, transactionType }: props) => {
 
         <hr className="border-[#DDDDDD] dark:border-[#3F3F46] my-2" />
 
-        <div
-          className="flex flex-wrap items-center
-         gap-y-3 gap-x-6
-       text-[#777777]
-       text-[16px]
-         lg:flex-nowrap lg:justify-between"
-        >
-          <div className="flex items-center gap-1">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-[#777777] text-[16px]">
+          <div className="flex items-center gap-2 min-w-0">
             <Image
               src="/icons/fastReservePage/car.png"
               alt="car"
               width={20}
               height={20}
             />
-            <span>
+            <span className="truncate">
               {property.parking} {t("parking")}
             </span>
           </div>
-          <div className="flex items-center gap-1">
+
+          <div className="flex items-center gap-2 min-w-0">
             <Image
               src="/icons/fastReservePage/customers.png"
               alt="customers"
               width={20}
               height={20}
             />
-            <span>
+            <span className="truncate">
               {property.capacity} {t("person")}
             </span>
           </div>
-          <div className="flex items-center gap-1">
+
+          <div className="flex items-center gap-2 min-w-0">
             <Image
               src="/icons/fastReservePage/bath.png"
               alt="bath"
               width={20}
               height={20}
             />
-            <span>
+            <span className="truncate">
               {property.bathrooms} {t("bath")}
             </span>
           </div>
-          <div className="flex items-center gap-1">
+
+          <div className="flex items-center gap-2 min-w-0">
             <Image
               src="/icons/fastReservePage/bed.png"
               alt="bed"
               width={20}
               height={20}
             />
-            <span>
+            <span className="truncate">
               {property.rooms} {t("sleep")}
             </span>
           </div>

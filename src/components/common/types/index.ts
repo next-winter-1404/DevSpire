@@ -1,3 +1,5 @@
+import { TravelerDetail } from "@/modules/booking/types";
+
 export interface IFastReserveParams {
   page?: string;
   sort?: string;
@@ -43,8 +45,7 @@ export type THousesResponse = {
   totalCount: number;
 };
 
-
-export interface IArticlesParams{
+export interface IArticlesParams {
   page?: string;
   sort?: string;
   order?: string;
@@ -53,16 +54,77 @@ export interface IArticlesParams{
   propertyType?: string;
 }
 export type TArticle = {
-  id: number,
-  title: string,
-  caption: string,
-  estimated_reading_time: string,
-  author_id: number,
-  created_at: string,
-  category_id: number
-  photos: string[] | null
-}
+  id: number;
+  title: string;
+  caption: string;
+  estimated_reading_time: string;
+  author_id: number;
+  created_at: string;
+  category_id: number;
+  photos: string[] | null;
+};
 export type TArticlesResponse = {
   data: TArticle[];
   totalCount: number;
+};
+
+export type TTravelerDetails = {
+  firstName: string;
+  lastName: string;
+  gender: "male" | "female";
+  birthDate: string;
+  nationalId: string;
+};
+
+export type TReserveHouse = {
+  title: string;
+  price: string;
+};
+
+export type TReservation = {
+  id: number;
+  user_id: number;
+  houseId: number;
+  reservedDates: string[];
+  traveler_details: TTravelerDetails[];
+  status: "pending" | "confirmed" | "canceled";
+  sharedEmail: string;
+  sharedMobile: string;
+  created_at: string;
+  updated_at: string;
+  house: TReserveHouse;
+};
+
+export type TReservationsResponse = {
+  data: TReservation[];
+  totalCount: number;
+};
+
+export type TReservationStatus = "pending" | "confirmed" | "canceled";
+
+export type TPaymentStatus = "pending" | "paid" | "failed";
+
+export type TGender = "male" | "female";
+
+export interface TBooking {
+  id: number;
+  user_id: number;
+  houseId: number;
+
+  reservedDates: string[];
+
+  traveler_details: TTravelerDetails[];
+
+  status: TReservationStatus;
+
+  sharedEmail: string;
+  sharedMobile: string;
+
+  created_at: string;
+  updated_at: string;
+}
+
+export interface TReservationDetailResponse {
+  booking: TBooking;
+  paymentStatus: TPaymentStatus;
 }

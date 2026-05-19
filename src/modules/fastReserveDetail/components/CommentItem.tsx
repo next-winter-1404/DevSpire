@@ -25,13 +25,16 @@ export default function CommentItem({ comment, isReply, depth = 0 }: IProps) {
     <div className="mt-4">
       <div className={` ${isReply ? "" : "border-t border-[#DDDDDD]"} py-4 `}>
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-[55px] h-[55px] relative bg-gray-200 dark:bg-[#777777] rounded-full ">
+          <div
+            className="w-[55px] h-[55px] relative bg-gray-200
+           dark:bg-[#777777] rounded-full overflow-hidden "
+          >
             {comment.user.profilePicture ? (
               <Image
                 src={comment.user.profilePicture}
                 alt={comment.user.firstName}
                 fill
-                className="object-cover"
+                className="object-cover "
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center ">

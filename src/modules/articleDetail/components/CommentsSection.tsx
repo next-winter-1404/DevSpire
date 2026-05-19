@@ -16,7 +16,7 @@ const CommentsSection = () => {
           4
         </span>
       </div>
-      <CommentForm />
+      {/* <CommentForm /> */}
       {/* <div className="flex flex-col mt-4">
         {commentsData.map((comment) => (
           <CommentItem key={comment.id} comment={comment} />

@@ -17,7 +17,7 @@ interface IDashboardSidebar {
   isSellerDashboard: boolean;
 }
 
-const basePath = "/seller-dashboard";
+const basePath = "/dashboard/seller";
 
 const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
   const pathname = usePathname();

@@ -19,7 +19,7 @@ const CustomPagination = ({
     <nav dir="ltr" className="w-full flex items-center justify-center gap-3">
       <button
         onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage == 1}
+        disabled={currentPage === 1}
         className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 dark:bg-[#27272A]
          text-slate-600 transition-colors hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed
          cursor-pointer"
@@ -48,7 +48,7 @@ const CustomPagination = ({
       })}
 
       <button
-        disabled={currentPage == totalPages}
+        disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
         className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 dark:bg-[#27272A]
          text-slate-600 transition-colors hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed 
