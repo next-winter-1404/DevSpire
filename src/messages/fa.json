@@ -6,6 +6,7 @@
     "mortgageAndRent": "رهن و اجاره",
     "articles": "مقالات",
     "aboutUs": "درباره ما",
+    "contactUs": "ارتباط با ما",
     "login": "ورود",
     "signUp": "ثبت نام"
   },
@@ -47,7 +48,6 @@
       "departureDate": "تاریخ خروج",
       "departureDatePlc": "تاریخ خروج را انتخاب کنید",
       "searchButton": "جستجو کنید",
-
       "buyAndSell": "خرید و فروش",
       "rent": "اجاره",
       "mortgage": "رهن",
@@ -196,8 +196,8 @@
       "max": "حداکثر"
     }
   },
-  "articles":{
-    "filters":{
+  "articles": {
+    "filters": {
       "title": "فیلتر ها",
       "result": "نتیجه",
       "search": "جستجو",
@@ -207,7 +207,7 @@
       "oldest": "قدیمی ترین ها"
     }
   },
-  "articleDetail":{
+  "articleDetail": {
     "articleText": "متن مقاله",
     "userComments": "نظرات کاربران",
     "seeMore": "مشاهده بیشتر",
@@ -224,7 +224,7 @@
       "forgotPassword": "رمز عبور خود را فراموش کرده اید؟",
       "submit": "ورود",
       "enterEmailPassword": "لطفاً ایمیل و رمز عبور را وارد کنید",
-        "loginError": "خطا در ورود",
+      "loginError": "خطا در ورود",
       "serverError": "خطا در ارتباط با سرور",
       "successMessage": "ورود با موفقیت انجام شد",
       "or": "یا",
@@ -296,11 +296,11 @@
       }
     }
   },
-  "sellerDashboard":{
-    "header":{
+  "sellerDashboard": {
+    "header": {
       "balance": "موجودی :"
     },
-    "sidebar":{
+    "sidebar": {
       "logo": "لوگو",
       "menu": "منو",
       "dashboard": "داشبورد",
@@ -314,7 +314,7 @@
       "favorites": "علاقه مندی ها",
       "logOut": "خروج از حساب"
     },
-    "dashboard":{
+    "dashboard": {
       "allOfEstates": "کل ملک ها",
       "activeReserves": "رزرو های فعال",
       "pendingReservations": "رزرو های در انتظار",
@@ -328,15 +328,15 @@
       "recentCustomerBookings": "رزرو های اخیر مشتریان",
       "seeAllBtn": "مشاهده همه"
     },
-    "estatesManagement":{
-      "estatesManagement":"مدیریت املاک",
+    "estatesManagement": {
+      "estatesManagement": "مدیریت املاک",
       "searchPlaceholder": "جستجو کنید...",
       "filtersBtn": "فیلتر ها",
       "addEstateBtn": "افزودن ملک"
     }
   },
-  "customerDashboard":{
-    "dashboard":{
+  "customerDashboard": {
+    "dashboard": {
       "allOfReserves": "کل رزرو ها",
       "activeReserves": "رزرو های فعال",
       "notPaid": "پرداخت نشده",
@@ -350,6 +350,20 @@
       "recentCustomerBookings": "رزرو های اخیر مشتریان",
       "seeAllBtn": "مشاهده همه"
     }
-  }  
+  },
+  "contact": {
+    "description": "هر ساعت از شبانه روز که باشه تیم پشتیبانی دلتا پاسخگوی سوالات و انتقادات شما هستند تا در اسرع وقت مشکلتان را حل کنیم !",
+    "email": "ایمیل",
+    "message": "پیام شما",
+    "messagePlaceholder": "پیام خود را بنویسید...",
+    "send": "ارسال درخواست",
+    "phone": "تلفن",
+    "address": "آدرس",
+    "addressText": "گیلان، رشت، میدان آزادی",
+    "sending": "در حال ارسال...",
+    "fillFields": "لطفا تمام فیلدها را پر کنید",
+    "successMessage": "پیام شما با موفقیت ارسال شد",
+    "contact_us": "ارتباط با ما",
+    "errorMessage": "خطا در ارسال پیام"
+  }
 }
-
