@@ -14,7 +14,7 @@ const Filters = ({totalCount, categories}:{totalCount: number, categories: []}) 
 
 
     const locale = useLocale();
-    const t = useTranslations("articles.filters");
+    const t = useTranslations("blogs.filters");
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
@@ -25,20 +25,20 @@ const Filters = ({totalCount, categories}:{totalCount: number, categories: []}) 
     //     value: item.value
     // }));
     const sortOptions: IOption[] = [
-        {value: "created_at", label: locale == "en" ? "created at" : "تاریخ ثبت آگهی"},
-        {value: "updated_at", label: locale == "en" ? "last updated" : "آخرین به‌روزرسانی"},
+        {value: "created_at", label: locale == "en" ? "created at" : "زمان ایجاد شده"},
+        {value: "updated_at", label: locale == "en" ? "last updated" : "زمان بروز شده"},
     ];
     const orderOptions: IOption[] = [
         { value: "DESC", label: locale == "en" ? "desc" : "نزولی" },
         { value: "ASC", label: locale == "en" ? "asc" : "صعودی" },
     ];
-    const authorOptions: IOption[] = [
-        {value: "villa", label: locale == "en" ? "villa" : "ویلا"},
-        {value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان"},
-        {value: "house", label: locale == "en" ? "house" : "خانه"},
-        {value: "land", label: locale == "en" ? "land" : "زمین"},
-        {value: "commercial", label: locale == "en" ? "commercial" : "اقتصادی"},
-    ];
+    // const authorOptions: IOption[] = [
+    //     {value: "villa", label: locale == "en" ? "villa" : "ویلا"},
+    //     {value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان"},
+    //     {value: "house", label: locale == "en" ? "house" : "خانه"},
+    //     {value: "land", label: locale == "en" ? "land" : "زمین"},
+    //     {value: "commercial", label: locale == "en" ? "commercial" : "اقتصادی"},
+    // ];
     const limitOptions: IOption[] = [
         {value: "12", label: "12"},
         {value: "18", label: "18"},
@@ -69,7 +69,7 @@ const Filters = ({totalCount, categories}:{totalCount: number, categories: []}) 
         else params.delete(key);
         };
         setOrDelete("search", search);
-        setOrDelete("category", category);
+        // setOrDelete("category", category);
         setOrDelete("sort", sort);
         setOrDelete("order", order);
         setOrDelete("limit", limit);
@@ -94,9 +94,9 @@ const Filters = ({totalCount, categories}:{totalCount: number, categories: []}) 
     const getOrderOptions = (value: string) => {
         setOrder(value);
     };
-    const getCategoryOptions = (value: string) => {
-        setCategory(value);
-    };
+    // const getCategoryOptions = (value: string) => {
+    //     setCategory(value);
+    // };
     const getLimitOptions = (value: string) => {
         setLimit(value);
     };
@@ -106,9 +106,9 @@ const Filters = ({totalCount, categories}:{totalCount: number, categories: []}) 
         <div className="flex flex-col gap-8 mt-10">
             <div className="flex justify-between">
                 <h2 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">{t("title")}</h2>
-                <div className="flex gap-2">
+                <div className="flex items-center gap-2 font-regular text-[20px] text-[#0D3B66]   dark:text-[#E4E4E4]">
                     <span>{totalCount}</span>
-                    <span className="font-regular text-[20px] text-[#0D3B66]   dark:text-[#E4E4E4]">{t("result")}</span>
+                    <span>{t("result")}</span>
                 </div>
             </div>
             <div className="flex flex-col gap-5 p-4 border border-[#DDDDDD] rounded-[24px]   dark:border-[#404040]">
@@ -141,10 +141,10 @@ const Filters = ({totalCount, categories}:{totalCount: number, categories: []}) 
                     </div>
                 </div>
                 <div className="flex flex-col gap-5   lg:flex-row">
-                    <div className="flex flex-col gap-4 w-[368px] min-w-[168px]">
+                    {/* <div className="flex flex-col gap-4 w-[368px] min-w-[168px]">
                         <span className="font-bold text-[16px] text-[#1E2022]">نام نویسنده</span>
                         <CustomSelect options={authorOptions} defaultValue={authorOptions[0].value} onValueChange={getOrderOptions}/>
-                    </div>                        
+                    </div>                         */}
                     <div className="flex flex-col gap-4 w-[368px] min-w-[168px]">
                         <span className="font-bold text-[16px] text-[#1E2022]">تعداد نمایش</span>
                         <CustomSelect options={limitOptions} defaultValue={limitOptions[0].value} onValueChange={getLimitOptions}/>

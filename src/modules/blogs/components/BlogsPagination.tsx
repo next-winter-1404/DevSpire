@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 
-const ArticlesPagination = ({totalPages}:{totalPages : number}) => {
+const BlogsPagination = ({totalPages}:{totalPages : number}) => {
 
     const searchParams = useSearchParams();
     const pathName = usePathname();
@@ -31,4 +31,4 @@ const ArticlesPagination = ({totalPages}:{totalPages : number}) => {
 
 }
 
-export default ArticlesPagination
+export default BlogsPagination

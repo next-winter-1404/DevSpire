@@ -18,8 +18,8 @@ export const Links: NavLink[] = [
         link: '/mortgage-rent'
     },
     {
-        title: 'articles',
-        link: '/articles'
+        title: 'blogs',
+        link: '/blogs'
     },
     {
         title: 'aboutUs',

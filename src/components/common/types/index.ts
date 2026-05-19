@@ -1,6 +1,5 @@
 import { TravelerDetail } from "@/modules/booking/types";
 
-export interface IFastReserveParams {
 export type IFastReserveParams = {
   page?: string;
   sort?: string;
@@ -46,9 +45,9 @@ export type THousesResponse = {
   totalCount: number;
 };
 
-export interface IArticlesParams {
 
-export type IArticlesParams = {
+
+export type IBlogsParams = {
   page?: string;
   sort?: string;
   order?: string;
@@ -56,18 +55,18 @@ export type IArticlesParams = {
   search?: string;
   propertyType?: string;
 }
-export type TArticle = {
-  id: number;
-  title: string;
-  caption: string;
-  estimated_reading_time: string;
-  author_id: number;
-  created_at: string;
-  category_id: number;
-  photos: string[] | null;
-};
-export type TArticlesResponse = {
-  data: TArticle[];
+export type TBlog = {
+  id: number,
+  title: string,
+  caption: string,
+  estimated_reading_time: string,
+  author_id: number,
+  created_at: string,
+  category_id: number
+  photos: string[] | null
+}
+export type TBlogsResponse = {
+  data: TBlog[];
   totalCount: number;
 };
 
@@ -132,7 +131,7 @@ export interface TReservationDetailResponse {
   paymentStatus: TPaymentStatus;
 }
 
-}
+
 
 
 

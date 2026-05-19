@@ -14,6 +14,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 
 const Header = ({ token }: { token: string | undefined }) => {
+  
   const pathname = usePathname();
   const t = useTranslations("header");
 

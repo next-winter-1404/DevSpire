@@ -1,6 +1,7 @@
-import { IArticlesParams, TArticlesResponse } from '@/components/common/types';
+import { IBlogsParams, TBlogsResponse } from '@/components/common/types';
 import { apiFetch } from '@/core/Server-fetch/fetchApi';
-import ArticlesView from '@/modules/articles/views/ArticlesView'
+import BlogsView from '@/modules/blogs/views/BlogsView';
+
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -8,7 +9,7 @@ type Props = {
 
 const page = async ({ searchParams }: Props) => {
 
-    const params: IArticlesParams = await searchParams;
+    const params: IBlogsParams = await searchParams;
     const payLoad = {
         search: params.search ?? "",
         sort: params.sort ?? "",
@@ -17,14 +18,14 @@ const page = async ({ searchParams }: Props) => {
         page: params.page ?? "1",
         propertyType: params.propertyType ?? "",
     };
-    const data = await apiFetch<TArticlesResponse>("/blogs", {
+    const data = await apiFetch<TBlogsResponse>("/blogs", {
         params: payLoad,
         cache: "no-cache",
     });
     const categories = await apiFetch("/categories")
 
     return (
-        <ArticlesView         
+        <BlogsView        
             data={
             data ?? {
                 data: [],

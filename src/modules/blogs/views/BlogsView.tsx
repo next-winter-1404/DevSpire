@@ -1,19 +1,19 @@
 "use client"
 import BreadCrumbs from "@/components/common/BreadCrumbs";
-import ArticlesPagination from "../components/ArticlesPagination";
-import { TArticlesResponse } from "@/components/common/types";
+import { TBlogsResponse } from "@/components/common/types";
 import { useTranslations } from "next-intl";
-import ArticleCard from "../components/ArticleCard";
 import Filters from "../components/Filters";
+import BlogCard from "../components/BlogCard";
+import BlogsPagination from "../components/BlogsPagination";
 
 interface Iprops {
-    data: TArticlesResponse;
+    data: TBlogsResponse;
     limit: number;
     totalCount: number;
     categories: []
 }
 
-const ArticlesView = ({ data, limit, totalCount, categories }: Iprops) => {
+const BlogsView = ({ data, limit, totalCount, categories }: Iprops) => {
 
     const t = useTranslations("header")
     
@@ -23,24 +23,24 @@ const ArticlesView = ({ data, limit, totalCount, categories }: Iprops) => {
                 <BreadCrumbs
                     items={[
                     {label: t("home"), href: "/"},
-                    {label: t("articles"), href: "/articles"}
+                    {label: t("blogs"), href: "/blogs"}
                     ]} 
                 />
             </div>             
             <Filters totalCount={totalCount} categories={categories}/>
-            <div className="flex flex-wrap gap-10 mt-10">
+            <div className="flex flex-wrap gap-[46px] mt-10">
                 {
                     data.data?.map((item) => (
-                        <ArticleCard item={item} key={item.id}/>
+                        <BlogCard item={item} key={item.id}/>
                     ))
                 }
             </div>
             <div className="mt-10">
-                <ArticlesPagination totalPages={Math.ceil(data?.totalCount / limit)}/>
+                <BlogsPagination totalPages={Math.ceil(data?.totalCount / limit)}/>
             </div>
         </div>
     )
 
 }
 
-export default ArticlesView
+export default BlogsView
