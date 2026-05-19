@@ -4,7 +4,7 @@
     "home": "Home",
     "fastReserve": "Fast Reserve",
     "mortgageAndRent": "Mortgage and Rent",
-    "articles": "Articles",
+    "blogs": "Blogs",
     "aboutUs": "About Us",
     "login": "Login",
     "signUp": "Sign Up"
@@ -195,7 +195,7 @@
       "max": "Max"
     }
   },
-  "articles":{
+  "blogs":{
     "filters":{
       "title": "Filters",
       "result": "Result",
@@ -206,8 +206,8 @@
       "oldest": "Oldest"
     }
   },
-  "articleDetail":{
-    "articleText": "Article Text",
+  "blogDetail":{
+    "blogText": "Article Text",
     "userComments": "User Comments",
     "seeMore": "See More",
     "seeLess": "See Less"

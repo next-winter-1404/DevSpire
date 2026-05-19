@@ -5,7 +5,7 @@ import Date from "../../../../public/icons/Date"
 import Clock from "../../../../public/icons/Clock"
 
 
-type IArticleCard = {
+type IBlogCard = {
     item:{
         id: number,
         title: string,
@@ -17,10 +17,10 @@ type IArticleCard = {
     }
 }
 
-const ArticleCard = ({item}: IArticleCard) => {
+const BlogCard = ({item}: IBlogCard) => {
 
     return (
-        <Link href={`articles/${item.id}`} className="w-[444px] bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px] cursor-pointer 
+        <Link href={`blogs/${item.id}`} className="w-[444px] bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px] cursor-pointer 
         hover:bg-[#F5F5F5]
         dark:bg-[#404040] dark:border-[#777777] dark:hover:bg-[#505050]">
             <Image src={House1} alt="article1" className="w-full h-60"/>
@@ -46,4 +46,4 @@ const ArticleCard = ({item}: IArticleCard) => {
 
 }
 
-export default ArticleCard
+export default BlogCard

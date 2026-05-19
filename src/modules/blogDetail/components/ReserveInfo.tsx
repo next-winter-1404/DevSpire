@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { TArticle } from "@/components/common/types";
+import { TBlog } from "@/components/common/types";
 
-const ReserveInfo = ({ article }: { article: TArticle }) => {
+const ReserveInfo = ({ blog }: { blog: TBlog }) => {
 
-  const t = useTranslations("articleDetail");
+  const t = useTranslations("blogDetail");
 
   const [more, setMore] = useState<boolean>(false);
 
@@ -15,7 +15,7 @@ const ReserveInfo = ({ article }: { article: TArticle }) => {
         className={` transition-all duration-500 ease-in-out w-full overflow-hidden  
         ${more ? "max-h-[1000px]" : "max-h-[130px]"}`}>
         <p className="text-[16px] w-full text-muted-foreground leading-loose text-start  ">
-          {article.caption}
+          {blog.caption}
         </p>
       </div>
       <button

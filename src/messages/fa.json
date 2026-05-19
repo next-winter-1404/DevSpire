@@ -4,7 +4,7 @@
     "home": "خانه",
     "fastReserve": "رزرو سریع",
     "mortgageAndRent": "رهن و اجاره",
-    "articles": "مقالات",
+    "blogs": "مقالات",
     "aboutUs": "درباره ما",
     "login": "ورود",
     "signUp": "ثبت نام"
@@ -196,7 +196,7 @@
       "max": "حداکثر"
     }
   },
-  "articles":{
+  "blogs":{
     "filters":{
       "title": "فیلتر ها",
       "result": "نتیجه",
@@ -207,8 +207,8 @@
       "oldest": "قدیمی ترین ها"
     }
   },
-  "articleDetail":{
-    "articleText": "متن مقاله",
+  "blogDetail":{
+    "blogText": "متن مقاله",
     "userComments": "نظرات کاربران",
     "seeMore": "مشاهده بیشتر",
     "seeLess": "مشاهده کمتر"

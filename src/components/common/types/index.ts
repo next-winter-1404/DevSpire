@@ -44,7 +44,7 @@ export type THousesResponse = {
 };
 
 
-export type IArticlesParams = {
+export type IBlogsParams = {
   page?: string;
   sort?: string;
   order?: string;
@@ -52,7 +52,7 @@ export type IArticlesParams = {
   search?: string;
   propertyType?: string;
 }
-export type TArticle = {
+export type TBlog = {
   id: number,
   title: string,
   caption: string,
@@ -62,8 +62,8 @@ export type TArticle = {
   category_id: number
   photos: string[] | null
 }
-export type TArticlesResponse = {
-  data: TArticle[];
+export type TBlogsResponse = {
+  data: TBlog[];
   totalCount: number;
 }
 
