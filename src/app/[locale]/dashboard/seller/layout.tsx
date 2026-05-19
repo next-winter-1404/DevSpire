@@ -7,14 +7,14 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex gap-8 w-full p-6 h-screen ">
+    <div className="flex gap-8 w-full p-5 h-screen ">
       <DashboardSidebar isSellerDashboard={true} />
       <div className="flex flex-col gap-5 w-full h-full">
         <header>
           <DashboardHeader hasNotification={false} />
         </header>
         <main
-          className="h-full  p-6 bg-[#F5F5F5] border
+          className="h-full  p-5 bg-[#F5F5F5] border
      border-[#DDDDDD] rounded-[40px]   overflow-y-auto scroll-smooth
     dark:bg-[#404040] dark:border-[#777777]"
         >

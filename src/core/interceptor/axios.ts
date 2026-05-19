@@ -43,7 +43,10 @@ httpClient.interceptors.response.use(
     const originalRequest = error.config as InternalAxiosRequestConfig & {
       _retry?: boolean;
     };
-
+    if (error.response?.status === 403) {
+      toast.error("شما دسترسی لازم برای این بخش را ندارید");
+      window.location.href = "/";
+    }
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
         return new Promise(function (resolve, reject) {

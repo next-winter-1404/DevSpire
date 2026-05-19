@@ -54,11 +54,14 @@ export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
       </button>
       {isOpen && (
         <div
-          className="absolute left-0 mt-3 w-50 p-2 bg-white border border-gray-100 rounded-2xl
-         shadow-[0_8px_30px_rgb(0,0,0,0.08)] z-50 animate-in fade-in zoom-in-95 duration-200"
+          className="absolute left-0 mt-3 w-50 p-2 bg-[#ffff]
+            dark:bg-[#27272A] border
+           border-gray-100 rounded-2xl
+         shadow-2xl z-50 animate-in fade-in 
+         zoom-in-95 duration-200"
         >
           <div className="px-4 py-3 border-b border-gray-50 text-right">
-            <p className="text-sm font-semibold text-gray-800">{data.name}</p>
+            <p className="text-sm font-semibold text-primary ">{data.name}</p>
             <p className="text-xs text-gray-500 mt-0.5 truncate">
               {data.email}
             </p>
@@ -67,7 +70,8 @@ export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
           <div className="py-2 text-right">
             <Link
               href="/dashboard"
-              className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#10375c] transition-colors"
+              className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600
+               hover:bg-gray-50 hover:text-[#10375c] transition-colors"
               onClick={() => setIsOpen(false)}
             >
               <DashboardIcon />
@@ -76,7 +80,8 @@ export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
 
             <Link
               href="/dashboard/settings"
-              className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50
+              className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600
+               hover:bg-gray-50
                hover:text-[#10375c] transition-colors"
               onClick={() => setIsOpen(false)}
             >
