@@ -10,11 +10,14 @@ import { DashboardIcon } from "@radix-ui/react-icons";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import { useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
+import LogoutModal from "@/components/common/LogoutModal";
 
 export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -94,18 +97,25 @@ export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
             <button
               className="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-red-600
                hover:bg-red-50 transition-colors cursor-pointer "
-              onClick={() => {
-                setIsOpen(false);
-                deleteCookie("refreshToken");
-                deleteCookie("accessToken");
-                toast.success("با موفقیت از حسابتان خارج شدید");
-                router.refresh();
-              }}
+              onClick={() => setOpenLogoutModal(true)}
             >
               <LogOut size={18} />
               خروج از حساب
             </button>
           </div>
+          {openLogoutModal && (
+            <LogoutModal
+              open={openLogoutModal}
+              onClose={() => setOpenLogoutModal(false)}
+              onConfirm={() => {
+                setIsOpen(false);
+                deleteCookie("refreshToken");
+                deleteCookie("accessToken");
+                toast.success("با موفقیت از حسابتان خارج شدید");
+                router.push("/");
+              }}
+            />
+          )}
         </div>
       )}
     </div>

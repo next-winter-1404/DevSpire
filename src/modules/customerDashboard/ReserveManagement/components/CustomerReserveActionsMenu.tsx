@@ -1,8 +1,6 @@
-import { CheckCircle, Info, Trash2, XCircle } from "lucide-react";
+import { Info, Trash2 } from "lucide-react";
 import { useState } from "react";
 import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
-import CancelModal from "@/components/common/CancelModal";
-import ContinueBookingModal from "@/components/common/ContinueBookingModal";
 import { useReservation } from "@/modules/sellerDashboard/ReservesManagement/services/hooks/useReservation";
 import ReservationDetailsModal from "@/modules/sellerDashboard/ReservesManagement/components/ReserveDetailsModal";
 
