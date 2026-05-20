@@ -333,7 +333,12 @@
       "estatesManagement":"مدیریت املاک",
       "searchPlaceholder": "جستجو کنید...",
       "filtersBtn": "فیلتر ها",
-      "addEstateBtn": "افزودن ملک"
+      "addEstateBtn": "افزودن ملک",
+      "estateName": "نام اقامتگاه",
+      "reserveDate": "تاریخ رزرو",
+      "price": "قیمت",
+      "status": "وضعیت",
+      "actions": "عملیات"
     }
   },
   "customerDashboard":{

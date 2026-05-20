@@ -332,7 +332,12 @@
       "estatesManagement":"Estates Management",
       "searchPlaceholder": "Search...",
       "filtersBtn": "Filters",
-      "addEstateBtn": "Add Estate"
+      "addEstateBtn": "Add Estate",
+      "estateName": "Estate Name",
+      "reserveDate": "Reserve Date",
+      "price": "Price",
+      "status": "Status",
+      "actions": "Actions"
     }
   },
   "customerDashboard":{

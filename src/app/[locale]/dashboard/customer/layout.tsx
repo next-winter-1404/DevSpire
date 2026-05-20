@@ -11,7 +11,7 @@ export default function MainLayout({
       <DashboardSidebar isSellerDashboard={false} />
       <div className="flex flex-col gap-5 w-full h-full">
         <header>
-          <DashboardHeader hasNotification={true} />
+          <DashboardHeader hasNotification={true} isSellerDashboard={true}/>
         </header>
         <main
           className="h-full  p-5 bg-[#F5F5F5] border

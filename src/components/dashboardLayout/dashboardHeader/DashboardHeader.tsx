@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import EstateOwner from "../../../../public/images/mortgageRentDetail/estate-owner.jpg";
 import ToggleTheme from "@/components/common/ToggleTheme";
@@ -6,15 +7,26 @@ import { Link } from "@/i18n/routing";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import { useTranslations } from "next-intl";
 import Notification from "../../../../public/icons/Notification";
+import { useState } from "react";
+import Menu from "../../../../public/icons/Menu";
+import DashSidebarMenu from "../dashboardSidebar/DashSidebarMenu";
 
-interface IDashboardHeader {
+interface IProps {
   hasNotification: boolean;
+  isSellerDashboard: boolean
 }
 
 
-const DashboardHeader = ({hasNotification}: IDashboardHeader) => {
+const DashboardHeader = ({hasNotification, isSellerDashboard}: IProps) => {
 
   const t = useTranslations('sellerDashboard.header')
+
+  const [isOpenSidebarMenu, setIsOpenSidebarMenu] = useState<boolean>(false);
+
+  const useToggleMenu = (value: boolean) => {
+    setIsOpenSidebarMenu(value);
+  };
+
 
   return (
     <div
@@ -23,6 +35,9 @@ const DashboardHeader = ({hasNotification}: IDashboardHeader) => {
     dark:bg-[#404040] dark:border-[#777777]"
     >
       <div className="flex items-center gap-4">
+        <button onClick={() => useToggleMenu(true)} className="block md:hidden p-1">
+          <Menu/>
+        </button>
         <Image
           src={EstateOwner}
           alt="estateOwner"
@@ -48,10 +63,12 @@ const DashboardHeader = ({hasNotification}: IDashboardHeader) => {
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <div className="h-10">
+        <div className="hidden h-10   md:block">
           <LanguageSwitcher />
         </div>
-        <ToggleTheme />
+        <div className="hidden   md:block">
+          <ToggleTheme />
+        </div>
         {hasNotification && (
           <div className="p-2 rounded-full bg-[#0D3B66]">
             <Notification color="#FFFFFF" />
@@ -64,6 +81,7 @@ const DashboardHeader = ({hasNotification}: IDashboardHeader) => {
           <Home color="#FFFFFF" />
         </Link>
       </div>
+      {isOpenSidebarMenu && <DashSidebarMenu useToggleMenu={useToggleMenu} isSellerDashboard={isSellerDashboard}/>}
     </div>
   );
 };

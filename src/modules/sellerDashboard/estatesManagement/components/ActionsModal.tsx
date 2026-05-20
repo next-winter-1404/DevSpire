@@ -53,7 +53,7 @@ const ActionsModal = ({setIsOpenActionsModal, item}:IProps) => {
           <span className="font-regular text-[14px]">فعال کردن</span>
         </button>
         <Link 
-        href={`/houses/seller/user/${item.id}`}
+        href={`/dashboard/seller/estates-management/${item.id}`}
         onClick={() => {setIsOpenActionsModal(false)}}
         className="flex items-center gap-2 py-1 pr-2 text-[#1E2022] rounded-[8px] cursor-pointer   hover:text-[#0D3B66] hover:bg-[#E6EDF5]">
           <Edit/>

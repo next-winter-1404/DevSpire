@@ -22,13 +22,11 @@ const EstatesManagementView = ({data, limit}:IProps) => {
   const locale = useLocale();
 
   const t = useTranslations("sellerDashboard.estatesManagement");
-
-  // const [isOpenFilterModal, setIsOpenFilterModal] = useState(false)
-
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
   
+  // const [isOpenFilterModal, setIsOpenFilterModal] = useState(false)
   const [query, setQuery] = useState(searchParams.get("query") ?? "");
   const [search] = useDebounce(query, 950);
 
@@ -53,7 +51,7 @@ const EstatesManagementView = ({data, limit}:IProps) => {
         <div className='flex justify-between items-center'>
           <h1 className='font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]'>{t('estatesManagement')}</h1>
           <div className='flex gap-4'>
-            <div className='relative text-[#777777]   dark:text-[#E4E4E4]'>
+            {/* <div className='relative text-[#777777]   dark:text-[#E4E4E4]'>
               <input 
               value={query}
               onChange={(e: ChangeEvent<HTMLInputElement>) => getQuery(e)}
@@ -62,7 +60,7 @@ const EstatesManagementView = ({data, limit}:IProps) => {
               className='w-[440px] h-12 indent-5 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]   
               dark:bg-[#777777] dark:border-[#A3A3A3]'/>
               <Search className={`absolute top-[30%] ${locale == 'en' ? 'right-5' : 'left-5'}`}/>
-            </div>
+            </div> */}
             {/* <button 
             onClick={() => {setIsOpenFilterModal(true)}}
             className='flex items-center gap-3 py-[13px] px-3 text-[#1E2022] bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]
@@ -80,11 +78,11 @@ const EstatesManagementView = ({data, limit}:IProps) => {
           </div>
         </div>
         <DataTable dataTableHeaderItems={[
-          {id:1, label: "نام اقامتگاه", className: "w-[320px]"},
-          {id:2, label: "تاریخ رزرو", className: "w-[240px]"},
-          {id:3, label: "قیمت", className: "w-[240px]"},
-          {id:4, label: "وضعیت", className: "w-[224px]"},
-          {id:5, label: "عملیات", className: "w-[48px]"}
+          {id:1, label: t("estateName"), className: "w-[320px]"},
+          {id:2, label: t("reserveDate"), className: "w-[240px]"},
+          {id:3, label: t("price"), className: "w-[240px]"},
+          {id:4, label: t("status"), className: "w-[224px]"},
+          {id:5, label: t("actions"), className: "w-[48px]"}
         ]}
         houses={data?.houses}/>
         <EstManagementPagination totalPages={Math.ceil(data?.totalCount / limit)}/>

@@ -18,10 +18,10 @@ const Header = ({ token }: { token: string | undefined }) => {
   const pathname = usePathname();
   const t = useTranslations("header");
 
-  const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
 
-  const useToggleMenu = () => {
-    setToggleMenu(!toggleMenu);
+  const useToggleMenu = (value: boolean) => {
+    setIsOpenMenu(value);
   };
 
   let decodedToken = null;
@@ -42,7 +42,7 @@ const Header = ({ token }: { token: string | undefined }) => {
       >
         <div className="flex justify-between w-full">
           <div className="flex items-center gap-4">
-            <button onClick={useToggleMenu} className="block md:hidden p-1">
+            <button onClick={() => {useToggleMenu(true)}} className="block md:hidden p-1">
               <Menu />
             </button>
             <div className="flex items-center gap-2 text-[#0D3B66]">
@@ -100,7 +100,7 @@ const Header = ({ token }: { token: string | undefined }) => {
           </div>
         </div>
       </div>
-      {toggleMenu && <HeaderMenu useToggleMenu={useToggleMenu} />}
+      {isOpenMenu && <HeaderMenu useToggleMenu={useToggleMenu}/>}
     </>
   );
 };

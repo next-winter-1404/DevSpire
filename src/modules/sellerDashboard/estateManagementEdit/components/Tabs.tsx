@@ -5,6 +5,7 @@ import Location from './Location'
 import EstateFacilities from './EstateFacilities'
 import EstateImage from './EstateImage'
 import FinalApproval from './FinalApproval'
+import { THouse } from '@/components/common/types'
 
 
 const tabsData = [
@@ -15,7 +16,11 @@ const tabsData = [
     { id: 5, label: 'تایید نهایی', component: FinalApproval },
 ]
 
-const Tabs = () => {
+interface IProps{
+    house: THouse
+}
+
+const Tabs = ({house}:IProps) => {
 
     const [activeTab, setActiveTab] = useState(1)
     const [formData, setFormData] = useState({})
@@ -53,6 +58,7 @@ const Tabs = () => {
             {tabsData.map((tab) => (
                 activeTab === tab.id && (
                     <tab.component 
+                        house={house}
                         key={tab.id} 
                         handleNext={handleNext} 
                         handlePrev={handlePrev}
