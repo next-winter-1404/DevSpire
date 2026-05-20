@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CurveArrow from '../../../../../public/icons/CurveArrow';
 import { THouse } from '@/components/common/types';
 import CustomSelect from '@/components/common/CustomSelectOption';
@@ -21,13 +21,22 @@ const BasicSpecifications = ({house, handlePrev, handleNext, handleFinalSubmit, 
     { value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان" },
     { value: "villa", label: locale == "en" ? "villa" : "ویلا" },
   ];
-
   const transactionTypeOptions = [
     { value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان" },
     { value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان" },
     { value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان" },
   ]
-  
+  const [category, setCategory] = useState<string>(categoryOptions[0].value);
+  const [transactionType, setTransactionType] = useState<string>(transactionTypeOptions[0].value);
+
+
+  const getCategoryOptions = (value: string) => {
+    setCategory(value);
+  };  
+  const getTranTypeOptions = (value: string) => {
+    setTransactionType(value);
+  };  
+
 
   return(
     <div className='flex flex-col items-end gap-4 w-full'>
@@ -44,7 +53,7 @@ const BasicSpecifications = ({house, handlePrev, handleNext, handleFinalSubmit, 
       <div className='flex gap-8'>
         <div className='flex flex-col gap-4'>
           <span className='font-regular text-[16px] text-[#1E2022]'>نوع معامله</span>
-          <CustomSelect defaultValue={} options={} onValueChange={}/>
+          <CustomSelect defaultValue={transactionTypeOptions[0].value} options={transactionTypeOptions} onValueChange={getTranTypeOptions}/>
         </div>
         <div className='flex flex-col gap-4 w-full'>
           <label htmlFor='' className='font-regular text-[16px] text-[#1E2022]'>قیمت</label>
@@ -53,7 +62,7 @@ const BasicSpecifications = ({house, handlePrev, handleNext, handleFinalSubmit, 
       </div>
       <div className='flex flex-col gap-4'>
         <span className='font-regular text-[16px] text-[#1E2022]'>نوع ملک</span>
-        <CustomSelect defaultValue={categoryOptions[0].value} options={categoryOptions} onValueChange={}/>
+        <CustomSelect defaultValue={categoryOptions[0].value} options={categoryOptions} onValueChange={getCategoryOptions}/>
       </div>
       <div className='flex flex-col gap-4 w-full'>
         <label htmlFor='' className='font-regular text-[16px] text-[#1E2022]'>توضیحات</label>
