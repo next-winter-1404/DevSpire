@@ -26,11 +26,13 @@ const DeleteModal = ({setIsOpenDeleteModal, deleteHouseMutation}:IProps) => {
                     <p className="font-regular text-[16px] text-[#777777]">امکان برگشت پس از حذف وجود ندارد !</p>
                 </div>
                 <div className="flex gap-6 w-full font-regular text-[16px]">
-                    <button className="w-full py-[13px] text-[#777777] border border-[#777777] rounded-[16px] cursor-pointer">
+                    <button 
+                    onClick={() => {setIsOpenDeleteModal(false)}}
+                    className="w-full py-[13px] text-[#777777] border border-[#777777] rounded-[16px] cursor-pointer">
                         انصراف
                     </button>
                     <button 
-                    onClick={() => {deleteHouseMutation; setIsOpenDeleteModal(false)}} 
+                    onClick={() => {deleteHouseMutation(); setIsOpenDeleteModal(false)}} 
                     className="w-full py-[13px] text-[#FFFFFF] bg-[#FF5555] rounded-[16px] cursor-pointer">
                         حذف
                     </button>
