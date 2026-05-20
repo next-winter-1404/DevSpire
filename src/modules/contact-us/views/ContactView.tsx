@@ -54,7 +54,7 @@ export default function ContactView() {
                         className="hidden lg:flex relative bg-[#E8EEF3] dark:bg-[#434d65] rounded-xl shadow-lg border border-gray-200 dark:border-zinc-700 items-center justify-center w-[594px] h-[314px]"
                     >
                         <Image
-                            src="/images/call-center.svg"
+                            src="/images/contactUs/call-center.svg"
                             alt="icon"
                             width={220}
                             height={220}
@@ -62,7 +62,7 @@ export default function ContactView() {
                         />
                         <div className="absolute top-20 right-10 rotate-[-33.4deg]">
                             <Image
-                                src="/images/Arrow 07.svg"
+                                src="/images/contactUs/Arrow 07.svg"
                                 alt="icon"
                                 width={100}
                                 height={90}
@@ -70,7 +70,7 @@ export default function ContactView() {
                         </div>
                         <div className="absolute bottom-3 left-20 rotate-[-33.4deg]">
                             <Image
-                                src="/images/Arrow 8.svg"
+                                src="/images/contactUs/Arrow 8.svg"
                                 alt="icon"
                                 width={100}
                                 height={90}
@@ -82,7 +82,7 @@ export default function ContactView() {
                     >
                         <div className="flex justify-center lg:hidden mb-4">
                             <Image
-                                src="/images/call-center.svg"
+                                src="/images/contactUs/call-center.svg"
                                 alt="call center"
                                 width={160}
                                 height={160}
