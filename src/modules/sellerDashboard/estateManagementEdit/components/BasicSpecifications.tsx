@@ -22,6 +22,13 @@ const BasicSpecifications = ({house, handlePrev, handleNext, handleFinalSubmit, 
     { value: "villa", label: locale == "en" ? "villa" : "ویلا" },
   ];
 
+  const transactionTypeOptions = [
+    { value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان" },
+    { value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان" },
+    { value: "apartment", label: locale == "en" ? "apartment" : "آپارتمان" },
+  ]
+  
+
   return(
     <div className='flex flex-col items-end gap-4 w-full'>
       <div className='flex gap-8 w-full'>
