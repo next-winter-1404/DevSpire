@@ -13,6 +13,17 @@ export type IFastReserveParams = {
   location?: string;
   propertyType?: string;
 }
+
+
+
+export type  IHouseParams = {
+  page?: string;
+  sort?: string;
+  order?: string;
+  limit?: string;
+  search?: string;
+  propertyType?: string;
+}
 export type THouse = {
   id: number;
   title: string;
@@ -47,6 +58,8 @@ export type THousesResponse = {
 
 
 
+
+
 export type IBlogsParams = {
   page?: string;
   sort?: string;
@@ -70,6 +83,9 @@ export type TBlogsResponse = {
   totalCount: number;
 };
 
+
+
+
 export type TTravelerDetails = {
   firstName: string;
   lastName: string;
@@ -77,12 +93,10 @@ export type TTravelerDetails = {
   birthDate: string;
   nationalId: string;
 };
-
 export type TReserveHouse = {
   title: string;
   price: string;
 };
-
 export type TReservation = {
   id: number;
   user_id: number;
@@ -135,44 +149,12 @@ export interface TReservationDetailResponse {
 
 
 
+
+
+
 export type IDataTableHeaderItem = {
   id: number
   label: string
   className: string
 }
-export type  IUserHouseParams = {
-  page?: string;
-  sort?: string;
-  order?: string;
-  limit?: string;
-  search?: string;
-  propertyType?: string;
-}
-export type TUserHouse = {
-  id: number,
-  title: string,
-  address: string,
-  photos: null,
-  rate: number,
-  discounted_price: null,
-  price: number,
-  tags: [],
-  last_updated: string,
-  capacity: number,
-  location: string,
-  categories: string,
-  bathrooms: number,
-  parking: number,
-  rooms: number,
-  yard_type: null,
-  num_comments: number,
-  discount_id: null,
-  transaction_type: string,
-  sellerId: number,
-  sellerName: string,
-  caption: string
-}
-export type TUserHouseResponse = {
-  houses: TUserHouse[];
-  totalCount: number;
-}
+

@@ -3,7 +3,7 @@ import Search from '../../../../../public/icons/Search'
 import { useLocale, useTranslations } from 'next-intl'
 import Plus from '../../../../../public/icons/Plus'
 import DataTable from '../components/DataTable'
-import { TUserHouseResponse } from '@/components/common/types'
+import { THousesResponse } from '@/components/common/types'
 import EstManagementPagination from '../components/EstManagementPagination'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
@@ -12,7 +12,7 @@ import { useDebounce } from 'use-debounce'
 
 
 interface IProps{
-  data: TUserHouseResponse;
+  data: THousesResponse;
   limit: number;
 }
 

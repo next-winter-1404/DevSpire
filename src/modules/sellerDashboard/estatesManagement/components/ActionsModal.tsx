@@ -8,12 +8,12 @@ import { DeleteHouse } from "../services/DELETE/deleteHouse"
 import toast from "react-hot-toast"
 import { Link, useRouter } from "@/i18n/routing"
 import axios from "axios"
-import { TUserHouse } from "@/components/common/types"
+import { THouse } from "@/components/common/types"
 
 
 interface IProps{
   setIsOpenActionsModal: (value: boolean) => void
-  item: TUserHouse
+  item: THouse
 }
 
 const ActionsModal = ({setIsOpenActionsModal, item}:IProps) => {
@@ -53,7 +53,7 @@ const ActionsModal = ({setIsOpenActionsModal, item}:IProps) => {
           <span className="font-regular text-[14px]">فعال کردن</span>
         </button>
         <Link 
-        href={`/estates-management/${item.id}`}
+        href={`/houses/seller/user/${item.id}`}
         onClick={() => {setIsOpenActionsModal(false)}}
         className="flex items-center gap-2 py-1 pr-2 text-[#1E2022] rounded-[8px] cursor-pointer   hover:text-[#0D3B66] hover:bg-[#E6EDF5]">
           <Edit/>
