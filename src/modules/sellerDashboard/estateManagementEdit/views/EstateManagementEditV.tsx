@@ -10,8 +10,8 @@ interface IProps{
 const EstateManagementEditV = ({house}:IProps) => {
 
     return (
-        <div>
-            <Top/>
+        <div className="flex flex-col gap-8">
+            <Top house={house}/>
             <Tabs house={house}/>
         </div>
     )

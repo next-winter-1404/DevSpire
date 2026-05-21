@@ -1,12 +1,11 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import BasicSpecifications from './BasicSpecifications'
 import Location from './Location'
 import EstateFacilities from './EstateFacilities'
 import EstateImage from './EstateImage'
 import FinalApproval from './FinalApproval'
 import { THouse } from '@/components/common/types'
-
 
 const tabsData = [
     { id: 1, label: 'مشخصات اولیه', component: BasicSpecifications },
@@ -20,13 +19,22 @@ interface IProps{
     house: THouse
 }
 
-const Tabs = ({house}:IProps) => {
+type FormDataMap = Record<number, any>;
 
+const Tabs = ({house}:IProps) => {
     const [activeTab, setActiveTab] = useState(1)
-    const [formData, setFormData] = useState({})
+    const [allFormData, setAllFormData] = useState<FormDataMap>({});
+
+    useEffect(() => {
+        const initialData: FormDataMap = {};
+        tabsData.forEach(tab => {
+            initialData[tab.id] = {};
+        });
+        setAllFormData(initialData);
+    }, []);
 
     const handleNext = (stepData: any) => {
-        setFormData(prev => ({ ...prev, [activeTab]: stepData }))
+        setAllFormData(prev => ({ ...prev, [activeTab]: stepData }))
         if (activeTab < tabsData.length) {
             setActiveTab(prev => prev + 1)
         }
@@ -39,11 +47,11 @@ const Tabs = ({house}:IProps) => {
     }
 
     const handleFinalSubmit = () => {
-        console.log('داده‌های نهایی:', formData)
+        console.log('داده‌های نهایی:', allFormData)
     }
 
     return (
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-8'>
             <div className='flex gap-8 font-regular text-[16px] text-[#777777]'>
                 {tabsData.map((tab) => (
                     <button
@@ -55,18 +63,21 @@ const Tabs = ({house}:IProps) => {
                     </button>
                 ))}
             </div>
-            {tabsData.map((tab) => (
-                activeTab === tab.id && (
-                    <tab.component 
-                        house={house}
-                        key={tab.id} 
-                        handleNext={handleNext} 
-                        handlePrev={handlePrev}
-                        handleFinalSubmit={handleFinalSubmit}
-                        formData={formData} 
-                    />
-                )
-            ))}
+            {tabsData.map((tab) => {
+                const CurrentComponent = tab.component;
+                return (
+                    activeTab === tab.id && (
+                        <CurrentComponent
+                            house={house}
+                            key={tab.id}
+                            handleNext={handleNext}
+                            handlePrev={handlePrev}
+                            handleFinalSubmit={handleFinalSubmit}
+                            formData={allFormData[tab.id] || {}}
+                        />
+                    )
+                );
+            })}
         </div>
     )
 }

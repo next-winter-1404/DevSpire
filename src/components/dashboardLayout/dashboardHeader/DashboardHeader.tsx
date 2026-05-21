@@ -36,7 +36,7 @@ const DashboardHeader = ({hasNotification, isSellerDashboard}: IProps) => {
     >
       <div className="flex items-center gap-4">
         <button onClick={() => useToggleMenu(true)} className="block md:hidden p-1">
-          <Menu/>
+          <Menu className="w-8 h-8"/>
         </button>
         <Image
           src={EstateOwner}
