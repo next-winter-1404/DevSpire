@@ -45,11 +45,11 @@ const FavoritesView = async ({ params }: IProps) => {
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              هنوز رزروی ثبت نشده است
+              ملکی به علاقه هایتان اضافه نکردید !{" "}
             </p>
 
             <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">
-              وقتی کاربران اقامتگاه شما را رزرو کنند در اینجا نمایش داده می‌شود
+              بعد از اضافه کردن ملک به به علاقه مندیتان اینجا نمایش داده میشوند
             </p>
           </div>
         )}

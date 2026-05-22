@@ -17,17 +17,19 @@ import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
 import Close from "../../../../public/icons/Close";
+import LanguageSwitcher from "@/components/common/LanguageSwitcher";
+import ToggleTheme from "@/components/common/ToggleTheme";
 
-interface IProps{
-  isSellerDashboard: boolean;
-  useToggleMenu: (value: boolean) => void
+interface IProps {
+  role: string | undefined;
+  toggleMenu: (value: boolean) => void;
 }
 
 const sellerBasePath = "/dashboard/seller";
 const customerBasePath = "/dashboard/customer";
+const adminBasePath = "/dashboard/admin";
 
-const DashboardSidebar = ({ isSellerDashboard, useToggleMenu }: IProps) => {
-
+const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("sellerDashboard.sidebar");
@@ -44,103 +46,205 @@ const DashboardSidebar = ({ isSellerDashboard, useToggleMenu }: IProps) => {
       ? "text-[#0D3B66] dark:text-[#E4E4E4]"
       : "dark:text-[#A3A3A3]";
 
-
   const sellerMenuItems = {
-    general:[
-      {href: `${sellerBasePath}`, label: t("dashboard"), Icon: Dashboard},
-      {href: `${sellerBasePath}/user-profile`, label: t("userProfile"), Icon: EditUser},
-      {href: `${sellerBasePath}/notifications`, label: t("notifications"), Icon: Notification}
+    general: [
+      { href: `${sellerBasePath}`, label: t("dashboard"), Icon: Dashboard },
+      {
+        href: `${sellerBasePath}/user-profile`,
+        label: t("userProfile"),
+        Icon: EditUser,
+      },
+      {
+        href: `${sellerBasePath}/notifications`,
+        label: t("notifications"),
+        Icon: Notification,
+      },
     ],
-    management:[
-      {href: `${sellerBasePath}/estates-management`, label: t("estatesManagement"), Icon: Estates},
-      {href: `${sellerBasePath}/reserves-management`, label: t("reservesManagement"), Icon: CheckList},
-      {href: `${sellerBasePath}/finantial-management`, label: t("finantialManagement"), Icon: FinantialManagement},
-      {href: `${sellerBasePath}/comments-management`, label: t("commentsManagement"), Icon: Chats},
-    ]
+    management: [
+      {
+        href: `${sellerBasePath}/estates-management`,
+        label: t("estatesManagement"),
+        Icon: Estates,
+      },
+      {
+        href: `${sellerBasePath}/reserves-management`,
+        label: t("reservesManagement"),
+        Icon: CheckList,
+      },
+      {
+        href: `${sellerBasePath}/payments`,
+        label: t("finantialManagement"),
+        Icon: FinantialManagement,
+      },
+      {
+        href: `${sellerBasePath}/comments-management`,
+        label: t("commentsManagement"),
+        Icon: Chats,
+      },
+    ],
   };
 
   const customerMenuItems = {
-    general:[
-      {href: `${customerBasePath}`, label: t("dashboard"), Icon: Dashboard},
-      {href: `${customerBasePath}/user-profile`, label: t("userProfile"), Icon: EditUser},
-      {href: `${customerBasePath}/notifications`, label: t("notifications"), Icon: Notification}
+    general: [
+      { href: `${customerBasePath}`, label: t("dashboard"), Icon: Dashboard },
+      {
+        href: `${customerBasePath}/user-profile`,
+        label: t("userProfile"),
+        Icon: EditUser,
+      },
+      {
+        href: `${customerBasePath}/notifications`,
+        label: t("notifications"),
+        Icon: Notification,
+      },
     ],
-    management:[
-      {href: `${customerBasePath}/reserves-management`, label: t("reservesManagement"), Icon: CheckList},
-      {href: `${customerBasePath}/payments-management`, label: t("paymentsManagement"), Icon: FinantialManagement},
-      {href: `${customerBasePath}/favorites`, label: t("favorites"), Icon: Heart},
-    ]
+    management: [
+      {
+        href: `${customerBasePath}/reserves-management`,
+        label: t("reservesManagement"),
+        Icon: CheckList,
+      },
+      {
+        href: `${customerBasePath}/payments`,
+        label: t("paymentsManagement"),
+        Icon: FinantialManagement,
+      },
+      {
+        href: `${customerBasePath}/favorites`,
+        label: t("favorites"),
+        Icon: Heart,
+      },
+    ],
+  };
+  const adminMenuItems = {
+    general: [
+      { href: `${adminBasePath}`, label: t("dashboard"), Icon: Dashboard },
+      {
+        href: `${adminBasePath}/user-profile`,
+        label: t("userProfile"),
+        Icon: EditUser,
+      },
+      {
+        href: `${adminBasePath}/notifications`,
+        label: t("notifications"),
+        Icon: Notification,
+      },
+    ],
+    management: [
+      {
+        href: `${adminBasePath}/reserves-management`,
+        label: t("reservesManagement"),
+        Icon: CheckList,
+      },
+      {
+        href: `${adminBasePath}/payments`,
+        label: t("paymentsManagement"),
+        Icon: FinantialManagement,
+      },
+    ],
   };
 
-  const menuItems = isSellerDashboard ? sellerMenuItems : customerMenuItems;
-
+  const menuItems =
+    role == "seller"
+      ? sellerMenuItems
+      : role == "buyer"
+        ? customerMenuItems
+        : adminMenuItems;
   return (
     <div className="flex fixed inset-0 z-50   md:hidden">
-      <div onClick={() => {useToggleMenu(false)}} className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
       <div
-      className="relative  flex flex-col gap-8 w-[75%] max-w-sm h-full bg-[#FFFFFF] shadow-2xl p-6 animate-in slide-in-from-right-8 
+        onClick={() => {
+          toggleMenu(false);
+        }}
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+      ></div>
+      <div
+        className="relative  flex flex-col gap-6 w-[75%] max-w-sm h-full
+         bg-[#FFFFFF] shadow-2xl px-6 py-4 animate-in slide-in-from-right-8 
       duration-300 
-      dark:bg-[#3F3F46]">
+      dark:bg-[#3F3F46]"
+      >
         <div className="flex justify-end w-full">
-          <div onClick={() => {useToggleMenu(false)}} className="p-4 bg-[#F5F5F5] rounded-full">
-            <Close/>
+          <div
+            onClick={() => {
+              toggleMenu(false);
+            }}
+            className="p-3 bg-[#F5F5F5] rounded-full"
+          >
+            <Close />
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <Logo color="text-[#0D3B66]" className="w-8 h-8" />
-          <h2 className="font-bold text-[32px] text-[#1E2022] dark:text-[#F5F5F5]">
-            {t("logo")}
-          </h2>
-        </div>
-        <div className="flex flex-col gap-4">
-          <h3 className="font-regular text-[16px] text-[#0D3B66] dark:text-[#E6EDF5]">
-          {t("menu")}
-          </h3>
-          <div className="flex flex-col gap-6 font-regular text-[16px]">
-          {menuItems.general.map(({ href, label, Icon }) => (
-            <div key={href} className="flex items-center gap-4 text-[#777777]">
-            <Icon className={isActiveIcon(href)} />
-            <Link href={href} className={isActiveText(href)}>
-              {label}
-            </Link>
+        <div className="w-full flex items-center justify-between ">
+          <div className="flex items-center gap-3">
+            <Logo color="text-[#0D3B66]" className="w-8 h-8" />
+            <h2 className="font-bold text-[26px] text-[#1E2022] dark:text-[#F5F5F5]">
+              {t("logo")}
+            </h2>
+          </div>
+          <div className="flex items-center gap-3">
+            <ToggleTheme />
+            <div className="h-full">
+              <LanguageSwitcher />
             </div>
-          ))}
           </div>
         </div>
+
         <div className="flex flex-col gap-4">
           <h3 className="font-regular text-[16px] text-[#0D3B66] dark:text-[#E6EDF5]">
-            {t("management")}
+            {t("menu")}
           </h3>
           <div className="flex flex-col gap-6 font-regular text-[16px]">
-            {menuItems.management.map(({ href, label, Icon }) => (
-              <div key={href} className="flex items-center gap-4 text-[#777777]">
+            {menuItems.general.map(({ href, label, Icon }) => (
+              <div
+                key={href}
+                className="flex items-center gap-4 text-[#777777]"
+              >
                 <Icon className={isActiveIcon(href)} />
                 <Link href={href} className={isActiveText(href)}>
                   {label}
                 </Link>
               </div>
             ))}
-            <button 
-            onClick={() => setOpenLogoutModal(true)}
-            className="cursor-pointer flex items-center gap-4 text-[#777777]   dark:text-[#A3A3A3]">
+          </div>
+        </div>
+        <div className="flex flex-col gap-4 mt-2">
+          <h3 className="font-regular text-[16px] text-[#0D3B66] dark:text-[#E6EDF5]">
+            {t("management")}
+          </h3>
+          <div className="flex flex-col gap-6 font-regular text-[16px]">
+            {menuItems.management.map(({ href, label, Icon }) => (
+              <div
+                key={href}
+                className="flex items-center gap-4 text-[#777777]"
+              >
+                <Icon className={isActiveIcon(href)} />
+                <Link href={href} className={isActiveText(href)}>
+                  {label}
+                </Link>
+              </div>
+            ))}
+            <button
+              onClick={() => setOpenLogoutModal(true)}
+              className="cursor-pointer flex items-center gap-4 text-[#777777]   dark:text-[#A3A3A3]"
+            >
               <LogOut />
               <h2>{t("logOut")}</h2>
             </button>
-            </div>
-            {openLogoutModal && (
-              <LogoutModal
-                onClose={() => setOpenLogoutModal(false)}
-                open={openLogoutModal}
-                onConfirm={() => {
+          </div>
+          {openLogoutModal && (
+            <LogoutModal
+              onClose={() => setOpenLogoutModal(false)}
+              open={openLogoutModal}
+              onConfirm={() => {
                 deleteCookie("refreshToken");
                 deleteCookie("accessToken");
                 toast.success("با موفقیت از حسابتان خارج شدید");
                 router.push("/");
-                }}
-              />
-            )}
-          </div>
+              }}
+            />
+          )}
         </div>
+      </div>
     </div>
   );
 };

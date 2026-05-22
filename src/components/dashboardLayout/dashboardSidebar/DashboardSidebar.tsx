@@ -16,64 +16,144 @@ import toast from "react-hot-toast";
 import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
+import Chat from "../../../../public/icons/Chat";
 
 interface IProps {
-  isSellerDashboard: boolean;
+  role: "seller" | "buyer" | "admin";
 }
 
 const sellerBasePath = "/dashboard/seller";
 const customerBasePath = "/dashboard/customer";
+const adminBasePath = "/dashboard/admin";
 
-const DashboardSidebar = ({ isSellerDashboard }: IProps) => {
+const DashboardSidebar = ({ role }: IProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("sellerDashboard.sidebar");
 
   const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
 
-  const isActiveText = (path: string) => pathname === path 
-  ? "font-bold text-[#1E2022] dark:text-[#E4E4E4]"
-  : "text-[#777777] dark:text-[#A3A3A3]";
+  const isActiveText = (path: string) =>
+    pathname === path
+      ? "font-bold text-[#1E2022] dark:text-[#E4E4E4]"
+      : "text-[#777777] dark:text-[#A3A3A3]";
 
   const isActiveIcon = (path: string) =>
-  pathname === path
-  ? "text-[#0D3B66] dark:text-[#E4E4E4]"
-  : "dark:text-[#A3A3A3]";
+    pathname === path
+      ? "text-[#0D3B66] dark:text-[#E4E4E4]"
+      : "dark:text-[#A3A3A3]";
 
   const sellerMenuItems = {
-    general:[
-      {href: `${sellerBasePath}`, label: t("dashboard"), Icon: Dashboard},
-      {href: `${sellerBasePath}/user-profile`, label: t("userProfile"), Icon: EditUser},
-      {href: `${sellerBasePath}/notifications`, label: t("notifications"), Icon: Notification}
+    general: [
+      { href: `${sellerBasePath}`, label: t("dashboard"), Icon: Dashboard },
+      {
+        href: `${sellerBasePath}/user-profile`,
+        label: t("userProfile"),
+        Icon: EditUser,
+      },
+      {
+        href: `${sellerBasePath}/notifications`,
+        label: t("notifications"),
+        Icon: Notification,
+      },
     ],
-    management:[
-      {href: `${sellerBasePath}/estates-management`, label: t("estatesManagement"), Icon: Estates},
-      {href: `${sellerBasePath}/reserves-management`, label: t("reservesManagement"), Icon: CheckList},
-      {href: `${sellerBasePath}/finantial-management`, label: t("finantialManagement"), Icon: FinantialManagement},
-      {href: `${sellerBasePath}/comments-management`, label: t("commentsManagement"), Icon: Chats},
-    ]
+    management: [
+      {
+        href: `${sellerBasePath}/estates-management`,
+        label: t("estatesManagement"),
+        Icon: Estates,
+      },
+      {
+        href: `${sellerBasePath}/reserves-management`,
+        label: t("reservesManagement"),
+        Icon: CheckList,
+      },
+      {
+        href: `${sellerBasePath}/payments`,
+        label: t("finantialManagement"),
+        Icon: FinantialManagement,
+      },
+      {
+        href: `${sellerBasePath}/comments-management`,
+        label: t("commentsManagement"),
+        Icon: Chats,
+      },
+    ],
   };
 
   const customerMenuItems = {
-    general:[
-      {href: `${customerBasePath}`, label: t("dashboard"), Icon: Dashboard},
-      {href: `${customerBasePath}/user-profile`, label: t("userProfile"), Icon: EditUser},
-      {href: `${customerBasePath}/notifications`, label: t("notifications"), Icon: Notification}
+    general: [
+      { href: `${customerBasePath}`, label: t("dashboard"), Icon: Dashboard },
+      {
+        href: `${customerBasePath}/user-profile`,
+        label: t("userProfile"),
+        Icon: EditUser,
+      },
+      {
+        href: `${customerBasePath}/notifications`,
+        label: t("notifications"),
+        Icon: Notification,
+      },
     ],
-    management:[
-      {href: `${customerBasePath}/reserves-management`, label: t("reservesManagement"), Icon: CheckList},
-      {href: `${customerBasePath}/payments-management`, label: t("paymentsManagement"), Icon: FinantialManagement},
-      {href: `${customerBasePath}/favorites`, label: t("favorites"), Icon: Heart},
-    ]
+    management: [
+      {
+        href: `${customerBasePath}/reserves-management`,
+        label: t("reservesManagement"),
+        Icon: CheckList,
+      },
+      {
+        href: `${customerBasePath}/payments`,
+        label: t("paymentsManagement"),
+        Icon: FinantialManagement,
+      },
+      {
+        href: `${customerBasePath}/favorites`,
+        label: t("favorites"),
+        Icon: Heart,
+      },
+    ],
+  };
+  const adminMenuItems = {
+    general: [
+      { href: `${adminBasePath}`, label: t("dashboard"), Icon: Dashboard },
+      {
+        href: `${adminBasePath}/user-profile`,
+        label: t("userProfile"),
+        Icon: EditUser,
+      },
+      {
+        href: `${adminBasePath}/notifications`,
+        label: t("notifications"),
+        Icon: Notification,
+      },
+    ],
+    management: [
+      {
+        href: `${adminBasePath}/reserves-management`,
+        label: t("reservesManagement"),
+        Icon: CheckList,
+      },
+      {
+        href: `${adminBasePath}/payments`,
+        label: t("paymentsManagement"),
+        Icon: FinantialManagement,
+      },
+    ],
   };
 
-  const menuItems = isSellerDashboard ? sellerMenuItems : customerMenuItems;
+  const menuItems =
+    role == "seller"
+      ? sellerMenuItems
+      : role == "buyer"
+        ? customerMenuItems
+        : adminMenuItems;
 
   return (
     <div
       className="hidden flex flex-col gap-8 w-[268px] max-h-screen p-8 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px]
       dark:bg-[#404040] dark:border-[#777777]
-      md:flex md:flex-col">
+      md:flex md:flex-col"
+    >
       <div className="flex items-center gap-4">
         <Logo color="text-[#0D3B66]" className="w-8 h-8" />
         <h2 className="font-bold text-[32px] text-[#1E2022] dark:text-[#F5F5F5]">

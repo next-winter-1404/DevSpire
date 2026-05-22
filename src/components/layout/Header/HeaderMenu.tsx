@@ -7,21 +7,25 @@ import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import ToggleThem from "@/components/common/ToggleTheme";
 
 interface HeaderMenuProps {
-  useToggleMenu: (value: boolean) => void;
+  toggleMenu: (value: boolean) => void;
 }
 
-const HeaderMenu = ({ useToggleMenu }: HeaderMenuProps) => {
+const HeaderMenu = ({ toggleMenu }: HeaderMenuProps) => {
   const pathname = usePathname();
   const t = useTranslations("header");
 
   return (
     <div className="fixed inset-0 z-50 flex   md:hidden">
       <div
-        onClick={() => {useToggleMenu(false)}}
+        onClick={() => {
+          toggleMenu(false);
+        }}
         className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
       ></div>
-      <div className="relative  flex flex-col w-[75%] max-w-sm h-full bg-[#FFFFFF] dark:bg-[#3F3F46] shadow-2xl p-6 animate-in 
-      slide-in-from-right-8 duration-300">
+      <div
+        className="relative  flex flex-col w-[75%] max-w-sm h-full bg-[#FFFFFF] dark:bg-[#3F3F46] shadow-2xl p-6 animate-in 
+      slide-in-from-right-8 duration-300"
+      >
         <div className="flex justify-between items-center pb-6 border-b dark:border-gray-600">
           <div className="flex items-center gap-6 h-full">
             <span className="font-bold text-xl text-[#0D3B66] dark:text-[#E4E4E4]">
@@ -36,7 +40,9 @@ const HeaderMenu = ({ useToggleMenu }: HeaderMenuProps) => {
           </div>
 
           <button
-            onClick={() => {useToggleMenu(false)}}
+            onClick={() => {
+              toggleMenu(false);
+            }}
             className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           >
             <Close />
@@ -48,7 +54,9 @@ const HeaderMenu = ({ useToggleMenu }: HeaderMenuProps) => {
             const isActive = pathname === item.link;
             return (
               <Link
-                onClick={() => {useToggleMenu(false)}}
+                onClick={() => {
+                  toggleMenu(false);
+                }}
                 key={index}
                 href={item.link}
                 className={` cursor-pointer block w-full px-4 py-3 rounded-xl font-semibold text-[16px] transition-all duration-200 ${

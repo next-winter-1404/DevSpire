@@ -32,6 +32,7 @@
     "next-i18n-router": "^5.5.8",
     "next-intl": "^4.11.0",
     "react": "19.2.4",
+    "react-countup": "^6.5.3",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.75.0",
     "react-hot-toast": "^2.6.0",
