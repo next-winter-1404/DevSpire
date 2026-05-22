@@ -22,6 +22,7 @@ interface IProps{
 type FormDataMap = Record<number, any>;
 
 const Tabs = ({house}:IProps) => {
+    
     const [activeTab, setActiveTab] = useState(1)
     const [allFormData, setAllFormData] = useState<FormDataMap>({});
 

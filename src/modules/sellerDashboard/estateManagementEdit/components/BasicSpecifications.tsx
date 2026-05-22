@@ -14,6 +14,7 @@ interface IProps {
 }
 
 const BasicSpecifications = ({ house, handleNext, formData }: IProps) => {
+  
   const locale = useLocale();
 
   const { handleSubmit, control } = useForm({
