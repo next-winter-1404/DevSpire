@@ -16,15 +16,17 @@ import toast from "react-hot-toast";
 import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
+import Chat from "../../../../public/icons/Chat";
 
 interface IDashboardSidebar {
-  isSellerDashboard: boolean;
+  role: "admin" | "seller" | "buyer";
 }
 
 const sellerBasePath = "/dashboard/seller";
 const customerBasePath = "/dashboard/customer";
+const adminBasePath = "/dashboard/admin";
 
-const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
+const DashboardSidebar = ({ role }: IDashboardSidebar) => {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("sellerDashboard.sidebar");
@@ -64,7 +66,12 @@ const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
       Icon: CheckList,
     },
     {
-      href: `${sellerBasePath}/finantial-management`,
+      href: `${sellerBasePath}/comments-management`,
+      label: "مدیریت کامنت ها",
+      Icon: Chat,
+    },
+    {
+      href: `${sellerBasePath}/payments`,
       label: t("finantialManagement"),
       Icon: FinantialManagement,
     },
@@ -94,7 +101,7 @@ const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
       Icon: CheckList,
     },
     {
-      href: `${customerBasePath}/finantial-management`,
+      href: `${customerBasePath}/payments`,
       label: t("finantialManagement"),
       Icon: FinantialManagement,
     },
@@ -105,8 +112,42 @@ const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
     },
     { href: `${customerBasePath}/logout`, label: t("logOut"), Icon: LogOut },
   ];
+  const AdminMenuItems = [
+    { href: `${adminBasePath}`, label: t("dashboard"), Icon: Dashboard },
+    {
+      href: `${adminBasePath}/user-profile`,
+      label: t("userProfile"),
+      Icon: EditUser,
+    },
+    {
+      href: `${adminBasePath}/notifications`,
+      label: t("notifications"),
+      Icon: Notification,
+    },
+    {
+      href: `${adminBasePath}/reserves-management`,
+      label: t("reservesManagement"),
+      Icon: CheckList,
+    },
+    {
+      href: `${adminBasePath}/payments`,
+      label: t("finantialManagement"),
+      Icon: FinantialManagement,
+    },
+    {
+      href: `${adminBasePath}/favorites`,
+      label: t("favorites"),
+      Icon: Heart,
+    },
+    { href: `${adminBasePath}/logout`, label: t("logOut"), Icon: LogOut },
+  ];
 
-  const menuItems = isSellerDashboard ? sellerMenuItems : customerMenuItems;
+  const menuItems =
+    role == "seller"
+      ? sellerMenuItems
+      : role == "buyer"
+        ? customerMenuItems
+        : AdminMenuItems;
 
   return (
     <div

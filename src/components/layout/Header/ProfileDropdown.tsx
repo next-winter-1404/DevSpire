@@ -72,13 +72,19 @@ export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
 
           <div className="py-2 text-right">
             <Link
-              href="/dashboard"
+              href={`/dashboard/${
+                data.role == "seller"
+                  ? "seller"
+                  : data.role == "buyer"
+                    ? "customer"
+                    : "admin"
+              }`}
               className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600
                hover:bg-gray-50 hover:text-[#10375c] transition-colors"
               onClick={() => setIsOpen(false)}
             >
               <DashboardIcon />
-              پنل کاربری
+              داشبورد
             </Link>
 
             <Link
