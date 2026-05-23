@@ -18,26 +18,28 @@ const TableRow = ({item}: IProps) => {
 
 
     return (
-        <div className="flex items-center py-3 px-6 border-y border-[#DDDDDD] relative   dark:border-[#777777]">
-            <div className="flex items-center gap-4 w-[316px]">
+        <tr className="flex items-center py-3 px-6 border-y border-[#DDDDDD] relative   dark:border-[#777777]">
+            <td className="flex items-center gap-4 w-[316px]">
                 <Image src={UserEstate} alt="userEstate" className="w-10 h-10 rounded-full"/>
                 <span className="font-regular text-[16px] text-[#1E2022]   dark:text-[#E4E4E4]">{item.title}</span>
-            </div>
-            <span className="w-[216px]">{item.last_updated.slice(0,10)}</span>
-            <div className="flex items-center gap-1 w-[264px] font-regular text-[16px] text-[#1E2022]   dark:text-[#E4E4E4]">
+            </td>
+            <td>
+                <span className="w-[216px]">{item.last_updated.slice(0,10)}</span>
+            </td>
+            <td className="flex items-center gap-1 w-[264px] font-regular text-[16px] text-[#1E2022]   dark:text-[#E4E4E4]">
                 <span>{item.price}</span>
                 <span>تومان</span>
-            </div>
-            <div className="w-[252px]">
+            </td>
+            <td className="w-[252px]">
                 <span className="py-1 px-2 text-[#008C78] bg-[#CCF2ED] rounded-[8px]">تایید شده</span>
-            </div>
-            <div className="cursor-pointer" onClick={() => {setIsOpenActionsModal(true)}}>
+            </td>
+            <td className="cursor-pointer" onClick={() => {setIsOpenActionsModal(true)}}>
                 <Dots/>
-            </div>
+            </td>
             {
                 isOpenActionsModal && <ActionsModal setIsOpenActionsModal={setIsOpenActionsModal} item={item}/>
             }
-        </div>    
+        </tr>    
     )
 
 }

@@ -11,23 +11,25 @@ interface IProps {
 const DataTable = ({dataTableHeaderItems, houses}:IProps) => {
 
     return (
-        <div className="flex flex-col gap-4 p-6 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]   
+        <table className="flex flex-col gap-4 p-6 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]   
         dark:bg-[#262626] dark:border-[#777777]">
-            <div className="flex w-full px-6">
-                {
-                    dataTableHeaderItems.map((item) => (
-                        <span key={item.id} className={item.className}>{item.label}</span>
-                    ))
-                }
-            </div>
-            <div>
+            <thead className="flex w-full px-6">
+                <tr>
+                    {
+                        dataTableHeaderItems.map((item) => (
+                            <span key={item.id} className={item.className}>{item.label}</span>
+                        ))
+                    }
+                </tr>
+            </thead>
+            <tbody>
                 {
                     houses?.map((item) => (
                         <TableRow item={item} key={item.id}/>
                     ))
                 }
-            </div>
-        </div>
+            </tbody>
+        </table>
     )
 
 }
