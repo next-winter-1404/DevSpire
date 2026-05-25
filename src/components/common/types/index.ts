@@ -146,7 +146,7 @@ export type TUserHouse = {
   address: string;
   photos: null;
   rate: number;
-  discounted_price: null;
+  discounted_price: number;
   price: number;
   tags: [];
   last_updated: string;

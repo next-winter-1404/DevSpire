@@ -38,7 +38,8 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
         {data.map((row) => (
           <tr
             key={row.id}
-            className="border-b border-[#DDDDDD] hover:bg-slate-50 transition-colors"
+            className="border-b border-[#DDDDDD] hover:bg-slate-50
+             dark:hover:bg-slate-800/40 transition-colors"
           >
             <td className="py-4 px-4 text-gray-600">
               <div className="flex items-center gap-3">

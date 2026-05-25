@@ -21,6 +21,7 @@ export default function CommentsTable({ comments }: { comments: IComment[] }) {
     document.addEventListener("mousedown", handleCloseMenu);
     return () => document.removeEventListener("mousedown", handleCloseMenu);
   }, []);
+  console.log(comments);
 
   return (
     <div className="overflow-x-auto">
@@ -39,7 +40,8 @@ export default function CommentsTable({ comments }: { comments: IComment[] }) {
           {comments.map((comment) => (
             <tr
               key={comment.id}
-              className="border-b border-[#DDDDDD] hover:bg-slate-50 transition-colors"
+              className="border-b border-[#DDDDDD] hover:bg-slate-50 dark:hover:bg-slate-800/40 
+               transition-colors"
             >
               <td className="py-4 px-4 font-medium text-gray-800">
                 {comment.house.title}
@@ -83,12 +85,19 @@ export default function CommentsTable({ comments }: { comments: IComment[] }) {
                 {comment.id === openMenuId && (
                   <div
                     ref={menuRef}
-                    className="absolute left-0 mt-2 w-32 bg-white shadow-lg border rounded-md z-10"
+                    className="absolute left-0 mt-2 w-32 bg-white 
+                    shadow-lg border rounded-md z-10"
                   >
-                    <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 text-sm">
+                    <button
+                      className="block w-full text-right px-4 py-2
+                     hover:bg-gray-100 text-sm"
+                    >
                       مشاهده
                     </button>
-                    <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 text-sm text-red-500">
+                    <button
+                      className="block w-full text-right px-4 py-2
+                     hover:bg-gray-100 text-sm text-red-500"
+                    >
                       حذف
                     </button>
                   </div>
