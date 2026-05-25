@@ -49,7 +49,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
             <tr
               key={row.id}
               className="border-b border-[#DDDDDD]
-               hover:bg-slate-50 dark:hover:bg-slate-50/10 transition-colors"
+               hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
             >
               <td className="py-4 px-4 text-gray-500 align-middle">
                 {row.house?.title}

@@ -10,7 +10,7 @@ export function DashboardTableSkeleton() {
       </div>
 
       <div
-        className="bg-white dark:bg-[#1f2937] border border-gray-200
+        className="dark:bg-[#262626] bg-[#ffff] border border-gray-200
        dark:border-gray-700 rounded-xl p-4"
       >
         <div className="grid grid-cols-5 gap-4 mb-4">
