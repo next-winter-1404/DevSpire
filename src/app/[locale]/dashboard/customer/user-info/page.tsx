@@ -1,9 +1,14 @@
+import UserInfoView from '@/modules/customerDashboard/UserInfo/views/UserInfoView'
 import React from 'react'
 
 const page = () => {
+  
   return (
-    <div>page</div>
+    <div>
+      <UserInfoView/>
+    </div>
   )
+
 }
 
 export default page
