@@ -1,4 +1,5 @@
 import { TravelerDetail } from "@/modules/booking/types";
+import { TUser } from "@/modules/mortgageRentDetail/types";
 
 export type IFastReserveParams = {
   page?: string;
@@ -189,4 +190,17 @@ export interface IDashboardStats {
   comments: number;
 
   averageRating: string;
+}
+
+export interface IUserActivity {
+  userId: number;
+  bookingCount: number;
+  feedbackGiven: number;
+  feedbackReceived: number;
+  housesCreated: number;
+}
+
+export interface IAllUsers {
+  data: TUser[];
+  totalCount: number;
 }

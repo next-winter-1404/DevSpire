@@ -14,7 +14,7 @@ interface TopCardsProps {
 
 const TopCards: React.FC<TopCardsProps> = ({ items }) => {
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-col md:flex-row md:items-center gap-4">
       {items.map((item, index) => (
         <div
           key={index}

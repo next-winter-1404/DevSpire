@@ -4,9 +4,10 @@ import { useTranslations } from "next-intl";
 import { ISellerPayments } from "../views/SellerChartsView";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { ISellerFinance } from "../views/SellerTopCardsView";
 
 interface IProps {
-  payments: ISellerPayments | null;
+  payments: ISellerFinance | null;
   user: TUserRes | null;
 }
 const SellerDashboardCharts = ({ payments, user }: IProps) => {
@@ -16,10 +17,13 @@ const SellerDashboardCharts = ({ payments, user }: IProps) => {
     <div className="flex gap-4">
       <InCome
         title={t("incomeChart")}
-        dateRange={`اخرین پرداخت : ${payments && FormatDate(payments.lastPaymentDate, "fa")}`}
-        totalIncome={String(payments?.totalEarnings) || ""}
-        currentIncome={String(payments?.pendingPayments) || ""}
-        percentage={64}
+        totalIncome={String(payments?.totalAmount.toLocaleString()) || ""}
+        currentIncome={String(payments?.totalCurrentMonthAmount) || ""}
+        percentage={
+          ((payments?.totalCurrentMonthAmount || 0) /
+            (payments?.totalAmount || 0)) *
+          100
+        }
       />
 
       <CompleteProfile

@@ -15,3 +15,7 @@ export interface IPaymentResponse {
   payments: IPayment[];
   totalCount: number;
 }
+export interface ISellerPaymentsResponse {
+  data: IPayment[];
+  totalCount: number;
+}

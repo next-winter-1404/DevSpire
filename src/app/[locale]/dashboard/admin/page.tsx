@@ -1,5 +1,11 @@
+import AdminDashboardView from "@/modules/AdminDashboard/Dashboard/view/AdminDashboardView";
+
 const AdminDashboard = () => {
-  return <div>AdminDashboard</div>;
+  return (
+    <>
+      <AdminDashboardView />
+    </>
+  );
 };
 
 export default AdminDashboard;

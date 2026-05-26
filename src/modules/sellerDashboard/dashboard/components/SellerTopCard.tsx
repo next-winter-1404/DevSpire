@@ -5,10 +5,20 @@ import { useTranslations } from "next-intl";
 import Estates from "../../../../../public/icons/Estates";
 import CheckList from "../../../../../public/icons/CheckList";
 import HourGlass from "../../../../../public/icons/HourGlass";
-import { IDashboardStats } from "@/components/common/types";
 import Money from "../../../../../public/icons/Cash";
+import { ISellerFinance } from "../views/SellerTopCardsView";
+import Chats from "../../../../../public/icons/Chats";
+import House from "../../../../../public/icons/House";
 
-const SellerTopCard = ({ stats }: { stats: IDashboardStats | null }) => {
+const SellerTopCard = ({
+  stats,
+  commentsCount,
+  houses,
+}: {
+  stats: ISellerFinance | null;
+  commentsCount: number | undefined;
+  houses: number | undefined;
+}) => {
   const t = useTranslations("sellerDashboard.dashboard");
 
   return (
@@ -16,24 +26,24 @@ const SellerTopCard = ({ stats }: { stats: IDashboardStats | null }) => {
       <TopCards
         items={[
           {
-            icon: Estates,
-            title: t("allOfEstates"),
-            value: stats?.houses || "موردی یافت نشد",
+            icon: Money,
+            title: " تعداد پرداختی ها",
+            value: stats?.totalPayments || "موردی یافت نشد",
           },
           {
             icon: CheckList,
-            title: t("activeReserves"),
-            value: stats?.bookings?.conformedBookings || "موردی یافت نشد",
+            title: " تعداد رزرو ها",
+            value: stats?.totalBookings || "موردی یافت نشد",
           },
           {
-            icon: HourGlass,
-            title: t("pendingReservations"),
-            value: stats?.bookings?.pendingBookings || "موردی یافت نشد",
+            icon: Chats,
+            title: "تعداد کامنت ها",
+            value: commentsCount || "موردی یافت نشد",
           },
           {
-            icon: Money,
-            title: "مشتری ها",
-            value: stats?.users?.buyers || "موردی یافت نشد",
+            icon: House,
+            title: "تعداد خانه ها",
+            value: houses || "موردی یافت نشد",
           },
         ]}
       />

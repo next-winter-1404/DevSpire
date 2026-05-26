@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
 import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
+import { ISellerFinance } from "./SellerTopCardsView";
 
 export interface ISellerPayments {
   totalEarnings: number;
@@ -11,11 +12,8 @@ export interface ISellerPayments {
   lastPaymentDate: string;
 }
 const SellerChartsView = async () => {
-  const payments = await apiFetch<ISellerPayments | null>(
-    "/seller-finance/dashboard",
-    {
-      next: { revalidate: 12 },
-    },
+  const payments = await apiFetch<ISellerFinance | null>(
+    "/seller/finance/dashboard",
   );
 
   const cookieStore = await cookies();
@@ -23,7 +21,7 @@ const SellerChartsView = async () => {
   const decoded = jwtDecode(token) as IDecodedToken;
 
   const user = await apiFetch<TUserRes | null>(`/users/${decoded.id}`, {
-    next: { revalidate: 60 },
+    cache: "no-store",
   });
   console.log(payments);
 

@@ -1,5 +1,8 @@
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import { IPaymentResponse } from "../../../customerDashboard/payments/types";
+import {
+  IPaymentResponse,
+  ISellerPaymentsResponse,
+} from "../../../customerDashboard/payments/types";
 import PaymentsFilters from "../../../customerDashboard/payments/components/PaymentsFilters";
 import PaymentsList from "../../../customerDashboard/payments/components/PaymentsList";
 
@@ -8,8 +11,8 @@ const SellerPaymentsView = async ({
 }: {
   params: Record<string, string>;
 }) => {
-  const res = await apiFetch<IPaymentResponse | null>(
-    "/payments/seller-houses",
+  const res = await apiFetch<ISellerPaymentsResponse | null>(
+    "/seller/finance",
     {
       params,
       cache: "no-store",
@@ -27,9 +30,7 @@ const SellerPaymentsView = async ({
           لیست تراکنش های مشتریان {`(${res?.totalCount})`}{" "}
         </h1>
 
-        <div className=" w-full md:w-[50%]">
-          <PaymentsFilters />
-        </div>
+        <div className=" w-full md:w-[50%]">{/* <PaymentsFilters /> */}</div>
       </div>
       <div
         className="h-[90%]  border-[#DDDDDD] 
@@ -39,7 +40,10 @@ const SellerPaymentsView = async ({
         {res && res?.totalCount > 0 ? (
           <PaymentsList role="seller" data={res} />
         ) : (
-          <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
+          <div
+            className="flex flex-col items-center justify-center h-[300px]
+           text-center px-4"
+          >
             <p className="text-gray-500 dark:text-gray-400 text-sm">
               هنوز پرداختی ثبت نشده است
             </p>
