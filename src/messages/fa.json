@@ -223,6 +223,7 @@
       "rememberMe": "مرا به خاطر بسپار",
       "forgotPassword": "رمز عبور خود را فراموش کرده اید؟",
       "submit": "ورود",
+      "loading": "در حال ورود...",
       "enterEmailPassword": "لطفاً ایمیل و رمز عبور را وارد کنید",
       "loginError": "خطا در ورود",
       "serverError": "خطا در ارتباط با سرور",
@@ -231,62 +232,45 @@
       "loading": "در حال ورود...",
       "noAccount": "حساب کاربری ندارید؟",
       "signUp": "ثبت نام کنید",
-      "loginWithGoogle": "ورود با استفاده از گوگل",
-      "loginWithApple": "ورود با استفاده از اپل",
-      "wrongPassword": "رمز عبور اشتباه است",
-      "userNotFound": "کاربری با این ایمیل یافت نشد",
-      "networkError": "اتصال اینترنت برقرار نیست"
+      "loginWithGoogle": "ورود با گوگل",
+      "loginWithApple": "ورود با اپل"
+    },
+    "layout": {
+      "imageAlt": "تصویر احراز هویت",
+      "userAlt": "کاربر {number}",
+      "callToAction": "همین حالا به ما بپیوند!",
+      "description": "همراه هزاران کاربر دیگر از خدمات ما استفاده کنید."
     },
     "register": {
-      "step1": {
-        "home": "صفحه اصلی",
-        "title": "ایجاد حساب کاربری (مرحله اول)",
-        "description": "ایمیل خود را وارد کنید تا کد تأیید برای شما ارسال شود.",
-        "emailPlaceholder": "ایمیل خود را وارد کنید",
-        "submit": "ثبت نام",
-        "loading": "در حال ثبت نام...",
-        "hasAccount": "قبلاً ثبت نام کرده‌اید؟",
-        "login": "وارد شوید",
-        "emailRequired": "لطفاً ایمیل را وارد کنید",
-        "somethingWentWrong": "خطایی رخ داده است"
-      },
-      "layout": {
-        "imageTitle": "همین حالا به ما بپیوند!",
-        "imageDesc": "همراه هزاران کاربر دیگر از خدمات ما استفاده کنید."
-      },
-      "step2": {
-        "back": "بازگشت",
-        "title": "ایجاد حساب کاربری (مرحله دوم)",
-        "description": "کد تایید به ایمیل شما ارسال شد.",
-        "changeEmail": "تغییر ایمیل",
-        "timeLeft": "زمان باقی‌مانده",
-        "otpRequired": "لطفاً کد تایید را وارد کنید",
-        "invalidUser": "شناسه کاربر معتبر نیست",
-        "resendCode": "ارسال مجدد کد",
-        "resendSuccess": "کد تایید دوباره ارسال شد",
-        "resendError": "ارسال مجدد کد با خطا مواجه شد",
-        "verificationSuccess": "ایمیل شما با موفقیت تایید شد",
-        "confirmContinue": "تایید و ادامه"
-      },
-      "step3": {
-        "back": "بازگشت",
-        "title": "ایجاد حساب کاربری (مرحله آخر)",
-        "description": "برای تکمیل ثبت‌نام، شماره تماس و رمز عبور خود را وارد کنید.",
-        "phonePlaceholder": "شماره تماس خود را وارد کنید...",
-        "passwordPlaceholder": "رمز عبور خود را وارد کنید...",
-        "confirmPassPlaceholder": "تکرار رمز عبور...",
-        "showPassword": "نمایش رمز",
-        "hidePassword": "مخفی کردن رمز",
-        "submit": "ایجاد حساب کاربری",
-        "loading": "در حال ایجاد حساب...",
-        "userNotFound": "کاربر یافت نشد",
-        "phoneRequired": "لطفاً شماره تماس را وارد کنید",
-        "passwordRequired": "لطفاً رمز عبور را وارد کنید",
-        "passwordMismatch": "رمزهای عبور مطابقت ندارند",
-        "passwordLength": "رمز عبور باید حداقل ۸ کاراکتر باشد",
-        "registerSuccess": "حساب کاربری با موفقیت ایجاد شد",
-        "serverError": "خطا در ارتباط با سرور"
-      }
+      "ftitle": "صفحه اصلی",
+      "title": "ایجاد حساب کاربری (مرحله اول)",
+      "description": " ایمیلت رو وارد کن و با دریافت کد، اولین قدم رو بردار.",
+      "email": "ایمیل خود را وارد کنید",
+      "password": "رمز عبور خود را وارد کنید",
+      "confirmPassword": "تکرار رمز عبور",
+      "hasAccount": "قبلاً ثبت نام کرده‌اید؟",
+      "login": "وارد شوید",
+      "submit": "ثبت نام",
+      "loading": "در حال ثبت نام..."
+    },
+    "step2": {
+      "back": "بازگشت",
+      "title": "ایجاد حساب کاربری (مرحله دوم)",
+      "description": "کد تایید به ایمیل شما ارسال شد.",
+      "changeEmail": "تغییر ایمیل",
+      "timeLeft": "زمان باقی‌مانده",
+      "confirmContinue": "تایید و ادامه"
+    },
+    "step3": {
+      "back": "بازگشت",
+      "title": "ایجاد حساب کاربری (مرحله آخر)",
+      "description": " برای تکمیل ثبت‌نام، شماره تماس خود را وارد کرده و رمز عبور بسازید.",
+      "phonPlaceholder": "شماره تماس خود را وارد کنید...",
+      "passwordPlaceholder": "رمز خود را وارد کنید...",
+      "confirmPassPlaceholder": "تکرار رمز عبور...",
+      "showPassword": "نمایش رمز",
+      "hidePassword": "مخفی کردن رمز",
+      "submit": "ایجاد حساب کاربری"
     },
     "forgotPassword": {
       "step1": {
@@ -328,13 +312,6 @@
         "passwordMismatch": "رمز عبور و تکرار آن با هم مطابقت ندارند",
         "resetError": "خطایی در ثبت رمز عبور جدید رخ داد"
       }
-    },
-    "AuthImagePanel": {
-      "imageAlt": "تصویر پس‌زمینه احراز هویت",
-      "brandName": "نام برند شما",
-      "userAlt": "کاربر {number}",
-      "callToAction": "همین حالا به ما بپیوند!",
-      "description": "به جمع هزاران کاربر راضی بپیوندید و تجربه‌ای متفاوت را آغاز کنید."
     }
   },
   "sellerDashboard": {
