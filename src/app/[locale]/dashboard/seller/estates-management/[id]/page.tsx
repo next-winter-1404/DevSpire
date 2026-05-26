@@ -1,6 +1,5 @@
 import { THouse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import EstateManagementEditV from "@/modules/sellerDashboard/estateManagementEdit/views/EstateManagementEditV";
 import EstateManageMentFormView from "@/modules/sellerDashboard/estatesManagement/Form/views/EstateManageMentFormView";
 import { notFound } from "next/navigation";
 import React from "react";
