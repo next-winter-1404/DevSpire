@@ -4,17 +4,22 @@ import { Link } from "@/i18n/routing";
 import { Home } from "lucide-react";
 import AuthSocialButtons from "../../components/AuthSocialButtons";
 import LoginForm from "../components/LoginForm";
+import { useTranslations, useLocale } from "next-intl";
 
 const LoginView = () => {
+  const t = useTranslations("auth.login");
+  const locale = useLocale();
+  const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
+
   return (
-    <div className="w-full h-full flex flex-col justify-center">
+    <div className="w-full h-full flex flex-col justify-center" dir={direction}>
       <div className="w-full flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-[#0D3B66] hover:opacity-80 transition-opacity"
         >
           <Home className="w-4 h-4 md:w-[18px] md:h-[18px]" />
-          <span>صفحه اصلی</span>
+          <span>{t("ftitle")}</span>
         </Link>
         <div className="flex items-center gap-2 md:gap-3 h-8">
           <ToggleTheme />
@@ -26,10 +31,10 @@ const LoginView = () => {
 
       <div className="flex flex-col gap-2 md:gap-3 mt-8 md:mt-10">
         <h2 className="font-bold text-xl md:text-2xl text-foreground">
-          ورود به حساب کاربری
+          {t("title")}
         </h2>
         <h3 className="text-sm md:text-base text-foreground/80 leading-relaxed">
-          برای دسترسی به خدمات و تجربه بهتر در سایت، وارد حساب خود شوید.
+          {t("description")}
         </h3>
       </div>
 
@@ -39,7 +44,7 @@ const LoginView = () => {
 
       <div className="flex items-center my-8 md:my-10">
         <div className="grow border-t border-gray-300 dark:border-zinc-700"></div>
-        <span className="mx-3 md:mx-4 text-sm text-gray-500">یا</span>
+        <span className="mx-3 md:mx-4 text-sm text-gray-500">{t("or")}</span>
         <div className="grow border-t border-gray-300 dark:border-zinc-700"></div>
       </div>
 
@@ -48,12 +53,12 @@ const LoginView = () => {
       </div>
 
       <div className="w-full mt-10 md:mt-12 text-sm md:text-base flex items-center gap-2 justify-center">
-        <h2 className="text-foreground">حساب کاربری ندارید؟</h2>
+        <h2 className="text-foreground">{t("noAccount")}</h2>
         <Link
           href={"/auth/register"}
           className="text-primary font-medium hover:underline"
         >
-          ثبت نام کنید
+          {t("signUp")}
         </Link>
       </div>
     </div>
