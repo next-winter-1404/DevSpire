@@ -195,8 +195,8 @@
       "max": "Max"
     }
   },
-  "blogs":{
-    "filters":{
+  "blogs": {
+    "filters": {
       "title": "Filters",
       "result": "Result",
       "search": "Search",
@@ -206,7 +206,7 @@
       "oldest": "Oldest"
     }
   },
-  "blogDetail":{
+  "blogDetail": {
     "blogText": "Article Text",
     "userComments": "User Comments",
     "seeMore": "See More",
@@ -222,6 +222,7 @@
       "rememberMe": "Remember me",
       "forgotPassword": "Forgot password?",
       "submit": "Sign In",
+      "loading": "Loading...",
       "noAccount": "Don't have an account?",
       "enterEmailPassword": "Please enter your email and password",
       "loginError": "Login failed",
@@ -230,42 +231,64 @@
       "signUp": "Sign up",
       "or": "or",
       "loginWithGoogle": "Sign in with Google",
-      "loginWithApple": "Sign in with Apple"
+      "loginWithApple": "Sign in with Apple",
+      "wrongPassword": "Incorrect password",
+      "userNotFound": "User not found",
+      "networkError": "Network error"
     },
     "register": {
-      "ftitle": "Home",
-      "title": "Create an account (Step 1)",
-      "description": "Enter your email and take the first step when you receive the code.",
-      "email": "Email",
-      "password": "Password",
-      "confirmPassword": "Confirm password",
-      "submit": "Register",
-      "hasAccount": "Already have an account?",
-      "login": "Sign in",
-      "loading": "Registering..."
-    },
-    "layout": {
-      "imageTitle": "Join us now!",
-      "imageDesc": "Use our services alongside thousands of users."
-    },
-    "step2": {
-      "back": "Back",
-      "title": "Create Account (Step 2)",
-      "description": "Verification code has been sent to your email.",
-      "changeEmail": "Change Email",
-      "timeLeft": "Time remaining",
-      "confirmContinue": "Confirm and Continue"
-    },
-    "step3": {
-      "back": "Back",
-      "title": "Create an account (Final Step)",
-      "description": "To complete your registration, enter your phon numbeer and password.",
-      "phonPlaceholder": "Enter your phom number...",
-      "passwordPlaceholder": "Enter your password...",
-      "confirmPassPlaceholder": "Repeat your password...",
-      "showPassword": "Show password",
-      "hidePassword": "Hide password",
-      "submit": "Create Account"
+      "step1": {
+        "home": "Home",
+        "title": "Create an account (Step 1)",
+        "description": "Enter your email to receive a verification code and start registration.",
+        "emailPlaceholder": "Enter your email...",
+        "submit": "Register",
+        "loading": "Registering...",
+        "hasAccount": "Already have an account?",
+        "login": "Sign in",
+        "emailRequired": "Please enter your email",
+        "somethingWentWrong": "Something went wrong"
+      },
+      "layout": {
+        "imageTitle": "Join us now!",
+        "imageDesc": "Use our services alongside thousands of users."
+      },
+      "step2": {
+        "back": "Back",
+        "title": "Create Account (Step 2)",
+        "description": "Verification code has been sent to your email.",
+        "changeEmail": "Change Email",
+        "timeLeft": "Time remaining",
+        "completeCode": "Please enter the full verification code",
+        "invalidUserId": "Invalid user session",
+        "userIdNotReceived": "User ID was not returned from server",
+        "networkError": "Network error",
+        "resendCode": "Resend code",
+        "resendSuccess": "Verification code sent again",
+        "resendError": "Failed to resend code",
+        "confirmContinue": "Confirm and Continue",
+        "verificationSuccess": "Email verified successfully",
+        "verifying": "Verifying..."
+      },
+      "step3": {
+        "back": "Back",
+        "title": "Create an account (Final Step)",
+        "description": "To complete your registration, enter your phone number and password.",
+        "phonePlaceholder": "Enter your phone number...",
+        "passwordPlaceholder": "Enter your password...",
+        "confirmPassPlaceholder": "Repeat your password...",
+        "showPassword": "Show password",
+        "hidePassword": "Hide password",
+        "submit": "Create Account",
+        "loading": "Creating account...",
+        "userNotFound": "User not found",
+        "phoneRequired": "Please enter your phone number",
+        "passwordRequired": "Please enter your password",
+        "passwordMismatch": "Passwords do not match",
+        "passwordLength": "Password must be at least 8 characters",
+        "registerSuccess": "Account created successfully",
+        "serverError": "Server connection error"
+      }
     },
     "forgotPassword": {
       "step1": {
@@ -273,7 +296,8 @@
         "title": "Forgot Password (Step 1)",
         "description": "Enter your email and take the first step by receiving a code.",
         "emailPlaceholder": "Enter your email...",
-        "submit": "Send verification code"
+        "submit": "Send verification code",
+        "successMessage": "Verification code sent successfully"
       },
       "step2": {
         "back": "Back",
@@ -281,7 +305,14 @@
         "description": "A verification code has been sent to your email.",
         "changeEmail": "Change email",
         "timeLeft": "Time left",
-        "confirmContinue": "Confirm and continue"
+        "verificationSuccess": "Email verified successfully",
+        "confirmContinue": "Confirm and continue",
+        "emailNotFound": "Email not found, please try again",
+        "restartProcess": "Your session has expired, please start again",
+        "invalidCodeLength": "Verification code must be 6 digits",
+        "codeVerified": "Code verified successfully",
+        "invalidOrExpiredCode": "The code is invalid or has expired",
+        "verifying": "Verifying..."
       },
       "step3": {
         "back": "Back",
@@ -291,15 +322,28 @@
         "confirmPassPlaceholder": "Repeat your password...",
         "showPassword": "Show password",
         "hidePassword": "Hide password",
-        "submit": "Set new password"
+        "submit": "Set new password",
+        "changing": "Changing password...",
+        "passwordChanged": "Password changed successfully",
+        "emailNotFound": "Email information not found",
+        "enterPassword": "Please enter your new password",
+        "passwordMismatch": "Passwords do not match",
+        "resetError": "An error occurred while resetting the password"
       }
+    },
+    "AuthImagePanel": {
+      "imageAlt": "Authentication background image",
+      "brandName": "Your Brand Name",
+      "userAlt": "User {number}",
+      "callToAction": "Join us right now!",
+      "description": "Join thousands of satisfied users and start a different experience."
     }
   },
-  "sellerDashboard":{
-    "header":{
+  "sellerDashboard": {
+    "header": {
       "balance": "Balance :"
     },
-    "sidebar":{
+    "sidebar": {
       "logo": "Logo",
       "menu": "Menu",
       "dashboard": "Dashboard",
@@ -314,7 +358,7 @@
       "favorites": "Favorites",
       "logOut": "Log Out"
     },
-    "dashboard":{
+    "dashboard": {
       "allOfEstates": "All of Estates",
       "activeReserves": "Active Reserves",
       "pendingReservations": "Pending Reservations",
@@ -328,15 +372,15 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     },
-    "estatesManagement":{
-      "estatesManagement":"Estates Management",
+    "estatesManagement": {
+      "estatesManagement": "Estates Management",
       "searchPlaceholder": "Search...",
       "filtersBtn": "Filters",
       "addEstateBtn": "Add Estate"
     }
   },
-  "customerDashboard":{
-    "dashboard":{
+  "customerDashboard": {
+    "dashboard": {
       "allOfReserves": "All of Reserves",
       "activeReserves": "Active Reserves",
       "notPaid": "Not Paid",
@@ -352,6 +396,42 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     }
-  }  
+  },
+  "User": {
+    "userInfoTitle": "User Profile",
+    "personalInfo": "Personal Info",
+    "securityInfo": "Security",
+    "loadingUser": "Loading user information...",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone Number",
+    "email": "Email",
+    "firstNamePlaceholder": "Enter your first name...",
+    "lastNamePlaceholder": "Enter your last name...",
+    "phonePlaceholder": "Enter phone number...",
+    "saveChanges": "Apply Changes",
+    "saving": "Saving...",
+    "passwordCurrent": "Current Password",
+    "passwordNew": "New Password",
+    "passwordRepeat": "Repeat Password",
+    "changePassword": "Change Password",
+    "changingPassword": "Changing...",
+    "currentPasswordRequired": "Please enter current password",
+    "newPasswordMin": "Password must be at least 6 characters",
+    "confirmPasswordRequired": "Please repeat the password",
+    "passwordMismatch": "Passwords do not match",
+    "passwordChanged": "Password changed successfully",
+    "passwordChangeError": "Failed to change password",
+    "avatar": "Avatar",
+    "changeAvatar": "Change Avatar",
+    "uploading": "Uploading...",
+    "avatarUpdated": "Avatar updated successfully",
+    "avatarUploadError": "Avatar upload failed",
+    "updateSuccess": "Profile updated successfully",
+    "updateError": "Failed to update profile",
+    "fetchError": "Failed to fetch user information",
+    "selectProfile": "Select Profile",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  }
 }
-

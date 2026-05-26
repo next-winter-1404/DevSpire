@@ -44,7 +44,7 @@ const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
   const sellerMenuItems = [
     { href: `${sellerBasePath}`, label: t("dashboard"), Icon: Dashboard },
     {
-      href: `${sellerBasePath}/user-profile`,
+      href: `${sellerBasePath}/user-info`,
       label: t("userProfile"),
       Icon: EditUser,
     },
@@ -79,7 +79,7 @@ const DashboardSidebar = ({ isSellerDashboard }: IDashboardSidebar) => {
   const customerMenuItems = [
     { href: `${customerBasePath}`, label: t("dashboard"), Icon: Dashboard },
     {
-      href: `${customerBasePath}/user-profile`,
+      href: `${customerBasePath}/user-info`,
       label: t("userProfile"),
       Icon: EditUser,
     },
