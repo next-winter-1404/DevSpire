@@ -6,7 +6,7 @@ import { IBredCrumbsItems } from "@/modules/fastReserveDetail/mocks";
 import { useTranslations } from "next-intl";
 import BookingContainer from "../components/BookingContainer";
 import BookingStepper from "../components/BookingStepper";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import BookingStepTwo from "../components/BookingStepTwo";
 import BookingStepThree from "../components/BookingStepThree";
@@ -110,7 +110,15 @@ const BookingView = ({ house, houseId }: IProps) => {
         <BookingStepper currentStep={currentStep} />
       </div>
       <BookingContainer>
-        <div className="w-full h-full">{renderStepsContent()}</div>
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center min-h-[80vh]">
+              در حال بارگذاری...
+            </div>
+          }
+        >
+          <div className="w-full h-full">{renderStepsContent()}</div>
+        </Suspense>
       </BookingContainer>
     </Container>
   );

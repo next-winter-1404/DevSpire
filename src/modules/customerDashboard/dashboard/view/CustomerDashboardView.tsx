@@ -1,42 +1,28 @@
-import React from "react";
-import CompleteProfile from "@/components/common/CompleteProfile";
-import InCome from "@/components/common/InCome";
-import TopCards from "@/components/common/TopCards";
-import DotList from "../../../../../public/icons/DotList";
-import CheckList from "../../../../../public/icons/CheckList";
-import NotPaid from "../../../../../public/icons/NotPaid";
-import Heart from "../../../../../public/icons/Heart";
-import { useTranslations } from "next-intl";
+import { Suspense } from "react";
+import CustomerDashboardCharts from "../components/CustomerDashboardCharts";
+import CustomerTopCardsView from "./CustomerTopCardsView";
+import DashboardCardsSkeleton from "@/components/dashboard/DashboardCardsSkeleton";
+import DashboardChartsSkeleton from "@/components/dashboard/DashboardChartsSkeleton";
+import CustomerLatestReservesView from "./CustomerLatestReservesView";
+import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 
-const CustomerDashboardView = () => {
-  const t = useTranslations("customerDashboard.dashboard");
-
+const CustomerDashboardView = async () => {
   return (
     <div className="flex flex-col gap-4 ">
-      <TopCards
-        items={[
-          { icon: DotList, title: t("allOfReserves"), value: "30" },
-          { icon: CheckList, title: t("activeReserves"), value: "30" },
-          { icon: NotPaid, title: t("notPaid"), value: "30" },
-          { icon: Heart, title: t("favorites"), value: "3000" },
-        ]}
-      />
-      <div className="flex gap-4">
-        <InCome
-          title={t("incomeChart")}
-          dateRange="از تاریخ 1 تا 31 مهر 1404"
-          totalIncome="300,000,000"
-          currentIncome="60,000,000"
-          percentage={64}
-        />
-        <CompleteProfile
-          title={t("profCompletionChart")}
-          description="پروفایل باید حداقل ۷۰٪ تکمیل شده باشد."
-          lastEditText="آخرین ویرایش 3 روز پیش"
-          percentage={64}
-          linkHref="/seller-dashboard/edit-profile"
-        />
-      </div>
+      <Suspense fallback={<DashboardCardsSkeleton />}>
+        <CustomerTopCardsView />
+      </Suspense>
+      <Suspense fallback={<DashboardChartsSkeleton />}>
+        <CustomerDashboardCharts />
+      </Suspense>
+      <Suspense fallback={<DashboardTableSkeleton />}>
+        <div className="bg-[#FFFFFF] rounded-[24px] dark:bg-[#262626] py-4 px-6 ">
+          <h2 className="text-[20px] font-bold text-foreground mb-2">
+            رزرو های اخیر
+          </h2>
+          <CustomerLatestReservesView />
+        </div>
+      </Suspense>
     </div>
   );
 };

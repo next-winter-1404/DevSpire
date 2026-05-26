@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Money = ({...props}) => {
+
+const Cash = ({...props}) => {
     return (
         <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M0.76709 10.75C2.96666 10.75 4.74977 12.5331 4.74977 14.7327" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -13,4 +14,4 @@ const Money = ({...props}) => {
     )
 }
 
-export default Money
+export default Cash

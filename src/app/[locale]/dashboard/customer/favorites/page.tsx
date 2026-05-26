@@ -1,5 +1,6 @@
+import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import FavoritesView from "@/modules/customerDashboard/favorites/views/FavoritesView";
-import React from "react";
+import React, { Suspense } from "react";
 
 const FavoritesPage = async ({
   searchParams,
@@ -15,7 +16,9 @@ const FavoritesPage = async ({
   } as Record<string, string>;
   return (
     <>
-      <FavoritesView params={params} />
+      <Suspense fallback={<DashboardTableSkeleton />}>
+        <FavoritesView params={params} />
+      </Suspense>
     </>
   );
 };

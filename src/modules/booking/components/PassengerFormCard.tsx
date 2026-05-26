@@ -1,4 +1,8 @@
-import { IPassenger } from "@/modules/booking/types";
+import {
+  IPassenger,
+  TBookingRequest,
+  TravelerDetail,
+} from "@/modules/booking/types";
 import moment from "jalali-moment";
 import { CalendarIcon, Clock11, Trash, UserPlus } from "lucide-react";
 import { useLocale } from "next-intl";
@@ -10,6 +14,7 @@ import gregorian_en from "react-date-object/locales/gregorian_en";
 import { Controller } from "react-hook-form";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 const PassengerFormCard = ({
   append,
   register,
@@ -134,6 +139,18 @@ const PassengerFormCard = ({
                       value: 10,
                       message: "کد ملی نمی‌تواند بیشتر از 10 رقم باشد",
                     },
+                    validate: (value: string, formValues: TBookingRequest) => {
+                      const travelers = formValues?.traveler_details || [];
+
+                      const duplicateCount = travelers.filter(
+                        (t) => t.nationalId === value,
+                      ).length;
+
+                      return (
+                        duplicateCount <= 1 ||
+                        "این کد ملی تکراری و برای مسافر دیگری وارد شده"
+                      );
+                    },
                   })}
                   className={`w-full  placeholder:text-[#777777] text-foreground bg-[#F5F5F5]
                      dark:bg-[#3F3F46] rounded-[40px] p-3.5 text-[14px] outline-none focus:ring-2 ${
@@ -220,14 +237,14 @@ const PassengerFormCard = ({
           );
         })}
         <div className="w-full flex flex-col-reverse  gap-3 md:gap-0 md:flex-row md:justify-between items-center">
-          <button
+          {/* <button
             type="button"
             className="flex items-center gap-2 text-[16px] text-primary border border-primary
            font-bold hover:bg-blue-50 px-3 py-2 rounded-[16px] transition-colors"
           >
             <Clock11 size={20} />
             انتخاب مسافران سابق
-          </button>
+          </button> */}
           <button
             type="button"
             onClick={() =>

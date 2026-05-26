@@ -1,20 +1,30 @@
+"use client";
 import Image from "next/image";
-import EstateOwner from "../../../../public/images/mortgageRentDetail/estate-owner.jpg";
 import ToggleTheme from "@/components/common/ToggleTheme";
 import Home from "../../../../public/icons/Home";
 import { Link } from "@/i18n/routing";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import { useTranslations } from "next-intl";
 import Notification from "../../../../public/icons/Notification";
+import { useState } from "react";
+import Menu from "../../../../public/icons/Menu";
+import DashSidebarMenu from "../dashboardSidebar/DashSidebarMenu";
+import EstateOwner from "../../../../public/images/mortgageRentDetail/estate-owner.jpg";
+import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
 
-interface IDashboardHeader {
+interface IProps {
   hasNotification: boolean;
+  userInfo: TUserRes | null;
 }
 
+const DashboardHeader = ({ hasNotification, userInfo }: IProps) => {
+  const t = useTranslations("sellerDashboard.header");
 
-const DashboardHeader = ({hasNotification}: IDashboardHeader) => {
+  const [isOpenSidebarMenu, setIsOpenSidebarMenu] = useState<boolean>(false);
 
-  const t = useTranslations('sellerDashboard.header')
+  const toggleMenu = (value: boolean) => {
+    setIsOpenSidebarMenu(value);
+  };
 
   return (
     <div
@@ -23,6 +33,12 @@ const DashboardHeader = ({hasNotification}: IDashboardHeader) => {
     dark:bg-[#404040] dark:border-[#777777]"
     >
       <div className="flex items-center gap-4">
+        <button
+          onClick={() => toggleMenu(true)}
+          className="block md:hidden p-1"
+        >
+          <Menu className="w-8 h-8" />
+        </button>
         <Image
           src={EstateOwner}
           alt="estateOwner"
@@ -31,27 +47,33 @@ const DashboardHeader = ({hasNotification}: IDashboardHeader) => {
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-1">
             <span className="font-regular text-[20px] text-[#1E2022]   dark:text-[#F5F5F5]">
-              متین قربان زاده
+              {userInfo?.user?.fullName ?? "بدون نام"}
             </span>
             <span className="font-regular text-[14px] text-[#0D3B66]   dark:text-[#E4E4E4]">
-              (فروشنده)
+              {userInfo?.user?.role === "buyer"
+                ? "(خریدار)"
+                : userInfo?.user?.role == "seller"
+                  ? "(فروشنده)"
+                  : "(ادمین)"}
             </span>
           </div>
           <div className="flex items-center gap-1 font-regular text-[16px]">
-            <span className="text-[#1E2022]   dark:text-[#F5F5F5]">
+            {/* <span className="text-[#1E2022]   dark:text-[#F5F5F5]">
               {t("balance")}
             </span>
             <span className="text-[#777777]   dark:text-[#E4E4E4]">
               30,000,000 تومان
-            </span>
+            </span> */}
           </div>
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <div className="h-10">
+        <div className="hidden h-10   md:block">
           <LanguageSwitcher />
         </div>
-        <ToggleTheme />
+        <div className="hidden   md:block">
+          <ToggleTheme />
+        </div>
         {hasNotification && (
           <div className="p-2 rounded-full bg-[#0D3B66]">
             <Notification color="#FFFFFF" />
@@ -64,6 +86,9 @@ const DashboardHeader = ({hasNotification}: IDashboardHeader) => {
           <Home color="#FFFFFF" />
         </Link>
       </div>
+      {isOpenSidebarMenu && (
+        <DashSidebarMenu toggleMenu={toggleMenu} role={userInfo?.user?.role} />
+      )}
     </div>
   );
 };
