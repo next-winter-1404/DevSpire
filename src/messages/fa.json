@@ -222,6 +222,7 @@
       "rememberMe": "مرا به خاطر بسپار",
       "forgotPassword": "رمز عبور خود را فراموش کرده اید؟",
       "submit": "ورود",
+      "loading": "در حال ورود...",
       "enterEmailPassword": "لطفاً ایمیل و رمز عبور را وارد کنید",
       "loginError": "خطا در ورود",
       "serverError": "خطا در ارتباط با سرور",
@@ -231,7 +232,8 @@
       "signUp": "ثبت نام کنید",
       "loginWithGoogle": "ورود با گوگل",
       "loginWithApple": "ورود با اپل"
-    },
+    }
+   ,
     "layout": {
       "imageAlt": "تصویر احراز هویت",
       "userAlt": "کاربر {number}",

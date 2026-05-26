@@ -222,6 +222,7 @@
       "rememberMe": "Remember me",
       "forgotPassword": "Forgot password?",
       "submit": "Sign In",
+      "loading": "Signing in...",
       "noAccount": "Don't have an account?",
       "enterEmailPassword": "Please enter your email and password",
       "loginError": "Login failed",
@@ -233,11 +234,11 @@
       "loginWithApple": "Sign in with Apple"
     },
     "layout": {
-  "imageAlt": "Authentication Image",
-  "userAlt": "User {number}",
-  "callToAction": "Join us now!",
-  "description": "Use our services alongside thousands of users."
-},
+      "imageAlt": "Authentication Image",
+      "userAlt": "User {number}",
+      "callToAction": "Join us now!",
+      "description": "Use our services alongside thousands of users."
+    },
     "register": {
       "ftitle": "Home",
       "title": "Create an account (Step 1)",
