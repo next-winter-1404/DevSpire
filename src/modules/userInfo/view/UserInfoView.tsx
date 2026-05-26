@@ -1,15 +1,18 @@
+import { cookies } from "next/headers";
+import { getUserIdFromToken } from "@/utils/helper/token";
 import UserInfoTabs from "../components/UserInfoTabs";
 
-export default function UserInfoView() {
-  return (
-    <div className="w-full flex flex-col gap-6 p-6 bg-[#F5F5F5] border border-[#DDDDDD] rounded-[40px] dark:bg-[#404040] dark:border-[#777777]">
+interface UserInfoViewProps {
+  userId?: string; 
+}
+export default async function UserInfoView({ userId: propUserId }: UserInfoViewProps) {
+  let userId = propUserId;
 
-      <h1 className="text-right text-[24px] font-bold leading-none text-[#1E2022] dark:text-white">
-        اطلاعات کاربری
-      </h1>
+  if (!userId) {
+      const cookieStore = await cookies();
+      const token = cookieStore.get("accessToken")?.value;
+      userId = token ? getUserIdFromToken(token) || "" : "";
+  }
 
-      <UserInfoTabs />
-
-    </div>
-  );
+  return <UserInfoTabs userId={userId ?? ""} />;
 }
