@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 const AuthImagePanel = () => {
-  const t = useTranslations("auth.AuthImagePanel");
+  const t = useTranslations("auth.layout");
   return (
     <div className="relative w-full h-full rounded-[40px] overflow-hidden shadow-2xl">
       <Image

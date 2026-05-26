@@ -195,8 +195,8 @@
       "max": "Max"
     }
   },
-  "blogs":{
-    "filters":{
+  "blogs": {
+    "filters": {
       "title": "Filters",
       "result": "Result",
       "search": "Search",
@@ -206,7 +206,7 @@
       "oldest": "Oldest"
     }
   },
-  "blogDetail":{
+  "blogDetail": {
     "blogText": "Article Text",
     "userComments": "User Comments",
     "seeMore": "See More",
@@ -232,6 +232,12 @@
       "loginWithGoogle": "Sign in with Google",
       "loginWithApple": "Sign in with Apple"
     },
+    "layout": {
+  "imageAlt": "Authentication Image",
+  "userAlt": "User {number}",
+  "callToAction": "Join us now!",
+  "description": "Use our services alongside thousands of users."
+},
     "register": {
       "ftitle": "Home",
       "title": "Create an account (Step 1)",
@@ -243,10 +249,6 @@
       "hasAccount": "Already have an account?",
       "login": "Sign in",
       "loading": "Registering..."
-    },
-    "layout": {
-      "imageTitle": "Join us now!",
-      "imageDesc": "Use our services alongside thousands of users."
     },
     "step2": {
       "back": "Back",
@@ -295,11 +297,11 @@
       }
     }
   },
-  "sellerDashboard":{
-    "header":{
+  "sellerDashboard": {
+    "header": {
       "balance": "Balance :"
     },
-    "sidebar":{
+    "sidebar": {
       "logo": "Logo",
       "menu": "Menu",
       "dashboard": "Dashboard",
@@ -314,7 +316,7 @@
       "favorites": "Favorites",
       "logOut": "Log Out"
     },
-    "dashboard":{
+    "dashboard": {
       "allOfEstates": "All of Estates",
       "activeReserves": "Active Reserves",
       "pendingReservations": "Pending Reservations",
@@ -328,7 +330,7 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     },
-    "userInfo":{
+    "userInfo": {
       "title": "User Info",
       "firstNameInputTitle": "First Name",
       "firstNameInputPlc": "Enter your first name",
@@ -345,8 +347,8 @@
       "repeatNewPassInputTitle": "Repeat New Password",
       "repeatNewPassInputPlc": "Repeat your new password"
     },
-    "estatesManagement":{
-      "estatesManagement":"Estates Management",
+    "estatesManagement": {
+      "estatesManagement": "Estates Management",
       "searchPlaceholder": "Search...",
       "filtersBtn": "Filters",
       "addEstateBtn": "Add Estate",
@@ -357,8 +359,8 @@
       "actions": "Actions"
     }
   },
-  "customerDashboard":{
-    "dashboard":{
+  "customerDashboard": {
+    "dashboard": {
       "allOfReserves": "All of Reserves",
       "activeReserves": "Active Reserves",
       "notPaid": "Not Paid",
@@ -374,6 +376,5 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     }
-  }  
+  }
 }
-

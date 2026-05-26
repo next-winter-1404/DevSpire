@@ -47,7 +47,6 @@
       "departureDate": "تاریخ خروج",
       "departureDatePlc": "تاریخ خروج را انتخاب کنید",
       "searchButton": "جستجو کنید",
-
       "buyAndSell": "خرید و فروش",
       "rent": "اجاره",
       "mortgage": "رهن",
@@ -196,8 +195,8 @@
       "max": "حداکثر"
     }
   },
-  "blogs":{
-    "filters":{
+  "blogs": {
+    "filters": {
       "title": "فیلتر ها",
       "result": "نتیجه",
       "search": "جستجو",
@@ -207,7 +206,7 @@
       "oldest": "قدیمی ترین ها"
     }
   },
-  "blogDetail":{
+  "blogDetail": {
     "blogText": "متن مقاله",
     "userComments": "نظرات کاربران",
     "seeMore": "مشاهده بیشتر",
@@ -224,7 +223,7 @@
       "forgotPassword": "رمز عبور خود را فراموش کرده اید؟",
       "submit": "ورود",
       "enterEmailPassword": "لطفاً ایمیل و رمز عبور را وارد کنید",
-        "loginError": "خطا در ورود",
+      "loginError": "خطا در ورود",
       "serverError": "خطا در ارتباط با سرور",
       "successMessage": "ورود با موفقیت انجام شد",
       "or": "یا",
@@ -232,6 +231,12 @@
       "signUp": "ثبت نام کنید",
       "loginWithGoogle": "ورود با گوگل",
       "loginWithApple": "ورود با اپل"
+    },
+    "layout": {
+      "imageAlt": "تصویر احراز هویت",
+      "userAlt": "کاربر {number}",
+      "callToAction": "همین حالا به ما بپیوند!",
+      "description": "همراه هزاران کاربر دیگر از خدمات ما استفاده کنید."
     },
     "register": {
       "ftitle": "صفحه اصلی",
@@ -244,10 +249,6 @@
       "login": "وارد شوید",
       "submit": "ثبت نام",
       "loading": "در حال ثبت نام..."
-    },
-    "layout": {
-      "imageTitle": "همین حالا به ما بپیوند!",
-      "imageDesc": "همراه هزاران کاربر دیگر از خدمات ما استفاده کنید."
     },
     "step2": {
       "back": "بازگشت",
@@ -296,11 +297,11 @@
       }
     }
   },
-  "sellerDashboard":{
-    "header":{
+  "sellerDashboard": {
+    "header": {
       "balance": "موجودی :"
     },
-    "sidebar":{
+    "sidebar": {
       "logo": "لوگو",
       "menu": "منو",
       "dashboard": "داشبورد",
@@ -315,7 +316,7 @@
       "favorites": "علاقه مندی ها",
       "logOut": "خروج از حساب"
     },
-    "dashboard":{
+    "dashboard": {
       "allOfEstates": "کل ملک ها",
       "activeReserves": "رزرو های فعال",
       "pendingReservations": "رزرو های در انتظار",
@@ -329,7 +330,7 @@
       "recentCustomerBookings": "رزرو های اخیر مشتریان",
       "seeAllBtn": "مشاهده همه"
     },
-    "userInfo":{
+    "userInfo": {
       "title": "اطلاعات کاربری",
       "firstNameInputTitle": "نام",
       "firstNameInputPlc": "نام خود را وارد کنید",
@@ -346,8 +347,8 @@
       "repeatNewPassInputTitle": "تکرار رمز عبور جدید",
       "repeatNewPassInputPlc": "رمز عبور جدید را تکرار کنید"
     },
-    "estatesManagement":{
-      "estatesManagement":"مدیریت املاک",
+    "estatesManagement": {
+      "estatesManagement": "مدیریت املاک",
       "searchPlaceholder": "جستجو کنید...",
       "filtersBtn": "فیلتر ها",
       "addEstateBtn": "افزودن ملک",
@@ -358,8 +359,8 @@
       "actions": "عملیات"
     }
   },
-  "customerDashboard":{
-    "dashboard":{
+  "customerDashboard": {
+    "dashboard": {
       "allOfReserves": "کل رزرو ها",
       "activeReserves": "رزرو های فعال",
       "notPaid": "پرداخت نشده",
@@ -373,6 +374,5 @@
       "recentCustomerBookings": "رزرو های اخیر مشتریان",
       "seeAllBtn": "مشاهده همه"
     }
-  }  
+  }
 }
-
