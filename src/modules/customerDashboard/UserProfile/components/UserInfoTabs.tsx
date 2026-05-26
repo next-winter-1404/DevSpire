@@ -1,3 +1,4 @@
+"use client"
 import SecurityTab from '@/components/common/dashboards/SecurityTab';
 import Tabs from '@/components/common/dashboards/Tabs';
 import UserInfoTab from '@/components/common/dashboards/UserInfoTab';
@@ -27,7 +28,7 @@ const UserInfoTabs = () => {
     };
 
     return (
-        <div>
+        <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-8">
                 <h1 className="font-bold text-[24px] text-[#1E2022]">اطلاعات کاربری</h1>
                 <Tabs activeTab={activeTab} onTabChange={onTabChange} tabs={tabsData} />

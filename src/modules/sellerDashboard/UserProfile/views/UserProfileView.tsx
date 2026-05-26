@@ -3,14 +3,14 @@ import Tabs from '@/components/common/dashboards/Tabs';
 import UserInfoTabs from '../components/UserInfoTabs';
 
 
-const UserInfoView = () => {
+const UserProfileView = () => {
 
     return (
-        <div className="flex flex-col gap-8">
+        <div>
             <UserInfoTabs/>
         </div>
     );
 
 };
 
-export default UserInfoView;
+export default UserProfileView;
