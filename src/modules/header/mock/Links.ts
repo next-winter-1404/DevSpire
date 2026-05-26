@@ -1,5 +1,5 @@
 
-export interface NavLink{
+export interface NavLink {
     title: string
     link: string
 }
@@ -22,7 +22,7 @@ export const Links: NavLink[] = [
         link: '/blogs'
     },
     {
-        title: 'aboutUs',
-        link: '/about-us'
+        title: 'contactUs',
+        link: '/contact-us'
     }
 ]

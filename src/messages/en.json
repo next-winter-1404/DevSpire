@@ -6,6 +6,7 @@
     "mortgageAndRent": "Mortgage and Rent",
     "blogs": "Blogs",
     "aboutUs": "About Us",
+    "contactUs": "Contact Us",
     "login": "Login",
     "signUp": "Sign Up"
   },
@@ -195,8 +196,8 @@
       "max": "Max"
     }
   },
-  "blogs":{
-    "filters":{
+  "blogs": {
+    "filters": {
       "title": "Filters",
       "result": "Result",
       "search": "Search",
@@ -206,7 +207,7 @@
       "oldest": "Oldest"
     }
   },
-  "blogDetail":{
+  "blogDetail": {
     "blogText": "Article Text",
     "userComments": "User Comments",
     "seeMore": "See More",
@@ -295,11 +296,11 @@
       }
     }
   },
-  "sellerDashboard":{
-    "header":{
+  "sellerDashboard": {
+    "header": {
       "balance": "Balance :"
     },
-    "sidebar":{
+    "sidebar": {
       "logo": "Logo",
       "menu": "Menu",
       "dashboard": "Dashboard",
@@ -314,7 +315,7 @@
       "favorites": "Favorites",
       "logOut": "Log Out"
     },
-    "dashboard":{
+    "dashboard": {
       "allOfEstates": "All of Estates",
       "activeReserves": "Active Reserves",
       "pendingReservations": "Pending Reservations",
@@ -328,7 +329,7 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     },
-    "userInfo":{
+    "userInfo": {
       "title": "User Info",
       "firstNameInputTitle": "First Name",
       "firstNameInputPlc": "Enter your first name",
@@ -345,8 +346,8 @@
       "repeatNewPassInputTitle": "Repeat New Password",
       "repeatNewPassInputPlc": "Repeat your new password"
     },
-    "estatesManagement":{
-      "estatesManagement":"Estates Management",
+    "estatesManagement": {
+      "estatesManagement": "Estates Management",
       "searchPlaceholder": "Search...",
       "filtersBtn": "Filters",
       "addEstateBtn": "Add Estate",
@@ -357,8 +358,8 @@
       "actions": "Actions"
     }
   },
-  "customerDashboard":{
-    "dashboard":{
+  "customerDashboard": {
+    "dashboard": {
       "allOfReserves": "All of Reserves",
       "activeReserves": "Active Reserves",
       "notPaid": "Not Paid",
@@ -374,6 +375,20 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     }
-  }  
+  },
+  "contact": {
+    "description": "Our support team is available 24/7 to answer your questions and feedback and solve your problem as quickly as possible.",
+    "email": "Email",
+    "message": "Your Message",
+    "messagePlaceholder": "Write your message...",
+    "send": "Send Request",
+    "phone": "Phone",
+    "address": "Address",
+    "addressText": "Gilan, Rasht, Azadi Square",
+    "sending": "Sending...",
+    "fillFields": "Please fill all fields",
+    "successMessage": "Your message was sent successfully",
+    "contact_us": "Contact Us",
+    "errorMessage": "Error sending message"
+  }
 }
-
