@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { MoreVertical } from "lucide-react";
 import ReserveActionsMenu from "./ReserveActionsMenu";
@@ -28,7 +29,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
         <tr className="border-b border-[#DDDDDD]">
           <th className="py-4 px-4">نام اقامتگاه</th>
           <th className="py-4 px-4">اطلاعات مسافرین</th>
-          <th className="py-4 px-4">تاریخ رزرو</th>
+          <th className="py-4 px-4">تاریخ ثبت رزرو</th>
           <th className="py-4 px-4">قیمت</th>
           <th className="py-4 px-4 text-center">وضعیت رزرو</th>
           <th className="py-4 px-4 text-center">عملیات</th>
@@ -48,7 +49,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
             <tr
               key={row.id}
               className="border-b border-[#DDDDDD]
-               hover:bg-slate-50 dark:hover:bg-slate-50/10 transition-colors"
+               hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
             >
               <td className="py-4 px-4 text-gray-500 align-middle">
                 {row.house?.title}
@@ -72,9 +73,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
               </td>
 
               <td className="py-4 px-4 text-gray-500 align-middle whitespace-nowrap">
-                {startDate && endDate
-                  ? `${FormatDate(startDate, "fa")} تا ${FormatDate(endDate, "fa")}`
-                  : "-"}
+                {FormatDate(row.updated_at ?? "", "fa")}
               </td>
 
               <td className="py-4 px-4 text-gray-500 align-middle whitespace-nowrap">
@@ -100,6 +99,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
                 {row.id === openMenuId && (
                   <div ref={menuRef}>
                     <ReserveActionsMenu
+                      isPending={row.status == "pending"}
                       isCanceled={row.status === "canceled"}
                       id={row.id}
                     />

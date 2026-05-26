@@ -329,11 +329,33 @@
       "recentCustomerBookings": "رزرو های اخیر مشتریان",
       "seeAllBtn": "مشاهده همه"
     },
+    "userInfo":{
+      "title": "اطلاعات کاربری",
+      "firstNameInputTitle": "نام",
+      "firstNameInputPlc": "نام خود را وارد کنید",
+      "lastNameInputTitle": "نام خانوادگی",
+      "lastNameInputPlc": "نام خانوادگی خود را وارد کنید",
+      "phoneNumberInputTitle": "شماره تماس",
+      "phoneNumberInputPlc": "شماره تماس خود را وارد کنید",
+      "emailInputTitle": "ایمیل",
+      "applyChangesBtn": "اعمال تغییرات",
+      "prevPasswordInputTitle": "رمز عبور قبلی",
+      "prevPasswordInputPlc": "رمز عبور قبلی را وارد کنید",
+      "newPasswordInputTitle": "رمز عبور جدید",
+      "newPasswordInputPlc": "رمز عبور جدید را وارد کنید",
+      "repeatNewPassInputTitle": "تکرار رمز عبور جدید",
+      "repeatNewPassInputPlc": "رمز عبور جدید را تکرار کنید"
+    },
     "estatesManagement":{
       "estatesManagement":"مدیریت املاک",
       "searchPlaceholder": "جستجو کنید...",
       "filtersBtn": "فیلتر ها",
-      "addEstateBtn": "افزودن ملک"
+      "addEstateBtn": "افزودن ملک",
+      "estateName": "نام اقامتگاه",
+      "reserveDate": "تاریخ رزرو",
+      "price": "قیمت",
+      "status": "وضعیت",
+      "actions": "عملیات"
     }
   },
   "customerDashboard":{

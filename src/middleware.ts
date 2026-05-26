@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
+import { isTokenExpired } from "./utils/helper/IsTokenExpired";
 
 const intlMiddleware = createMiddleware(routing);
 const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -9,28 +10,20 @@ const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const protectedPaths = ["/dashboard", "/fast-reserve/[id]/:path"];
-
   const pathnameWithoutLocale = pathname.replace(/^\/(fa|en)/, "") || "/";
 
-  const isProtectedRoute = protectedPaths.some(
-    (path) =>
-      pathnameWithoutLocale === path ||
-      pathnameWithoutLocale.startsWith(`${path}/`),
-  );
+  const isProtectedRoute =
+    pathnameWithoutLocale === "/dashboard" ||
+    pathnameWithoutLocale.startsWith("/dashboard/") ||
+    pathnameWithoutLocale.startsWith("/fast-reserve/");
 
-  if (!isProtectedRoute) {
-    return intlMiddleware(request);
-  }
+  let accessToken = request.cookies.get("accessToken")?.value as string;
+  const refreshToken = request.cookies.get("refreshToken")?.value as string;
+  let newAccessToken = null;
+  const isNeedRefresh =
+    refreshToken && (!accessToken || isTokenExpired(accessToken));
 
-  const accessToken = request.cookies.get("accessToken")?.value;
-  const refreshToken = request.cookies.get("refreshToken")?.value;
-
-  if (accessToken) {
-    return intlMiddleware(request);
-  }
-
-  if (!accessToken && refreshToken) {
+  if (isNeedRefresh) {
     try {
       const res = await fetch(`${API_URL}/auth/refresh`, {
         method: "POST",
@@ -40,33 +33,38 @@ export default async function middleware(request: NextRequest) {
 
       if (res.ok) {
         const data = await res.json();
-
-        request.cookies.set("accessToken", data.accessToken);
-
-        const response = intlMiddleware(request);
-
-        response.cookies.set({
-          name: "accessToken",
-          value: data.accessToken,
-          httpOnly: false,
-          secure: false,
-          path: "/",
-        });
-        return response;
+        accessToken = data.accessToken;
+        newAccessToken = data.accessToken;
       }
     } catch (error) {
       console.log("Refresh token failed:", error);
     }
   }
 
-  const loginUrl = new URL(
-    pathname.startsWith("/en") ? "/en/auth/login" : "/fa/auth/login",
-    request.url,
-  );
-  const response = NextResponse.redirect(loginUrl);
+  if (isProtectedRoute && !accessToken) {
+    const loginUrl = new URL(
+      pathname.startsWith("/en") ? "/en/auth/login" : "/fa/auth/login",
+      request.url,
+    );
+    const response = NextResponse.redirect(loginUrl);
 
-  response.cookies.delete("accessToken");
-  response.cookies.delete("refreshToken");
+    response.cookies.delete("accessToken");
+    response.cookies.delete("refreshToken");
+
+    return response;
+  }
+
+  const response = intlMiddleware(request);
+
+  if (newAccessToken) {
+    response.cookies.set({
+      name: "accessToken",
+      value: newAccessToken,
+      httpOnly: false,
+      secure: false,
+      path: "/",
+    });
+  }
 
   return response;
 }

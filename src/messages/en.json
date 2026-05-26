@@ -328,11 +328,33 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     },
+    "userInfo":{
+      "title": "User Info",
+      "firstNameInputTitle": "First Name",
+      "firstNameInputPlc": "Enter your first name",
+      "lastNameInputTitle": "Last Name",
+      "lastNameInputPlc": "Enter your last name",
+      "phoneNumberInputTitle": "Phonenumber",
+      "phoneNumberInputPlc": "Enter your phone number",
+      "emailInputTitle": "Email",
+      "applyChangesBtn": "Apply Changes",
+      "prevPasswordInputTitle": "Previous Password",
+      "prevPasswordInputPlc": "Enter your previous password",
+      "newPasswordInputTitle": "New Password",
+      "newPasswordInputPlc": "Enter your new password",
+      "repeatNewPassInputTitle": "Repeat New Password",
+      "repeatNewPassInputPlc": "Repeat your new password"
+    },
     "estatesManagement":{
       "estatesManagement":"Estates Management",
       "searchPlaceholder": "Search...",
       "filtersBtn": "Filters",
-      "addEstateBtn": "Add Estate"
+      "addEstateBtn": "Add Estate",
+      "estateName": "Estate Name",
+      "reserveDate": "Reserve Date",
+      "price": "Price",
+      "status": "Status",
+      "actions": "Actions"
     }
   },
   "customerDashboard":{

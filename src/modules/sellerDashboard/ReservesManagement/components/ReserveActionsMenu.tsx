@@ -9,9 +9,11 @@ import ContinueBookingModal from "@/components/common/ContinueBookingModal";
 const ReserveActionsMenu = ({
   id,
   isCanceled,
+  isPending,
 }: {
   id: number;
   isCanceled: boolean;
+  isPending: boolean;
 }) => {
   const [openDetailModal, setOpenDetailModal] = useState<boolean>(false);
   const onCloseDetail = () => {
@@ -56,14 +58,16 @@ const ReserveActionsMenu = ({
           <CheckCircle className="w-4 h-4" /> ادامه و تایید رزرو
         </button>
       )}
-      <button
-        onClick={() => setOpenCancelModal(true)}
-        className="flex items-center gap-2 px-4 py-2 text-foreground
+      {isPending && (
+        <button
+          onClick={() => setOpenCancelModal(true)}
+          className="flex items-center gap-2 px-4 py-2 text-foreground
                    hover:text-blue-600 hover:bg-blue-50/50 text-xs 
                    text-right"
-      >
-        <XCircle className="w-4 h-4" /> لغو رزرو
-      </button>
+        >
+          <XCircle className="w-4 h-4" /> لغو رزرو
+        </button>
+      )}
       <button
         onClick={() => setOpenDetailModal(true)}
         className="flex items-center gap-2 px-4 py-2 text-foreground

@@ -43,6 +43,9 @@ const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
     },
   });
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+  useEffect(() => {
     if (!bookingId || !amount) {
       notFound();
     }
@@ -60,7 +63,8 @@ const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
       {isPending ? (
         <div className="flex flex-col items-center justify-center">
           <div
-            className="w-16 h-16 border-4 border-blue-900 border-t-transparent rounded-full 
+            className="w-16 h-16 border-4 border-blue-900 border-t-transparent 
+            rounded-full 
           animate-spin mb-6"
           />
 
