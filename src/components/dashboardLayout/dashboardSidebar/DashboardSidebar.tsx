@@ -43,11 +43,12 @@ const DashboardSidebar = ({ role }: IProps) => {
       ? "text-[#0D3B66] dark:text-[#E4E4E4]"
       : "dark:text-[#A3A3A3]";
 
+
   const sellerMenuItems = {
     general: [
       { href: `${sellerBasePath}`, label: t("dashboard"), Icon: Dashboard },
       {
-        href: `${sellerBasePath}/user-profile`,
+        href: `${sellerBasePath}/user-info`,
         label: t("userProfile"),
         Icon: EditUser,
       },
@@ -85,7 +86,7 @@ const DashboardSidebar = ({ role }: IProps) => {
     general: [
       { href: `${customerBasePath}`, label: t("dashboard"), Icon: Dashboard },
       {
-        href: `${customerBasePath}/user-profile`,
+        href: `${customerBasePath}/user-info`,
         label: t("userProfile"),
         Icon: EditUser,
       },
