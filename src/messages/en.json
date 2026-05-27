@@ -248,6 +248,7 @@
     },
     "register": {
       "ftitle": "Home",
+      "emailPlaceholder": "Enter your email...",
       "title": "Create an account (Step 1)",
       "description": "Enter your email and take the first step when you receive the code.",
       "email": "Email",
@@ -269,6 +270,7 @@
     "step3": {
       "back": "Back",
       "title": "Create an account (Final Step)",
+      "phonePlaceholder": "Enter phone number...",
       "description": "To complete your registration, enter your phon numbeer and password.",
       "phonPlaceholder": "Enter your phom number...",
       "passwordPlaceholder": "Enter your password...",
@@ -284,7 +286,8 @@
         "description": "Enter your email and take the first step by receiving a code.",
         "emailPlaceholder": "Enter your email...",
         "submit": "Send verification code",
-        "successMessage": "Verification code sent successfully"
+        "successMessage": "Verification code sent successfully",
+        "loading": "loading"
       },
       "step2": {
         "back": "Back",
@@ -299,7 +302,8 @@
         "invalidCodeLength": "Verification code must be 6 digits",
         "codeVerified": "Code verified successfully",
         "invalidOrExpiredCode": "The code is invalid or has expired",
-        "verifying": "Verifying..."
+        "verifying": "Verifying...",
+        "resendCode": "resend code"
       },
       "step3": {
         "back": "Back",
@@ -310,6 +314,7 @@
         "showPassword": "Show password",
         "hidePassword": "Hide password",
         "submit": "Set new password",
+        "submitting": "submitting",
         "changing": "Changing password...",
         "passwordChanged": "Password changed successfully",
         "emailNotFound": "Email information not found",

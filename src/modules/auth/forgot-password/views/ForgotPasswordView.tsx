@@ -5,44 +5,36 @@ import ForgotPasswordStep2 from "../components/ForgotPasswordStep2Form";
 import ForgotPasswordStep3 from "../components/ForgotPasswordStep3Form";
 
 export default function ForgotPasswordView() {
-    const [step, setStep] = useState(1);
-    const [data, setData] = useState({
-        email: "",
-        userId: "",
-        resetCode: ""
-    });
+  const [step, setStep] = useState(1);
+  const [data, setData] = useState({
+    email: "",
+    userId: "",
+    resetCode: "",
+  });
 
-    const updateData = useCallback((newData: Partial<typeof data>) => {
-        setData((prev) => ({ ...prev, ...newData }));
-    }, []);
+  const updateData = useCallback((newData: Partial<typeof data>) => {
+    setData((prev) => ({ ...prev, ...newData }));
+  }, []);
 
-    const next = () => setStep((s) => s + 1);
-    const back = () => setStep((s) => s - 1);
+  const next = () => setStep((s) => s + 1);
+  const back = () => setStep((s) => s - 1);
 
-    return (
-        <>
-            {step === 1 && (
-                <ForgotPasswordStep1 
-                    next={next} 
-                    updateData={updateData} 
-                />
-            )}
+  return (
+    <div className="w-full h-full ">
+      {step === 1 && (
+        <ForgotPasswordStep1 next={next} updateData={updateData} />
+      )}
 
-            {step === 2 && (
-                <ForgotPasswordStep2
-                    next={next}
-                    back={back}
-                    data={data}
-                    updateData={updateData}
-                />
-            )}
+      {step === 2 && (
+        <ForgotPasswordStep2
+          next={next}
+          back={back}
+          data={data}
+          updateData={updateData}
+        />
+      )}
 
-            {step === 3 && (
-                <ForgotPasswordStep3 
-                    back={back} 
-                    data={data} 
-                />
-            )}
-        </>
-    );
+      {step === 3 && <ForgotPasswordStep3 back={back} data={data} />}
+    </div>
+  );
 }

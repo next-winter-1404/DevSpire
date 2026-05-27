@@ -119,6 +119,7 @@ export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
                 deleteCookie("accessToken");
                 toast.success("با موفقیت از حسابتان خارج شدید");
                 router.push("/");
+                router.refresh();
               }}
             />
           )}

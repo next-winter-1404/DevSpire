@@ -12,7 +12,7 @@ const LoginView = () => {
   const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <div className="w-full h-full flex flex-col justify-center" dir={direction}>
+    <div className="w-full h-full flex flex-col justify-center">
       <div className="w-full flex items-center justify-between">
         <Link
           href="/"
