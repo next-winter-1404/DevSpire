@@ -7,12 +7,12 @@ import { deleteCookie } from "cookies-next";
 import toast from "react-hot-toast";
 import { LogOut, Settings, User } from "lucide-react";
 import { DashboardIcon } from "@radix-ui/react-icons";
-import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import { useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 import LogoutModal from "@/components/common/LogoutModal";
+import { TUser } from "@/modules/mortgageRentDetail/types";
 
-export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
+export default function ProfileDropdown({ data }: { data: TUser }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -44,13 +44,14 @@ export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
          transition-all duration-300 ring-2 ring-transparent focus:ring-blue-100 "
       >
         {data.profilePicture ? (
-          <Image
-            src="/images"
-            alt="پروفایل"
-            width={50}
-            height={50}
-            className="object-cover bg-[#777777]/50 "
-          />
+          // <Image
+          //   src="/images"
+          //   alt="پروفایل"
+          //   width={50}
+          //   height={50}
+          //   className="object-cover bg-[#777777]/50 "
+          // />
+          <User size={30} />
         ) : (
           <User size={30} />
         )}
@@ -64,7 +65,11 @@ export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
          zoom-in-95 duration-200"
         >
           <div className="px-4 py-3 border-b border-gray-50 text-right">
-            <p className="text-sm font-semibold text-primary ">{data.name}</p>
+            <p className="text-sm font-semibold text-primary ">
+              {data.firstName
+                ? `${data.firstName} ${data.lastName}`
+                : `${data.fullName}`}
+            </p>
             <p className="text-xs text-gray-500 mt-0.5 truncate">
               {data.email}
             </p>
@@ -85,17 +90,6 @@ export default function ProfileDropdown({ data }: { data: IDecodedToken }) {
             >
               <DashboardIcon />
               داشبورد
-            </Link>
-
-            <Link
-              href="/dashboard/settings"
-              className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600
-               hover:bg-gray-50
-               hover:text-[#10375c] transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              <Settings size={18} />
-              تنظیمات
             </Link>
           </div>
 

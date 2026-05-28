@@ -9,11 +9,11 @@ import { Links } from "@/modules/header/mock/Links";
 import HeaderMenu from "./HeaderMenu";
 import ToggleTheme from "../../common/ToggleTheme";
 import Logo from "../../../../public/icons/Logo";
-import { jwtDecode } from "jwt-decode";
 import ProfileDropdown from "./ProfileDropdown";
-import { IDecodedToken } from "@/modules/fastReserveDetail/types";
+import { TUser } from "@/modules/mortgageRentDetail/types";
+import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
 
-const Header = ({ token }: { token: string | undefined }) => {
+const Header = ({ user }: { user: TUserRes | null }) => {
   const pathname = usePathname();
   const t = useTranslations("header");
 
@@ -22,16 +22,6 @@ const Header = ({ token }: { token: string | undefined }) => {
   const toggleMenu = (value: boolean) => {
     setIsOpenMenu(value);
   };
-
-  let decodedToken = null;
-
-  if (token) {
-    try {
-      decodedToken = jwtDecode<IDecodedToken>(token);
-    } catch {
-      decodedToken = null;
-    }
-  }
 
   return (
     <>
@@ -82,8 +72,8 @@ const Header = ({ token }: { token: string | undefined }) => {
             <div className="hidden md:block">
               <ToggleTheme />
             </div>
-            {decodedToken ? (
-              <ProfileDropdown data={decodedToken} />
+            {user ? (
+              <ProfileDropdown data={user.user} />
             ) : (
               <>
                 <Link

@@ -1,5 +1,9 @@
 import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
+import { apiFetch } from "@/core/Server-fetch/fetchApi";
+import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { IDecodedToken } from "@/modules/fastReserveDetail/types";
+import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
 export default async function MainLayout({
@@ -7,12 +11,16 @@ export default async function MainLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("accessToken")?.value;
+  const cookiesStore = await cookies();
+  const token = cookiesStore.get("accessToken")?.value as string;
+  const decoded = jwtDecode(token) as IDecodedToken;
+  const user = await apiFetch<TUserRes | null>(`/users/${decoded.id}`, {
+    cache: "no-store",
+  });
   return (
     <>
       <header>
-        <Header token={token} />
+        <Header user={user} />
       </header>
       <main className="pt-[60px]">{children}</main>
       <footer className="pt-10 pb-8 px-4 sm:py-6 sm:px-6 lg:px-12">

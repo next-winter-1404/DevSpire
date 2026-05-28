@@ -24,7 +24,6 @@ export default async function MainLayout({
       locale: "fa",
     });
   }
-  console.log(user);
 
   return (
     <div className="flex gap-8 w-full p-5 h-screen ">
