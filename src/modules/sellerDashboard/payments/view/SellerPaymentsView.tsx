@@ -38,7 +38,7 @@ const SellerPaymentsView = async ({
          bg-[#ffff] dark:bg-[#262626]"
       >
         {res && res?.totalCount > 0 ? (
-          <PaymentsList role="seller" data={res} />
+          <PaymentsList role="seller" sellerData={res} />
         ) : (
           <div
             className="flex flex-col items-center justify-center h-[300px]

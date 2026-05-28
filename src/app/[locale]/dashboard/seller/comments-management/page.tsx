@@ -1,4 +1,5 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
+import DashboardContainer from "@/components/dashboard/DashboardContainer";
 import SellerCommentManagementView from "@/modules/sellerDashboard/CommentsManagement/view/SellerCommentManagementView";
 import React, { Suspense } from "react";
 
@@ -18,9 +19,11 @@ const SellerCommentsManagementPage = async ({ searchParams }: IProps) => {
     created_at_to: sparams.created_at_to ?? "",
   } as Record<string, string>;
   return (
-    <Suspense fallback={<DashboardTableSkeleton />}>
-      <SellerCommentManagementView params={params} />
-    </Suspense>
+    <DashboardContainer>
+      <Suspense fallback={<DashboardTableSkeleton />}>
+        <SellerCommentManagementView params={params} />
+      </Suspense>
+    </DashboardContainer>
   );
 };
 

@@ -1,12 +1,12 @@
-import CustomerDashboardView from '@/modules/customerDashboard/dashboard/view/CustomerDashboardView'
-
+import DashboardContainer from "@/components/dashboard/DashboardContainer";
+import CustomerDashboardView from "@/modules/customerDashboard/dashboard/view/CustomerDashboardView";
 
 const page = () => {
+  return (
+    <DashboardContainer>
+      <CustomerDashboardView />
+    </DashboardContainer>
+  );
+};
 
-    return (
-        <CustomerDashboardView/>
-    )
-
-}
-
-export default page
+export default page;

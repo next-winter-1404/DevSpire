@@ -1,36 +1,28 @@
 "use client";
-
-import { Filter, House, Search } from "lucide-react";
-import { useLocale } from "next-intl";
-import { ChangeEvent, useEffect, useState } from "react";
-import ReserveFilterModal from "./FiltersModal";
 import { usePathname, useRouter } from "@/i18n/routing";
+import { Filter } from "lucide-react";
+import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
-import { useDebounce } from "use-debounce";
-import { SellerChooseHouseModal } from "@/modules/sellerDashboard/CommentsManagement/components/SellerChooseHouseModal";
+import { useEffect, useState } from "react";
+import UsersManagementFiltersModal from "./UserManagementFiltersModal";
 
-const ReserveFilters = () => {
+const UsersManagementFilters = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+
   const onClose = () => {
     setIsFilterOpen(false);
   };
-
   const locale = useLocale();
-  const isRTL = locale == "fa";
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    // if (search) {
-    //   params.set("search", search);
-    // }
-    params.set("limit", "6");
+    params.set("limit", "10");
     params.set("order", "DESC");
     params.set("page", "1");
-    params.set("sort", "created_at");
     router.push(`${pathname}?${params.toString()}`);
   }, []);
 
@@ -48,9 +40,9 @@ const ReserveFilters = () => {
         <Filter className="w-5 h-5" />
         فیلتر ها
       </button>
-      {isFilterOpen && <ReserveFilterModal onClose={onClose} />}
+      {isFilterOpen && <UsersManagementFiltersModal onClose={onClose} />}
     </div>
   );
 };
 
-export default ReserveFilters;
+export default UsersManagementFilters;

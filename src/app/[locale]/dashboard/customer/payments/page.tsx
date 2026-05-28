@@ -1,4 +1,5 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
+import DashboardContainer from "@/components/dashboard/DashboardContainer";
 import PaymentsView from "@/modules/customerDashboard/payments/views/PaymentsView";
 import { Suspense } from "react";
 
@@ -15,11 +16,11 @@ const PaymentsPage = async ({ searchParams }: IProps) => {
     page: sparams.page ?? "",
   } as Record<string, string>;
   return (
-    <>
+    <DashboardContainer>
       <Suspense fallback={<DashboardTableSkeleton />}>
         <PaymentsView params={params} />
       </Suspense>
-    </>
+    </DashboardContainer>
   );
 };
 

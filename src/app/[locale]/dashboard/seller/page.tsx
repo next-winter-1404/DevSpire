@@ -1,12 +1,12 @@
-import SellerDashboardView from '@/modules/sellerDashboard/dashboard/views/SellerDashboardView'
-
+import DashboardContainer from "@/components/dashboard/DashboardContainer";
+import SellerDashboardView from "@/modules/sellerDashboard/dashboard/views/SellerDashboardView";
 
 const page = () => {
+  return (
+    <DashboardContainer>
+      <SellerDashboardView />
+    </DashboardContainer>
+  );
+};
 
-    return (
-        <SellerDashboardView/>
-    )
-
-}
-
-export default page
+export default page;

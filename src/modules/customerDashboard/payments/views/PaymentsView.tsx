@@ -6,9 +6,7 @@ import PaymentsList from "../components/PaymentsList";
 const PaymentsView = async ({ params }: { params: Record<string, string> }) => {
   const res = await apiFetch<IPaymentResponse | null>("/payments", {
     params,
-    next: {
-      revalidate: 60 * 2,
-    },
+    cache: "no-store",
   });
 
   return (
@@ -31,7 +29,7 @@ const PaymentsView = async ({ params }: { params: Record<string, string> }) => {
          bg-[#ffff] dark:bg-[#262626]"
       >
         {res && res?.totalCount > 0 ? (
-          <PaymentsList role="buyer" data={res} />
+          <PaymentsList role="buyer" buyerData={res} />
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">

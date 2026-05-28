@@ -1,27 +1,29 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import CustomerReservationManagementView from "@/modules/customerDashboard/ReserveManagement/view/CustomerReservationManagement";
+import UsersManagementView from "@/modules/AdminDashboard/users-management/view/UsersManagementView";
 import { Suspense } from "react";
 
 interface IProps {
   searchParams: Promise<{ [key: string]: string | null }>;
 }
-const CustomerReservePage = async ({ searchParams }: IProps) => {
+const UsersManagementPage = async ({ searchParams }: IProps) => {
   const sparams = await searchParams;
-  const params = {
-    sort: sparams.sort ?? "",
-    order: sparams.order ?? "",
-    limit: sparams.limit ?? "",
-    page: sparams.page ?? "",
-  } as Record<string, string>;
 
+  const params = {
+    limit: sparams.limit ?? "10",
+    order: sparams.order ?? "DESC",
+    role: sparams.role ?? "",
+    membership_date: sparams.membership_date ?? "",
+    page: sparams.page ?? "1",
+    sort: sparams.sort ?? "",
+  };
   return (
     <DashboardContainer>
       <Suspense fallback={<DashboardTableSkeleton />}>
-        <CustomerReservationManagementView params={params} />
+        <UsersManagementView params={params} />
       </Suspense>
     </DashboardContainer>
   );
 };
 
-export default CustomerReservePage;
+export default UsersManagementPage;

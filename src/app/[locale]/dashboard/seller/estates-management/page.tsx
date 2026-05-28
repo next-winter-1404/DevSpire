@@ -7,6 +7,7 @@ import EstatesManagementView from "../../../../../modules/sellerDashboard/estate
 import EstateManagementDataStreaming from "@/modules/sellerDashboard/estatesManagement/views/EstateManagementDataStreaming";
 import { Suspense } from "react";
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
+import DashboardContainer from "@/components/dashboard/DashboardContainer";
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -24,9 +25,11 @@ const page = async ({ searchParams }: Props) => {
   // };
 
   return (
-    <Suspense fallback={<DashboardTableSkeleton />}>
-      <EstateManagementDataStreaming />
-    </Suspense>
+    <DashboardContainer>
+      <Suspense fallback={<DashboardTableSkeleton />}>
+        <EstateManagementDataStreaming />
+      </Suspense>
+    </DashboardContainer>
   );
 };
 

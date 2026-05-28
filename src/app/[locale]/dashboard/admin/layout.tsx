@@ -33,8 +33,8 @@ export default async function AdminLayout({
           <DashboardHeader userInfo={user} hasNotification={false} />
         </header>
         <main
-          className="h-full  p-5 bg-[#F5F5F5] border
-     border-[#DDDDDD] rounded-[40px]   overflow-y-auto scroll-smooth
+          className="h-full  bg-[#F5F5F5] border
+     border-[#DDDDDD] rounded-[40px]   overflow-hidden
     dark:bg-[#404040] dark:border-[#777777]"
         >
           {children}

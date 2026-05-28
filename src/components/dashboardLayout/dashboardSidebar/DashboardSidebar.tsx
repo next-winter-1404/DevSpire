@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
-import Chat from "../../../../public/icons/Chat";
+import { UsersIcon } from "lucide-react";
 
 interface IProps {
   role: "seller" | "buyer" | "admin";
@@ -42,7 +42,6 @@ const DashboardSidebar = ({ role }: IProps) => {
     pathname === path
       ? "text-[#0D3B66] dark:text-[#E4E4E4]"
       : "dark:text-[#A3A3A3]";
-
 
   const sellerMenuItems = {
     general: [
@@ -118,7 +117,7 @@ const DashboardSidebar = ({ role }: IProps) => {
     general: [
       { href: `${adminBasePath}`, label: t("dashboard"), Icon: Dashboard },
       {
-        href: `${adminBasePath}/user-profile`,
+        href: `${adminBasePath}/user-info`,
         label: t("userProfile"),
         Icon: EditUser,
       },
@@ -133,6 +132,11 @@ const DashboardSidebar = ({ role }: IProps) => {
         href: `${adminBasePath}/reserves-management`,
         label: t("reservesManagement"),
         Icon: CheckList,
+      },
+      {
+        href: `${adminBasePath}/users-management`,
+        label: "مدیریت کاربران",
+        Icon: UsersIcon,
       },
       {
         href: `${adminBasePath}/payments`,

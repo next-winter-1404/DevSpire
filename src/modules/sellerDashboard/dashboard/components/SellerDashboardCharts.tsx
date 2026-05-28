@@ -16,7 +16,7 @@ const SellerDashboardCharts = ({ payments, user }: IProps) => {
   return (
     <div className="flex gap-4">
       <InCome
-        title={t("incomeChart")}
+        title="نمودار درامد این ماه"
         totalIncome={String(payments?.totalAmount.toLocaleString()) || ""}
         currentIncome={String(payments?.totalCurrentMonthAmount) || ""}
         percentage={

@@ -4,6 +4,7 @@ import { MoreVertical, User } from "lucide-react";
 import Image from "next/image";
 import { TUser } from "@/modules/mortgageRentDetail/types";
 import { FormatDate } from "@/utils/helper/FormatDate";
+import UsersManagementActionsModal from "./UsersManagementActionModal";
 
 export default function UserManagementTable({ data }: { data: TUser[] }) {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
@@ -72,7 +73,8 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
         {data.map((row) => (
           <tr
             key={row.id}
-            className="border-b border-[#DDDDDD] hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
+            className="border-b border-[#DDDDDD] 
+             hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
           >
             <td className="py-4 px-4 text-gray-600">
               <div className="flex items-center gap-3">
@@ -93,8 +95,8 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="font-medium text-gray-800">
-                    {row.fullName}
+                  <span className="font-medium text-foreground">
+                    {row.firstName} {row.lastName}
                   </span>
                   <span className="text-xs text-gray-400 mt-1">
                     {row.email}
@@ -142,16 +144,8 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
               </button>
 
               {openMenuId === row.id && (
-                <div
-                  ref={menuRef}
-                  className="absolute left-6 top-10 z-10 bg-white border shadow-md rounded-lg w-32 py-1"
-                >
-                  <button className="w-full text-right px-4 py-2 text-sm hover:bg-slate-50 text-slate-600">
-                    مشاهده
-                  </button>
-                  <button className="w-full text-right px-4 py-2 text-sm hover:bg-slate-50 text-red-600">
-                    حذف
-                  </button>
+                <div ref={menuRef}>
+                  <UsersManagementActionsModal id={row.id} />
                 </div>
               )}
             </td>

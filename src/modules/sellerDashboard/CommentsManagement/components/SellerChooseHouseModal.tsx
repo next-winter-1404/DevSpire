@@ -72,7 +72,7 @@ export const SellerChooseHouseModal = ({
                   }`}
                 >
                   <div className="w-12 h-12 rounded-full overflow-hidden relative shrink-0 bg-gray-200">
-                    {item.photos?.[0] && (
+                    {item.photos?.[10] && (
                       <Image
                         src={item.photos[0]}
                         alt={item.title}

@@ -1,4 +1,5 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
+import DashboardContainer from "@/components/dashboard/DashboardContainer";
 import SellerReserveManagementView from "@/modules/sellerDashboard/ReservesManagement/view/SellerReserveManagementView";
 import { Suspense } from "react";
 
@@ -15,11 +16,11 @@ const SellerReservePage = async ({ searchParams }: IProps) => {
   } as Record<string, string>;
 
   return (
-    <div className="h-full">
+    <DashboardContainer>
       <Suspense fallback={<DashboardTableSkeleton />}>
         <SellerReserveManagementView params={params} />
       </Suspense>
-    </div>
+    </DashboardContainer>
   );
 };
 

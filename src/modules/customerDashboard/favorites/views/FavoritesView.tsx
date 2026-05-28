@@ -20,7 +20,6 @@ const FavoritesView = async ({ params }: IProps) => {
       params,
     },
   );
-  console.log(data);
 
   return (
     <div className="h-full">

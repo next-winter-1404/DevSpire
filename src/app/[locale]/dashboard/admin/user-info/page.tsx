@@ -1,10 +1,12 @@
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
 import UserInfoView from "@/modules/user-Info/view/UserInfoView";
 
-export default function Page() {
+const AdminProfile = () => {
   return (
     <DashboardContainer>
       <UserInfoView />
     </DashboardContainer>
   );
-}
+};
+
+export default AdminProfile;

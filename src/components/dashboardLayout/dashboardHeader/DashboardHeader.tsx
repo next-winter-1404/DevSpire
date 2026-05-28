@@ -47,7 +47,8 @@ const DashboardHeader = ({ hasNotification, userInfo }: IProps) => {
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-1">
             <span className="font-regular text-[20px] text-[#1E2022]   dark:text-[#F5F5F5]">
-              {userInfo?.user?.fullName ?? "بدون نام"}
+              {userInfo?.user?.firstName || "بدون نام"}{" "}
+              {userInfo?.user?.lastName}
             </span>
             <span className="font-regular text-[14px] text-[#0D3B66]   dark:text-[#E4E4E4]">
               {userInfo?.user?.role === "buyer"
