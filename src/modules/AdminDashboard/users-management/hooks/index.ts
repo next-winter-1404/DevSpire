@@ -1,13 +1,12 @@
 import httpClient from "@/core/interceptor/axios";
 import { useRouter } from "@/i18n/routing";
-import { TUser } from "@/modules/mortgageRentDetail/types";
+import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 export interface IEditUser {
   email: string;
-  fullName: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;
@@ -22,7 +21,7 @@ export const useManageUsers = (id: number) => {
     queryFn: async () => {
       try {
         const res = await httpClient(`/users/${id}`);
-        return res.data as TUser;
+        return res.data as TUserRes;
       } catch (err) {
         throw err;
       }
@@ -71,9 +70,9 @@ export const useManageUsers = (id: number) => {
   });
 
   const changeRoleMutation = useMutation({
-    mutationFn: async (role: string) => {
+    mutationFn: async (data: { role: string }) => {
       try {
-        const res = await httpClient.put(`/admin/users/{id}/role`, role);
+        const res = await httpClient.put(`/admin/users/${id}/role`, data);
         return res;
       } catch (err) {
         throw err;
