@@ -191,16 +191,3 @@ export interface IDashboardStats {
 
   averageRating: string;
 }
-
-export interface IUserActivity {
-  userId: number;
-  bookingCount: number;
-  feedbackGiven: number;
-  feedbackReceived: number;
-  housesCreated: number;
-}
-
-export interface IAllUsers {
-  data: TUser[];
-  totalCount: number;
-}
