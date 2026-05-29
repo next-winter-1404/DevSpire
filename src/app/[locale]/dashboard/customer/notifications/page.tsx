@@ -1,12 +1,41 @@
-import NotificationsView from '@/modules/customerDashboard/Notifications/views/NotificationsView'
+import { apiFetch } from '@/core/Server-fetch/fetchApi';
+import { IDecodedToken } from '@/modules/fastReserveDetail/types';
+import NotificationsView from '@/modules/sellerDashboard/Notifications/views/NotificationsView'
+import { jwtDecode } from 'jwt-decode';
+import { cookies } from 'next/headers';
 
 
+interface IProps {
+  searchParams: Promise<{ [key: string]: string | null }>;
+}
 
-const page = () => {
+const page = async ({ searchParams }: IProps) => {
+
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("accessToken")?.value as string;
+    const decoded = jwtDecode(token) as IDecodedToken;
+    
+    const params = await searchParams;
+    const payLoad = {
+        page: params.page ?? "",
+        limit: params.limit ?? "",
+        isRead: params.isRead ?? "",
+        type: params.type ?? "",
+        sort: params.sort ?? "",
+        order: params.order ?? "",
+    } as Record<string, string>;
+
+    const data = await apiFetch(`/notifications/${decoded.id}`, {
+        params: payLoad,
+        cache: "no-store",
+    });
+
+    const totalPages = Math.ceil(data.totalCount / parseInt(payLoad.limit) || 1)
+
 
     return (
         <div>
-            <NotificationsView/>
+            <NotificationsView notifications={data.data} totalPages={totalPages}/>
         </div>
     )
 

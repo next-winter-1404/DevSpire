@@ -22,7 +22,7 @@ const NotificationsFilterModal = ({handleNotifFilterModal}: IProps) => {
 
 
     const [isRead, setIsRead] = useState<string>(searchParams.get("isRead")?.toString() ?? "")
-    const [sort, setSortBy] = useState<string>(searchParams.get("sort")?.toString() ?? "createdAt")
+    const [sort, setSortBy] = useState<string>(searchParams.get("sort")?.toString() ?? "")
     const [order, setOrder] = useState<string>(searchParams.get("order")?.toString() ?? "desc")
 
 
@@ -87,7 +87,8 @@ const NotificationsFilterModal = ({handleNotifFilterModal}: IProps) => {
                     </div>
                     <div className="flex flex-col gap-4">
                         <span className="font-bold text-[#1E2022]   dark:text-[#E4E4E4]">{t("sortBy")}</span>
-                        <CustomSelect defaultValue={sort} options={sortByOptions} onValueChange={setSortBy}/>
+                        <CustomSelect defaultValue={sort} options={sortByOptions} onValueChange={setSortBy}
+                        placeholder={"همه"}/>
                     </div>
                     <div className="flex flex-col gap-4">
                         <span className="font-bold text-[#1E2022]   dark:text-[#E4E4E4]">{t("orderBy")}</span>

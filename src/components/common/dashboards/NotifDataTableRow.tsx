@@ -29,7 +29,7 @@ const NotifDataTableRow = ({item}: IProps) => {
 
 
     return (
-        <div className="flex">
+        <div className="flex flex-col gap-2   sm:flex-row">
             <div className="w-148">
                 <p className="text-[#1E2022]   dark:text-[#E4E4E4]">{item.message}</p>
             </div>

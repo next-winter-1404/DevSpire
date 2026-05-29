@@ -206,7 +206,7 @@ export type TNotification = {
   updatedAt: string
 }
 export type TNotificationsResponse = {
-  notifications: TNotification[];
+  data: TNotification[];
   totalCount: number;
 }
 export interface INotificationsParams{

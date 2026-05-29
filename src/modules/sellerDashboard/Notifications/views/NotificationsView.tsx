@@ -1,20 +1,19 @@
-import NotificationsDataTable from '@/components/common/dashboards/NotificationsDataTable'
+import NotificationsList from '@/components/common/dashboards/NotificationsList';
 import NotificationsTop from '@/components/common/dashboards/NotificationsTop'
-import { TNotification } from '@/components/common/types';
+import { TNotificationsResponse } from '@/components/common/types';
 
 
 
 interface IProps{
-    notifications: TNotification[];
+    data: TNotificationsResponse;
 }
 
-const NotificationsView = ({notifications}: IProps) => {
-
+const NotificationsView = ({data}: IProps) => {
 
     return (
         <div className="flex flex-col gap-4">
             <NotificationsTop/>
-            <NotificationsDataTable notifications={notifications}/>
+            <NotificationsList data={data}/>
         </div>
     )
 
