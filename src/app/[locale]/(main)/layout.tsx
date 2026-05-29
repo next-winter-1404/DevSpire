@@ -13,10 +13,22 @@ export default async function MainLayout({
 }) {
   const cookiesStore = await cookies();
   const token = cookiesStore.get("accessToken")?.value as string;
-  const decoded = jwtDecode(token) as IDecodedToken;
-  const user = await apiFetch<TUserRes | null>(`/users/${decoded.id}`, {
-    cache: "no-store",
-  });
+  let decoded = null;
+  let user = null;
+
+  try {
+    if (token) {
+      decoded = jwtDecode(token) as IDecodedToken;
+    }
+  } catch (err) {
+    return null;
+  }
+  if (decoded?.id) {
+    user = await apiFetch<TUserRes | null>(`/users/${decoded?.id}`, {
+      cache: "no-store",
+    });
+  }
+
   return (
     <>
       <header>
