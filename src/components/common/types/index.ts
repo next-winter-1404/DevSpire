@@ -190,3 +190,32 @@ export interface IDashboardStats {
 
   averageRating: string;
 }
+
+
+
+
+export type TNotification = {
+  id: number,
+  userId: number,
+  title: string,
+  message: string,
+  type: string,
+  data: Record<string, unknown>, 
+  isRead: true,
+  createdAt: string,
+  updatedAt: string
+}
+export type TNotificationsResponse = {
+  notifications: TNotification[];
+  totalCount: number;
+}
+export interface INotificationsParams{
+  page?: string;
+  limit?: string;
+  isRead?: boolean;
+  type?: string;
+  title?: string;
+  message?: string;
+  sort?: string;
+  order?: string;
+}

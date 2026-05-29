@@ -328,6 +328,22 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     },
+    "notifications":{
+      "title": "Your Notification List",
+      "filters": "Filters",
+      "readPlc": "All",
+      "sortBy": "Sort By",
+      "orderBy": "Order BY",
+      "applyFiltersBtn": "Apply Filters",
+      "markAsRead": "Mark as Read",
+      "notification": "Notification",
+      "date": "Date",
+      "notRead": "Not Read",
+      "read": "Read",
+      "markAsReadModalText": "Are you sure you want to mark all content on this site as read?",
+      "cancelBtn": "Cancel",
+      "agreeBtn": "Agree"
+    },
     "userInfo":{
       "title": "User Info",
       "firstNameInputTitle": "First Name",

@@ -329,6 +329,22 @@
       "recentCustomerBookings": "رزرو های اخیر مشتریان",
       "seeAllBtn": "مشاهده همه"
     },
+    "notifications":{
+      "title": "لیست اعلان های شما",
+      "filters": "فیلترها",
+      "readPlc": "همه",
+      "sortBy": "مرتب سازی بر اساس",
+      "orderBy": "ترتیب مرتب سازی",
+      "applyFiltersBtn": "اعمال فیلترها",
+      "markAsRead": "علامت گذاری به عنوان خوانده شده",
+      "notification": "اعلان",
+      "date": "تاریخ",
+      "notRead": "خوانده نشده",
+      "read": "خوانده شده",
+      "markAsReadModalText": "آیا مطمئن هستید که میخواهید همه مطالب سایت را به عنوان خوانده شده علامت بزنید؟",
+      "cancelBtn": "انصراف",
+      "agreeBtn": "موافقت"
+    },
     "userInfo":{
       "title": "اطلاعات کاربری",
       "firstNameInputTitle": "نام",

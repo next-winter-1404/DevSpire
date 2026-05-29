@@ -12,8 +12,7 @@ const DeleteModal = ({ setIsOpenDeleteModal, deleteHouseMutation }: IProps) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
         onClick={() => setIsOpenDeleteModal(false)}
-        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm animate-in
-         fade-in duration-300 cursor-pointer"
+        className="bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-300 absolute inset-0 cursor-pointer"
       ></div>
       <div
         className="relative z-10 flex flex-col items-center justify-center gap-6 w-full
