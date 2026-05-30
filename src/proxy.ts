@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import { isTokenExpired } from "./utils/helper/IsTokenExpired";
+import { getRoleByToken } from "./utils/helper/getRoleByToken";
 
 const intlMiddleware = createMiddleware(routing);
 const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
