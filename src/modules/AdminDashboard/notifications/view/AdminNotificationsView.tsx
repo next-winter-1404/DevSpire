@@ -1,19 +1,36 @@
-"use client";
 import TabsSections from "@/components/common/TabsSections";
-import { useSearchParams } from "next/navigation";
 import SendNotification from "../components/SendNotification";
+import NotificationsView from "@/modules/sellerDashboard/Notifications/views/NotificationsView";
+import AllNotificationsView from "./AllNotificationsView";
+import { Suspense } from "react";
+import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 
-const AdminNotificationsView = () => {
-  const searchParams = useSearchParams();
-  const currentTab = searchParams.get("tab") ?? "1";
+interface IProps {
+  params: Record<string, string>;
+  tab: string;
+}
 
+const AdminNotificationsView = ({ params, tab }: IProps) => {
   const renderTab = () => {
-    switch (currentTab) {
+    switch (tab) {
       case "1":
-        return "first Tab";
+        return (
+          <Suspense fallback={<DashboardTableSkeleton />}>
+            <AllNotificationsView
+              params={{
+                page: params.page,
+                limit: params.limit ?? "6",
+              }}
+            />
+          </Suspense>
+        );
 
       case "2":
-        return <p>اعلان های شما</p>;
+        return (
+          <Suspense fallback={<DashboardTableSkeleton />}>
+            <NotificationsView params={params} />
+          </Suspense>
+        );
       case "3":
         return <SendNotification />;
       default:
@@ -22,7 +39,7 @@ const AdminNotificationsView = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col gap-6">
+    <div className="w-full h-full flex flex-col gap-4">
       <div>
         <TabsSections
           options={[

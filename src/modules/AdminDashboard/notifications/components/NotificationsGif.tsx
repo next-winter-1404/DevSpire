@@ -12,7 +12,7 @@ const NotificationsGif = () => {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full ">
       <Lottie options={defaultOptions} width={"100%"} height={"100%"} />
     </div>
   );

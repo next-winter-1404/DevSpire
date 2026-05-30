@@ -15,6 +15,7 @@ const AdminDashboardView = async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value as string;
   const decoded = jwtDecode(token) as IDecodedToken;
+
   const user = await apiFetch<TUserRes | null>(`/users/${decoded.id}`, {
     cache: "no-store",
   });

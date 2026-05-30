@@ -30,8 +30,9 @@ const ChooseUserModal = ({ onClose, handleSelectUser }: IProps) => {
     justify-center bg-black/50 p-4"
     >
       <div
-        className="bg-white dark:bg-zinc-800 rounded-xl p-6 w-full max-w-md flex 
-      flex-col gap-4"
+        className="  p-6 w-full max-w-md flex 
+      flex-col gap-4  bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]  
+        overflow-y-auto scroll-smooth   dark:border-[#777777] dark:bg-[#262626]  "
       >
         <div className="flex justify-between items-center border-b pb-2">
           <h3 className="font-bold">انتخاب کاربر</h3>
