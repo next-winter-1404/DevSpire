@@ -76,8 +76,8 @@ const NotificationsTop = () => {
 
     return (
         <>
-            <div className="flex flex-col justify-between gap-6 w-full   md:flex-row">
-                <div className="flex flex-col items-center gap-4 w-full   md:flex-row">
+            <div className="flex flex-col justify-between gap-6 w-full   lg:flex-row lg:gap-0">
+                <div className="flex flex-col items-center gap-4   lg:flex-row">
                     <h1 className="font-bold text-[24px] text-[#1E2022] dark:text-[#F5F5F5]">{t("title")}</h1>
                     <div className="flex flex-col gap-2 w-full   sm:flex-row">
                         <input 
@@ -85,13 +85,15 @@ const NotificationsTop = () => {
                         value={searchQuery}
                         placeholder={locale === "en" ? "Enter search text..." : "عبارت مورد نظر را وارد کنید"}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
-                        className="flex-grow-2 h-12 indent-4 bg-[#FFFFFF] rounded-[40px] outline-none dark:bg-[#525252]"/>
-                        <div className="flex-grow-1">
+                        className="w-full h-12 indent-4 bg-[#FFFFFF] rounded-[40px] outline-none 
+                        sm:w-80
+                        dark:bg-[#525252]"/>
+                        <div className="w-full   sm:w-40">
                             <CustomSelect 
                             defaultValue={searchField} 
                             options={searchOptions} 
                             onValueChange={setSearchField}
-                            className="bg-[#FFFFFF]   dark:bg-[#525252]"/>
+                            className="bg-[#FFFFFF] dark:bg-[#525252]"/>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ interface IProps{
 const NotificationsView = ({data}: IProps) => {
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 p-6">
             <NotificationsTop/>
             <NotificationsList data={data}/>
         </div>
