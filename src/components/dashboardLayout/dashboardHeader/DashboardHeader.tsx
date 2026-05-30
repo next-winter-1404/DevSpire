@@ -42,15 +42,21 @@ const DashboardHeader = ({ hasNotification, userInfo }: IProps) => {
         <Image
           src={EstateOwner}
           alt="estateOwner"
-          className="w-12 h-12 rounded-[40px]"
+          className=" w-11 h-11 md:w-12 md:h-12 rounded-[40px]"
         />
         <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-1">
-            <span className="font-regular text-[20px] text-[#1E2022]   dark:text-[#F5F5F5]">
+          <div className="flex items-center md:gap-1">
+            <span
+              className="font-regular text-[20px] text-[#1E2022] 
+              dark:text-[#F5F5F5] hidden md:block "
+            >
               {userInfo?.user?.firstName || "بدون نام"}{" "}
               {userInfo?.user?.lastName}
             </span>
-            <span className="font-regular text-[14px] text-[#0D3B66]   dark:text-[#E4E4E4]">
+            <span
+              className="font-regular text-[14px] text-[#0D3B66] 
+              dark:text-[#E4E4E4]"
+            >
               {userInfo?.user?.role === "buyer"
                 ? "(خریدار)"
                 : userInfo?.user?.role == "seller"

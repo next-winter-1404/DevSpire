@@ -50,7 +50,7 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
     general: [
       { href: `${sellerBasePath}`, label: t("dashboard"), Icon: Dashboard },
       {
-        href: `${sellerBasePath}/user-profile`,
+        href: `${sellerBasePath}/user-info`,
         label: t("userProfile"),
         Icon: EditUser,
       },
@@ -88,7 +88,7 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
     general: [
       { href: `${customerBasePath}`, label: t("dashboard"), Icon: Dashboard },
       {
-        href: `${customerBasePath}/user-profile`,
+        href: `${customerBasePath}/user-info`,
         label: t("userProfile"),
         Icon: EditUser,
       },
@@ -120,7 +120,7 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
     general: [
       { href: `${adminBasePath}`, label: t("dashboard"), Icon: Dashboard },
       {
-        href: `${adminBasePath}/user-profile`,
+        href: `${adminBasePath}/user-info`,
         label: t("userProfile"),
         Icon: EditUser,
       },
