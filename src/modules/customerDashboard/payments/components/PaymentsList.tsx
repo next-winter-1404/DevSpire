@@ -31,13 +31,19 @@ const PaymentsList = ({
     router.push(`${pathname}?${params.toString()}`);
   };
   const totalCount =
-    role == "buyer" ? buyerData.totalCount : sellerData.totalCount;
+    role === "buyer"
+      ? (buyerData?.totalCount ?? 0)
+      : (sellerData?.totalCount ?? 0);
   return (
     <div className="h-full flex flex-col justify-between">
       <div className="h-[86%] overflow-y-auto scroll-auto w-full">
         <PaymentTable
           role={role}
-          data={role == "buyer" ? buyerData.payments : sellerData.data}
+          data={
+            role === "buyer"
+              ? (buyerData?.payments ?? [])
+              : (sellerData?.data ?? [])
+          }
         />
       </div>
       <div className="flex items-center pb-4 ">

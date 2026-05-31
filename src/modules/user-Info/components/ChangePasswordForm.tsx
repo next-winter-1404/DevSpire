@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useTranslations, useLocale } from "next-intl";
 import { useState, useMemo } from "react";
@@ -38,8 +39,8 @@ export default function ChangePasswordForm() {
         }
         alt="toggle password visibility"
         width={20}
-        className="dark:invert"
         height={20}
+        className="dark:invert"
       />
     </button>
   );
@@ -81,10 +82,16 @@ export default function ChangePasswordForm() {
     }
   };
 
+  const inputClass =
+    "w-full h-[48px] rounded-[16px] border border-[#DDDDDD] bg-[#FFFFFF] px-[16px] py-[8px] focus:outline-none " +
+    "dark:bg-[#2A2D2F] dark:text-white dark:placeholder:text-white/40 dark:border-[#DDDDDD]/20";
+
+  const errorClass = `${isRtl ? "text-right" : "text-left"} text-[12px] text-red-500`;
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-2 gap-10 w-full"
+      className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-10 w-full"
       dir={isRtl ? "rtl" : "ltr"}
     >
       <div className="flex flex-col gap-2 w-full">
@@ -92,18 +99,14 @@ export default function ChangePasswordForm() {
         <div className="relative">
           <input
             type={showCurrent ? "text" : "password"}
-            className="w-full h-[48px] rounded-[16px] border border-[#DDDDDD] bg-[#FFFFFF] px-[16px] py-[8px] focus:outline-none dark:bg-[#2A2D2F] dark:text-white dark:placeholder:text-white/40 dark:border-[#DDDDDD]/20"
+            className={inputClass}
             placeholder={t("passwordCurrent")}
             {...register("currentPassword")}
           />
-          {renderEyeIcon(showCurrent, () => setShowCurrent(!showCurrent))}
+          {renderEyeIcon(showCurrent, () => setShowCurrent((p) => !p))}
         </div>
         {errors.currentPassword && (
-          <p
-            className={`${isRtl ? "text-right" : "text-left"} text-[12px] text-red-500`}
-          >
-            {errors.currentPassword.message}
-          </p>
+          <p className={errorClass}>{errors.currentPassword.message}</p>
         )}
       </div>
 
@@ -112,18 +115,14 @@ export default function ChangePasswordForm() {
         <div className="relative">
           <input
             type={showNew ? "text" : "password"}
-            className="w-full h-[48px] rounded-[16px] border border-[#DDDDDD] bg-[#FFFFFF] px-[16px] py-[8px] focus:outline-none dark:bg-[#2A2D2F] dark:text-white dark:placeholder:text-white/40 dark:border-[#DDDDDD]/20"
+            className={inputClass}
             placeholder={t("passwordNew")}
             {...register("newPassword")}
           />
-          {renderEyeIcon(showNew, () => setShowNew(!showNew))}
+          {renderEyeIcon(showNew, () => setShowNew((p) => !p))}
         </div>
         {errors.newPassword && (
-          <p
-            className={`${isRtl ? "text-right" : "text-left"} text-[12px] text-red-500`}
-          >
-            {errors.newPassword.message}
-          </p>
+          <p className={errorClass}>{errors.newPassword.message}</p>
         )}
       </div>
 
@@ -132,28 +131,24 @@ export default function ChangePasswordForm() {
         <div className="relative">
           <input
             type={showConfirm ? "text" : "password"}
-            className="w-full h-[48px] rounded-[16px] border border-[#DDDDDD] bg-[#FFFFFF] px-[16px] py-[8px] focus:outline-none dark:bg-[#2A2D2F] dark:text-white dark:placeholder:text-white/40 dark:border-[#DDDDDD]/20"
+            className={inputClass}
             placeholder={t("passwordRepeat")}
             {...register("confirmPassword")}
           />
-          {renderEyeIcon(showConfirm, () => setShowConfirm(!showConfirm))}
+          {renderEyeIcon(showConfirm, () => setShowConfirm((p) => !p))}
         </div>
         {errors.confirmPassword && (
-          <p
-            className={`${isRtl ? "text-right" : "text-left"} text-[12px] text-red-500`}
-          >
-            {errors.confirmPassword.message}
-          </p>
+          <p className={errorClass}>{errors.confirmPassword.message}</p>
         )}
       </div>
 
       <div
-        className={`col-span-2 flex ${isRtl ? "justify-end" : "justify-start"} mt-4`}
+        className={`sm:col-span-2 flex ${isRtl ? "justify-end" : "justify-start"} mt-2 sm:mt-4`}
       >
         <button
           type="submit"
           disabled={loading}
-          className="w-[160px] cursor-pointer h-[48px] rounded-[16px] bg-[#0D3B66] text-white disabled:opacity-60"
+          className="w-full sm:w-[160px] h-[48px] rounded-[16px] bg-[#0D3B66] text-white disabled:opacity-60"
         >
           {loading ? t("changingPassword") : t("changePassword")}
         </button>

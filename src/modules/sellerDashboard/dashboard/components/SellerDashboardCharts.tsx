@@ -14,7 +14,7 @@ const SellerDashboardCharts = ({ payments, user }: IProps) => {
   const t = useTranslations("sellerDashboard.dashboard");
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 flex-col md:flex-row">
       <InCome
         title="نمودار درامد این ماه"
         totalIncome={String(payments?.totalAmount.toLocaleString()) || ""}

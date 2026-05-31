@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useRef, useEffect } from "react";
 import { MoreVertical, MessageSquare, Star } from "lucide-react";
 import { FormatDate } from "@/utils/helper/FormatDate";
@@ -21,63 +22,134 @@ export default function CommentsTable({ comments }: { comments: IComment[] }) {
     document.addEventListener("mousedown", handleCloseMenu);
     return () => document.removeEventListener("mousedown", handleCloseMenu);
   }, []);
-  console.log(comments);
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-sm text-right">
-        <thead className="text-gray-600 font-medium">
-          <tr className="border-b border-[#DDDDDD]">
-            <th className="py-4 px-4">ملک</th>
-            <th className="py-4 px-4">کاربر</th>
-            <th className="py-4 px-4">عنوان و نظر</th>
-            <th className="py-4 px-4 text-center">امتیاز</th>
-            <th className="py-4 px-4">تاریخ ثبت</th>
-            <th className="py-4 px-4 text-center">عملیات</th>
-          </tr>
-        </thead>
-        <tbody>
-          {comments.map((comment) => (
-            <tr
-              key={comment.id}
-              className="border-b border-[#DDDDDD] hover:bg-slate-50 dark:hover:bg-slate-800/40 
-               transition-colors"
-            >
-              <td className="py-4 px-4 font-medium text-gray-800">
-                {comment.house.title}
-              </td>
-              <td className="py-4 px-4 text-gray-600">
-                {comment.user.firstName} {comment.user.lastName}
-              </td>
-              <td className="py-4 px-4 max-w-[250px]">
-                <div className="font-bold text-gray-800 truncate">
-                  {comment.title}
-                </div>
-                <div className="text-gray-500 truncate text-xs">
-                  {comment.caption}
-                </div>
-                {comment.parent_comment && (
-                  <div className="mt-1 flex items-center gap-1 text-[10px] text-blue-600 bg-blue-50 px-2 py-1 rounded w-fit">
-                    <MessageSquare size={10} />
-                    <span>پاسخ به: {comment.parent_comment.title}</span>
+    <div className="w-full">
+      {/* Desktop Table */}
+      <div className="hidden md:block overflow-x-auto">
+        <table className="w-full min-w-[950px] text-sm text-right">
+          <thead className="text-gray-600 dark:text-gray-400 font-medium dark:bg-gray-800/50">
+            <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
+              <th className="py-4 px-4 whitespace-nowrap">ملک</th>
+              <th className="py-4 px-4 whitespace-nowrap">کاربر</th>
+              <th className="py-4 px-4">عنوان و نظر</th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">
+                امتیاز
+              </th>
+              <th className="py-4 px-4 whitespace-nowrap">تاریخ ثبت</th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">
+                عملیات
+              </th>
+            </tr>
+          </thead>
+
+          <tbody className="divide-y divide-[#DDDDDD] dark:divide-gray-700">
+            {comments.map((comment) => (
+              <tr
+                key={comment.id}
+                className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
+              >
+                <td className="py-4 px-4 font-medium text-gray-800 dark:text-gray-200 align-middle">
+                  <span className="line-clamp-1">{comment.house.title}</span>
+                </td>
+
+                <td className="py-4 px-4 text-gray-600 dark:text-gray-300 align-middle whitespace-nowrap">
+                  {comment.user.firstName} {comment.user.lastName}
+                </td>
+
+                <td className="py-4 px-4 max-w-[320px] align-middle">
+                  <div className="font-bold text-gray-800 dark:text-gray-100 truncate">
+                    {comment.title}
                   </div>
-                )}
-              </td>
-              <td className="py-4 px-4 text-center">
-                <div className="flex justify-center items-center gap-1 text-amber-500">
-                  <Star size={14} fill="currentColor" />
-                  <span className="font-bold text-gray-700">
-                    {comment.rating}
-                  </span>
-                </div>
-              </td>
-              <td className="py-4 px-4 text-gray-500 whitespace-nowrap">
-                {FormatDate(comment.created_at, "fa")}
-              </td>
-              <td className="relative text-center">
+                  <div className="text-gray-500 dark:text-gray-400 truncate text-xs mt-1">
+                    {comment.caption}
+                  </div>
+
+                  {comment.parent_comment && (
+                    <div className="mt-2 flex items-center gap-1 text-[10px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-2 py-1 rounded w-fit">
+                      <MessageSquare size={10} />
+                      <span className="truncate max-w-[220px]">
+                        پاسخ به: {comment.parent_comment.title}
+                      </span>
+                    </div>
+                  )}
+                </td>
+
+                <td className="py-4 px-4 text-center align-middle">
+                  <div className="flex justify-center items-center gap-1 text-amber-500">
+                    <Star size={14} fill="currentColor" />
+                    <span className="font-bold text-gray-700 dark:text-gray-200">
+                      {comment.rating}
+                    </span>
+                  </div>
+                </td>
+
+                <td className="py-4 px-4 text-gray-500 dark:text-gray-400 whitespace-nowrap align-middle">
+                  {FormatDate(comment.created_at, "fa")}
+                </td>
+
+                <td className="relative py-4 px-4 text-center align-middle">
+                  <button
+                    onClick={() => toggleMenu(comment.id)}
+                    className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
+                    aria-label="عملیات"
+                  >
+                    <MoreVertical className="w-5 h-5" />
+                  </button>
+
+                  {comment.id === openMenuId && (
+                    <div
+                      ref={menuRef}
+                      className="absolute left-0 mt-2 w-32 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md z-10"
+                    >
+                      <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">
+                        مشاهده
+                      </button>
+                      <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm text-red-500">
+                        حذف
+                      </button>
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {comments.length === 0 && (
+          <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
+            نظری برای نمایش وجود ندارد.
+          </div>
+        )}
+      </div>
+
+      {/* Mobile Cards */}
+      <div className="md:hidden flex flex-col gap-4">
+        {comments.map((comment) => (
+          <div
+            key={comment.id}
+            className="relative rounded-2xl border border-[#DDDDDD] bg-white p-4 shadow-sm dark:bg-[#1F2937] dark:border-white/10"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0 flex-1">
+                <p className="text-xs text-gray-500 dark:text-gray-400">ملک</p>
+                <h3 className="mt-1 text-[15px] font-bold text-foreground line-clamp-2">
+                  {comment.house.title}
+                </h3>
+
+                <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+                  کاربر
+                </p>
+                <p className="mt-1 text-sm font-medium text-foreground">
+                  {comment.user.firstName} {comment.user.lastName}
+                </p>
+              </div>
+
+              <div className="relative shrink-0">
                 <button
                   onClick={() => toggleMenu(comment.id)}
-                  className="p-1 rounded-md hover:bg-gray-200 text-gray-500"
+                  className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
+                  aria-label="عملیات"
                 >
                   <MoreVertical className="w-5 h-5" />
                 </button>
@@ -85,28 +157,71 @@ export default function CommentsTable({ comments }: { comments: IComment[] }) {
                 {comment.id === openMenuId && (
                   <div
                     ref={menuRef}
-                    className="absolute left-0 mt-2 w-32 bg-white 
-                    shadow-lg border rounded-md z-10"
+                    className="absolute left-0 mt-2 w-32 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md z-10"
                   >
-                    <button
-                      className="block w-full text-right px-4 py-2
-                     hover:bg-gray-100 text-sm"
-                    >
+                    <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">
                       مشاهده
                     </button>
-                    <button
-                      className="block w-full text-right px-4 py-2
-                     hover:bg-gray-100 text-sm text-red-500"
-                    >
+                    <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm text-red-500">
                       حذف
                     </button>
                   </div>
                 )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </div>
+            </div>
+
+            <div className="mt-4 rounded-xl bg-gray-50 p-3 dark:bg-white/5">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                عنوان و نظر
+              </p>
+              <p className="mt-1 font-bold text-foreground line-clamp-1">
+                {comment.title}
+              </p>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
+                {comment.caption}
+              </p>
+
+              {comment.parent_comment && (
+                <div className="mt-2 flex items-center gap-1 text-[10px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-2 py-1 rounded w-fit">
+                  <MessageSquare size={10} />
+                  <span className="truncate max-w-[240px]">
+                    پاسخ به: {comment.parent_comment.title}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <div className="mt-4 flex items-center justify-between gap-4">
+              <div>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  امتیاز
+                </p>
+                <div className="mt-1 flex items-center gap-1 text-amber-500">
+                  <Star size={14} fill="currentColor" />
+                  <span className="font-bold text-foreground">
+                    {comment.rating}
+                  </span>
+                </div>
+              </div>
+
+              <div className="text-left">
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  تاریخ ثبت
+                </p>
+                <p className="mt-1 text-sm font-medium text-foreground whitespace-nowrap">
+                  {FormatDate(comment.created_at, "fa")}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {comments.length === 0 && (
+          <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
+            نظری برای نمایش وجود ندارد.
+          </div>
+        )}
+      </div>
     </div>
   );
 }

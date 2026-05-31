@@ -357,7 +357,7 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     },
-    "notifications":{
+    "notifications": {
       "title": "Your Notification List",
       "filters": "Filters",
       "readPlc": "All",
@@ -373,7 +373,7 @@
       "cancelBtn": "Cancel",
       "agreeBtn": "Agree"
     },
-    "userInfo":{
+    "userInfo": {
       "title": "User Info",
       "firstNameInputTitle": "First Name",
       "firstNameInputPlc": "Enter your first name",
@@ -470,6 +470,14 @@
     "fetchError": "Failed to fetch user information",
     "selectProfile": "Select Profile",
     "confirm": "Confirm",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "firstNameRequired": "first name is required",
+    "min2Chars": "must be 2 character",
+    "emailInvalid": "email is invalid",
+    "emailRequired": "email is required",
+    "phoneInvalid": "phone number is invalid",
+    "phoneRequired": "phone number is required",
+    "max50Chars": "must be less than 50 characters",
+    "lastNameRequired": "last name is required"
   }
 }

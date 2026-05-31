@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { THouse } from "@/components/common/types";
 import CustomSelect from "@/components/common/CustomSelectOption";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,6 +22,7 @@ interface ICategory {
   created_at: string;
   updated_at: string;
 }
+
 const validationSchema = z
   .object({
     id: z.number().optional(),
@@ -48,6 +48,7 @@ const validationSchema = z
       path: ["discounted_price"],
     },
   );
+
 const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
   const { data: cats, isPending } = useQuery({
     queryKey: ["ALLCATEGORIES"],
@@ -61,7 +62,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
     handleSubmit,
     control,
     register,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<IStep1Data>({
     resolver: zodResolver(validationSchema) as any,
     defaultValues: generalData.step1,
@@ -76,18 +77,12 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
   ];
 
   // const categoryOptions =
-  //   cats?.map((cat) => ({
-  //     value: String(cat.id),
-  //     label: cat.name,
-  //   })) || [];
-  const categoryOptions = [{ value: "1", label: "ggg" }];
+  //   cats?.map((cat) => ({ value: String(cat.id), label: cat.name })) || [];
+  const inputClass =
+    "w-full h-12 rounded-[16px] border border-[#DDDDDD] bg-white px-4 outline-none " +
+    "dark:bg-[#2A2D2F] dark:text-white dark:placeholder:text-white/40 dark:border-white/10";
 
   const onSubmit = (data: IStep1Data) => {
-    if (Object.keys(errors).length > 0) {
-      console.log("have err", errors);
-      return;
-    }
-
     onChangeData({
       ...generalData,
       step1: {
@@ -101,47 +96,51 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-start gap-8 w-full"
+      className="flex flex-col gap-6 md:gap-8 w-full"
     >
-      <div className="flex gap-8 w-full">
-        <div className="flex flex-col gap-4 w-full">
-          <label className="font-regular text-[16px] text-[#1E2022]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
+        <div className="flex flex-col gap-3 w-full">
+          <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
             نام ملک
           </label>
           <input
             {...register("title")}
             placeholder="مثلا ویلای ساحلی"
             type="text"
-            className="w-full h-12 indent-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]"
+            className={inputClass}
           />
           {errors.title && (
-            <span className="text-red-500 text-sm">{errors.title.message}</span>
+            <span className="text-red-500 text-xs md:text-sm">
+              {errors.title.message}
+            </span>
           )}
         </div>
 
-        <div className="flex flex-col gap-4 w-full">
-          <label className="font-regular text-[16px] text-[#1E2022]">
+        <div className="flex flex-col gap-3 w-full">
+          <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
             ظرفیت
           </label>
           <input
             {...register("capacity")}
             type="number"
-            placeholder="در صورت داشتن تخفیف وارد کنید"
-            className="w-full h-12 indent-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]"
+            placeholder="مثلا ۴"
+            className={inputClass}
           />
           {errors.capacity && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs md:text-sm">
               {errors.capacity.message}
             </span>
           )}
         </div>
       </div>
 
-      <div className="flex gap-8 w-full">
-        <div className="flex flex-col gap-4 w-full">
-          <span className="font-regular text-[16px] text-[#1E2022]">
+      {/* Row 2 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
+        <div className="flex flex-col gap-3 w-full">
+          <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
             نوع معامله
           </span>
+
           <Controller
             name="transaction_type"
             control={control}
@@ -150,80 +149,82 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
                 options={transactionTypeOptions}
                 defaultValue={field.value}
                 onValueChange={field.onChange}
-                className="w-full bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]"
+                className="w-full bg-white border border-[#DDDDDD] rounded-[16px] dark:bg-[#2A2D2F] dark:border-white/10"
               />
             )}
           />
+
           {errors.transaction_type && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs md:text-sm">
               {errors.transaction_type.message}
             </span>
           )}
         </div>
 
-        <div className="flex flex-col gap-4 w-full">
-          <span className="font-regular text-[16px] text-[#1E2022]">
+        <div className="flex flex-col gap-3 w-full">
+          <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
             نوع ملک
           </span>
+
           <Controller
             name="category"
             control={control}
             render={({ field }) => (
               <CustomSelect
-                options={categoryOptions}
+                options={[{ label: "gg", value: "gg" }]}
                 defaultValue={field.value}
                 onValueChange={field.onChange}
-                className="w-full bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]"
+                className="w-full bg-white border border-[#DDDDDD] rounded-[16px] dark:bg-[#2A2D2F] dark:border-white/10"
               />
             )}
           />
+
           {errors.category && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs md:text-sm">
               {errors.category.message}
             </span>
           )}
         </div>
       </div>
 
-      <div className="flex gap-8 w-full">
-        <div className="flex flex-col gap-4 w-full">
-          <label className="font-regular text-[16px] text-[#1E2022]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
+        <div className="flex flex-col gap-3 w-full">
+          <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
             قیمت (تومان)
           </label>
-          <input
-            {...register("price")}
-            type="number"
-            className="w-full h-12 indent-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]"
-          />
+          <input {...register("price")} type="number" className={inputClass} />
           {errors.price && (
-            <span className="text-red-500 text-sm">{errors.price.message}</span>
+            <span className="text-red-500 text-xs md:text-sm">
+              {errors.price.message}
+            </span>
           )}
         </div>
 
-        <div className="flex flex-col gap-4 w-full">
-          <label className="font-regular text-[16px] text-[#1E2022]">
+        <div className="flex flex-col gap-3 w-full">
+          <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
             قیمت تخفیف خورده (اختیاری)
           </label>
           <input
             {...register("discounted_price")}
             type="number"
             placeholder="در صورت داشتن تخفیف وارد کنید"
-            className="w-full h-12 indent-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]"
+            className={inputClass}
           />
           {errors.discounted_price && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs md:text-sm">
               {errors.discounted_price.message}
             </span>
           )}
         </div>
       </div>
 
-      <div className="flex gap-8 w-full">
-        <div className="flex flex-col gap-4 w-full">
-          <span className="font-regular text-[16px] text-[#1E2022]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
+        <div className="flex flex-col gap-3 w-full">
+          <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
             امتیاز اولیه
           </span>
-          <div className="flex items-center pb-4">
+
+          <div className="flex items-center pb-2 md:pb-4">
             <Controller
               name="rate"
               control={control}
@@ -231,7 +232,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
                 <Rating
                   initialValue={field.value}
                   onClick={field.onChange}
-                  size={30}
+                  size={28} // کمی کوچیک‌تر برای موبایل
                   allowFraction={false}
                   fillColor="#facc15"
                   emptyColor="#d1d5db"
@@ -241,27 +242,34 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
               )}
             />
           </div>
+
+          {errors.rate && (
+            <span className="text-red-500 text-xs md:text-sm">
+              {errors.rate.message}
+            </span>
+          )}
         </div>
-        <div className="flex flex-col gap-4 w-full"></div>
+
+        <div className="hidden md:block" />
       </div>
 
-      <div className="flex flex-col gap-4 w-full">
-        <label className="font-regular text-[16px] text-[#1E2022]">
+      <div className="flex flex-col gap-3 w-full">
+        <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
           توضیحات
         </label>
         <textarea
           {...register("caption")}
           rows={5}
-          className="w-full resize-none rounded-2xl bg-[#FFFFFF] border border-[#DDDDDD] px-4 py-3 text-sm leading-7 transition-all outline-none focus:ring-2 focus:ring-blue-700/20 dark:bg-[#3F3F46]"
+          className="w-full resize-none rounded-2xl bg-white border border-[#DDDDDD] px-4 py-3 text-sm leading-7 outline-none focus:ring-2 focus:ring-blue-700/20 dark:bg-[#2A2D2F] dark:text-white dark:border-white/10"
         />
       </div>
 
-      <div className="flex justify-end w-full mt-4">
+      <div className="flex justify-end w-full mt-2 md:mt-4">
         <button
           type="submit"
-          className="flex items-center gap-2 py-[13px] px-3 text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer"
+          className="w-full md:w-fit flex items-center justify-center gap-2 py-[13px] px-4 text-white bg-[#0D3B66] rounded-[16px]"
         >
-          <span className="font-regular text-[16px]">تایید و ادامه</span>
+          <span className="text-[14px] md:text-[16px]">تایید و ادامه</span>
           <CurveArrow className="rotate-90" />
         </button>
       </div>

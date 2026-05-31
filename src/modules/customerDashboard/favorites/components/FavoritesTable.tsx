@@ -1,8 +1,9 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { MoreVertical } from "lucide-react";
 import { IFavorites } from "../types";
 import Image from "next/image";
-import { FormatDate } from "@/utils/helper/FormatDate";
 import FavoritesActionsModal from "./FavoritesActionModal";
 
 export default function FavoritesTable({ data }: { data: IFavorites[] }) {
@@ -12,83 +13,188 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
   const toggleMenu = (id: number) => {
     setOpenMenuId((prev) => (prev === id ? null : id));
   };
+
   useEffect(() => {
     const handleCloseMenu = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setOpenMenuId(null);
       }
     };
+
     document.addEventListener("mousedown", handleCloseMenu);
     return () => document.removeEventListener("mousedown", handleCloseMenu);
   }, []);
 
   return (
-    <table className="w-full text-sm text-right">
-      <thead className="text-gray-600 font-medium">
-        <tr className="border-b border-[#DDDDDD]">
-          <th className="py-4 px-4">نام اقامتگاه</th>
-          <th className="py-4 px-4">آدرس</th>
-          <th className="py-4 px-4 text-center">امتیاز</th>
-          <th className="py-4 px-4">قیمت</th>
-          <th className="py-4 px-4 text-center">عملیات</th>
-        </tr>
-      </thead>
+    <div className="w-full">
+      <div className="hidden md:block overflow-x-auto">
+        <table className="w-full min-w-[850px] text-sm text-right">
+          <thead className="text-gray-600 dark:text-gray-400 font-medium">
+            <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
+              <th className="py-4 px-4 whitespace-nowrap">نام اقامتگاه</th>
+              <th className="py-4 px-4 whitespace-nowrap">آدرس</th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">
+                امتیاز
+              </th>
+              <th className="py-4 px-4 whitespace-nowrap">قیمت</th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">
+                عملیات
+              </th>
+            </tr>
+          </thead>
 
-      <tbody>
+          <tbody className="divide-y divide-[#DDDDDD] dark:divide-gray-700">
+            {data.map((row) => (
+              <tr
+                key={row.id}
+                className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
+              >
+                <td className="py-4 px-4 text-gray-700 dark:text-gray-200 align-middle">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="relative w-10 h-10 rounded-full bg-[#777777]/20 overflow-hidden shrink-0">
+                      {row.house?.photos?.[0] && (
+                        <Image
+                          src={row.house.photos[0]}
+                          alt={row.house.title}
+                          fill
+                          className="object-cover"
+                        />
+                      )}
+                    </div>
+
+                    <span className="line-clamp-1 font-medium">
+                      {row.house?.title || "-"}
+                    </span>
+                  </div>
+                </td>
+
+                <td className="py-4 px-4 text-gray-500 dark:text-gray-400 align-middle">
+                  <span className="line-clamp-1">
+                    {row.house?.address || "-"}
+                  </span>
+                </td>
+
+                <td className="py-4 px-4 text-center align-middle">
+                  <span className="bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400 px-2 py-1 rounded text-xs inline-block">
+                    {row.house?.rate ?? 0} ⭐
+                  </span>
+                </td>
+
+                <td className="py-4 px-4 text-gray-600 dark:text-gray-300 whitespace-nowrap align-middle">
+                  {Number(row.house?.price || 0).toLocaleString()} تومان
+                </td>
+
+                <td className="py-4 px-4 text-center relative align-middle">
+                  <button
+                    onClick={() => toggleMenu(row.id)}
+                    className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
+                    aria-label="عملیات"
+                  >
+                    <MoreVertical className="w-5 h-5" />
+                  </button>
+
+                  {openMenuId === row.id && (
+                    <div ref={menuRef} className="relative z-10">
+                      <FavoritesActionsModal
+                        id={row.id}
+                        houseId={row.house.id}
+                      />
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {data.length === 0 && (
+          <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
+            موردی در علاقه‌مندی‌ها وجود ندارد.
+          </div>
+        )}
+      </div>
+
+      <div className="md:hidden flex flex-col gap-4">
         {data.map((row) => (
-          <tr
+          <div
             key={row.id}
-            className="border-b border-[#DDDDDD] hover:bg-slate-50
-             dark:hover:bg-slate-800/40 transition-colors"
+            className="relative rounded-2xl border border-[#DDDDDD] bg-white p-4 shadow-sm dark:bg-[#1F2937] dark:border-white/10"
           >
-            <td className="py-4 px-4 text-gray-600">
-              <div className="flex items-center gap-3">
-                <div className=" relative w-10 h-10 rounded-full bg-[#777777]/50 overflow-hidden">
-                  {row.house?.photos?.[3] && (
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                <div className="relative w-12 h-12 rounded-full bg-[#777777]/20 overflow-hidden shrink-0">
+                  {row.house?.photos?.[0] && (
                     <Image
                       src={row.house.photos[0]}
                       alt={row.house.title}
                       fill
-                      className=" object-cover"
+                      className="object-cover"
                     />
                   )}
                 </div>
 
-                <span>{row.house?.title}</span>
-              </div>
-            </td>
-
-            <td className="py-4 px-4 text-gray-500">
-              {row.house?.address || "-"}
-            </td>
-
-            <td className="py-4 px-4 text-center">
-              <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">
-                {row.house?.rate} ⭐
-              </span>
-            </td>
-
-            <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
-              {parseInt(row.house?.price || "0").toLocaleString()} تومان
-            </td>
-
-            <td className="py-4 px-4 text-center relative">
-              <button
-                onClick={() => toggleMenu(row.id)}
-                className="p-1 rounded-md hover:bg-gray-200 text-gray-500"
-              >
-                <MoreVertical className="w-5 h-5" />
-              </button>
-
-              {openMenuId === row.id && (
-                <div ref={menuRef}>
-                  <FavoritesActionsModal id={row.id} houseId={row.house.id} />
+                <div className="min-w-0">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    نام اقامتگاه
+                  </p>
+                  <h3 className="mt-1 text-[15px] font-bold text-foreground line-clamp-2">
+                    {row.house?.title || "-"}
+                  </h3>
                 </div>
-              )}
-            </td>
-          </tr>
+              </div>
+
+              <div className="relative shrink-0">
+                <button
+                  onClick={() => toggleMenu(row.id)}
+                  className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
+                  aria-label="عملیات"
+                >
+                  <MoreVertical className="w-5 h-5" />
+                </button>
+
+                {openMenuId === row.id && (
+                  <div ref={menuRef} className="relative z-10">
+                    <FavoritesActionsModal id={row.id} houseId={row.house.id} />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="sm:col-span-2">
+                <p className="text-xs text-gray-500 dark:text-gray-400">آدرس</p>
+                <p className="mt-1 text-sm font-medium text-foreground line-clamp-2">
+                  {row.house?.address || "-"}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  امتیاز
+                </p>
+                <div className="mt-1">
+                  <span className="bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400 px-2 py-1 rounded text-xs inline-block">
+                    {row.house?.rate ?? 0} ⭐
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs text-gray-500 dark:text-gray-400">قیمت</p>
+                <p className="mt-1 text-sm font-medium text-foreground whitespace-nowrap">
+                  {Number(row.house?.price || 0).toLocaleString()} تومان
+                </p>
+              </div>
+            </div>
+          </div>
         ))}
-      </tbody>
-    </table>
+
+        {data.length === 0 && (
+          <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
+            موردی در علاقه‌مندی‌ها وجود ندارد.
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

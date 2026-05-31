@@ -21,7 +21,7 @@ const HouseCard = ({ property, className, transactionType }: props) => {
       <div className="relative h-60 w-full">
         <Image
           src={"/images/fastReservePage/house1.png"}
-          alt={property.title}
+          alt={property.title || "house"}
           fill
           className="object-cover"
         />
@@ -32,7 +32,10 @@ const HouseCard = ({ property, className, transactionType }: props) => {
           />
         </div>
         {property.discounted_price && (
-          <div className="absolute top-3 left-3 bg-[#FF5555] text-white rounded-full text-[16px] w-13 h-13 flex items-center justify-center">
+          <div
+            className="absolute top-3 left-3 bg-[#FF5555] text-white
+           rounded-full text-[16px] w-13 h-13 flex items-center justify-center"
+          >
             {getDiscount(
               parseInt(property.price),
               parseInt(property.discounted_price),

@@ -352,7 +352,7 @@
       "recentCustomerBookings": "رزرو های اخیر مشتریان",
       "seeAllBtn": "مشاهده همه"
     },
-    "notifications":{
+    "notifications": {
       "title": "لیست اعلان های شما",
       "filters": "فیلترها",
       "readPlc": "همه",
@@ -368,7 +368,7 @@
       "cancelBtn": "انصراف",
       "agreeBtn": "موافقت"
     },
-    "userInfo":{
+    "userInfo": {
       "title": "اطلاعات کاربری",
       "firstNameInputTitle": "نام",
       "firstNameInputPlc": "نام خود را وارد کنید",
@@ -463,6 +463,14 @@
     "fetchError": "خطا در دریافت اطلاعات کاربر",
     "selectProfile": "انتخاب پروفایل",
     "confirm": "تایید",
-    "cancel": "انصراف"
+    "cancel": "انصراف",
+    "firstNameRequired": "نام الزامی است",
+    "min2Chars": "باید حداقل 2 کاراکتر باشد",
+    "emailInvalid": "ایمیل نامعتبر است",
+    "emailRequired": "ایمیل نیاز است",
+    "phoneInvalid": "شماره تلفن نامعتبر است",
+    "phoneRequired": "شماره تلفن نیاز است",
+    "max50Chars": "حداکثر باید 50 کاراکتر باشد",
+    "lastNameRequired": "نام خانوادگی نیاز است"
   }
 }

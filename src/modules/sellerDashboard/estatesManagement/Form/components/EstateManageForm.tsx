@@ -168,8 +168,8 @@ const EstateManageForm = ({ house }: { house: THouse | null }) => {
 
   const activeTabsData = generalData.id ? EditModeTabsData : CreateModeTabsData;
   return (
-    <div>
-      <div className="flex gap-8 font-regular text-[16px] text-[#777777] mb-10 ">
+    <div className="overflow-x-hidden ">
+      <div className="flex gap-8 overflow-x-auto font-regular text-[16px] text-[#777777] mb-10 ">
         {activeTabsData.map((tab) => (
           <button
             key={tab.id}
