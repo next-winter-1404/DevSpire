@@ -32,7 +32,7 @@ const NotificationsList = ({ data }: IProps) => {
       className="p-6 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]   
         dark:border-[#777777] dark:bg-[#262626] h-full flex flex-col md:justify-between gap-4 "
     >
-      {data ? (
+      {data && data.totalCount > 0 ? (
         <div className="  overflow-y-auto scroll-smooth ">
           <NotificationsDataTable notifications={data.data} />
         </div>
