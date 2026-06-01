@@ -29,21 +29,25 @@ const SellerTopCard = ({
             icon: Money,
             title: " تعداد پرداختی ها",
             value: stats?.totalPayments || "موردی یافت نشد",
+            link: "/dashboard/seller/payments"
           },
           {
             icon: CheckList,
             title: " تعداد رزرو ها",
             value: stats?.totalBookings || "موردی یافت نشد",
+            link: "/dashboard/seller/reserves-management"
           },
           {
             icon: Chats,
             title: "تعداد کامنت ها",
             value: commentsCount || "موردی یافت نشد",
+            link: "/dashboard/seller/comments-management"
           },
           {
             icon: House,
             title: "تعداد خانه ها",
             value: houses || "موردی یافت نشد",
+            link: "/dashboard/seller/estates-management"
           },
         ]}
       />

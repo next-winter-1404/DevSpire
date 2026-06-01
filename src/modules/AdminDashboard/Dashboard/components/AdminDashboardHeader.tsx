@@ -21,16 +21,19 @@ const AdminDashboardHeader = ({
               icon: Group,
               title: "کل کاربران",
               value: data?.users?.userCount || "موردی یافت نشد",
+              link: "dashboard/admin/users-management"
             },
             {
               icon: Estates,
               title: "کل املاک",
               value: data?.houses || "موردی یافت نشد",
+              link: "dashboard/admin/estates-management"
             },
             {
               icon: Chats,
               title: "نظرات کاربران",
               value: data?.comments || "موردی یافت نشد",
+              link: "dashboard/admin/comments-management"
             },
           ]}
         />

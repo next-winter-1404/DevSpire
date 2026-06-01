@@ -1,5 +1,5 @@
-import NotificationsDataTable from '@/components/common/dashboards/NotificationsDataTable'
-import NotificationsTop from '@/components/common/dashboards/NotificationsTop'
+import NotificationsDataTable from '@/components/common/sellerDashboard/NotificationsDataTable'
+import NotificationsTop from '@/components/common/sellerDashboard/NotificationsTop'
 import { TNotification } from '@/components/common/types';
 
 

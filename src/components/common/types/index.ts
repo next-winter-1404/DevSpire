@@ -210,7 +210,7 @@ export type TNotificationsResponse = {
   data: TNotification[];
   totalCount: number;
 }
-export interface INotificationsParams{
+export type INotificationsParams = {
   page?: string;
   limit?: string;
   isRead?: boolean;
@@ -219,4 +219,27 @@ export interface INotificationsParams{
   message?: string;
   sort?: string;
   order?: string;
+}
+
+
+
+
+export type TLocation = {
+  id: number;
+  areaName: boolean;
+  lat: string;
+  lng: string;
+}
+export type TLocationsResponse = {
+  data: TLocation[];
+  totalCount: number;
+}
+export type ILocationsResParams = {
+  page: string;
+  limit: string;
+  sort: string;
+  order: string;
+  area_name: string;
+  lat: string;
+  lng: string;
 }

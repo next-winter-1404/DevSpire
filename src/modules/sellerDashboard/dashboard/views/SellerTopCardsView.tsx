@@ -1,4 +1,4 @@
-import { IDashboardStats, IUserActivity } from "@/components/common/types";
+import { IUserActivity } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import SellerTopCard from "../components/SellerTopCard";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";

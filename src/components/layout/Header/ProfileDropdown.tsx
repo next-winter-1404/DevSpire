@@ -41,7 +41,7 @@ export default function ProfileDropdown({ data }: { data: TUser }) {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-center w-10 h-10 rounded-full overflow-hidden 
         border border-[#777777] hover:border-[#10375c] focus:outline-none focus:border-[#10375c]
-         transition-all duration-300 ring-2 ring-transparent focus:ring-blue-100 "
+         transition-all duration-300 ring-2 ring-transparent focus:ring-blue-100 cursor-pointer"
       >
         {data.profilePicture ? (
           // <Image

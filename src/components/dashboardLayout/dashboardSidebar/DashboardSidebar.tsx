@@ -17,6 +17,9 @@ import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
 import { UsersIcon } from "lucide-react";
+import Location from "../../../../public/icons/Location";
+
+
 
 interface IProps {
   role: "seller" | "buyer" | "admin";
@@ -134,8 +137,13 @@ const DashboardSidebar = ({ role }: IProps) => {
         Icon: CheckList,
       },
       {
+        href: `${adminBasePath}/locations-management`,
+        label: t("locationsManagement"),
+        Icon: Location,
+      },
+      {
         href: `${adminBasePath}/users-management`,
-        label: "مدیریت کاربران",
+        label: t("usersManagement"),
         Icon: UsersIcon,
       },
       {

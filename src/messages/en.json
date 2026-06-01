@@ -240,12 +240,6 @@
       "callToAction": "Join us now!",
       "description": "Use our services alongside thousands of users."
     },
-    "layout": {
-      "imageAlt": "Authentication Image",
-      "userAlt": "User {number}",
-      "callToAction": "Join us now!",
-      "description": "Use our services alongside thousands of users."
-    },
     "register": {
       "ftitle": "Home",
       "emailPlaceholder": "Enter your email...",
@@ -337,6 +331,8 @@
       "management": "Management",
       "estatesManagement": "Estates Management",
       "reservesManagement": "Reserves Management",
+      "locationsManagement": "Locations Management",
+      "usersManagement": "Users Management",
       "finantialManagement": "Finantial Management",
       "paymentsManagement": "Payments Management",
       "commentsManagement": "Comments Management",
