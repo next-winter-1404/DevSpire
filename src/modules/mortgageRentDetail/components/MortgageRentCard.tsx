@@ -76,7 +76,7 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
     <div className="flex flex-col items-center gap-6 p-6 border border-[#DDDDDD] rounded-[24px] bg-white">
       <div className="flex flex-col items-center gap-3">
         <Image
-          src={seller.profilePicture || EstateOwner}
+          src={EstateOwner}
           alt={seller.fullName}
           width={120}
           height={120}

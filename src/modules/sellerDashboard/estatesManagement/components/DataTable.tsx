@@ -9,22 +9,10 @@ import { THouse } from "@/components/common/types";
 
 export default function UserHousesTable({ data }: { data: THouse[] }) {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const toggleMenu = (id: number) => {
     setOpenMenuId((prev) => (prev === id ? null : id));
   };
-
-  useEffect(() => {
-    const handleCloseMenu = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setOpenMenuId(null);
-      }
-    };
-
-    document.addEventListener("mousedown", handleCloseMenu);
-    return () => document.removeEventListener("mousedown", handleCloseMenu);
-  }, []);
 
   const getTransactionTypeLabel = (type: string) => {
     return type === "mortgage"
@@ -145,21 +133,10 @@ export default function UserHousesTable({ data }: { data: THouse[] }) {
                 </td>
 
                 <td className="py-4 px-4 text-center relative">
-                  <button
-                    onClick={() => toggleMenu(row.id)}
-                    className="p-1 rounded-md hover:bg-gray-200 text-gray-500 transition-colors"
-                  >
-                    <MoreVertical className="w-5 h-5" />
-                  </button>
-
-                  {openMenuId === row.id && (
-                    <div ref={menuRef}>
-                      <ActionsModal
-                        onClose={() => setOpenMenuId(null)}
-                        item={row}
-                      />
-                    </div>
-                  )}
+                  <ActionsModal
+                    item={row}
+                    onClose={() => setOpenMenuId(null)}
+                  />
                 </td>
               </tr>
             ))}
@@ -207,21 +184,7 @@ export default function UserHousesTable({ data }: { data: THouse[] }) {
               </div>
 
               <div className="relative shrink-0">
-                <button
-                  onClick={() => toggleMenu(row.id)}
-                  className="p-1 rounded-md hover:bg-gray-200 text-gray-500 transition-colors"
-                >
-                  <MoreVertical className="w-5 h-5" />
-                </button>
-
-                {openMenuId === row.id && (
-                  <div ref={menuRef}>
-                    <ActionsModal
-                      onClose={() => setOpenMenuId(null)}
-                      item={row}
-                    />
-                  </div>
-                )}
+                <ActionsModal item={row} onClose={() => setOpenMenuId(null)} />
               </div>
             </div>
 

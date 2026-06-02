@@ -1,10 +1,12 @@
-import { CheckCircle, Info, Trash2, XCircle } from "lucide-react";
+import { CheckCircle, Info, MoreVertical, Trash2, XCircle } from "lucide-react";
 import { useState } from "react";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+
 import ReservationDetailsModal from "./ReserveDetailsModal";
 import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
-import { useReservation } from "../services/hooks/useReservation";
 import CancelModal from "@/components/common/CancelModal";
 import ContinueBookingModal from "@/components/common/ContinueBookingModal";
+import { useReservation } from "../services/hooks/useReservation";
 
 const ReserveActionsMenu = ({
   id,
@@ -15,25 +17,10 @@ const ReserveActionsMenu = ({
   isCanceled: boolean;
   isPending: boolean;
 }) => {
-  const [openDetailModal, setOpenDetailModal] = useState<boolean>(false);
-  const onCloseDetail = () => {
-    setOpenDetailModal(false);
-  };
-
-  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
-  const onCloseDeleteModal = () => {
-    setOpenDeleteModal(false);
-  };
-
-  const [openCancelModal, setOpenCancelModal] = useState<boolean>(false);
-  const onCloseCancelModal = () => {
-    setOpenCancelModal(false);
-  };
-
-  const [openContinueModal, setOpenContinueModal] = useState<boolean>(false);
-  const onCloseContinueModal = () => {
-    setOpenContinueModal(false);
-  };
+  const [openDetailModal, setOpenDetailModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openCancelModal, setOpenCancelModal] = useState(false);
+  const [openContinueModal, setOpenContinueModal] = useState(false);
 
   const {
     deleteBookingMutation,
@@ -42,77 +29,136 @@ const ReserveActionsMenu = ({
   } = useReservation(id);
 
   return (
-    <div
-      className="absolute left-6 top-10 w-36 border dark:border-[#333333] 
-        bg-[#ffff] dark:bg-[#262626]
-                 border-gray-100 rounded-xl shadow-lg z-10 py-2 flex flex-col
-                  overflow-hidden"
-    >
-      {isCanceled && (
-        <button
-          onClick={() => setOpenContinueModal(true)}
-          className="flex items-center gap-2 px-4 py-2
-                   hover:text-blue-600 hover:bg-blue-50/50  text-foreground
-                    text-xs text-right"
-        >
-          <CheckCircle className="w-4 h-4" /> ادامه و تایید رزرو
-        </button>
-      )}
-      {isPending && (
-        <button
-          onClick={() => setOpenCancelModal(true)}
-          className="flex items-center gap-2 px-4 py-2 text-foreground
-                   hover:text-blue-600 hover:bg-blue-50/50 text-xs 
-                   text-right"
-        >
-          <XCircle className="w-4 h-4" /> لغو رزرو
-        </button>
-      )}
-      <button
-        onClick={() => setOpenDetailModal(true)}
-        className="flex items-center gap-2 px-4 py-2 text-foreground
-                   hover:text-blue-600 hover:bg-blue-50/50 text-xs 
-                   text-right"
-      >
-        <Info className="w-4 h-4" /> جزئیات
-      </button>
-      <button
-        onClick={() => setOpenDeleteModal(true)}
-        className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50
-       text-red-600 text-xs text-right"
-      >
-        <Trash2 className="w-4 h-4" /> حذف
-      </button>
+    <>
+      <DropdownMenu.Root dir="rtl">
+        <DropdownMenu.Trigger asChild>
+          <button className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-white/10">
+            <MoreVertical className="w-5 h-5" />
+          </button>
+        </DropdownMenu.Trigger>
+
+        <DropdownMenu.Portal>
+          <DropdownMenu.Content
+            sideOffset={5}
+            align="start"
+            className="
+              z-50
+              min-w-[180px]
+              overflow-hidden
+              rounded-xl
+              border
+              border-gray-100
+              dark:border-[#333333]
+              bg-white
+              dark:bg-[#262626]
+              p-1
+              shadow-lg
+            "
+          >
+            {isCanceled && (
+              <DropdownMenu.Item
+                onSelect={() => setOpenContinueModal(true)}
+                className="
+                  flex items-center gap-2
+                  px-4 py-2
+                  text-xs
+                  cursor-pointer
+                  outline-none
+                  hover:bg-blue-50/50
+                  hover:text-blue-600
+                "
+              >
+                <CheckCircle className="w-4 h-4" />
+                <span>ادامه و تایید رزرو</span>
+              </DropdownMenu.Item>
+            )}
+
+            {isPending && (
+              <DropdownMenu.Item
+                onSelect={() => setOpenCancelModal(true)}
+                className="
+                  flex items-center gap-2
+                  px-4 py-2
+                  text-xs
+                  cursor-pointer
+                  outline-none
+                  hover:bg-blue-50/50
+                  hover:text-blue-600
+                "
+              >
+                <XCircle className="w-4 h-4" />
+                <span>لغو رزرو</span>
+              </DropdownMenu.Item>
+            )}
+
+            <DropdownMenu.Item
+              onSelect={() => setOpenDetailModal(true)}
+              className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                hover:bg-blue-50/50
+                hover:text-blue-600
+              "
+            >
+              <Info className="w-4 h-4" />
+              <span>جزئیات</span>
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Item
+              onSelect={() => setOpenDeleteModal(true)}
+              className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                text-red-600
+                hover:bg-red-50
+              "
+            >
+              <Trash2 className="w-4 h-4" />
+              <span>حذف</span>
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Root>
+
       {openDetailModal && (
         <ReservationDetailsModal
           id={id}
-          onClose={onCloseDetail}
           isOpen={openDetailModal}
+          onClose={() => setOpenDetailModal(false)}
         />
       )}
+
       {openDeleteModal && (
         <ConfirmDeleteModal
           onConfirm={deleteBookingMutation.mutate}
           isOpen={openDeleteModal}
-          onClose={onCloseDeleteModal}
+          onClose={() => setOpenDeleteModal(false)}
           isPending={deleteBookingMutation.isPending}
         />
       )}
+
       {openCancelModal && (
         <CancelModal
           isOpen={openCancelModal}
-          onClose={onCloseCancelModal}
+          onClose={() => setOpenCancelModal(false)}
           onCancel={cancelBookingMutation.mutate}
         />
       )}
+
       {openContinueModal && (
         <ContinueBookingModal
-          onConfirm={continueBookingMutation.mutate}
-          onClose={onCloseContinueModal}
           isOpen={openContinueModal}
+          onClose={() => setOpenContinueModal(false)}
+          onConfirm={continueBookingMutation.mutate}
         />
       )}
-    </div>
+    </>
   );
 };
 

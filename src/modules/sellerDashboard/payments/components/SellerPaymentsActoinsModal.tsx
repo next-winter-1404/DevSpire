@@ -1,5 +1,6 @@
-import { CheckCircle, Info, Trash2, XCircle } from "lucide-react";
+import { CheckCircle, Info, MoreVertical } from "lucide-react";
 import { useState } from "react";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import PaymentDetailModal from "@/modules/customerDashboard/payments/components/PaymentDetailModal";
 import toast from "react-hot-toast";
 import { verifyPayment } from "@/modules/booking/services/Post/verifyPayment";
@@ -15,71 +16,104 @@ const PaymentsActionsMenu = ({
   id: number;
   detail?: IPayment;
 }) => {
-  const [openDetailModal, setOpenDetailModal] = useState<boolean>(false);
-  const onCloseDetail = () => {
-    setOpenDetailModal(false);
-  };
-
-  const [openConfirm, setOpenConfirm] = useState<boolean>(false);
-  const onCloseConfirm = () => {
-    setOpenConfirm(false);
-  };
+  const [openDetailModal, setOpenDetailModal] = useState(false);
+  const [openConfirm, setOpenConfirm] = useState(false);
 
   const { mutate: verify, isPending } = useMutation({
     mutationFn: async () => await verifyPayment(id),
     onSuccess: (res) => {
-      toast.success(res?.data?.message || "پرداخت شما با موفقیت تایید شد ");
+      toast.success(res?.data?.message || "پرداخت شما با موفقیت تایید شد");
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         toast.error(
           err.response?.data?.message ||
-            "مشکلی در پرداخت تایید پرداخت شما پیش امده !",
+            "مشکلی در تایید پرداخت شما پیش آمده است",
         );
       }
     },
   });
+
   return (
-    <div
-      className="absolute left-6 top-10 w-36 border dark:border-[#333333] 
-        bg-[#ffff] dark:bg-[#262626]
-                 border-gray-100 rounded-xl shadow-lg z-10 py-2 flex flex-col
-                  overflow-hidden"
-    >
-      <button
-        onClick={() => setOpenConfirm(true)}
-        className="flex items-center gap-2 px-4 py-2 text-foreground
-                   hover:text-blue-600 hover:bg-blue-50/50 text-xs 
-                   text-right"
-      >
-        <CheckCircle className="w-4 h-4" /> تایید پرداخت
-      </button>
-      <button
-        onClick={() => setOpenDetailModal(true)}
-        className="flex items-center gap-2 px-4 py-2 text-foreground
-                   hover:text-blue-600 hover:bg-blue-50/50 text-xs 
-                   text-right"
-      >
-        <Info className="w-4 h-4" /> جزئیات
-      </button>
+    <>
+      <DropdownMenu.Root dir="rtl">
+        <DropdownMenu.Trigger asChild>
+          <button className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-white/10">
+            <MoreVertical className="w-5 h-5" />
+          </button>
+        </DropdownMenu.Trigger>
+
+        <DropdownMenu.Portal>
+          <DropdownMenu.Content
+            sideOffset={5}
+            align="start"
+            className="
+              z-50
+              min-w-[160px]
+              overflow-hidden
+              rounded-xl
+              border
+              border-gray-100
+              dark:border-[#333333]
+              bg-white
+              dark:bg-[#262626]
+              p-1
+              shadow-lg
+            "
+          >
+            <DropdownMenu.Item
+              onSelect={() => setOpenConfirm(true)}
+              className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                hover:bg-blue-50/50
+                hover:text-blue-600
+              "
+            >
+              <CheckCircle className="w-4 h-4" />
+              <span>تایید پرداخت</span>
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Item
+              onSelect={() => setOpenDetailModal(true)}
+              className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                hover:bg-blue-50/50
+                hover:text-blue-600
+              "
+            >
+              <Info className="w-4 h-4" />
+              <span>جزئیات</span>
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Root>
 
       {openDetailModal && (
         <PaymentDetailModal
           detail={detail}
           id={id}
           isOpen={openDetailModal}
-          onClose={onCloseDetail}
+          onClose={() => setOpenDetailModal(false)}
         />
       )}
+
       {openConfirm && (
         <ConfirmChangesModal
-          title="ایا بابت تایید این پرداخت مطمعنید؟"
-          onClose={onCloseConfirm}
-          onConfirm={verify}
+          title="آیا بابت تایید این پرداخت مطمئن هستید؟"
           isOpen={openConfirm}
+          onClose={() => setOpenConfirm(false)}
+          onConfirm={verify}
         />
       )}
-    </div>
+    </>
   );
 };
 

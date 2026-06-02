@@ -8,22 +8,6 @@ import FavoritesActionsModal from "./FavoritesActionModal";
 
 export default function FavoritesTable({ data }: { data: IFavorites[] }) {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  const toggleMenu = (id: number) => {
-    setOpenMenuId((prev) => (prev === id ? null : id));
-  };
-
-  useEffect(() => {
-    const handleCloseMenu = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setOpenMenuId(null);
-      }
-    };
-
-    document.addEventListener("mousedown", handleCloseMenu);
-    return () => document.removeEventListener("mousedown", handleCloseMenu);
-  }, []);
 
   return (
     <div className="w-full">
@@ -51,15 +35,18 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
               >
                 <td className="py-4 px-4 text-gray-700 dark:text-gray-200 align-middle">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="relative w-10 h-10 rounded-full bg-[#777777]/20 overflow-hidden shrink-0">
-                      {row.house?.photos?.[0] && (
+                    <div
+                      className="relative w-10 h-10 rounded-full bg-[#777777]/20 
+                    overflow-hidden shrink-0"
+                    >
+                      {/* {row.house?.photos?.[0] && (
                         <Image
                           src={row.house.photos[0]}
                           alt={row.house.title}
                           fill
                           className="object-cover"
                         />
-                      )}
+                      )} */}
                     </div>
 
                     <span className="line-clamp-1 font-medium">
@@ -85,22 +72,7 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
                 </td>
 
                 <td className="py-4 px-4 text-center relative align-middle">
-                  <button
-                    onClick={() => toggleMenu(row.id)}
-                    className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
-                    aria-label="عملیات"
-                  >
-                    <MoreVertical className="w-5 h-5" />
-                  </button>
-
-                  {openMenuId === row.id && (
-                    <div ref={menuRef} className="relative z-10">
-                      <FavoritesActionsModal
-                        id={row.id}
-                        houseId={row.house.id}
-                      />
-                    </div>
-                  )}
+                  <FavoritesActionsModal id={row.id} houseId={row.house_id} />
                 </td>
               </tr>
             ))}
@@ -123,14 +95,14 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0 flex-1">
                 <div className="relative w-12 h-12 rounded-full bg-[#777777]/20 overflow-hidden shrink-0">
-                  {row.house?.photos?.[0] && (
+                  {/* {row.house?.photos?.[0] && (
                     <Image
                       src={row.house.photos[0]}
                       alt={row.house.title}
                       fill
                       className="object-cover"
                     />
-                  )}
+                  )} */}
                 </div>
 
                 <div className="min-w-0">
@@ -144,19 +116,7 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
               </div>
 
               <div className="relative shrink-0">
-                <button
-                  onClick={() => toggleMenu(row.id)}
-                  className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
-                  aria-label="عملیات"
-                >
-                  <MoreVertical className="w-5 h-5" />
-                </button>
-
-                {openMenuId === row.id && (
-                  <div ref={menuRef} className="relative z-10">
-                    <FavoritesActionsModal id={row.id} houseId={row.house.id} />
-                  </div>
-                )}
+                <FavoritesActionsModal id={row.id} houseId={row.house_id} />
               </div>
             </div>
 

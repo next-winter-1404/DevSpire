@@ -1,7 +1,7 @@
 import CircleTick from "../../../../../public/icons/CircleTick";
 import Edit from "../../../../../public/icons/Edit";
 import Trash from "../../../../../public/icons/Trash";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DeleteModal from "./DeleteModal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { DeleteHouse } from "../services/DELETE/deleteHouse";
@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import { Link, useRouter } from "@/i18n/routing";
 import axios from "axios";
 import { THouse } from "@/components/common/types";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { MoreVertical } from "lucide-react";
 
 interface IProps {
   onClose: () => void;
@@ -35,48 +37,66 @@ const ActionsModal = ({ onClose, item }: IProps) => {
       }
     },
   });
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  // useEffect(() => {
+  //   const handleCloseMenu = (e: MouseEvent) => {
+  //     if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+  //       onClose();
+  //     }
+  //   };
+
+  //   document.addEventListener("click", handleCloseMenu);
+  //   return () => document.removeEventListener("click", handleCloseMenu);
+  // }, [item]);
 
   return (
     <>
-      <div
-        onClick={() => {
-          onClose();
-        }}
-        className="w-full h-full fixed inset-0 z-20"
-      ></div>
+      <DropdownMenu.Root dir="rtl">
+        <DropdownMenu.Trigger asChild>
+          <button className="p-1 rounded-md hover:bg-gray-200">
+            <MoreVertical className="w-5 h-5" />
+          </button>
+        </DropdownMenu.Trigger>
 
-      <div
-        className="flex flex-col gap-1 w-[119px] p-2 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px] 
-      shadow-[4px_4px_4px_0px_rgba(0,0,0,0.15)] absolute top-12 left-13 z-30"
-      >
-        <Link
-          href={`/dashboard/seller/estates-management/${item.id}`}
-          onClick={() => {
-            onClose;
-          }}
-          className="flex items-center gap-2 py-1 pr-2 text-[#1E2022] rounded-[8px] cursor-pointer   hover:text-[#0D3B66] hover:bg-[#E6EDF5]"
-        >
-          <Edit />
-          <span className="font-regular text-[14px]">ویرایش</span>
-        </Link>
-        <div
-          onClick={() => {
-            setIsOpenDeleteModal(true);
-          }}
-          className="flex items-center gap-2 py-1 pr-2 text-[#1E2022] rounded-[8px] cursor-pointer   hover:text-[#0D3B66] hover:bg-[#E6EDF5]"
-        >
-          <Trash />
-          <span className="font-regular text-[14px]">حذف</span>
-        </div>
-      </div>
+        <DropdownMenu.Portal>
+          <DropdownMenu.Content
+            sideOffset={5}
+            className="z-50 min-w-[140px] bg-[#ffff] rounded-[16px] border-b border-[#DDDDDD]
+          transition-colors h-[90%]  overflow-hidden  dark:border-[#333333]  dark:bg-[#262626]  
+            p-2 shadow-lg"
+          >
+            <DropdownMenu.Item asChild>
+              <Link
+                href={`/dashboard/seller/estates-management/${item.id}`}
+                className="flex items-center gap-2 rounded-md p-2 outline-none cursor-pointer
+                 hover:bg-slate-100 dark:hover:bg-sky-950 "
+              >
+                <Edit />
+                <span>ویرایش</span>
+              </Link>
+            </DropdownMenu.Item>
 
+            <DropdownMenu.Item
+              onSelect={() => setIsOpenDeleteModal(true)}
+              className="flex items-center gap-2 rounded-md p-2 outline-none cursor-pointer
+                dark:hover:bg-sky-950"
+            >
+              <Trash />
+              <span>حذف</span>
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Root>
       {isOpenDeleteModal && (
-        <DeleteModal
-          setIsOpenDeleteModal={setIsOpenDeleteModal}
-          deleteHouseMutation={() => {
-            deleteHouseMutation.mutate();
-          }}
-        />
+        <>
+          <DeleteModal
+            setIsOpenDeleteModal={setIsOpenDeleteModal}
+            deleteHouseMutation={() => {
+              deleteHouseMutation.mutate();
+            }}
+          />
+        </>
       )}
     </>
   );

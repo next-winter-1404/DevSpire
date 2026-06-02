@@ -9,21 +9,6 @@ import UsersManagementActionsModal from "./UsersManagementActionModal";
 
 export default function UserManagementTable({ data }: { data: TUser[] }) {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  const toggleMenu = (id: number) => {
-    setOpenMenuId((prev) => (prev === id ? null : id));
-  };
-
-  useEffect(() => {
-    const handleCloseMenu = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setOpenMenuId(null);
-      }
-    };
-    document.addEventListener("mousedown", handleCloseMenu);
-    return () => document.removeEventListener("mousedown", handleCloseMenu);
-  }, []);
 
   const renderRoleBadge = (role: string) => {
     switch (role) {
@@ -141,19 +126,7 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
                 </td>
 
                 <td className="py-4 px-4 text-center relative align-middle">
-                  <button
-                    onClick={() => toggleMenu(row.id)}
-                    className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
-                    aria-label="عملیات"
-                  >
-                    <MoreVertical className="w-5 h-5" />
-                  </button>
-
-                  {openMenuId === row.id && (
-                    <div ref={menuRef} className="relative z-10">
-                      <UsersManagementActionsModal id={row.id} />
-                    </div>
-                  )}
+                  <UsersManagementActionsModal id={row.id} />
                 </td>
               </tr>
             ))}
@@ -203,19 +176,7 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
               </div>
 
               <div className="relative shrink-0">
-                <button
-                  onClick={() => toggleMenu(row.id)}
-                  className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
-                  aria-label="عملیات"
-                >
-                  <MoreVertical className="w-5 h-5" />
-                </button>
-
-                {openMenuId === row.id && (
-                  <div ref={menuRef} className="relative z-10">
-                    <UsersManagementActionsModal id={row.id} />
-                  </div>
-                )}
+                <UsersManagementActionsModal id={row.id} />
               </div>
             </div>
 

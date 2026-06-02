@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
-import { UsersIcon } from "lucide-react";
+import { Globe, UsersIcon } from "lucide-react";
 
 interface IProps {
   role: "seller" | "buyer" | "admin";
@@ -142,6 +142,11 @@ const DashboardSidebar = ({ role }: IProps) => {
         href: `${adminBasePath}/payments`,
         label: t("paymentsManagement"),
         Icon: FinantialManagement,
+      },
+      {
+        href: `${adminBasePath}/social-media`,
+        label: "شبکه های اجتماعی",
+        Icon: Globe,
       },
     ],
   };

@@ -8,26 +8,9 @@ import { FormatDate } from "@/utils/helper/FormatDate";
 
 export default function ReservationTable({ data }: { data: TReservation[] }) {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  const toggleMenu = (id: number) => {
-    setOpenMenuId((prev) => (prev === id ? null : id));
-  };
-
-  useEffect(() => {
-    const handleCloseMenu = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setOpenMenuId(null);
-      }
-    };
-
-    document.addEventListener("mousedown", handleCloseMenu);
-    return () => document.removeEventListener("mousedown", handleCloseMenu);
-  }, []);
 
   return (
     <div className="w-full">
-      {/* Desktop Table */}
       <div className="hidden md:block w-full overflow-x-auto">
         <table className="w-full min-w-[850px] text-sm text-right">
           <thead className="text-gray-600 font-medium">
@@ -95,22 +78,11 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
                   </td>
 
                   <td className="py-4 px-4 relative text-center align-middle">
-                    <button
-                      onClick={() => toggleMenu(row.id)}
-                      className="p-1 rounded-md hover:bg-gray-200 text-gray-500 transition-colors"
-                    >
-                      <MoreVertical className="w-5 h-5" />
-                    </button>
-
-                    {row.id === openMenuId && (
-                      <div ref={menuRef}>
-                        <ReserveActionsMenu
-                          isPending={row.status === "pending"}
-                          isCanceled={row.status === "canceled"}
-                          id={row.id}
-                        />
-                      </div>
-                    )}
+                    <ReserveActionsMenu
+                      isPending={row.status === "pending"}
+                      isCanceled={row.status === "canceled"}
+                      id={row.id}
+                    />
                   </td>
                 </tr>
               );
@@ -140,22 +112,11 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
                 </div>
 
                 <div className="relative shrink-0">
-                  <button
-                    onClick={() => toggleMenu(row.id)}
-                    className="p-1 rounded-md hover:bg-gray-200 text-gray-500 transition-colors"
-                  >
-                    <MoreVertical className="w-5 h-5" />
-                  </button>
-
-                  {row.id === openMenuId && (
-                    <div ref={menuRef}>
-                      <ReserveActionsMenu
-                        isPending={row.status === "pending"}
-                        isCanceled={row.status === "canceled"}
-                        id={row.id}
-                      />
-                    </div>
-                  )}
+                  <ReserveActionsMenu
+                    isPending={row.status === "pending"}
+                    isCanceled={row.status === "canceled"}
+                    id={row.id}
+                  />
                 </div>
               </div>
 

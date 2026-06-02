@@ -1,18 +1,38 @@
-import { Edit, Key, MoreVertical, Trash2 } from "lucide-react";
+"use client";
+
+import { Link } from "@/i18n/routing";
+import { Copy, Edit, ExternalLink, Trash, MoreVertical } from "lucide-react";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import SocialMediaModal from "./SocialMediaModal";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-
 import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
-import { useManageUsers } from "../hooks";
-import EditUserRole from "./EditUserRole";
-import EditUserInformation from "./EditUserInformation";
+import { useSocial } from "../hooks";
 
-const UsersManagementActionsModal = ({ id }: { id: number }) => {
+interface IProps {
+  id: number;
+  url: string;
+}
+
+const SocialMediaActionModal = ({ id, url }: IProps) => {
+  const [openSocialModal, setOpenSocialModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [openChangeRole, setOpenChangeRole] = useState(false);
-  const [openEditUser, setOpenEditUser] = useState(false);
 
-  const { deleteUserMutation } = useManageUsers(id);
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("متن کپی شد");
+    } catch {
+      const t = document.createElement("textarea");
+      t.value = text;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand("copy");
+      document.body.removeChild(t);
+      toast.success("متن کپی شد");
+    }
+  };
+  const { deleteSocialLinkMutation } = useSocial(id);
 
   return (
     <>
@@ -34,15 +54,49 @@ const UsersManagementActionsModal = ({ id }: { id: number }) => {
               rounded-xl
               border
               border-gray-100
-              dark:border-[#333333]
               bg-white
               dark:bg-[#262626]
+              dark:border-[#333333]
               p-1
               shadow-lg
             "
           >
             <DropdownMenu.Item
-              onSelect={() => setOpenEditUser(true)}
+              onSelect={() => copyToClipboard(url)}
+              className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                hover:bg-blue-50/50
+                hover:text-blue-600
+              "
+            >
+              <Copy className="w-4 h-4" />
+              <span>کپی لینک</span>
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Item asChild>
+              <Link
+                href={url}
+                className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                hover:bg-blue-50/50
+                hover:text-blue-600
+              "
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>باز کردن</span>
+              </Link>
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Item
+              onSelect={() => setOpenSocialModal(true)}
               className="
                 flex items-center gap-2
                 px-4 py-2
@@ -58,23 +112,9 @@ const UsersManagementActionsModal = ({ id }: { id: number }) => {
             </DropdownMenu.Item>
 
             <DropdownMenu.Item
-              onSelect={() => setOpenChangeRole(true)}
-              className="
-                flex items-center gap-2
-                px-4 py-2
-                text-xs
-                cursor-pointer
-                outline-none
-                hover:bg-blue-50/50
-                hover:text-blue-600
-              "
-            >
-              <Key className="w-4 h-4" />
-              <span>تغییر نقش</span>
-            </DropdownMenu.Item>
-
-            <DropdownMenu.Item
-              onSelect={() => setOpenDeleteModal(true)}
+              onSelect={() => {
+                console.log("delete", id);
+              }}
               className="
                 flex items-center gap-2
                 px-4 py-2
@@ -84,32 +124,27 @@ const UsersManagementActionsModal = ({ id }: { id: number }) => {
                 text-red-600
                 hover:bg-red-50
               "
+              onClick={() => setOpenDeleteModal(true)}
             >
-              <Trash2 className="w-4 h-4" />
+              <Trash className="w-4 h-4" />
               <span>حذف</span>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
 
+      {openSocialModal && (
+        <SocialMediaModal onClose={() => setOpenSocialModal(false)} id={id} />
+      )}
       {openDeleteModal && (
         <ConfirmDeleteModal
-          onClose={() => setOpenDeleteModal(false)}
+          onConfirm={deleteSocialLinkMutation.mutate}
           isOpen={openDeleteModal}
-          onConfirm={deleteUserMutation.mutate}
-          isPending={deleteUserMutation.isPending}
+          onClose={() => setOpenDeleteModal(false)}
         />
-      )}
-
-      {openChangeRole && (
-        <EditUserRole onClose={() => setOpenChangeRole(false)} id={id} />
-      )}
-
-      {openEditUser && (
-        <EditUserInformation id={id} onClose={() => setOpenEditUser(false)} />
       )}
     </>
   );
 };
 
-export default UsersManagementActionsModal;
+export default SocialMediaActionModal;

@@ -1,15 +1,13 @@
-import { CheckCircle, Info, Trash2, XCircle } from "lucide-react";
+import { Info, MoreVertical, Trash2 } from "lucide-react";
 import { useState } from "react";
-import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
-import CancelModal from "@/components/common/CancelModal";
-import ContinueBookingModal from "@/components/common/ContinueBookingModal";
-import { useReservation } from "@/modules/sellerDashboard/ReservesManagement/services/hooks/useReservation";
-import ReservationDetailsModal from "@/modules/sellerDashboard/ReservesManagement/components/ReserveDetailsModal";
-import { Link, useRouter } from "@/i18n/routing";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useMutation } from "@tanstack/react-query";
-import httpClient from "@/core/interceptor/axios";
-import toast from "react-hot-toast";
 import axios from "axios";
+import toast from "react-hot-toast";
+
+import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
+import { Link, useRouter } from "@/i18n/routing";
+import httpClient from "@/core/interceptor/axios";
 
 const FavoritesActionsModal = ({
   id,
@@ -20,18 +18,12 @@ const FavoritesActionsModal = ({
 }) => {
   const router = useRouter();
 
-  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
-  const onCloseDeleteModal = () => {
-    setOpenDeleteModal(false);
-  };
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
   const { mutate: deleteFav, isPending } = useMutation({
     mutationFn: async () => {
-      try {
-        const res = await httpClient.delete(`/favorites/${id}`);
-        return res;
-      } catch (err) {
-        throw err;
-      }
+      const res = await httpClient.delete(`/favorites/${id}`);
+      return res;
     },
     onSuccess: (res) => {
       toast.success(res?.data?.message || "علاقه مندی با موفقیت حذف شد");
@@ -40,43 +32,84 @@ const FavoritesActionsModal = ({
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         toast.error(
-          err?.response?.data?.message || "مشکلی در حذف پیش امده است",
+          err?.response?.data?.message || "مشکلی در حذف پیش آمده است",
         );
       }
     },
   });
 
   return (
-    <div
-      className="absolute left-6 top-10 w-36 border dark:border-[#333333] 
-        bg-[#ffff] dark:bg-[#262626]
-                 border-gray-100 rounded-xl shadow-lg z-10 py-2 flex flex-col
-                  overflow-hidden"
-    >
-      <Link
-        href={`/fast-reserve/${houseId}`}
-        className="flex items-center gap-2 px-4 py-2 text-foreground
-                   hover:text-blue-600 hover:bg-blue-50/50 text-xs 
-                   text-right"
-      >
-        <Info className="w-4 h-4" /> رزرو
-      </Link>
-      <button
-        onClick={() => setOpenDeleteModal(true)}
-        className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50
-       text-red-600 text-xs text-right"
-      >
-        <Trash2 className="w-4 h-4" /> حذف
-      </button>
+    <>
+      <DropdownMenu.Root dir="rtl">
+        <DropdownMenu.Trigger asChild>
+          <button className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-white/10">
+            <MoreVertical className="w-5 h-5" />
+          </button>
+        </DropdownMenu.Trigger>
+
+        <DropdownMenu.Portal>
+          <DropdownMenu.Content
+            sideOffset={5}
+            align="start"
+            className="
+              z-50
+              min-w-[150px]
+              overflow-hidden
+              rounded-xl
+              border
+              border-gray-100
+              dark:border-[#333333]
+              bg-white
+              dark:bg-[#262626]
+              p-1
+              shadow-lg
+            "
+          >
+            <DropdownMenu.Item asChild>
+              <Link
+                href={`/fast-reserve/${houseId}`}
+                className="
+                  flex items-center gap-2
+                  px-4 py-2
+                  text-xs
+                  outline-none
+                  hover:bg-blue-50/50
+                  hover:text-blue-600
+                "
+              >
+                <Info className="w-4 h-4" />
+                <span>رزرو</span>
+              </Link>
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Item
+              onSelect={() => setOpenDeleteModal(true)}
+              className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                text-red-600
+                hover:bg-red-50
+              "
+            >
+              <Trash2 className="w-4 h-4" />
+              <span>حذف</span>
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Root>
+
       {openDeleteModal && (
         <ConfirmDeleteModal
           onConfirm={deleteFav}
           isOpen={openDeleteModal}
-          onClose={onCloseDeleteModal}
+          onClose={() => setOpenDeleteModal(false)}
           isPending={isPending}
         />
       )}
-    </div>
+    </>
   );
 };
 

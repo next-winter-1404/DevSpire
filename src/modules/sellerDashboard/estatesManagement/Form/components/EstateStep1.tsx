@@ -70,7 +70,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
   });
 
   const transactionTypeOptions = [
-    { value: "reserve", label: "رزرو" },
+    { value: "reservation", label: "رزرو" },
     { value: "mortgage", label: "رهن" },
     { value: "rental", label: "اجاره ای" },
     { value: "direct_purchase", label: "خرید و فروش" },
@@ -134,7 +134,6 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
         </div>
       </div>
 
-      {/* Row 2 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
         <div className="flex flex-col gap-3 w-full">
           <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
@@ -149,7 +148,8 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
                 options={transactionTypeOptions}
                 defaultValue={field.value}
                 onValueChange={field.onChange}
-                className="w-full bg-white border border-[#DDDDDD] rounded-[16px] dark:bg-[#2A2D2F] dark:border-white/10"
+                className="w-full bg-white border border-[#DDDDDD] 
+                rounded-[16px] dark:bg-[#2A2D2F] dark:border-white/10"
               />
             )}
           />

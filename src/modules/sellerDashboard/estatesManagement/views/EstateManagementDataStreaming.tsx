@@ -6,6 +6,7 @@ const EstateManagementDataStreaming = async () => {
   const data = await apiFetch<THousesResponse>("/houses/seller/user", {
     cache: "no-store",
   });
+
   return (
     <>
       <EstatesManagementView data={data ?? { houses: [], totalCount: 0 }} />

@@ -15,25 +15,13 @@ export function PaymentTable({
   role: string;
 }) {
   const [openModal, setOpenModal] = useState<number | null>(null);
-  const modalRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const handleOpen = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        setOpenModal(null);
-      }
-    };
-
-    document.addEventListener("mousedown", handleOpen);
-    return () => document.removeEventListener("mousedown", handleOpen);
-  }, []);
 
   const openForRow = (id: number) => setOpenModal(id);
 
   return (
-    <div className="w-full">
-      <div className="hidden md:block overflow-x-auto">
-        <table className="w-full min-w-[900px] text-sm text-right">
+    <div className="w-full h-full">
+      <div className="hidden md:block overflow-x-auto h-full">
+        <table className="w-full min-w-[900px] text-sm text-right ">
           <thead className="text-gray-600 dark:text-gray-400 font-medium dark:bg-gray-800/50">
             <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
               <th className="py-4 px-4 whitespace-nowrap">شناسه پرداخت</th>
@@ -47,7 +35,7 @@ export function PaymentTable({
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-[#DDDDDD] dark:divide-gray-700">
+          <tbody className="divide-y divide-[#DDDDDD] dark:divide-gray-700 h-full">
             {data.map((row) => (
               <tr
                 key={row.id}
@@ -83,19 +71,7 @@ export function PaymentTable({
                       <Newspaper />
                     </button>
                   ) : (
-                    <button
-                      onClick={() => openForRow(row.id)}
-                      className="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-all"
-                      aria-label="عملیات"
-                    >
-                      <MoreVertical />
-                    </button>
-                  )}
-
-                  {role === "seller" && openModal === row.id && (
-                    <div ref={modalRef}>
-                      <PaymentsActionsMenu detail={row} id={openModal} />
-                    </div>
+                    <PaymentsActionsMenu detail={row} id={row.id} />
                   )}
                 </td>
               </tr>
@@ -152,10 +128,8 @@ export function PaymentTable({
                   </button>
                 )}
 
-                {role === "seller" && openModal === row.id && (
-                  <div ref={modalRef}>
-                    <PaymentsActionsMenu detail={row} id={openModal} />
-                  </div>
+                {role === "seller" && row.id && (
+                  <PaymentsActionsMenu detail={row} id={row.id} />
                 )}
               </div>
             </div>
