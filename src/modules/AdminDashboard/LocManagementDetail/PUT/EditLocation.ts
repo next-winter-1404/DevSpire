@@ -10,7 +10,7 @@ interface IProps{
     }
 }
 
-export const AddLocation = async ({id, data}: IProps) => {
+export const EditLocation = async ({id, data}: IProps) => {
     try {
         const res = await httpClient.put(`/locations/${id}`, data);
         return res.data;

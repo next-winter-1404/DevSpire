@@ -226,7 +226,7 @@ export type INotificationsParams = {
 
 export type TLocation = {
   id: number;
-  areaName: boolean;
+  areaName: string;
   lat: string;
   lng: string;
 }
