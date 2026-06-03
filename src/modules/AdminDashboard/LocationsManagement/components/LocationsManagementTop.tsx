@@ -26,20 +26,23 @@ const LocationsManagementTop = () => {
 
     return (
         <>
-            <div className="flex justify-between">
+            <div className="flex flex-col items-center gap-4 w-full   sm:flex-row sm:justify-between">                
                 <h1 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">{t("title")}</h1>
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col items-center gap-4 w-full   sm:flex-row sm:w-auto">
                     <button 
                     onClick={() => {handleLocFilterModal(true)}}
-                    className="flex items-center gap-3 py-[13px] px-3 text-[#1E2022] bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px] 
-                    cursor-pointer
+                    className="flex justify-center items-center gap-3 w-full py-[13px] text-[#1E2022] bg-[#FFFFFF] border border-[#DDDDDD] 
+                    rounded-[16px] cursor-pointer
+                    sm:w-auto sm:px-3
                     dark:text-[#E4E4E4] dark:bg-[#404040] dark:border-[#E4E4E4]">
                         <Filter/>
                         <span>{t("filters")}</span>
                     </button>
                     <button 
                     onClick={() => {handleAddLocationModal(true)}}
-                    className="flex items-center gap-3 py-[13px] px-3 text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer">
+                    className="flex justify-center items-center gap-3 w-full py-[13px] text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] 
+                    cursor-pointer
+                    sm:w-auto sm:px-3">
                         <Plus/>
                         <span>{t("addLocation")}</span>
                     </button>

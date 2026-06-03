@@ -488,6 +488,7 @@
       "latitude": "Latitude",
       "longitude": "Longitude",
       "actions": "Actions",
+      "showNumber": "Show Number",
       "locationNamePlc": "Enter location name",
       "latitudePlc": "Enter location latitude",
       "longitudePlc": "Enter location longitude",

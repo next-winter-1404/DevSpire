@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { TLocation } from "@/components/common/types"
-import { EditLocation } from "../PUT/EditLocation";
+import { EditLocation } from "../services/PUT/EditLocation";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 
 
 interface IProps {
@@ -21,6 +22,8 @@ const LocationProperties = ({ location, id }: IProps) => {
 
 
     const t = useTranslations("adminDashboard.locationsManagement");
+    const router = useRouter();
+
     const [loading, setLoading] = useState(false);
     
     const { register, handleSubmit, reset } = useForm<FormData>({
@@ -52,6 +55,7 @@ const LocationProperties = ({ location, id }: IProps) => {
                     longitude: formData.lng,
                 }
             })
+            router.refresh();
         } 
         catch(err){
         } 
@@ -63,7 +67,7 @@ const LocationProperties = ({ location, id }: IProps) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-between h-full">
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-8 flex-1">
                 <div className="flex flex-col gap-4">
                     <label className="font-bold text-[#1E2022]   dark:text-[#E4E4E4]">{t("locationName")}</label>
                     <input 
@@ -72,7 +76,7 @@ const LocationProperties = ({ location, id }: IProps) => {
                     placeholder={t("locationNamePlc")}
                     className="h-12 indent-4 bg-[#FFFFFF] rounded-[16px]   dark:bg-[#262626]"/>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-col gap-4   sm:flex-row">
                     <div className="flex flex-col gap-4 flex-1">
                         <label className="font-bold text-[#1E2022]   dark:text-[#E4E4E4]">{t("latitude")}</label>
                         <input 

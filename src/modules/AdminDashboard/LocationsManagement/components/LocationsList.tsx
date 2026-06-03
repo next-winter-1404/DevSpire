@@ -6,7 +6,8 @@ import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import CustomSelect from "@/components/common/CustomSelectOption";
-import { useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
+
 
 interface IProps{
   data: TLocationsResponse;
@@ -15,10 +16,11 @@ interface IProps{
 const LocationsList = ({data}: IProps) => {
 
 
+  const t = useTranslations("adminDashboard.locationsManagement");
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const locale = useLocale();
+
 
   const [page, setPage] = useState<number>(
     parseInt(searchParams.get("page") ?? "1"),
@@ -55,11 +57,13 @@ const LocationsList = ({data}: IProps) => {
     <div className="flex flex-col gap-6 p-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]   dark:bg-[#262626] dark:border-[#777777]">
       <LocationsDataTable data={data.data}/>
       <div className="flex justify-between">
-        <CustomPagination currentPage={page} totalPages={Math.ceil(data?.totalCount / limit)} onPageChange={onPageChange}/>
-        {/* <div>
+        <div>
+          <CustomPagination currentPage={page} totalPages={Math.ceil(data?.totalCount / limit)} onPageChange={onPageChange}/>
+        </div>
+        <div className="w-40">
           <CustomSelect defaultValue={limit.toString()} options={limitNumberOptions} onValueChange={handleLimitChange}
-          placeholder="تعداد نمایش" className="bg-[#FFFFFF] border border-[#DDDDDD]"/>
-        </div> */}
+          placeholder={t("showNumber")} className="bg-[#FFFFFF] border border-[#DDDDDD]"/>
+        </div>
       </div>
     </div>
   )

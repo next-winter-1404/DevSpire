@@ -15,7 +15,7 @@ const LocationsDataTable = ({data}: IProps) => {
 
     return (
         <table className="flex flex-col gap-4">
-            <thead className="flex font-bold text-[#1E2022]">
+            <thead className="hidden font-bold text-[#1E2022]   md:flex">
                 <tr>
                     <td className="w-104 text-[#1E2022]   dark:text-[#E4E4E4]">
                         <span>{t("locationName")}</span>
