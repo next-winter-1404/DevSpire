@@ -487,6 +487,7 @@
       "locationName": "Location Name",
       "latitude": "Latitude",
       "longitude": "Longitude",
+      "chooseOnMap": "Choose From Map",
       "actions": "Actions",
       "showNumber": "Show Number",
       "locationNamePlc": "Enter location name",

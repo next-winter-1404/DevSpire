@@ -19,17 +19,17 @@ const LocationsTableRow = ({item}: IProps) => {
 
 
     return(
-        <tr className="flex justify-between w-full py-4 border-y border-[#DDDDDD] relative   
+        <tr className="flex justify-between w-full py-4 px-6 border-y border-[#DDDDDD] relative   
         dark:border-[#777777]
         md:flex md:items-center">
-            <td className="flex flex-col gap-2   md:flex-row">
-                <td className="text-[#1E2022]   md:w-104   dark:text-[#E4E4E4]">
+            <td className="flex flex-col w-full gap-2   md:flex-row">
+                <td className="text-[#1E2022]   md:w-[40%]   dark:text-[#E4E4E4]">
                     <span>{item.areaName ? item.areaName : "فاقد نام"}</span>
                 </td>
-                <td className="text-[#1E2022]   md:w-64   dark:text-[#E4E4E4]">
+                <td className="text-[#1E2022]   md:w-[30%]   dark:text-[#E4E4E4]">
                     <span>{item.lat}</span>
                 </td>
-                <td className="text-[#1E2022]   md:w-104   dark:text-[#E4E4E4]">
+                <td className="text-[#1E2022]   md:w-[30%]   dark:text-[#E4E4E4]">
                     <span>{item.lng}</span>
                 </td>
             </td>

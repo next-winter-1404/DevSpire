@@ -38,10 +38,10 @@ const LocationsList = ({data}: IProps) => {
 
 
   const limitNumberOptions = [
-    {id:1, value: "6", label: "6"},
-    {id:2, value: "9", label: "9"},
-    {id:3, value: "12", label: "12"},
-    {id:4, value: "15", label: "15"},
+    {id:1, value: "5", label: "5"},
+    {id:2, value: "10", label: "10"},
+    {id:3, value: "15", label: "15"},
+    {id:4, value: "20", label: "20"},
   ]
 
   const handleLimitChange = (value: string) => {
