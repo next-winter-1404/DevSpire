@@ -16,7 +16,10 @@ import toast from "react-hot-toast";
 import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
-import { Globe, UsersIcon } from "lucide-react";
+import { UsersIcon } from "lucide-react";
+import Location from "../../../../public/icons/Location";
+
+import { Globe } from "lucide-react";
 import Chat from "../../../../public/icons/Chat";
 
 interface IProps {
@@ -135,8 +138,13 @@ const DashboardSidebar = ({ role }: IProps) => {
         Icon: CheckList,
       },
       {
+        href: `${adminBasePath}/locations-management`,
+        label: t("locationsManagement"),
+        Icon: Location,
+      },
+      {
         href: `${adminBasePath}/users-management`,
-        label: "مدیریت کاربران",
+        label: t("usersManagement"),
         Icon: UsersIcon,
       },
       {

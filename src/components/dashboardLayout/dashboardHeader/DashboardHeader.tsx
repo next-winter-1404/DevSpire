@@ -18,6 +18,8 @@ interface IProps {
 }
 
 const DashboardHeader = ({ hasNotification, userInfo }: IProps) => {
+
+
   const t = useTranslations("sellerDashboard.header");
 
   const [isOpenSidebarMenu, setIsOpenSidebarMenu] = useState<boolean>(false);
@@ -58,10 +60,10 @@ const DashboardHeader = ({ hasNotification, userInfo }: IProps) => {
               dark:text-[#E4E4E4]"
             >
               {userInfo?.user?.role === "buyer"
-                ? "(خریدار)"
+                ? t("customer")
                 : userInfo?.user?.role == "seller"
-                  ? "(فروشنده)"
-                  : "(ادمین)"}
+                  ? t("seller")
+                  : t("admin")}
             </span>
           </div>
           <div className="flex items-center gap-1 font-regular text-[16px]">

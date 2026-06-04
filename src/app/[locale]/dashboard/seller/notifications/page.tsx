@@ -10,12 +10,12 @@ interface IProps {
 const page = async ({ searchParams }: IProps) => {
   const params = await searchParams;
   const payLoad = {
-    page: params.page ?? "",
+    page: params.page ?? "1",
     limit: params.limit ?? "6",
     isRead: params.isRead ?? "",
     type: params.type ?? "",
     sort: params.sort ?? "",
-    order: params.order ?? "",
+    order: params.order ?? "DESC",
     message: params.message ?? "",
     title: params.title ?? "",
   } as Record<string, string>;

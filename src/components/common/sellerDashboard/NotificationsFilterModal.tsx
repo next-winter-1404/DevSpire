@@ -23,7 +23,7 @@ const NotificationsFilterModal = ({handleNotifFilterModal}: IProps) => {
 
     const [isRead, setIsRead] = useState<string>(searchParams.get("isRead")?.toString() ?? "")
     const [sort, setSortBy] = useState<string>(searchParams.get("sort")?.toString() ?? "")
-    const [order, setOrder] = useState<string>(searchParams.get("order")?.toString() ?? "desc")
+    const [order, setOrder] = useState<string>(searchParams.get("order")?.toString() ?? "DESC")
 
 
     const isReadOptions = [
@@ -37,8 +37,8 @@ const NotificationsFilterModal = ({handleNotifFilterModal}: IProps) => {
         {id:3, value: "clear", label: locale === "en" ? "Delete This Filter" : "حذف این فیلتر"},
     ]
     const orderByOptions = [
-        {id:1, value: "desc", label: locale === "en" ? "Descending" : "نزولی"},
-        {id:2, value: "asc", label: locale === "en" ? "Ascending" : "صعودی"},
+        {id:1, value: "DESC", label: locale === "en" ? "Descending" : "نزولی"},
+        {id:2, value: "ASC", label: locale === "en" ? "Ascending" : "صعودی"},
     ]
 
 

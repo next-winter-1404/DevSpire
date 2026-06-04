@@ -1,5 +1,5 @@
-import NotificationsList from "@/components/common/dashboards/NotificationsList";
-import NotificationsTop from "@/components/common/dashboards/NotificationsTop";
+import NotificationsList from "@/components/common/sellerDashboard/NotificationsList";
+import NotificationsTop from "@/components/common/sellerDashboard/NotificationsTop";
 import { TNotificationsResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";

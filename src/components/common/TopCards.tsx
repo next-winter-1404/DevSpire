@@ -1,11 +1,13 @@
 import ArrowLinkCircle from "../../../public/icons/ArrowLinkCircle";
 import React from "react";
 import CountIncreaser from "./CountIncreaser";
+import { Link } from "@/i18n/routing";
 
 interface CardItem {
   icon: React.ElementType;
   title: string;
   value: number | string;
+  link: string;
 }
 
 interface TopCardsProps {
@@ -16,7 +18,8 @@ const TopCards: React.FC<TopCardsProps> = ({ items }) => {
   return (
     <div className="flex flex-col md:flex-row md:items-center gap-4">
       {items.map((item, index) => (
-        <div
+        <Link
+          href={item.link}
           key={index}
           className="flex flex-grow justify-between p-4 bg-[#FFFFFF] rounded-[24px] dark:bg-[#262626]"
         >
@@ -36,7 +39,7 @@ const TopCards: React.FC<TopCardsProps> = ({ items }) => {
             </div>
           </div>
           <ArrowLinkCircle />
-        </div>
+        </Link>
       ))}
     </div>
   );
