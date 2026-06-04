@@ -4,29 +4,18 @@ import { useState, useRef, useEffect } from "react";
 import { MoreVertical, MessageSquare, Star } from "lucide-react";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import { IComment } from "@/modules/sellerDashboard/payments/types";
+import CommentsActionModal from "./CommentsActionModal";
 
-export default function CommentsTable({ comments }: { comments: IComment[] }) {
-  const [openMenuId, setOpenMenuId] = useState<number | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  const toggleMenu = (id: number) => {
-    setOpenMenuId((prev) => (prev === id ? null : id));
-  };
-
-  useEffect(() => {
-    const handleCloseMenu = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setOpenMenuId(null);
-      }
-    };
-    document.addEventListener("mousedown", handleCloseMenu);
-    return () => document.removeEventListener("mousedown", handleCloseMenu);
-  }, []);
-
+export default function CommentsTable({
+  comments,
+  role,
+}: {
+  comments: IComment[];
+  role: "seller" | "admin";
+}) {
   return (
-    <div className="w-full">
-      {/* Desktop Table */}
-      <div className="hidden md:block overflow-x-auto">
+    <div className="w-full h-full">
+      <div className="hidden md:block overflow-x-auto h-full">
         <table className="w-full min-w-[950px] text-sm text-right">
           <thead className="text-gray-600 dark:text-gray-400 font-medium dark:bg-gray-800/50">
             <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
@@ -37,13 +26,14 @@ export default function CommentsTable({ comments }: { comments: IComment[] }) {
                 امتیاز
               </th>
               <th className="py-4 px-4 whitespace-nowrap">تاریخ ثبت</th>
+
               <th className="py-4 px-4 text-center whitespace-nowrap">
                 عملیات
               </th>
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-[#DDDDDD] dark:divide-gray-700">
+          <tbody className="divide-y divide-[#DDDDDD] dark:divide-gray-700 h-full">
             {comments.map((comment) => (
               <tr
                 key={comment.id}
@@ -89,27 +79,7 @@ export default function CommentsTable({ comments }: { comments: IComment[] }) {
                 </td>
 
                 <td className="relative py-4 px-4 text-center align-middle">
-                  <button
-                    onClick={() => toggleMenu(comment.id)}
-                    className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
-                    aria-label="عملیات"
-                  >
-                    <MoreVertical className="w-5 h-5" />
-                  </button>
-
-                  {comment.id === openMenuId && (
-                    <div
-                      ref={menuRef}
-                      className="absolute left-0 mt-2 w-32 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md z-10"
-                    >
-                      <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">
-                        مشاهده
-                      </button>
-                      <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm text-red-500">
-                        حذف
-                      </button>
-                    </div>
-                  )}
+                  <CommentsActionModal role={role} id={comment.id} />
                 </td>
               </tr>
             ))}
@@ -123,7 +93,6 @@ export default function CommentsTable({ comments }: { comments: IComment[] }) {
         )}
       </div>
 
-      {/* Mobile Cards */}
       <div className="md:hidden flex flex-col gap-4">
         {comments.map((comment) => (
           <div
@@ -146,27 +115,7 @@ export default function CommentsTable({ comments }: { comments: IComment[] }) {
               </div>
 
               <div className="relative shrink-0">
-                <button
-                  onClick={() => toggleMenu(comment.id)}
-                  className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 transition-colors"
-                  aria-label="عملیات"
-                >
-                  <MoreVertical className="w-5 h-5" />
-                </button>
-
-                {comment.id === openMenuId && (
-                  <div
-                    ref={menuRef}
-                    className="absolute left-0 mt-2 w-32 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md z-10"
-                  >
-                    <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">
-                      مشاهده
-                    </button>
-                    <button className="block w-full text-right px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm text-red-500">
-                      حذف
-                    </button>
-                  </div>
-                )}
+                <CommentsActionModal role={role} id={comment.id} />
               </div>
             </div>
 

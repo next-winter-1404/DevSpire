@@ -17,6 +17,7 @@ import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
 import { Globe, UsersIcon } from "lucide-react";
+import Chat from "../../../../public/icons/Chat";
 
 interface IProps {
   role: "seller" | "buyer" | "admin";
@@ -147,6 +148,11 @@ const DashboardSidebar = ({ role }: IProps) => {
         href: `${adminBasePath}/social-media`,
         label: "شبکه های اجتماعی",
         Icon: Globe,
+      },
+      {
+        href: `${adminBasePath}/comments-management`,
+        label: "مدیریت کامنت ها",
+        Icon: Chat,
       },
     ],
   };

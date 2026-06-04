@@ -29,3 +29,7 @@ export interface ICommentResponse {
   currentPage: number;
   totalPages: number;
 }
+export interface IAdminCommentResponse {
+  data: IComment[];
+  totalCount: number;
+}

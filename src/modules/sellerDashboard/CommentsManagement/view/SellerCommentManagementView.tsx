@@ -3,24 +3,52 @@ import SellerCommentsFilters from "../components/SellerCommentsFilter";
 import { jwtDecode } from "jwt-decode";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import { ICommentResponse } from "../../payments/types";
+import { IAdminCommentResponse, ICommentResponse } from "../../payments/types";
 import CommentsList from "@/components/dashboard/CommentsList";
 
 const SellerCommentManagementView = async ({
   params,
+  role,
 }: {
   params: Record<string, string>;
+  role: "admin" | "seller";
 }) => {
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value as string;
   const decoded = jwtDecode(token) as IDecodedToken;
-  const sellerId = decoded.id;
 
-  const comments = await apiFetch<ICommentResponse | null>(
-    `/comments/seller/${sellerId}`,
-    { params, cache: "no-store" },
-  );
-  console.log(comments);
+  let comments: ICommentResponse | IAdminCommentResponse | null = null;
+
+  if (role == "seller") {
+    const sellerId = decoded.id;
+    comments = await apiFetch<ICommentResponse | null>(
+      `/comments/seller/${sellerId}`,
+      { params, cache: "no-store" },
+    );
+  } else {
+    comments = await apiFetch<IAdminCommentResponse | null>(`/admin/comments`, {
+      params,
+      cache: "no-store",
+    });
+  }
+
+  const normalizedComments = comments
+    ? role === "seller"
+      ? {
+          comments: (comments as ICommentResponse).comments,
+          totalCount: comments.totalCount,
+          currentPage: (comments as ICommentResponse).currentPage,
+          totalPages: (comments as ICommentResponse).totalPages,
+        }
+      : {
+          comments: (comments as IAdminCommentResponse).data,
+          totalCount: comments.totalCount,
+          currentPage: parseInt(params.page ?? "1"),
+          totalPages: Math.ceil(
+            comments.totalCount / parseInt(params.limit ?? "6"),
+          ),
+        }
+    : null;
 
   return (
     <div className="h-full">
@@ -41,8 +69,8 @@ const SellerCommentManagementView = async ({
       rounded-[24px] overflow-hidden  dark:border-[#333333]
          bg-[#ffff] dark:bg-[#262626]"
       >
-        {comments && comments?.totalCount > 0 ? (
-          <CommentsList role="seller" data={comments} />
+        {normalizedComments && normalizedComments?.totalCount > 0 ? (
+          <CommentsList role={role} data={normalizedComments} />
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">

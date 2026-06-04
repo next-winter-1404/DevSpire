@@ -11,14 +11,13 @@ const CommentsList = ({
   role,
 }: {
   data: ICommentResponse;
-  role: string;
+  role: "seller" | "admin";
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [page, setPage] = useState<number>(parseInt(String(data.currentPage)));
-  const limit = parseInt(searchParams.get("limit") ?? "6");
+  const [page, setPage] = useState<number>(data.currentPage ?? 1);
 
   const onPageChange = (pageNum: number) => {
     setPage(pageNum);
@@ -29,7 +28,7 @@ const CommentsList = ({
   return (
     <div className="h-full flex flex-col justify-between">
       <div className="h-[86%] overflow-y-auto scroll-auto w-full">
-        <CommentsTable comments={data.comments} />
+        <CommentsTable role={role} comments={data.comments} />
       </div>
       <div className="flex items-center pb-4 ">
         <CustomPagination

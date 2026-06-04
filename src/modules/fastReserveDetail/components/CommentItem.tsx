@@ -30,12 +30,15 @@ export default function CommentItem({ comment, isReply, depth = 0 }: IProps) {
            dark:bg-[#777777] rounded-full overflow-hidden "
           >
             {comment.user.profilePicture ? (
-              <Image
-                src={comment.user.profilePicture}
-                alt={comment.user.firstName}
-                fill
-                className="object-cover "
-              />
+              // <Image
+              //   src={comment.user.profilePicture}
+              //   alt={comment.user.firstName}
+              //   fill
+              //   className="object-cover "
+              // />
+              <div className="w-full h-full flex items-center justify-center ">
+                {comment.user.firstName[0]}
+              </div>
             ) : (
               <div className="w-full h-full flex items-center justify-center ">
                 {comment.user.firstName[0]}

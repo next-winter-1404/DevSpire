@@ -1,12 +1,13 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
 import SellerCommentManagementView from "@/modules/sellerDashboard/CommentsManagement/view/SellerCommentManagementView";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 
 interface IProps {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }
-const SellerCommentsManagementPage = async ({ searchParams }: IProps) => {
+
+const AdminCommentsManageMent = async ({ searchParams }: IProps) => {
   const sparams = await searchParams;
   const params = {
     sort: sparams.sort ?? "",
@@ -21,10 +22,10 @@ const SellerCommentsManagementPage = async ({ searchParams }: IProps) => {
   return (
     <DashboardContainer>
       <Suspense fallback={<DashboardTableSkeleton />}>
-        <SellerCommentManagementView role="seller" params={params} />
+        <SellerCommentManagementView role={"admin"} params={params} />
       </Suspense>
     </DashboardContainer>
   );
 };
 
-export default SellerCommentsManagementPage;
+export default AdminCommentsManageMent;
