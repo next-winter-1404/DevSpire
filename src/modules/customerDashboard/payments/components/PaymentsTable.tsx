@@ -12,7 +12,7 @@ export function PaymentTable({
   role,
 }: {
   data: IPayment[];
-  role: string;
+  role: "seller" | "admin" | "buyer";
 }) {
   const [openModal, setOpenModal] = useState<number | null>(null);
 
@@ -71,7 +71,7 @@ export function PaymentTable({
                       <Newspaper />
                     </button>
                   ) : (
-                    <PaymentsActionsMenu detail={row} id={row.id} />
+                    <PaymentsActionsMenu role={role} detail={row} id={row.id} />
                   )}
                 </td>
               </tr>
@@ -129,7 +129,7 @@ export function PaymentTable({
                 )}
 
                 {role === "seller" && row.id && (
-                  <PaymentsActionsMenu detail={row} id={row.id} />
+                  <PaymentsActionsMenu role={role} detail={row} id={row.id} />
                 )}
               </div>
             </div>
@@ -149,7 +149,7 @@ export function PaymentTable({
                   مبلغ (تومان)
                 </p>
                 <p className="mt-1 text-[15px] font-bold text-foreground whitespace-nowrap">
-                  {Number(row.amount).toLocaleString("fa-IR")}
+                  {Number(row.amount).toLocaleString()}
                 </p>
               </div>
             </div>

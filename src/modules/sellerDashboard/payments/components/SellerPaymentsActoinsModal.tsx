@@ -1,4 +1,4 @@
-import { CheckCircle, Info, MoreVertical } from "lucide-react";
+import { CheckCircle, Info, MoreVertical, Trash } from "lucide-react";
 import { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import PaymentDetailModal from "@/modules/customerDashboard/payments/components/PaymentDetailModal";
@@ -8,21 +8,33 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import ConfirmChangesModal from "@/components/common/ConfirmChangesModal";
 import { IPayment } from "@/modules/customerDashboard/payments/types";
+import { useRouter } from "@/i18n/routing";
+import httpClient from "@/core/interceptor/axios";
+import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
+import EditPaymentModal from "./EditPaymentModal";
 
 const PaymentsActionsMenu = ({
+  role,
   id,
   detail,
 }: {
+  role: "seller" | "admin";
   id: number;
-  detail?: IPayment;
+  detail: IPayment;
 }) => {
-  const [openDetailModal, setOpenDetailModal] = useState(false);
-  const [openConfirm, setOpenConfirm] = useState(false);
+  const router = useRouter();
+
+  const [openDetailModal, setOpenDetailModal] = useState<boolean>(false);
+  const [openConfirm, setOpenConfirm] = useState<boolean>(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
+  const [openEditModal, setOpenEditModal] = useState<boolean>(false);
 
   const { mutate: verify, isPending } = useMutation({
     mutationFn: async () => await verifyPayment(id),
     onSuccess: (res) => {
       toast.success(res?.data?.message || "پرداخت شما با موفقیت تایید شد");
+      router.refresh();
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
@@ -30,6 +42,26 @@ const PaymentsActionsMenu = ({
           err.response?.data?.message ||
             "مشکلی در تایید پرداخت شما پیش آمده است",
         );
+      }
+    },
+  });
+
+  const { mutate: deletePayment } = useMutation({
+    mutationFn: async () => {
+      try {
+        const res = await httpClient.delete(`/admin/payments/${id}`);
+        return res.data;
+      } catch (err) {
+        throw err;
+      }
+    },
+    onSuccess: (data) => {
+      toast.success(data?.message || "پرداخت با موفقیت حذف شد");
+      router.refresh();
+    },
+    onError: (err) => {
+      if (axios.isAxiosError(err)) {
+        toast.error(err.response?.data?.message || "مشکلی در حذف پیش امده است");
       }
     },
   });
@@ -92,6 +124,40 @@ const PaymentsActionsMenu = ({
               <Info className="w-4 h-4" />
               <span>جزئیات</span>
             </DropdownMenu.Item>
+            {role == "admin" && (
+              <>
+                <DropdownMenu.Item
+                  onSelect={() => setOpenEditModal(true)}
+                  className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                hover:bg-blue-50/50
+                hover:text-blue-600
+              "
+                >
+                  <InfoCircledIcon className="w-4 h-4" />
+                  <span>ویرایش </span>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item
+                  onSelect={() => setOpenDeleteModal(true)}
+                  className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                text-red-500
+                hover:bg-red-50/50
+              "
+                >
+                  <Trash className=" text-red-500 w-4 h-4" />
+                  <span>حذف</span>
+                </DropdownMenu.Item>
+              </>
+            )}
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
@@ -111,6 +177,19 @@ const PaymentsActionsMenu = ({
           isOpen={openConfirm}
           onClose={() => setOpenConfirm(false)}
           onConfirm={verify}
+        />
+      )}
+      {openDeleteModal && (
+        <ConfirmDeleteModal
+          onConfirm={deletePayment}
+          onClose={() => setOpenDeleteModal(false)}
+          isOpen={openDeleteModal}
+        />
+      )}
+      {openEditModal && (
+        <EditPaymentModal
+          payment={detail}
+          onClose={() => setOpenEditModal(false)}
         />
       )}
     </>

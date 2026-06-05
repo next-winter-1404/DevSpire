@@ -43,10 +43,12 @@ const SellerCommentManagementView = async ({
       : {
           comments: (comments as IAdminCommentResponse).data,
           totalCount: comments.totalCount,
-          currentPage: parseInt(params.page ?? "1"),
-          totalPages: Math.ceil(
-            comments.totalCount / parseInt(params.limit ?? "6"),
-          ),
+          currentPage: parseInt(params.page?.toString() ?? "1") || 1,
+          totalPages:
+            Math.ceil(
+              Number(comments.totalCount || 0) /
+                parseInt(params.limit?.toString() ?? "6"),
+            ) || 1,
         }
     : null;
 

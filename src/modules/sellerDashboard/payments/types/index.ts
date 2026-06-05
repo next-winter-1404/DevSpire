@@ -33,3 +33,8 @@ export interface IAdminCommentResponse {
   data: IComment[];
   totalCount: number;
 }
+
+export interface IUpdatePaymentReq {
+  amount: string;
+  description: string;
+}

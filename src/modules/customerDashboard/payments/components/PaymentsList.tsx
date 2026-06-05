@@ -13,7 +13,7 @@ const PaymentsList = ({
 }: {
   buyerData?: IPaymentResponse;
   sellerData?: ISellerPaymentsResponse;
-  role: string;
+  role: "seller" | "buyer" | "admin";
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();

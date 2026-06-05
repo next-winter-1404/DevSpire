@@ -7,18 +7,24 @@ import PaymentsFilters from "../../../customerDashboard/payments/components/Paym
 import PaymentsList from "../../../customerDashboard/payments/components/PaymentsList";
 
 const SellerPaymentsView = async ({
+  role,
   params,
 }: {
+  role: "admin" | "seller" | "buyer";
   params: Record<string, string>;
 }) => {
-  const res = await apiFetch<ISellerPaymentsResponse | null>(
-    "/seller/finance",
-    {
+  let res = null;
+  if (role == "seller") {
+    res = await apiFetch<ISellerPaymentsResponse | null>("/seller/finance", {
       params,
       cache: "no-store",
-    },
-  );
-  console.log(res);
+    });
+  } else {
+    res = await apiFetch<ISellerPaymentsResponse | null>("/admin/payments", {
+      params,
+      cache: "no-store",
+    });
+  }
 
   return (
     <div className="h-full">
@@ -38,7 +44,7 @@ const SellerPaymentsView = async ({
          bg-[#ffff] dark:bg-[#262626]"
       >
         {res && res?.totalCount > 0 ? (
-          <PaymentsList role="seller" sellerData={res} />
+          <PaymentsList role={role} sellerData={res} />
         ) : (
           <div
             className="flex flex-col items-center justify-center h-[300px]
