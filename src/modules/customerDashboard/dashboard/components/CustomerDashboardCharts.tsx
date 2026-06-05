@@ -1,6 +1,6 @@
 import CompleteProfile from "@/components/common/CompleteProfile";
 import PaymentStatusChart from "./PaymentsStatusChart";
-import { IPaymentResponse } from "../../payments/types";
+import { IPaymentResponse } from "../../Payments/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";

@@ -7,7 +7,7 @@ import ReserveFilterModal from "./FiltersModal";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useDebounce } from "use-debounce";
-import { SellerChooseHouseModal } from "@/modules/sellerDashboard/CommentsManagement/components/SellerChooseHouseModal";
+import { SellerChooseHouseModal } from "@/modules/SellerDashboard/CommentsManagement/components/SellerChooseHouseModal";
 
 const ReserveFilters = () => {
   const pathname = usePathname();

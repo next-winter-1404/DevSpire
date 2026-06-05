@@ -85,6 +85,9 @@ const AddLocationsModal = ({handleAddLocationModal}: IProps) => {
                     placeholder={t("longitudePlc")}
                     className="h-12 indent-4 bg-[#F5F5F5] rounded-[40px]   dark:bg-[#262626]"/>
                 </div>
+                <div className="flex flex-col gap-4 w-full">
+                    <label htmlFor="">{t("chooseOnMap")}</label>
+                </div>
                 <div className="flex gap-6">
                     <button 
                     onClick={() => {handleAddLocationModal(false)}}

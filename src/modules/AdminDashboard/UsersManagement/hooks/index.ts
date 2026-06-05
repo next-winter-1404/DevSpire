@@ -1,6 +1,6 @@
 import httpClient from "@/core/interceptor/axios";
 import { useRouter } from "@/i18n/routing";
-import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";

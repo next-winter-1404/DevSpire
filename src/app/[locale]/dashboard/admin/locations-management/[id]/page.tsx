@@ -2,7 +2,7 @@ import LocManagementDetailView from "@/modules/AdminDashboard/LocManagementDetai
 
 
 
-const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+const page = ({ params }: { params: Promise<{ id: string }> }) => {
 
 
     return (

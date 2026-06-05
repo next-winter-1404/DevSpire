@@ -4,7 +4,7 @@ import SellerTopCard from "../components/SellerTopCard";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
-import { ICommentResponse } from "../../payments/types";
+import { ICommentResponse } from "../../Payments/types";
 
 export interface ISellerFinance {
   totalAmount: number;

@@ -3,7 +3,7 @@ import CustomPagination from "@/components/common/CustomPagination";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { ICommentResponse } from "@/modules/sellerDashboard/payments/types";
+import { ICommentResponse } from "@/modules/SellerDashboard/Payments/types";
 import CommentsTable from "./CommentsTable";
 
 const CommentsList = ({
