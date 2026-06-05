@@ -1,6 +1,3 @@
-import { TravelerDetail } from "@/modules/booking/types";
-import { TUser } from "@/modules/mortgageRentDetail/types";
-
 export type IFastReserveParams = {
   page?: string;
   sort?: string;
@@ -223,6 +220,8 @@ export type INotificationsParams = {
 
 
 
+/// Admin Dashboard ///
+
 
 export type TLocation = {
   id: number;
@@ -235,11 +234,46 @@ export type TLocationsResponse = {
   totalCount: number;
 }
 export type ILocationsResParams = {
-  page: string;
-  limit: string;
+  page: number;
+  limit: number;
   sort: string;
   order: string;
   area_name: string;
   lat: string;
   lng: string;
+}
+
+
+
+export type TTour = {
+  id: number;
+  userId: number;
+  title: string;
+  address: string;
+  photos: string[];
+  description: string;
+  tag: string;
+  price: number;
+  startDate: string;
+  endDate: string;
+  services: string[];
+  facilities: string[];
+  cancellationPeriodDays: number;
+  locations: string[];
+  schedule: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+export type TToursResponse = {
+  data: TTour[];
+  totalCount: number;
+}
+export type IToursParams = {
+  page: number;
+  limit: number;
+  sort: string;
+  order: string;
+  title: string;
+  tag: string;
+  userId: number;
 }

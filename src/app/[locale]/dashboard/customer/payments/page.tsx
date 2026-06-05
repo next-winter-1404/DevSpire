@@ -1,6 +1,6 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import PaymentsView from "@/modules/customerDashboard/payments/views/PaymentsView";
+import PaymentsView from "@/modules/CustomerDashboard/Payments/views/PaymentsView";
 import { Suspense } from "react";
 
 interface IProps {

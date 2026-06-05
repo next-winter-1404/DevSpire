@@ -1,12 +1,12 @@
 import { CheckCircle, Info, Trash2, XCircle } from "lucide-react";
 import { useState } from "react";
-import PaymentDetailModal from "@/modules/customerDashboard/payments/components/PaymentDetailModal";
+import PaymentDetailModal from "@/modules/CustomerDashboard/Payments/components/PaymentDetailModal";
 import toast from "react-hot-toast";
 import { verifyPayment } from "@/modules/booking/services/Post/verifyPayment";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import ConfirmChangesModal from "@/components/common/ConfirmChangesModal";
-import { IPayment } from "@/modules/customerDashboard/payments/types";
+import { IPayment } from "@/modules/CustomerDashboard/Payments/types";
 
 const PaymentsActionsMenu = ({
   id,

@@ -9,7 +9,7 @@ interface IProps{
     item: TLocation;
 }
 
-const LocationsTableRow = ({item}: IProps) => {
+const LocationsDataTableRow = ({item}: IProps) => {
 
     const [isOpenActionsModal, setIsOpenActionsModal] = useState<boolean>(false)
 
@@ -24,7 +24,7 @@ const LocationsTableRow = ({item}: IProps) => {
         md:flex md:items-center">
             <td className="flex flex-col w-full gap-2   md:flex-row">
                 <td className="text-[#1E2022]   md:w-[40%]   dark:text-[#E4E4E4]">
-                    <span>{item.areaName ? item.areaName : "فاقد نام"}</span>
+                    <span>{item.areaName ? item.areaName : "بدون نام"}</span>
                 </td>
                 <td className="text-[#1E2022]   md:w-[30%]   dark:text-[#E4E4E4]">
                     <span>{item.lat}</span>
@@ -44,5 +44,5 @@ const LocationsTableRow = ({item}: IProps) => {
 
 }
 
-export default LocationsTableRow
+export default LocationsDataTableRow
 

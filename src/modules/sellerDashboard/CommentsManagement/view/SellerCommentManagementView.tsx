@@ -3,7 +3,7 @@ import SellerCommentsFilters from "../components/SellerCommentsFilter";
 import { jwtDecode } from "jwt-decode";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import { ICommentResponse } from "../../payments/types";
+import { ICommentResponse } from "../../Payments/types";
 import CommentsList from "@/components/dashboard/CommentsList";
 
 const SellerCommentManagementView = async ({

@@ -2,9 +2,9 @@ import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import {
   IPaymentResponse,
   ISellerPaymentsResponse,
-} from "../../../customerDashboard/payments/types";
-import PaymentsFilters from "../../../customerDashboard/payments/components/PaymentsFilters";
-import PaymentsList from "../../../customerDashboard/payments/components/PaymentsList";
+} from "../../../CustomerDashboard/Payments/types";
+import PaymentsFilters from "../../../CustomerDashboard/Payments/components/PaymentsFilters";
+import PaymentsList from "../../../CustomerDashboard/Payments/components/PaymentsList";
 
 const SellerPaymentsView = async ({
   params,

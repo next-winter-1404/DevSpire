@@ -3,7 +3,7 @@ import InCome from "@/components/common/InCome";
 import { useTranslations } from "next-intl";
 import { ISellerPayments } from "../views/SellerChartsView";
 import { FormatDate } from "@/utils/helper/FormatDate";
-import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
 import { ISellerFinance } from "../views/SellerTopCardsView";
 
 interface IProps {

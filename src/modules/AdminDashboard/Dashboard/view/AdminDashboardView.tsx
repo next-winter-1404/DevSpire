@@ -6,7 +6,7 @@ import AdminDashboardCharts from "../components/AdminDashboardCharts";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
-import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
 import AdminDashboardTable from "../components/AdminDashboardTable";
 
 const AdminDashboardView = async () => {

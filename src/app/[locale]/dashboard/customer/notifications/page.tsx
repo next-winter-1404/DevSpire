@@ -2,7 +2,7 @@ import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkelet
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
-import NotificationsView from "@/modules/sellerDashboard/Notifications/views/NotificationsView";
+import NotificationsView from "@/modules/SellerDashboard/Notifications/views/NotificationsView";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { Suspense } from "react";

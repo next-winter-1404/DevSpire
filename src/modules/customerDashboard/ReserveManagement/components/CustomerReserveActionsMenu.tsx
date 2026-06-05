@@ -1,8 +1,8 @@
 import { Info, Trash2 } from "lucide-react";
 import { useState } from "react";
 import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
-import { useReservation } from "@/modules/sellerDashboard/ReservesManagement/services/hooks/useReservation";
-import ReservationDetailsModal from "@/modules/sellerDashboard/ReservesManagement/components/ReserveDetailsModal";
+import { useReservation } from "@/modules/SellerDashboard/ReservesManagement/services/hooks/useReservation";
+import ReservationDetailsModal from "@/modules/SellerDashboard/ReservesManagement/components/ReserveDetailsModal";
 
 const ReserveActionsMenu = ({ id }: { id: number }) => {
   const [openDetailModal, setOpenDetailModal] = useState<boolean>(false);

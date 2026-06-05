@@ -2,7 +2,7 @@
 import { FormatDate } from "@/utils/helper/FormatDate";
 import CircleTick from "../../../../public/icons/CircleTick";
 import { TNotification } from "../types";
-import { ReadNotification } from "@/modules/sellerDashboard/Notifications/services/PUT/ReadNotification";
+import { ReadNotification } from "@/modules/SellerDashboard/Notifications/services/PUT/ReadNotification";
 import { useMutation } from "@tanstack/react-query";
 import { useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";

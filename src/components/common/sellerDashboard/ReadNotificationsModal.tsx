@@ -2,7 +2,7 @@ import React from 'react'
 import Close from '../../../../public/icons/Close'
 import { useLocale, useTranslations } from 'next-intl'
 import { useMutation } from '@tanstack/react-query';
-import { ReadAllNotifications } from '@/modules/sellerDashboard/Notifications/services/PUT/ReadAllNotifications';
+import { ReadAllNotifications } from '@/modules/SellerDashboard/Notifications/services/PUT/ReadAllNotifications';
 
 
 

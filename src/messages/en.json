@@ -498,7 +498,20 @@
       "applyFilters": "Apply Filters",
       "confirm": "Confirm",
       "edit": "Edit",
-      "delete": "Delete"
+      "delete": "Delete",
+      "sureAboutDeleteLocation": "Are you sure about delete this location?"
+    },
+    "toursManagement":{
+      "title": "Tours Management",
+      "filters": "Filters",
+      "actions": "Actions",
+      "showNumber": "Show Number",
+      "order": "Order",
+      "cancel": "Cancel",
+      "applyFilters": "Apply Filters",
+      "edit": "Edit",
+      "delete": "Delete",
+      "sureAboutDeleteTour": "Are you sure about delete this tour?"
     }
   }
 }

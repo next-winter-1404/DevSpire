@@ -2,7 +2,7 @@ import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import SellerDashboardCharts from "../components/SellerDashboardCharts";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
-import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import { ISellerFinance } from "./SellerTopCardsView";
 

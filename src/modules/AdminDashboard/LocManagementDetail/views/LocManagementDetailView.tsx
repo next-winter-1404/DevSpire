@@ -16,6 +16,7 @@ const LocManagementDetailView = async ({params}: IProps) => {
         cache: "no-store",
     });
 
+    
     return (
         <div className="flex flex-col gap-8 h-full p-8">
             <h1 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">{data?.areaName ? data?.areaName : "فاقد نام"}</h1>
