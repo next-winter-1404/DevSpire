@@ -1,4 +1,11 @@
-import { CheckCircle, Info, MoreVertical, Trash2, XCircle } from "lucide-react";
+import {
+  CheckCircle,
+  Edit,
+  Info,
+  MoreVertical,
+  Trash2,
+  XCircle,
+} from "lucide-react";
 import { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
@@ -7,20 +14,27 @@ import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
 import CancelModal from "@/components/common/CancelModal";
 import ContinueBookingModal from "@/components/common/ContinueBookingModal";
 import { useReservation } from "../services/hooks/useReservation";
+import { TReservation } from "@/components/common/types";
+import EditBookingModal from "@/modules/AdminDashboard/reserve-management/components/EditBookingModal";
 
 const ReserveActionsMenu = ({
   id,
   isCanceled,
   isPending,
+  role,
+  data,
 }: {
   id: number;
   isCanceled: boolean;
   isPending: boolean;
+  role: "seller" | "admin";
+  data: TReservation;
 }) => {
   const [openDetailModal, setOpenDetailModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openCancelModal, setOpenCancelModal] = useState(false);
   const [openContinueModal, setOpenContinueModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   const {
     deleteBookingMutation,
@@ -106,6 +120,23 @@ const ReserveActionsMenu = ({
               <Info className="w-4 h-4" />
               <span>جزئیات</span>
             </DropdownMenu.Item>
+            {role == "admin" && (
+              <DropdownMenu.Item
+                onSelect={() => setOpenEditModal(true)}
+                className="
+                flex items-center gap-2
+                px-4 py-2
+                text-xs
+                cursor-pointer
+                outline-none
+                hover:bg-blue-50/50
+                hover:text-blue-600
+              "
+              >
+                <Edit className="w-4 h-4" />
+                <span>ویرایش</span>
+              </DropdownMenu.Item>
+            )}
 
             <DropdownMenu.Item
               onSelect={() => setOpenDeleteModal(true)}
@@ -156,6 +187,12 @@ const ReserveActionsMenu = ({
           isOpen={openContinueModal}
           onClose={() => setOpenContinueModal(false)}
           onConfirm={continueBookingMutation.mutate}
+        />
+      )}
+      {openEditModal && (
+        <EditBookingModal
+          onClose={() => setOpenEditModal(false)}
+          reservation={data}
         />
       )}
     </>

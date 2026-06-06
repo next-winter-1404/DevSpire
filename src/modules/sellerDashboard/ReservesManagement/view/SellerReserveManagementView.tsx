@@ -34,7 +34,7 @@ const SellerReserveManagementView = async ({
          bg-[#ffff] dark:bg-[#262626]"
       >
         {data && data?.totalCount > 0 ? (
-          <ReserveList data={data} />
+          <ReserveList role="seller" data={data} />
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">

@@ -6,7 +6,13 @@ import { useState } from "react";
 import ReservationTable from "./ReserveTable";
 import { TReservationsResponse } from "@/components/common/types";
 
-const ReserveList = ({ data }: { data: TReservationsResponse }) => {
+const ReserveList = ({
+  data,
+  role,
+}: {
+  data: TReservationsResponse;
+  role: "seller" | "admin";
+}) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -25,7 +31,7 @@ const ReserveList = ({ data }: { data: TReservationsResponse }) => {
   return (
     <div className="h-full flex flex-col justify-between">
       <div className="h-[86%] overflow-y-auto scroll-auto w-full">
-        <ReservationTable data={data.data} />
+        <ReservationTable role={role} data={data.data} />
       </div>
       <div className="flex items-center pb-4 ">
         <CustomPagination

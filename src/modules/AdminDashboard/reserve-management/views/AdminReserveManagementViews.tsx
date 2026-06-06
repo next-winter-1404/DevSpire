@@ -1,10 +1,17 @@
-import { TReservation } from "@/components/common/types";
+import { TReservation, TReservationsResponse } from "@/components/common/types";
+import ReserveFilters from "@/components/dashboard/Filters";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
+import ReserveList from "@/modules/sellerDashboard/ReservesManagement/components/ReserveList";
 import ReservationTable from "@/modules/sellerDashboard/ReservesManagement/components/ReserveTable";
 
-const AdminReserveManagementViews = async () => {
-  const data = await apiFetch<TReservation[] | null>("/admin/bookings", {
+const AdminReserveManagementViews = async ({
+  params,
+}: {
+  params: Record<string, string>;
+}) => {
+  const data = await apiFetch<TReservationsResponse | null>("/admin/bookings", {
     cache: "no-store",
+    params,
   });
   console.log(data);
 
@@ -14,18 +21,19 @@ const AdminReserveManagementViews = async () => {
         className=" w-full flex flex-col md:flex-row justify-between
        items-center mb-4 gap-4"
       >
-        <h1 className="text-xl font-bold text-foreground">
+        <h1 className="text-xl font-bold text-foreground whitespace-nowrap">
           لیست رزرو های وبسایت
         </h1>
+        <ReserveFilters />
       </div>
       <div
         className="h-[90%]  border-[#DDDDDD] 
       rounded-[24px] overflow-hidden  dark:border-[#333333]
          bg-[#ffff] dark:bg-[#262626]"
       >
-        {data && data?.length > 0 ? (
+        {data && data?.totalCount > 0 ? (
           <div className="w-full h-full">
-            <ReservationTable data={data} />
+            <ReserveList role="admin" data={data} />
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">

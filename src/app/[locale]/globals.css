@@ -148,3 +148,15 @@ div[style*="z-index: 999999"] {
 div[style*="z-index:999999"] {
   z-index: 5 !important;
 }
+.input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0 16px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--primary);
+}

@@ -6,9 +6,13 @@ import ReserveActionsMenu from "./ReserveActionsMenu";
 import { TReservation } from "@/components/common/types";
 import { FormatDate } from "@/utils/helper/FormatDate";
 
-export default function ReservationTable({ data }: { data: TReservation[] }) {
-  const [openMenuId, setOpenMenuId] = useState<number | null>(null);
-
+export default function ReservationTable({
+  data,
+  role,
+}: {
+  data: TReservation[];
+  role: "admin" | "seller";
+}) {
   return (
     <div className="w-full">
       <div className="hidden md:block w-full overflow-x-auto">
@@ -82,6 +86,8 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
                       isPending={row.status === "pending"}
                       isCanceled={row.status === "canceled"}
                       id={row.id}
+                      role={role}
+                      data={row}
                     />
                   </td>
                 </tr>
@@ -91,7 +97,6 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
         </table>
       </div>
 
-      {/* Mobile Cards */}
       <div className="md:hidden flex flex-col gap-4">
         {data.map((row) => {
           const travelersCount = row.traveler_details?.length || 0;
@@ -116,6 +121,8 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
                     isPending={row.status === "pending"}
                     isCanceled={row.status === "canceled"}
                     id={row.id}
+                    role={role}
+                    data={row}
                   />
                 </div>
               </div>
