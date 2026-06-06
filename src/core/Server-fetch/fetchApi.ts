@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 type FetchOptions = {
   method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-  params?: Record<string, string | number | boolean>;
+  params?: Record<string, string | number | boolean | string[]>;
   body?: any;
   headers?: HeadersInit;
   cache?: RequestCache;

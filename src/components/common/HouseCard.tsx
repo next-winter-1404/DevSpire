@@ -4,6 +4,7 @@ import { THouse } from "./types";
 import { getDiscount } from "@/utils/helper/getDiscount";
 import AddHouseFavorites from "./AddHouseFavorites";
 import Image from "next/image";
+import AddToCompare from "./AddToCompare";
 
 type props = {
   className?: string;
@@ -25,11 +26,12 @@ const HouseCard = ({ property, className, transactionType }: props) => {
           fill
           className="object-cover"
         />
-        <div className="relative right-3 top-3">
+        <div className="relative right-3 top-3 flex items-center gap-4">
           <AddHouseFavorites
             houseId={property.id}
             isFavorite={property.isFavorite}
           />
+          <AddToCompare houseId={property.id} />
         </div>
         {property.discounted_price && (
           <div

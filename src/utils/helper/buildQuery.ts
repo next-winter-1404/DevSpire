@@ -1,4 +1,4 @@
-type TValue = string | number | boolean | null | undefined;
+type TValue = string | number | boolean | null | undefined | string[];
 
 export const buildQuery = (params: Record<string, TValue>) => {
   const query = new URLSearchParams();
