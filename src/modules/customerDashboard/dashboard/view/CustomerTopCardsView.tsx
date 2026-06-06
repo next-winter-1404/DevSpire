@@ -1,10 +1,10 @@
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import { IPaymentResponse } from "../../payments/types";
+import { IPaymentResponse } from "../../Payments/types";
 import CustomerDashboardTopCards from "../components/CustomerDashboardTopCards";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
-import { IFavoritesResponse } from "../../favorites/types";
+import { IFavoritesResponse } from "../../Favorites/types";
 import { TReservationsResponse } from "@/components/common/types";
 
 const CustomerTopCardsView = async () => {

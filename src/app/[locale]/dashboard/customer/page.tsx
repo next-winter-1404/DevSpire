@@ -1,5 +1,5 @@
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import CustomerDashboardView from "@/modules/customerDashboard/dashboard/view/CustomerDashboardView";
+import CustomerDashboardView from "@/modules/CustomerDashboard/Dashboard/view/CustomerDashboardView";
 
 const page = () => {
   return (

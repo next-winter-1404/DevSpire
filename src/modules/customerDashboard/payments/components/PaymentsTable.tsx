@@ -5,7 +5,7 @@ import { FormatDate } from "@/utils/helper/FormatDate";
 import { IPayment } from "../types";
 import { useEffect, useRef, useState } from "react";
 import PaymentDetailModal from "./PaymentDetailModal";
-import PaymentsActionsMenu from "@/modules/sellerDashboard/payments/components/SellerPaymentsActoinsModal";
+import PaymentsActionsMenu from "@/modules/SellerDashboard/Payments/components/SellerPaymentsActoinsModal";
 
 export function PaymentTable({
   data,

@@ -11,7 +11,7 @@ import ToggleTheme from "../../common/ToggleTheme";
 import Logo from "../../../../public/icons/Logo";
 import ProfileDropdown from "./ProfileDropdown";
 import { TUser } from "@/modules/mortgageRentDetail/types";
-import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
 
 const Header = ({ user }: { user: TUserRes | null }) => {
   const pathname = usePathname();

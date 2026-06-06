@@ -148,6 +148,11 @@ const DashboardSidebar = ({ role }: IProps) => {
         Icon: UsersIcon,
       },
       {
+        href: `${adminBasePath}/tours-management`,
+        label: "مدیریت تور ها",
+        Icon: UsersIcon,
+      },
+      {
         href: `${adminBasePath}/payments`,
         label: t("paymentsManagement"),
         Icon: FinantialManagement,

@@ -484,8 +484,9 @@
       "addLocation": "افزودن مکان",
       "locationName": "نام مکان",
       "latitude": "عرض جغرافیایی",
-      "longitude": "عرض جغرافیایی",
+      "longitude": "طول جغرافیایی",
       "actions": "عملیات",
+      "chooseOnMap": "انتخاب از نقشه",
       "showNumber": "تعداد نمایش",
       "locationNamePlc": "نام مکان را وارد کنید",
       "latitudePlc": "عرض جغرافیایی را وارد کنید",
@@ -495,7 +496,20 @@
       "applyFilters": "اعمال فیلترها",
       "confirm": "تایید",
       "edit": "ویرایش",
-      "delete": "حذف"
+      "delete": "حذف",
+      "sureAboutDeleteLocation": "آیا از حذف این مکان اطمینان دارید؟"
+    },
+    "toursManagement":{
+      "title": "مدیریت تور ها",
+      "filters": "فیلتر ها",
+      "actions": "عملیات",
+      "showNumber": "تعداد نمایش",
+      "order": "ترتیب مرتب سازی",
+      "cancel": "انصراف",
+      "applyFilters": "اعمال فیلتر ها",
+      "edit": "ویرایش",
+      "delete": "حذف",
+      "sureAboutDeleteTour": "آیا از حذف این تور اطمینان دارید؟"
     }
   }
 }

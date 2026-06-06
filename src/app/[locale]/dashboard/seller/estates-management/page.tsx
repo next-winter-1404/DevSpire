@@ -3,8 +3,8 @@ import {
   TUserHouseResponse,
 } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import EstatesManagementView from "../../../../../modules/sellerDashboard/estatesManagement/views/EstatesManagementView";
-import EstateManagementDataStreaming from "@/modules/sellerDashboard/estatesManagement/views/EstateManagementDataStreaming";
+import EstatesManagementView from "../../../../../modules/SellerDashboard/EstatesManagement/views/EstatesManagementView";
+import EstateManagementDataStreaming from "@/modules/SellerDashboard/EstatesManagement/views/EstateManagementDataStreaming";
 import { Suspense } from "react";
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";

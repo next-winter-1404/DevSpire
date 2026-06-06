@@ -1,5 +1,5 @@
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import UserManagementTable from "../../users-management/components/UserManagementTable";
+import UserManagementTable from "../../UsersManagement/components/UserManagementTable";
 import { IAllUsers } from "@/components/common/types";
 
 const AdminDashboardTable = async () => {

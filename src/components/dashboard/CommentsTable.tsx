@@ -1,10 +1,10 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import { MoreVertical, MessageSquare, Star } from "lucide-react";
 import { FormatDate } from "@/utils/helper/FormatDate";
-import { IComment } from "@/modules/sellerDashboard/payments/types";
 import CommentsActionModal from "./CommentsActionModal";
+import { IComment } from "@/modules/SellerDashboard/payments/types";
+
 
 export default function CommentsTable({
   comments,

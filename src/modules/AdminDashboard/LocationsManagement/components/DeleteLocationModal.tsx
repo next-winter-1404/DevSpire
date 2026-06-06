@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { DeleteLocation } from "../services/DELETE/DeleteLocation";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useTranslations } from "next-intl";
 
 
 interface IProps{
@@ -13,6 +14,8 @@ interface IProps{
 
 const DeleteLocationModal = ({id, handleDeleteModal}: IProps) => {
 
+
+    const t = useTranslations("adminDashboard.locationsManagement");
     const router = useRouter();
     const queryClient = useQueryClient();
     const deleteLocationMutation = useMutation({
@@ -43,18 +46,18 @@ const DeleteLocationModal = ({id, handleDeleteModal}: IProps) => {
                         <Close/>
                     </div>
                 </div>
-                <p className="text-[#1E2022]">آیا از حذف این مکان اطمینان دارید؟</p>
+                <p className="text-[#1E2022]">{t("sureAboutDeleteLocation")}</p>
                 <div className="flex gap-6 w-full">
                     <button 
                     onClick={() => {handleDeleteModal(false)}}
                     className="w-full py-[13px] px-3 text-[#777777] border border-[#777777] rounded-[16px] cursor-pointer">
-                        انصراف
+                        {t("cancel")}
                     </button>
                     <button 
                     onClick={() => {deleteLocationMutation.mutate()}}
                     disabled={deleteLocationMutation.isPending}
                     className="w-full py-[13px] px-3 text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer">
-                        حذف
+                        {t("delete")}
                     </button>
                 </div>
             </div>

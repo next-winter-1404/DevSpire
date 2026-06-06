@@ -1,6 +1,6 @@
 import TabsSections from "@/components/common/TabsSections";
 import SendNotification from "../components/SendNotification";
-import NotificationsView from "@/modules/sellerDashboard/Notifications/views/NotificationsView";
+import NotificationsView from "@/modules/SellerDashboard/Notifications/views/NotificationsView";
 import AllNotificationsView from "./AllNotificationsView";
 import { Suspense } from "react";
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";

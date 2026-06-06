@@ -1,8 +1,8 @@
 "use client";
 import CompleteProfile from "@/components/common/CompleteProfile";
 import { IAdminDashboardData } from "../../types";
-import { IUser } from "@/modules/sellerDashboard/payments/types";
-import { TUserRes } from "@/modules/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { IUser } from "@/modules/SellerDashboard/Payments/types";
+import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import { Calendar, Users } from "lucide-react";
 import EnergyChart from "@/components/common/PieChart";

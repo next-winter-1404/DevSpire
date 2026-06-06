@@ -14,6 +14,7 @@ import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import EditPaymentModal from "./EditPaymentModal";
 
+
 const PaymentsActionsMenu = ({
   role,
   id,
