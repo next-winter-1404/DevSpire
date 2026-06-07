@@ -2,12 +2,10 @@
 
 import { Filter, House, Search } from "lucide-react";
 import { useLocale } from "next-intl";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReserveFilterModal from "./FiltersModal";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
-import { useDebounce } from "use-debounce";
-import { SellerChooseHouseModal } from "@/modules/SellerDashboard/CommentsManagement/components/SellerChooseHouseModal";
 
 const ReserveFilters = () => {
   const pathname = usePathname();
@@ -36,8 +34,6 @@ const ReserveFilters = () => {
 
   return (
     <div className="flex items-center gap-4 w-full">
-      <div className="relative flex-1 md:w-64"></div>
-
       <button
         onClick={() => setIsFilterOpen(true)}
         className="flex items-center gap-2 px-4 py-3  border

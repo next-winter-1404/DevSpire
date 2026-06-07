@@ -221,16 +221,17 @@ const DashboardSidebar = ({ role }: IProps) => {
               </Link>
             </div>
           ))}
+          <button
+            className=" cursor-pointer flex items-center gap-4
+            text-[#777777] dark:text-[#A3A3A3] "
+            onClick={() => setOpenLogoutModal(true)}
+          >
+            <LogOut />
+            <h2>{t("logOut")}</h2>
+          </button>
         </div>
       </div>
-      <button
-        className=" cursor-pointer flex items-center gap-4
-            text-[#777777] dark:text-[#A3A3A3] "
-        onClick={() => setOpenLogoutModal(true)}
-      >
-        <LogOut />
-        <h2>{t("logOut")}</h2>
-      </button>
+
       {openLogoutModal && (
         <LogoutModal
           onClose={() => setOpenLogoutModal(false)}

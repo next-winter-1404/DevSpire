@@ -21,12 +21,12 @@ export default function Error({
         <ExclamationTriangleIcon className="w-16 h-16 text-destructive animate-pulse" />
       </div>
 
-      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
         Something went Wrong !
       </h2>
-      <p className="text-muted-foreground max-w-md mx-auto mb-10 leading-loose">
+      {/* <p className="text-muted-foreground max-w-md mx-auto mb-10 leading-loose">
         Error : {error.message}
-      </p>
+      </p> */}
 
       <div className="flex flex-col sm:flex-row gap-4  ">
         <button

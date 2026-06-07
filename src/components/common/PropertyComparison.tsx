@@ -130,8 +130,8 @@ const PropertyComparison: React.FC<Props> = ({ properties }) => {
         >
           <div
             className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 
-          z-40 w-14 h-14 md:w-45 md:h-45 bg-white dark:bg-slate-900 rounded-full 
-          shadow-xl border-4 border-slate-50 dark:border-slate-800 flex items-center 
+          z-40 w-14 h-14 md:w-35 md:h-35 bg-white dark:bg-slate-900 rounded-full 
+          shadow-xl border-4 border-[#777777]/20 dark:border-slate-800 flex items-center 
           justify-center overflow-hidden"
           >
             <Lottie options={defaultOptions} width={"100%"} height={"100%"} />
@@ -170,13 +170,22 @@ const PropertyComparison: React.FC<Props> = ({ properties }) => {
                   <span className="line-clamp-1">{prop.address}</span>
                 </div>
 
-                <div className="mt-auto w-full p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
+                <div
+                  className="mt-auto w-full p-3 bg-slate-50 dark:bg-slate-800/50
+                 rounded-xl border border-slate-100 dark:border-slate-800"
+                >
                   {prop.discounted_price !== prop.price && (
-                    <div className="text-xs text-slate-400 line-through decoration-red-500/50 mb-0.5">
+                    <div
+                      className="md:text-[20px] text-slate-400 line-through
+                     decoration-red-500/50 mb-0.5"
+                    >
                       {formatPrice(prop.price)}
                     </div>
                   )}
-                  <div className="text-base md:text-lg font-extrabold text-green-600 dark:text-green-400">
+                  <div
+                    className="text-base md:text-[20px] font-bold font-extrabold text-green-600
+                   dark:text-green-400"
+                  >
                     {formatPrice(prop.discounted_price || prop.price)}
                   </div>
                 </div>

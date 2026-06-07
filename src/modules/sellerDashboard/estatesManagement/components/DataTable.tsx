@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { MoreVertical, Users, BedDouble, Bath } from "lucide-react";
+import { useState } from "react";
+import { Users, BedDouble, Bath } from "lucide-react";
 import Image from "next/image";
-import ActionsModal from "./ActionsModal";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import { THouse } from "@/components/common/types";
+import ActionsModal from "./ActionsModal";
 
 export default function UserHousesTable({ data }: { data: THouse[] }) {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
@@ -26,7 +26,6 @@ export default function UserHousesTable({ data }: { data: THouse[] }) {
 
   return (
     <div className="w-full">
-      {/* Desktop Table */}
       <div className="hidden md:block w-full overflow-x-auto">
         <table className="w-full text-sm text-right min-w-[900px]">
           <thead className="font-medium">

@@ -1,12 +1,11 @@
 import { Suspense } from "react";
-import SellerTopCard from "../components/SellerTopCard";
-import SellerChartsView from "./SellerChartsView";
 import DashboardChartsSkeleton from "@/components/dashboard/DashboardChartsSkeleton";
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import { Link } from "@/i18n/routing";
-import SellerLatestReservesView from "./SellerLatestReservesView";
 import DashboardCardsSkeleton from "@/components/dashboard/DashboardCardsSkeleton";
 import SellerTopCardsView from "./SellerTopCardsView";
+import SellerChartsView from "./SellerChartsView";
+import SellerLatestReservesView from "./SellerLatestReservesView";
 
 const SellerDashboardView = () => {
   return (
