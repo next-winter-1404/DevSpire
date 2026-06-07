@@ -7,6 +7,7 @@ import * as z from "zod";
 import { useQuery } from "@tanstack/react-query";
 import httpClient from "@/core/interceptor/axios";
 import { Rating } from "react-simple-star-rating";
+import { ICategoryResponse } from "@/modules/AdminDashboard/blogs/components/BlogForm";
 import { IGeneraData, IStep1Data } from "../types";
 
 interface IProps {
@@ -14,13 +15,6 @@ interface IProps {
   handlePrev: () => void;
   handleNext: () => void;
   onChangeData: (data: IGeneraData) => void;
-}
-
-interface ICategory {
-  id: number;
-  name: string;
-  created_at: string;
-  updated_at: string;
 }
 
 const validationSchema = z
@@ -54,7 +48,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
     queryKey: ["ALLCATEGORIES"],
     queryFn: async () => {
       const res = await httpClient("/categories");
-      return res.data as ICategory[];
+      return res.data as ICategoryResponse;
     },
   });
 
@@ -76,8 +70,6 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
     { value: "direct_purchase", label: "خرید و فروش" },
   ];
 
-  // const categoryOptions =
-  //   cats?.map((cat) => ({ value: String(cat.id), label: cat.name })) || [];
   const inputClass =
     "w-full h-12 rounded-[16px] border border-[#DDDDDD] bg-white px-4 outline-none " +
     "dark:bg-[#2A2D2F] dark:text-white dark:placeholder:text-white/40 dark:border-white/10";
@@ -92,6 +84,10 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
     });
     handleNext();
   };
+
+  const categoryOptions =
+    cats?.data?.map((cat) => ({ value: String(cat.id), label: cat.name })) ||
+    [];
 
   return (
     <form
@@ -161,30 +157,37 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
           )}
         </div>
 
-        <div className="flex flex-col gap-3 w-full">
-          <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            نوع ملک
-          </span>
-
-          <Controller
-            name="category"
-            control={control}
-            render={({ field }) => (
-              <CustomSelect
-                options={[{ label: "gg", value: "gg" }]}
-                defaultValue={field.value}
-                onValueChange={field.onChange}
-                className="w-full bg-white border border-[#DDDDDD] rounded-[16px] dark:bg-[#2A2D2F] dark:border-white/10"
-              />
-            )}
-          />
-
-          {errors.category && (
-            <span className="text-red-500 text-xs md:text-sm">
-              {errors.category.message}
+        {isPending ? (
+          <p className="text-foreground">درحال بارگزاری دسته بندی ها ...</p>
+        ) : cats && cats.totalCount > 0 ? (
+          <div className="flex flex-col gap-3 w-full">
+            <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
+              نوع ملک
             </span>
-          )}
-        </div>
+
+            <Controller
+              name="category"
+              control={control}
+              render={({ field }) => (
+                <CustomSelect
+                  options={categoryOptions}
+                  defaultValue={String(field.value)}
+                  onValueChange={field.onChange}
+                  className="w-full bg-white border border-[#DDDDDD] rounded-[16px] 
+                  dark:bg-[#2A2D2F] dark:border-white/10"
+                />
+              )}
+            />
+
+            {errors.category && (
+              <span className="text-red-500 text-xs md:text-sm">
+                {errors.category.message}
+              </span>
+            )}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">

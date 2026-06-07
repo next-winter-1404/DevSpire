@@ -3,16 +3,10 @@ import CustomPagination from "@/components/common/CustomPagination";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { TReservationsResponse } from "@/components/common/types";
-import ReservationTable from "./ReserveTable";
+import { TBlogsResponse } from "@/components/common/types";
+import BlogsTable from "./BlogsTable";
 
-const ReserveList = ({
-  data,
-  role,
-}: {
-  data: TReservationsResponse;
-  role: "seller" | "admin";
-}) => {
+const BlogsList = ({ data }: { data: TBlogsResponse }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -31,7 +25,7 @@ const ReserveList = ({
   return (
     <div className="h-full flex flex-col justify-between">
       <div className="h-[86%] overflow-y-auto scroll-auto w-full">
-        <ReservationTable role={role} data={data.data} />
+        <BlogsTable blog={data.data} />
       </div>
       <div className="flex items-center pb-4 ">
         <CustomPagination
@@ -44,4 +38,4 @@ const ReserveList = ({
   );
 };
 
-export default ReserveList;
+export default BlogsList;

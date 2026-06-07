@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
-import { UsersIcon } from "lucide-react";
+import { Newspaper, UsersIcon } from "lucide-react";
 import Location from "../../../../public/icons/Location";
 
 import { Globe } from "lucide-react";
@@ -171,6 +171,11 @@ const DashboardSidebar = ({ role }: IProps) => {
         href: `${adminBasePath}/comments-management`,
         label: "مدیریت کامنت ها",
         Icon: Chat,
+      },
+      {
+        href: `${adminBasePath}/blogs`,
+        label: "مدیریت مقالات",
+        Icon: Newspaper,
       },
     ],
   };

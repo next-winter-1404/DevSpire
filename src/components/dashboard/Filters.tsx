@@ -33,7 +33,7 @@ const ReserveFilters = () => {
   }, []);
 
   return (
-    <div className="flex items-center gap-4 w-full">
+    <>
       <button
         onClick={() => setIsFilterOpen(true)}
         className="flex items-center gap-2 px-4 py-3  border
@@ -45,7 +45,7 @@ const ReserveFilters = () => {
         فیلتر ها
       </button>
       {isFilterOpen && <ReserveFilterModal onClose={onClose} />}
-    </div>
+    </>
   );
 };
 
