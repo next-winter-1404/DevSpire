@@ -12,7 +12,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <DashboardContainer>
-      <EstateManageMentFormView role="seller" house={data} />
+      <EstateManageMentFormView role="admin" house={data} />
     </DashboardContainer>
   );
 };

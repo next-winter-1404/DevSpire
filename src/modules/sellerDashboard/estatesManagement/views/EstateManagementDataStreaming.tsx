@@ -4,17 +4,27 @@ import EstatesManagementView from "./EstatesManagementView";
 
 const EstateManagementDataStreaming = async ({
   params,
+  role,
 }: {
   params: Record<string, string>;
+  role: "admin" | "seller";
 }) => {
-  const data = await apiFetch<THousesResponse>("/houses/seller/user", {
-    cache: "no-store",
-    params,
-  });
+  let data = null;
+  if (role == "seller") {
+    data = await apiFetch<THousesResponse>("/houses/seller/user", {
+      cache: "no-store",
+      params,
+    });
+  } else {
+    data = await apiFetch<THousesResponse>("/houses", {
+      cache: "no-store",
+      params,
+    });
+  }
 
   return (
     <>
-      <EstatesManagementView data={data ?? { houses: [], totalCount: 0 }} />
+      <EstatesManagementView role={role} data={data} />
     </>
   );
 };

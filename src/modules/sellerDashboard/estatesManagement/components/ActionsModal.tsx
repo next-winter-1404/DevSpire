@@ -1,29 +1,30 @@
-import CircleTick from "../../../../../public/icons/CircleTick";
+"use client";
 import Edit from "../../../../../public/icons/Edit";
 import Trash from "../../../../../public/icons/Trash";
-import { useEffect, useRef, useState } from "react";
-import DeleteModal from "./DeleteModal";
+import { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { DeleteHouse } from "../services/DELETE/deleteHouse";
 import toast from "react-hot-toast";
 import { Link, useRouter } from "@/i18n/routing";
 import axios from "axios";
 import { THouse } from "@/components/common/types";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { MoreVertical } from "lucide-react";
+import { DeleteHouse } from "../services/DELETE/deleteHouse";
+import DeleteModal from "./DeleteModal";
 
 interface IProps {
   onClose: () => void;
   item: THouse;
+  role: "seller" | "admin";
 }
 
-const ActionsModal = ({ onClose, item }: IProps) => {
+const ActionsModal = ({ onClose, item, role }: IProps) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
   const router = useRouter();
   const queryClient = useQueryClient();
   const deleteHouseMutation = useMutation({
-    mutationFn: () => DeleteHouse(item.id),
+    mutationFn: async () => await DeleteHouse(item.id, role),
     onSuccess: (res) => {
       toast.success(res?.data?.message || "ملک مورد نظر با موفقیت حذف شد");
       queryClient.invalidateQueries({
@@ -68,7 +69,7 @@ const ActionsModal = ({ onClose, item }: IProps) => {
           >
             <DropdownMenu.Item asChild>
               <Link
-                href={`/dashboard/seller/estates-management/${item.id}`}
+                href={`/dashboard/${role == "seller" ? "seller" : "admin"}/estates-management/${item.id}`}
                 className="flex items-center gap-2 rounded-md p-2 outline-none cursor-pointer
                  hover:bg-slate-100 dark:hover:bg-sky-950 "
               >

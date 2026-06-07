@@ -22,7 +22,7 @@ const page = async ({ searchParams }: Props) => {
   return (
     <DashboardContainer>
       <Suspense fallback={<DashboardTableSkeleton />}>
-        <EstateManagementDataStreaming role="seller" params={payLoad} />
+        <EstateManagementDataStreaming role="admin" params={payLoad} />
       </Suspense>
     </DashboardContainer>
   );

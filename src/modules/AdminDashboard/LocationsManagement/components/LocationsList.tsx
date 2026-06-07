@@ -4,7 +4,7 @@ import CustomPagination from "@/components/common/CustomPagination";
 import { TLocationsResponse } from "@/components/common/types";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomSelect from "@/components/common/CustomSelectOption";
 import { useTranslations } from "next-intl";
 
@@ -21,7 +21,7 @@ const LocationsList = ({ data }: IProps) => {
   const [page, setPage] = useState<number>(
     parseInt(searchParams.get("page") ?? "1"),
   );
-  const limit = parseInt(searchParams.get("limit") ?? "6");
+  const limit = parseInt(searchParams.get("limit") ?? "5");
 
   const onPageChange = (pageNum: number) => {
     setPage(pageNum);
@@ -31,11 +31,11 @@ const LocationsList = ({ data }: IProps) => {
   };
 
   const limitNumberOptions = [
-    {id:1, value: "5", label: "5"},
-    {id:2, value: "10", label: "10"},
-    {id:3, value: "15", label: "15"},
-    {id:4, value: "20", label: "20"},
-  ]
+    { id: 1, value: "5", label: "5" },
+    { id: 2, value: "10", label: "10" },
+    { id: 3, value: "15", label: "15" },
+    { id: 4, value: "20", label: "20" },
+  ];
 
   const handleLimitChange = (value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -43,6 +43,12 @@ const LocationsList = ({ data }: IProps) => {
     params.set("page", "1");
     router.push(`${pathname}?${params.toString()}`);
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    params.set("limit", "5");
+    router.push(`${pathname}?${params.toString()}`);
+  }, []);
 
   return (
     <div className="flex flex-col gap-6 p-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]   dark:bg-[#262626] dark:border-[#777777]">

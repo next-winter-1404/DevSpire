@@ -1,18 +1,19 @@
 "use client";
-import { IGeneraData, IHousePayload } from "../types";
 import { useActionState, useEffect, useState } from "react";
-import { EditOrCreateEstateAction } from "../action";
 import toast from "react-hot-toast";
 import { useRouter } from "@/i18n/routing";
 import Image from "next/image";
 import { Bath, BedDouble, Car, MapPin, Users } from "lucide-react";
 import CurveArrow from "../../../../../../public/icons/CurveArrow";
+import { IGeneraData } from "../types";
+import { EditOrCreateEstateAction } from "../action";
 
 interface IProps {
   generalData: IGeneraData;
   onPrev: () => void;
+  role: "admin" | "seller";
 }
-const EstateStep5 = ({ generalData, onPrev }: IProps) => {
+const EstateStep5 = ({ generalData, onPrev, role }: IProps) => {
   console.log("allData", generalData);
   const router = useRouter();
 
@@ -43,7 +44,9 @@ const EstateStep5 = ({ generalData, onPrev }: IProps) => {
       } else {
         toast.success("خانه ی شما با موفقیت اضافه شد");
       }
-      router.push("/dashboard/seller/estates-management");
+      router.push(
+        `/dashboard/${role == "seller" ? "seller" : "admin"}/estates-management`,
+      );
     }
   }, [state]);
 

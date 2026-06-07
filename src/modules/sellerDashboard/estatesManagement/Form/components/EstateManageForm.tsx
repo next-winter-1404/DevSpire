@@ -2,15 +2,22 @@
 
 import { notFound } from "next/navigation";
 import { useState } from "react";
+
+import { THouse } from "@/components/common/types";
+import { IGeneraData } from "../types";
 import EstateStep1 from "./EstateStep1";
 import EstateStep2 from "./EstateStep2";
 import EstateStep3 from "./EstateStep3";
 import EstateStep4 from "./EstateStep4";
 import EstateStep5 from "./EstateStep5";
-import { THouse } from "@/components/common/types";
-import { IGeneraData } from "../types";
 
-const EstateManageForm = ({ house }: { house: THouse | null }) => {
+const EstateManageForm = ({
+  house,
+  role,
+}: {
+  house: THouse | null;
+  role: "admin" | "seller";
+}) => {
   const [currentTab, setCurrentTab] = useState<number>(1);
   if (currentTab == 0) {
     notFound();
@@ -97,7 +104,13 @@ const EstateManageForm = ({ house }: { house: THouse | null }) => {
           />
         );
       case 5:
-        return <EstateStep5 onPrev={onPrevious} generalData={generalData} />;
+        return (
+          <EstateStep5
+            role={role}
+            onPrev={onPrevious}
+            generalData={generalData}
+          />
+        );
       default:
         return (
           <EstateStep1
@@ -140,7 +153,13 @@ const EstateManageForm = ({ house }: { house: THouse | null }) => {
           />
         );
       case 4:
-        return <EstateStep5 onPrev={onPrevious} generalData={generalData} />;
+        return (
+          <EstateStep5
+            role={role}
+            onPrev={onPrevious}
+            generalData={generalData}
+          />
+        );
       default:
         return (
           <EstateStep1

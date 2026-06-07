@@ -14,9 +14,10 @@ import ReserveFilters from "@/components/dashboard/Filters";
 
 interface IProps {
   data: THousesResponse | null;
+  role: "seller" | "admin";
 }
 
-const EstatesManagementView = ({ data }: IProps) => {
+const EstatesManagementView = ({ data, role }: IProps) => {
   const locale = useLocale();
 
   const t = useTranslations("sellerDashboard.estatesManagement");
@@ -72,7 +73,7 @@ const EstatesManagementView = ({ data }: IProps) => {
               </div>
               <ReserveFilters />
               <Link
-                href="/dashboard/seller/estates-management/create"
+                href={`/dashboard/${role == "seller" ? "seller" : "admin"}/estates-management/create`}
                 className="flex items-center gap-3 py-3 px-4 text-[#FFFFFF] bg-[#0D3B66] 
               rounded-[16px] cursor-pointer whitespace-nowrap
             dark:text-[#0D3B66] dark:bg-[#E6EDF5] text-sm"
@@ -89,7 +90,7 @@ const EstatesManagementView = ({ data }: IProps) => {
          bg-[#ffff] dark:bg-[#262626]  "
         >
           {data && data?.houses?.length > 0 ? (
-            <UserHousesTable data={data.houses} />
+            <UserHousesTable role={role} data={data.houses} />
           ) : (
             <div
               className="flex flex-col items-center justify-center 
