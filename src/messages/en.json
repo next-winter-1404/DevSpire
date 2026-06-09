@@ -392,6 +392,7 @@
       "userProfile": "User Profile",
       "notifications": "Notifications",
       "management": "Management",
+      "categories": "Categories",
       "estatesManagement": "Estates Management",
       "reservesManagement": "Reserves Management",
       "locationsManagement": "Locations Management",
@@ -480,6 +481,24 @@
     }
   },
   "adminDashboard":{
+    "categories":{
+      "title": "Categories",
+      "filtersBtn": "Filters",
+      "addCategoryBtn": "Add Category",
+      "categoryName": "Category Name",
+      "categoryNamePlc": "Enter the category name",
+      "actions": "Actions",
+      "filters": "Filters",
+      "showNumber": "Show Number",
+      "sortBy": "Sort By",
+      "order": "Order",
+      "cancel": "Cancel",
+      "applyFilters": "Apply Filters",
+      "confirm": "Confirm",
+      "edit": "Edit",
+      "delete": "Delete",
+      "sureAboutDeleteCategory": "Are you sure about delete this category?"
+    },
     "locationsManagement":{
       "title": "Locations Management",
       "filters": "Filters",

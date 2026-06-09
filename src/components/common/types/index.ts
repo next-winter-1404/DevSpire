@@ -192,6 +192,10 @@ export interface IDashboardStats {
 
 
 
+/// Admin Dashboard ///
+
+
+
 export type TNotification = {
   id: number,
   userId: number,
@@ -219,8 +223,21 @@ export type INotificationsParams = {
 }
 
 
-
-/// Admin Dashboard ///
+export type TCategory = {
+  id: number;
+  name: string;
+}
+export type TCategoriesResponse = {
+  data: TCategory[];
+  totalCount: number;
+}
+export type ICategoriesParams = {
+  page: number;
+  limit: number;
+  sort: string;
+  order: string;
+  name: string;
+}
 
 
 export type TLocation = {
@@ -233,7 +250,7 @@ export type TLocationsResponse = {
   data: TLocation[];
   totalCount: number;
 }
-export type ILocationsResParams = {
+export type ILocationsParams = {
   page: number;
   limit: number;
   sort: string;
@@ -242,7 +259,6 @@ export type ILocationsResParams = {
   lat: string;
   lng: string;
 }
-
 
 
 export type TTour = {

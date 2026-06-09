@@ -2,15 +2,16 @@
 import { useState } from "react"
 import Filter from "../../../../../public/icons/Filter"
 import Plus from "../../../../../public/icons/Plus"
+import AddLocationsModal from "./AddCategoryModal";
 import { useTranslations } from "next-intl";
-import FilterLocationsModal from "./FilterLocationsModal";
-import AddLocationModal from "./AddLocationModal";
+import FilterLocationsModal from "./FilterCategoriesModal";
 
 
 
-const LocationsManagementTop = () => {
 
-    const t = useTranslations("adminDashboard.locationsManagement")
+const CategoriesTop = () => {
+
+    const t = useTranslations("adminDashboard.categories")
 
     const [isOpenFilterModal, setIsOpenFilterModal] = useState<boolean>(false);
     const [isOpenAddLocModal, setIsOpenAddLocModal] = useState<boolean>(false)
@@ -18,7 +19,7 @@ const LocationsManagementTop = () => {
     const handleLocFilterModal = (value: boolean) => {
         setIsOpenFilterModal(value);
     }
-    const handleAddLocationModal = (value: boolean) => {
+    const handleAddCatModal = (value: boolean) => {
         setIsOpenAddLocModal(value);
     }
 
@@ -35,23 +36,23 @@ const LocationsManagementTop = () => {
                     sm:w-auto sm:px-3
                     dark:text-[#E4E4E4] dark:bg-[#404040] dark:border-[#E4E4E4]">
                         <Filter/>
-                        <span>{t("filters")}</span>
+                        <span>{t("filtersBtn")}</span>
                     </button>
                     <button 
-                    onClick={() => {handleAddLocationModal(true)}}
+                    onClick={() => {handleAddCatModal(true)}}
                     className="flex justify-center items-center gap-3 w-full py-[13px] text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] 
                     cursor-pointer
                     sm:w-auto sm:px-3">
                         <Plus/>
-                        <span>{t("addLocation")}</span>
+                        <span>{t("addCategoryBtn")}</span>
                     </button>
                 </div>
             </div>
             {isOpenFilterModal && <FilterLocationsModal handleLocFilterModal={handleLocFilterModal}/>}
-            {isOpenAddLocModal && <AddLocationModal handleAddLocationModal={handleAddLocationModal}/>}
+            {isOpenAddLocModal && <AddLocationsModal handleAddCatModal={handleAddCatModal}/>}
         </>
     )
 
 }
 
-export default LocationsManagementTop
+export default CategoriesTop

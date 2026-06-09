@@ -1,10 +1,16 @@
 "use client";
 import { useTheme } from "@/utils/helper/useTheme";
-import Image from "next/image";
+import Moon from "../../../public/icons/Moon";
+import Sun from "../../../public/icons/Sun";
+
 
 const ToggleTheme = () => {
+
+
   const { theme, setTheme, mounted } = useTheme();
   if (!mounted) return null;
+
+
   return (
     <div
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -12,24 +18,13 @@ const ToggleTheme = () => {
     >
       {theme == "light" ? (
         <div className="bg-slate-700/50 rounded-full transition-all duration-100 hover:bg-[#644DB3] p-2 flex items-center justify-center">
-          <div className="relative w-5 h-5 md:w-[25px] md:h-[25px]">
-            <Image
-              src="/icons/fastReservePage/moon.svg"
-              alt="moon"
-              fill
-              className="object-contain"
-            />
+          <div className="relative w-5 h-5   md:w-[25px] md:h-[25px]">
+            <Moon className="object-contain"/>
           </div>
         </div>
       ) : (
         <div className="bg-orange-400 p-2 rounded-full transition-colors flex items-center justify-center">
-          <Image
-            src="/icons/fastReservePage/sun.svg"
-            alt="sun"
-            width={25}
-            height={25}
-            className="w-5 h-5   md:w-[25px] md:h-[25px]"
-          />
+          <Sun className="w-5 h-5   md:w-[25px] md:h-[25px]"/>
         </div>
       )}
     </div>

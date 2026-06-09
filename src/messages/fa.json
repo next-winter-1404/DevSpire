@@ -392,6 +392,7 @@
       "userProfile": "مشخصات کاربری",
       "notifications": "اعلان ها",
       "management": "مدیریت",
+      "categories": "دسته بندی ها",
       "estatesManagement": "مدیریت املاک",
       "reservesManagement": "مدیریت رزرو ها",
       "locationsManagement": "مدیریت مکان ها",
@@ -478,6 +479,24 @@
     }
   },
   "adminDashboard":{
+    "categories":{
+      "title": "دسته بندی ها",
+      "filtersBtn": "فیلتر ها",
+      "addCategoryBtn": "افزودن دسته بندی",
+      "categoryName": "نام دسته بندی",
+      "categoryNamePlc": "نام دسته بندی را وارد کنید",
+      "actions": "عملیات",
+      "filters": "فیلتر ها",
+      "showNumber": "تعداد نمایش",
+      "sortBy": "مرتب سازی بر اساس",
+      "order": "ترتیب مرتب سازی",
+      "cancel": "انصراف",
+      "applyFilters": "اعمال فیلتر ها",
+      "confirm": "تایید",
+      "edit": "ویرایش",
+      "delete": "حذف",
+      "sureAboutDeleteCategory": "آیا از حذف این دسته بندی اطمینان دارید؟"
+    },
     "locationsManagement":{
       "title": "مدیریت مکان ها",
       "filters": "فیلترها",
