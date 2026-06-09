@@ -3,7 +3,10 @@ import HouseCard from "@/components/common/HouseCard";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { THouse, THousesResponse } from "@/components/common/types";
 
+
 const SpecialOffersSlider = async () => {
+
+
   const data = await apiFetch<THousesResponse>("/houses", {
     params: {
       limit: "12",
@@ -12,6 +15,7 @@ const SpecialOffersSlider = async () => {
     },
     cache: "no-store",
   });
+  
 
   return (
     <div>

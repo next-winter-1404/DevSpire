@@ -6,10 +6,10 @@ import { useLocale } from 'next-intl'
 
 interface ICategorySmallCard{
     imageUrl: string
-    title: string
+    name: string
 }
 
-const CategorySmallCard = ({imageUrl , title}: ICategorySmallCard) => {
+const CategorySmallCard = ({imageUrl , name}: ICategorySmallCard) => {
 
     const locale = useLocale()
 
@@ -20,7 +20,7 @@ const CategorySmallCard = ({imageUrl , title}: ICategorySmallCard) => {
         before:absolute before:inset-0 before:bg-black/50 overflow-hidden relative'>
             <div className='flex justify-between items-center relative z-10'>
                 <div className='py-2 px-4 bg-[#FFFFFF] rounded-[48px] cursor-pointer   dark:bg-[#262626]'>
-                    <span className='font-regular text-[20px] text-[#1E2022]   dark:text-[#F5F5F5]'>{title}</span>
+                    <span className='font-regular text-[20px] text-[#1E2022]   dark:text-[#F5F5F5]'>{name}</span>
                 </div>
                 <div className='flex justify-center items-center w-[43px] h-[43px] text-[#1E2022] bg-[#FFFFFF] rounded-[48px] cursor-pointer
                 dark:text-[#E4E4E4] dark:bg-[#262626]'>

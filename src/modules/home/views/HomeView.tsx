@@ -12,14 +12,14 @@ import SayAboutUs from "../components/SayAboutUs";
 const HomeView = () => {
   return (
     <div>
-      <HeroSection />
-      <Categories />
-      <SpecialOffers />
-      <WhyChooseUs />
-      <BestChoice />
-      <RentVilla />
-      <FeaturesSec />
-      <NeedHelp />
+      <HeroSection/>
+      <Categories/>
+      <SpecialOffers/>
+      <WhyChooseUs/>
+      <BestChoice/>
+      <RentVilla/>
+      <FeaturesSec/>
+      <NeedHelp/>
       {/* <SayAboutUs/> */}
     </div>
   );
