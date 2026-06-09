@@ -2,7 +2,6 @@
 
 import { cookies } from "next/headers";
 import { IGeneraData, IHousePayload } from "../types";
-import { redirect } from "@/i18n/routing";
 
 export const EditOrCreateEstateAction = async (
   prevData: {
@@ -13,13 +12,7 @@ export const EditOrCreateEstateAction = async (
   formData: FormData,
 ) => {
   const cookieStore = await cookies();
-  const token = cookieStore.get("accessToken")?.value;
-  if (!token) {
-    redirect({
-      href: "/",
-      locale: "fa",
-    });
-  }
+  const token = cookieStore.get("accessToken")?.value as string;
 
   const payload = {
     ...prevData.data.step1,
@@ -33,6 +26,7 @@ export const EditOrCreateEstateAction = async (
     ? `${process.env.NEXT_PUBLIC_BASE_URL}/houses/${prevData.data.id}`
     : `${process.env.NEXT_PUBLIC_BASE_URL}/houses`;
 
+  console.log("payload", payload);
   try {
     const res = await fetch(url, {
       method: isEdit ? "PUT" : "POST",

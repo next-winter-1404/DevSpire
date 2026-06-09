@@ -15,7 +15,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!data) notFound();
 
   return (
-    <div>
+    <div className="min-h-screen">
       <ArticleDetailView blog={data} />
     </div>
   );

@@ -35,6 +35,7 @@ export default function BlogCreateEditModal({
     reset,
     getValues,
     setValue,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<IBlogPayload>();
 
@@ -114,6 +115,9 @@ export default function BlogCreateEditModal({
     (createBlogMutation.isPending || editBlogMutation.isPending);
 
   if (!isOpen) return null;
+
+  const captionInput = watch("caption");
+  const titleInput = watch("title");
 
   return (
     <div
@@ -249,22 +253,24 @@ export default function BlogCreateEditModal({
       "
               />
 
-              <button
-                disabled={pendingMessage}
-                type="button"
-                onClick={() =>
-                  sendMessage({
-                    title: getValues("title") ?? "بدون عنوان",
-                    estimated_reading_time:
-                      getValues("estimated_reading_time") ?? "5 min",
-                  })
-                }
-                className="bg-blue-700/50 hover:bg-blue-700 transition
+              {!captionInput && titleInput && (
+                <button
+                  disabled={pendingMessage}
+                  type="button"
+                  onClick={() =>
+                    sendMessage({
+                      title: getValues("title") ?? "بدون عنوان",
+                      estimated_reading_time:
+                        getValues("estimated_reading_time") ?? "5 min",
+                    })
+                  }
+                  className="bg-blue-700/60 hover:bg-blue-700 transition
                  text-white px-3 py-1.5 rounded-lg backdrop-blur-sm
         text-sm absolute bottom-3 right-3 cursor-pointer z-10"
-              >
-                {pendingMessage ? "درحال ساخت ..." : "ساخت با هوش مصنوعی 💫"}
-              </button>
+                >
+                  {pendingMessage ? "درحال ساخت ..." : "ساخت با هوش مصنوعی 💫"}
+                </button>
+              )}
             </div>
 
             {errors.caption && (

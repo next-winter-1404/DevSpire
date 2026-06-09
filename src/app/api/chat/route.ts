@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
-  const { messages, type, blogsDetail } = await req.json();
+  const { messages, type, blogsDetail, houseDetail } = await req.json();
   let houses = [];
   let systemContent = "";
 
@@ -31,6 +31,18 @@ ${JSON.stringify(houses)}
 
 ${JSON.stringify(blogsDetail)}
 `;
+  }
+
+  if (type == "createHouse") {
+    systemContent = `
+  تو نویسنده حرفه‌ای توضیحات یک ملک هستی.
+
+  بر اساس اطلاعات زیر توضیحات تکمیلیه ملک را بنویس بنویس:
+
+  ${JSON.stringify(houseDetail)}
+
+
+  `;
   }
 
   const systemPrompt = {

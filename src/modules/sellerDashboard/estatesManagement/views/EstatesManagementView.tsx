@@ -72,15 +72,17 @@ const EstatesManagementView = ({ data, role }: IProps) => {
                 />
               </div>
               <ReserveFilters />
-              <Link
-                href={`/dashboard/${role == "seller" ? "seller" : "admin"}/estates-management/create`}
-                className="flex items-center gap-3 py-3 px-4 text-[#FFFFFF] bg-[#0D3B66] 
+              {role == "seller" && (
+                <Link
+                  href={`/dashboard/${role == "seller" ? "seller" : "admin"}/estates-management/create`}
+                  className="flex items-center gap-3 py-3 px-4 text-[#FFFFFF] bg-[#0D3B66] 
               rounded-[16px] cursor-pointer whitespace-nowrap
             dark:text-[#0D3B66] dark:bg-[#E6EDF5] text-sm"
-              >
-                <Plus />
-                <span className=" ">{t("addEstateBtn")}</span>
-              </Link>
+                >
+                  <Plus />
+                  <span className=" ">{t("addEstateBtn")}</span>
+                </Link>
+              )}
             </div>
           </div>
         </div>

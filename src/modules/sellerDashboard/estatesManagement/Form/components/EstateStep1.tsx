@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CurveArrow from "../../../../../../public/icons/CurveArrow";
 import * as z from "zod";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import httpClient from "@/core/interceptor/axios";
 import { Rating } from "react-simple-star-rating";
 import { ICategoryResponse } from "@/modules/AdminDashboard/blogs/components/BlogForm";
@@ -56,6 +56,9 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
     handleSubmit,
     control,
     register,
+    watch,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm<IStep1Data>({
     resolver: zodResolver(validationSchema) as any,
@@ -88,6 +91,51 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
   const categoryOptions =
     cats?.data?.map((cat) => ({ value: String(cat.id), label: cat.name })) ||
     [];
+
+  const capacityInput = watch("capacity");
+  const titleInput = watch("title");
+  const captionInput = watch("caption");
+
+  const { mutate: sendMessage, isPending: pendingMessage } = useMutation({
+    mutationFn: async (data: { title: string; capacity: string }) => {
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            messages: [
+              {
+                role: "user",
+                content:
+                  "توضیحات این ملک رو بنویس با توجه به همین اطلاعات فقط ",
+              },
+            ],
+            houseDetail: {
+              title: data.title,
+              capacity: data.capacity,
+            },
+            type: "createHouse",
+          }),
+        });
+        const result = await res.json();
+        return result;
+      } catch (err) {
+        throw err;
+      }
+    },
+    onSuccess: (data) => {
+      setValue(
+        "caption",
+        data?.data?.choices?.[0]?.message?.content || "پاسخی دریافت نشد",
+      );
+    },
+    onError: (err: any) => {
+      setValue(
+        "caption",
+        err.response?.data?.message || err.message || "server error",
+      );
+    },
+  });
 
   return (
     <form
@@ -235,7 +283,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
                 <Rating
                   initialValue={field.value}
                   onClick={field.onChange}
-                  size={28} // کمی کوچیک‌تر برای موبایل
+                  size={28}
                   allowFraction={false}
                   fillColor="#facc15"
                   emptyColor="#d1d5db"
@@ -260,11 +308,30 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
         <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
           توضیحات
         </label>
-        <textarea
-          {...register("caption")}
-          rows={5}
-          className="w-full resize-none rounded-2xl bg-white border border-[#DDDDDD] px-4 py-3 text-sm leading-7 outline-none focus:ring-2 focus:ring-blue-700/20 dark:bg-[#2A2D2F] dark:text-white dark:border-white/10"
-        />
+        <div className="w-full relative">
+          <textarea
+            {...register("caption")}
+            rows={5}
+            className="w-full resize-none rounded-2xl bg-white border border-[#DDDDDD] px-4 py-3 text-sm leading-7 outline-none focus:ring-2 focus:ring-blue-700/20 dark:bg-[#2A2D2F] dark:text-white dark:border-white/10"
+          />
+          {!captionInput && titleInput && (
+            <button
+              disabled={pendingMessage}
+              type="button"
+              onClick={() =>
+                sendMessage({
+                  title: getValues("title") ?? "بدون عنوان",
+                  capacity: String(getValues("capacity")) ?? "نامشخض",
+                })
+              }
+              className="bg-blue-700/60 hover:bg-blue-700 transition
+                 text-white px-3 py-1.5 rounded-lg backdrop-blur-sm
+        text-sm absolute bottom-3 right-3 cursor-pointer z-10"
+            >
+              {pendingMessage ? "درحال ساخت ..." : "ساخت با هوش مصنوعی 💫"}
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="flex justify-end w-full mt-2 md:mt-4">
