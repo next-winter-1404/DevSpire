@@ -19,6 +19,10 @@ import LogoutModal from "@/components/common/LogoutModal";
 import Close from "../../../../public/icons/Close";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import ToggleTheme from "@/components/common/ToggleTheme";
+import Category from "../../../../public/icons/Category";
+import Location from "../../../../public/icons/Location";
+import { Globe, UsersIcon } from "lucide-react";
+import Chat from "../../../../public/icons/Chat";
 
 interface IProps {
   role: string | undefined;
@@ -132,17 +136,48 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
     ],
     management: [
       {
+        href: `${adminBasePath}/categories`,
+        label: t("categories"),
+        Icon: Category,
+      },
+      {
         href: `${adminBasePath}/reserves-management`,
         label: t("reservesManagement"),
         Icon: CheckList,
+      },
+      {
+        href: `${adminBasePath}/locations-management`,
+        label: t("locationsManagement"),
+        Icon: Location,
+      },
+      {
+        href: `${adminBasePath}/users-management`,
+        label: t("usersManagement"),
+        Icon: UsersIcon,
+      },
+      {
+        href: `${adminBasePath}/tours-management`,
+        label: "مدیریت تور ها",
+        Icon: UsersIcon,
       },
       {
         href: `${adminBasePath}/payments`,
         label: t("paymentsManagement"),
         Icon: FinantialManagement,
       },
+      {
+        href: `${adminBasePath}/social-media`,
+        label: "شبکه های اجتماعی",
+        Icon: Globe,
+      },
+      {
+        href: `${adminBasePath}/comments-management`,
+        label: "مدیریت کامنت ها",
+        Icon: Chat,
+      },
     ],
   };
+
 
   const menuItems =
     role == "seller"
@@ -150,6 +185,9 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
       : role == "buyer"
         ? customerMenuItems
         : adminMenuItems;
+
+
+
   return (
     <div className="flex fixed inset-0 z-50   md:hidden">
       <div

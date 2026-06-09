@@ -10,6 +10,8 @@ interface IProps {
 }
 
 const FilterLocationsModal = ({ handleLocFilterModal }: IProps) => {
+
+  
   const t = useTranslations("adminDashboard.locationsManagement");
   const locale = useLocale();
   const searchParams = useSearchParams();

@@ -21,6 +21,7 @@ import Location from "../../../../public/icons/Location";
 
 import { Globe } from "lucide-react";
 import Chat from "../../../../public/icons/Chat";
+import Category from "../../../../public/icons/Category";
 
 interface IProps {
   role: "seller" | "buyer" | "admin";
@@ -136,6 +137,11 @@ const DashboardSidebar = ({ role }: IProps) => {
         href: `${adminBasePath}/estates-management`,
         label: t("estatesManagement"),
         Icon: Estates,
+      },
+      {
+        href: `${adminBasePath}/categories`,
+        label: t("categories"),
+        Icon: Category,
       },
       {
         href: `${adminBasePath}/reserves-management`,

@@ -37,9 +37,8 @@ const LocationsDataTableRow = ({ item }: IProps) => {
         }}
         className="p-1 text-[#1E2022] rounded-[8px] cursor-pointer   
       hover:bg-[#F5F5F5]
-      dark:text-[#E4E4E4] dark:hover:bg-[#404040]"
-      >
-        <Dots />
+      dark:text-[#E4E4E4] dark:hover:bg-[#404040]">
+        <Dots/>
       </td>
       {isOpenActionsModal && (
         <LocationActionsMenu
