@@ -1,17 +1,11 @@
 import LocManagementDetailView from "@/modules/AdminDashboard/LocManagementDetail/views/LocManagementDetailView";
 
-
-
 const page = ({ params }: { params: Promise<{ id: string }> }) => {
+  return (
+    <>
+      <LocManagementDetailView params={params} />
+    </>
+  );
+};
 
-
-    return (
-        <div>
-            <LocManagementDetailView params={params}/>
-        </div>
-    )
-
-}
-
-export default page
-
+export default page;

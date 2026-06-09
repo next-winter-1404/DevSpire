@@ -41,12 +41,14 @@ const LocationsDataTableRow = ({ item }: IProps) => {
       >
         <Dots />
       </td>
-      {isOpenActionsModal && (
-        <LocationActionsMenu
-          handleActionsModal={handleActionsModal}
-          id={item.id}
-        />
-      )}
+      <td>
+        {isOpenActionsModal && (
+          <LocationActionsMenu
+            handleActionsModal={handleActionsModal}
+            id={item.id}
+          />
+        )}
+      </td>
     </tr>
   );
 };

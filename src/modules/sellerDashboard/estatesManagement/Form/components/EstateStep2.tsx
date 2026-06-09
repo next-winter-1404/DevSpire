@@ -6,6 +6,11 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import dynamic from "next/dynamic";
+import { Coords } from "@/components/common/NeshanMap";
+import { useMutation } from "@tanstack/react-query";
+import { IAddressDetails } from "@/modules/fastReserve/components/Filters";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const MapView = dynamic(() => import("@/components/common/NeshanMap"), {
   ssr: false,
@@ -37,25 +42,59 @@ const EstateStep2 = ({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<IStep2Data>({
     defaultValues: generalData.step2,
     resolver: zodResolver(validationSchema),
   });
+  const getMapLocation = (loc: Coords) => {
+    getLoc(loc);
+  };
+
+  const { mutate: getLoc } = useMutation({
+    mutationFn: async (data: Coords) => {
+      try {
+        const res = await fetch("/api/map", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        const json = await res.json();
+        return json as IAddressDetails;
+      } catch (err) {
+        throw err;
+      }
+    },
+    onSuccess: (data) => {
+      setValue("location", data.data.state);
+      setValue("address", data.data.formatted_address);
+    },
+    onError: (err) => {
+      if (axios.isAxiosError(err)) {
+        toast.error(err.response?.data?.message || "something went wrong");
+      }
+    },
+  });
 
   const onSubmit = (data: IStep2Data) => {
-    console.log(data);
     onChangeData({ ...generalData, step2: data });
     handleNext();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-8 px-1"
+    >
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-4 pb-8 relative">
           <label
             htmlFor="address"
-            className="font-regular text-[16px] text-[#1E2022]"
+            className="font-regular text-[16px] text-foreground"
           >
             منطقه
           </label>
@@ -63,7 +102,8 @@ const EstateStep2 = ({
             {...register("location")}
             id="location"
             type="text"
-            className="w-full h-12 indent-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]"
+            className="w-full h-12 indent-4 bg-[#FFFFFF] border border-[#DDDDDD] 
+            rounded-[16px] bg-background "
           />
           {errors.location && (
             <span className="text-red-500 text-sm absolute bottom-0 right-0">
@@ -74,7 +114,7 @@ const EstateStep2 = ({
         <div className="flex flex-col gap-4 pb-8 relative">
           <label
             htmlFor="address"
-            className="font-regular text-[16px] text-[#1E2022]"
+            className="font-regular text-[16px] text-foreground"
           >
             آدرس
           </label>
@@ -82,7 +122,7 @@ const EstateStep2 = ({
             {...register("address")}
             id="address"
             type="text"
-            className="w-full h-12 indent-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[16px]"
+            className="w-full h-12 indent-4 bg-background border border-[#DDDDDD] rounded-[16px]"
           />
           {errors.address && (
             <span className="text-red-500 text-sm absolute bottom-0 right-0">
@@ -91,7 +131,7 @@ const EstateStep2 = ({
           )}
         </div>
         <div className="w-full h-[240px] mt-1">
-          <MapView />
+          <MapView getGeo={getMapLocation} />
         </div>
       </div>
       <div className=" w-full flex items-center justify-between">

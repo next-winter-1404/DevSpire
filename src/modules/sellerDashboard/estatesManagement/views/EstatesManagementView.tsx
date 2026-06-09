@@ -51,19 +51,19 @@ const EstatesManagementView = ({ data, role }: IProps) => {
   return (
     <>
       <div className="flex flex-col gap-4 h-full">
-        <div className="flex justify-between items-center">
+        <div className="flex flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
           <h1 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">
             {t("estatesManagement")}
           </h1>
-          <div className="flex items-center gap-4 h-full">
-            <div className="flex items-center gap-3 h-full">
+          <div className="flex flex-col  md:flex-row md:items-center gap-4 h-full">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-3 h-full">
               <div className="relative text-[#777777]   dark:text-[#E4E4E4]">
                 <input
                   value={query}
                   onChange={(e: ChangeEvent<HTMLInputElement>) => getQuery(e)}
                   type="text"
                   placeholder={t("searchPlaceholder")}
-                  className="w-[440px] h-12 indent-5 bg-[#FFFFFF] border border-[#DDDDDD] 
+                  className=" w-full lg:w-[440px] py-2 indent-5 bg-[#FFFFFF] border border-[#DDDDDD] 
                 rounded-[16px]   
               dark:bg-[#777777] dark:border-[#A3A3A3]"
                 />

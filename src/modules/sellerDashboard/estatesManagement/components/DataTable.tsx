@@ -60,15 +60,18 @@ export default function UserHousesTable({
                 >
                   <td className="py-4 px-4">
                     <div className="flex items-start gap-3">
-                      <div className="relative w-10 h-10 rounded-full bg-[#777777]/50 overflow-hidden shrink-0">
-                        {row.photos?.[0] && (
+                      <div
+                        className="relative w-10 h-10 rounded-full bg-[#777777]/50
+                       overflow-hidden shrink-0"
+                      >
+                        {/* {row.photos?.[0] && (
                           <Image
                             src={row.photos[0]}
                             alt={row.title}
                             fill
                             className="object-cover"
                           />
-                        )}
+                        )} */}
                       </div>
 
                       <div className="flex flex-col gap-1 min-w-0">
@@ -164,14 +167,14 @@ export default function UserHousesTable({
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-start gap-3 min-w-0">
                 <div className="relative w-14 h-14 rounded-xl bg-[#777777]/30 overflow-hidden shrink-0">
-                  {row.photos?.[0] && (
+                  {/* {row.photos?.[0] && (
                     <Image
                       src={row.photos[0]}
                       alt={row.title}
                       fill
                       className="object-cover"
                     />
-                  )}
+                  )} */}
                 </div>
 
                 <div className="flex flex-col min-w-0">

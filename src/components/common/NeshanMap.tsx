@@ -7,19 +7,22 @@ import NeshanMapReact, {
 import { Map as OLMap } from "@neshan-maps-platform/ol";
 import { fromLonLat, toLonLat } from "@neshan-maps-platform/ol/proj";
 
-type Coords = {
+export type Coords = {
   lat: number;
   lng: number;
 };
 
-export default function MapView() {
+export default function MapView({
+  getGeo,
+}: {
+  getGeo: (data: Coords) => void;
+}) {
   const mapRef = useRef<NeshanMapRef>(null);
 
   const [position, setPosition] = useState<Coords>({
     lat: 35.715298,
     lng: 51.404343,
   });
-  console.log("position", position);
 
   const onInit = (map: OLMap) => {
     const view = map.getView();
@@ -30,6 +33,7 @@ export default function MapView() {
     map.on("click", (evt) => {
       const [lon, lat] = toLonLat(evt.coordinate);
       setPosition({ lat, lng: lon });
+      getGeo({ lat, lng: lon });
     });
   };
 
@@ -47,12 +51,10 @@ export default function MapView() {
 
       <div
         className="absolute bottom-4 left-1/2 -translate-x-1/2
-       bg-white/70 rounded-xl px-4 py-2 rounded shadow text-sm"
+       bg-background/70 rounded-xl px-4 py-2 rounded shadow text-sm text-foreground"
       >
         📍 {position.lat.toFixed(5)}, {position.lng.toFixed(5)}
       </div>
     </div>
   );
 }
-
-

@@ -1,19 +1,10 @@
 "use client";
-import Lottie from "react-lottie";
 import notif from "../../../../../public/lottie/Notifications.json";
+import Lottie from "lottie-react";
 const NotificationsGif = () => {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: notif,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
   return (
     <div className="w-full h-full ">
-      <Lottie options={defaultOptions} width={"100%"} height={"100%"} />
+      <Lottie animationData={notif} style={{ width: "100%", height: "100%" }} />
     </div>
   );
 };
