@@ -134,14 +134,14 @@ const DashboardSidebar = ({ role }: IProps) => {
     ],
     management: [
       {
-        href: `${adminBasePath}/estates-management`,
-        label: t("estatesManagement"),
-        Icon: Estates,
-      },
-      {
         href: `${adminBasePath}/categories`,
         label: t("categories"),
         Icon: Category,
+      },
+      {
+        href: `${adminBasePath}/estates-management`,
+        label: t("estatesManagement"),
+        Icon: Estates,
       },
       {
         href: `${adminBasePath}/reserves-management`,
