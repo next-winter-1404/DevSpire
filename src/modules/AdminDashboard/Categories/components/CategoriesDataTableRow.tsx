@@ -23,16 +23,16 @@ const CategoriesDataTableRow = ({item}: IProps) => {
     <tr className="flex justify-between w-full py-4 px-6 border-y border-[#DDDDDD] relative   
     dark:border-[#777777]
     md:flex md:items-center">
-      <div className="flex flex-col w-full gap-2   md:flex-row">
+      <td className="flex flex-col w-full gap-2   md:flex-row">
         <div className="text-[#1E2022]   md:w-[40%]   dark:text-[#E4E4E4]">
           <span>{item.name}</span>
         </div>
-      </div>
-      <div onClick={() => {handleActionsModal(true)}} className="p-1 text-[#1E2022] rounded-[8px] cursor-pointer   
+      </td>
+      <td onClick={() => {handleActionsModal(true)}} className="p-1 text-[#1E2022] rounded-[8px] cursor-pointer   
       hover:bg-[#F5F5F5]
       dark:text-[#E4E4E4] dark:hover:bg-[#404040]">
         <Dots/>
-      </div>
+      </td>
       {isOpenActionsModal && <CategoryActionsMenu handleActionsModal={handleActionsModal} id={item.id}/>}
     </tr>
   )
