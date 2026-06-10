@@ -5,11 +5,13 @@ import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import UsersManagementFiltersModal from "./UserManagementFiltersModal";
+import { useTranslations } from "next-intl";
 
 const UsersManagementFilters = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
+const t = useTranslations("adminDashboard.users");
 
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
@@ -38,7 +40,7 @@ const UsersManagementFilters = () => {
          transition-colors text-sm font-medium cursor-pointer "
       >
         <Filter className="w-5 h-5" />
-        فیلتر ها
+{t("filters")}
       </button>
       {isFilterOpen && <UsersManagementFiltersModal onClose={onClose} />}
     </div>

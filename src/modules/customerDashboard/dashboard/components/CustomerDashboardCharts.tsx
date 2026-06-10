@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import { FormatDate } from "@/utils/helper/FormatDate";
+import { getLocale, getTranslations } from "next-intl/server";
 
 type TUser = {
   id: number;
@@ -30,10 +31,13 @@ export interface TUserRes {
   user: TUser;
   additionalPercentage: number;
 }
+
 const CustomerDashboardCharts = async () => {
+  const t = await getTranslations("customerDashboard.dashboard");
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value as string;
   const decoded = jwtDecode(token) as IDecodedToken;
+  const locale = (await getLocale()) as "fa" | "en";
 
   const user = await apiFetch<TUserRes | null>(`/users/${decoded.id}`, {
     next: { revalidate: 60 },
@@ -62,10 +66,14 @@ const CustomerDashboardCharts = async () => {
     <div className="grid grid-cols-1 md:grid-cols-2 md:items-stretch gap-4">
       <PaymentStatusChart percentage={parseInt(paymentPercentage)} />
       <CompleteProfile
-        lastEditText={` آخرین ویرایش  ${FormatDate(user?.user.updated_at || "", "fa")}`}
+        lastEditText={`${t("lastEdit")} ${FormatDate(
+          user?.user.updated_at || "",
+          locale as "fa" | "en"
+        )}`}
         percentage={user?.additionalPercentage}
         linkHref="/seller-dashboard/edit-profile"
       />
+
     </div>
   );
 };

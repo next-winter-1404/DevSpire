@@ -2,6 +2,7 @@ import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import LocationsList from "../components/LocationsList";
 import { TLocationsResponse } from "@/components/common/types";
 import LocationsManagementTop from "../components/LocationsManagementTop";
+import { getTranslations } from "next-intl/server";
 
 
 
@@ -10,6 +11,7 @@ interface IProps {
 }
 
 const LocationsManagementView = async ({params}: IProps) => {
+const t = await getTranslations("adminDashboard.locationsManagement");
 
     const data = await apiFetch<TLocationsResponse | null>("/locations", {params: params, cache: "no-store"},);
 
@@ -23,7 +25,7 @@ const LocationsManagementView = async ({params}: IProps) => {
                 <LocationsList data={data}/>
                 : 
                 <div className="flex justify-center w-full">
-                    <span>مکانی وجود ندارد</span>
+                        <span>{t("noLocations")}</span>
                 </div>
             }
         </div>

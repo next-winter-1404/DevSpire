@@ -2,12 +2,12 @@ import { THouse, THousesResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { Link } from "@/i18n/routing";
 import MortgageRentDetailViewx from "@/modules/mortgageRentDetail/views/MortgageRentDetailView";
-
+import { getTranslations } from "next-intl/server";
 const MortgageRentDetail = async ({
   params,
 }: {
   params: Promise<{ id: string }>;
-}) => {
+}) => {const t = await getTranslations("common");
   const { id } = await params;
 
   const data = await apiFetch<THouse | null>(`/houses/${id}`, {
@@ -31,14 +31,14 @@ const MortgageRentDetail = async ({
           <div className="mb-4 text-6xl">🏠</div>
 
           <h3 className="mb-2 text-xl font-bold text-gray-800">
-            خانه‌ای با این شناسه پیدا نشد
+    {t("houseNotFound")}
           </h3>
 
           <Link
             href="/"
             className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition hover:opacity-90"
           >
-            بازگشت به صفحه اصلی
+    {t("backHome")}
           </Link>
         </div>
       )}

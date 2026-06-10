@@ -11,6 +11,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { MoreVertical } from "lucide-react";
 import { DeleteHouse } from "../services/DELETE/deleteHouse";
 import DeleteModal from "./DeleteModal";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   onClose: () => void;
@@ -20,13 +21,13 @@ interface IProps {
 
 const ActionsModal = ({ onClose, item, role }: IProps) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-
+  const t = useTranslations("sellerDashboard.estates");
   const router = useRouter();
   const queryClient = useQueryClient();
   const deleteHouseMutation = useMutation({
     mutationFn: async () => await DeleteHouse(item.id, role),
     onSuccess: (res) => {
-      toast.success(res?.data?.message || "ملک مورد نظر با موفقیت حذف شد");
+      toast.success(res?.data?.message || t("deleteSuccess"));
       queryClient.invalidateQueries({
         queryKey: ["DELETEHOUSE"],
       });
@@ -34,7 +35,7 @@ const ActionsModal = ({ onClose, item, role }: IProps) => {
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        toast.error(err?.response?.data?.message || "مشکلی در حذف پیش آمد");
+        toast.error(err?.response?.data?.message || t("deleteError"));
       }
     },
   });
@@ -74,7 +75,7 @@ const ActionsModal = ({ onClose, item, role }: IProps) => {
                  hover:bg-slate-100 dark:hover:bg-sky-950 "
               >
                 <Edit />
-                <span>ویرایش</span>
+                <span>{t("edit")}</span>
               </Link>
             </DropdownMenu.Item>
 
@@ -84,7 +85,7 @@ const ActionsModal = ({ onClose, item, role }: IProps) => {
                 dark:hover:bg-sky-950"
             >
               <Trash />
-              <span>حذف</span>
+              <span>{t("delete")}</span>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>

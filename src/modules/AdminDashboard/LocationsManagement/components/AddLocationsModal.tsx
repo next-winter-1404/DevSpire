@@ -29,7 +29,7 @@ const AddLocationsModal = ({handleAddLocationModal}: IProps) => {
             setAreaName("");
             setLat("");
             setLng("");
-            toast.success(res?.data?.message || "مکان مورد نظر با موفقیت افزوده شد");
+toast.success(res?.data?.message || t("addSuccess"));
             queryClient.invalidateQueries({
                 queryKey: ["ADDLOCATION"],
             });
@@ -37,7 +37,7 @@ const AddLocationsModal = ({handleAddLocationModal}: IProps) => {
         },
         onError: (err) => {
             if(axios.isAxiosError(err)){
-                toast.error(err?.response?.data?.message || "مشکلی در افزودن پیش آمد");
+toast.error(err?.response?.data?.message || t("addError"));
             }
         },
     });

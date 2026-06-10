@@ -8,6 +8,7 @@ import SocialMediaModal from "./SocialMediaModal";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
 import { useSocial } from "../hooks";
+import { useTranslations,useLocale } from "next-intl";
 
 interface IProps {
   id: number;
@@ -17,26 +18,29 @@ interface IProps {
 const SocialMediaActionModal = ({ id, url }: IProps) => {
   const [openSocialModal, setOpenSocialModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const t = useTranslations("adminDashboard.socialMedia");
+const locale = useLocale();
 
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      toast.success("متن کپی شد");
+      toast.success(t("copied"));
     } catch {
       const t = document.createElement("textarea");
       t.value = text;
       document.body.appendChild(t);
       t.select();
       document.execCommand("copy");
-      document.body.removeChild(t);
+      document.body.removeChild(t); 
       toast.success("متن کپی شد");
+
     }
   };
   const { deleteSocialLinkMutation } = useSocial(id);
 
   return (
     <>
-      <DropdownMenu.Root dir="rtl">
+<DropdownMenu.Root dir={locale === "fa" ? "rtl" : "ltr"}>
         <DropdownMenu.Trigger asChild>
           <button className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-white/10">
             <MoreVertical className="w-5 h-5" />
@@ -74,7 +78,7 @@ const SocialMediaActionModal = ({ id, url }: IProps) => {
               "
             >
               <Copy className="w-4 h-4" />
-              <span>کپی لینک</span>
+              <span>{t("copyLink")}</span>
             </DropdownMenu.Item>
 
             <DropdownMenu.Item asChild>
@@ -91,7 +95,7 @@ const SocialMediaActionModal = ({ id, url }: IProps) => {
               "
               >
                 <ExternalLink className="w-4 h-4" />
-                <span>باز کردن</span>
+                <span>{t("openLink")}</span>
               </Link>
             </DropdownMenu.Item>
 
@@ -108,7 +112,7 @@ const SocialMediaActionModal = ({ id, url }: IProps) => {
               "
             >
               <Edit className="w-4 h-4" />
-              <span>ویرایش</span>
+              <span>{t("edit")}</span>
             </DropdownMenu.Item>
 
             <DropdownMenu.Item
@@ -127,7 +131,7 @@ const SocialMediaActionModal = ({ id, url }: IProps) => {
               onClick={() => setOpenDeleteModal(true)}
             >
               <Trash className="w-4 h-4" />
-              <span>حذف</span>
+              <span>{t("delete")}</span>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>

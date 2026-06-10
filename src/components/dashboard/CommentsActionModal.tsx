@@ -10,6 +10,7 @@ import EditCommentsModal from "@/modules/sellerDashboard/CommentsManagement/comp
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import CommentsDetailModal from "@/modules/sellerDashboard/CommentsManagement/components/CommentsDetailModal";
 import { useComments } from "@/modules/sellerDashboard/CommentsManagement/hooks";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   id: number;
@@ -20,6 +21,7 @@ const CommentsActionModal = ({ id, role }: IProps) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDetailModal, setOpenDetailModal] = useState(false);
+const t = useTranslations("commentsActions");
 
   const { deleteCommentMutation } = useComments(id);
 
@@ -63,7 +65,7 @@ const CommentsActionModal = ({ id, role }: IProps) => {
               "
             >
               <InfoCircledIcon className="w-4 h-4" />
-              <span>جزئیات</span>
+<span>{t("details")}</span>
             </DropdownMenu.Item>
             {role == "admin" && (
               <>
@@ -80,7 +82,7 @@ const CommentsActionModal = ({ id, role }: IProps) => {
               "
                 >
                   <Edit className="w-4 h-4" />
-                  <span>ویرایش</span>
+<span>{t("edit")}</span>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item
                   onSelect={() => {
@@ -98,7 +100,7 @@ const CommentsActionModal = ({ id, role }: IProps) => {
                   onClick={() => setOpenDeleteModal(true)}
                 >
                   <Trash className="w-4 h-4" />
-                  <span>حذف</span>
+<span>{t("delete")}</span>
                 </DropdownMenu.Item>
               </>
             )}

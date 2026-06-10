@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { IEditUser, useManageUsers } from "../hooks";
 import { X, AlertCircle } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   onClose: () => void;
@@ -12,6 +13,7 @@ interface IProps {
 const EditUserInformation = ({ id, onClose }: IProps) => {
   const { userDetail, isPending, editUserMutation } = useManageUsers(id);
   const router = useRouter();
+const t = useTranslations("adminDashboard.users");
 
   const {
     register,
@@ -49,7 +51,7 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
           <div className="flex items-center justify-between mb-5 border-b pb-4">
             <div className="flex items-center gap-4">
               <h2 className="text-lg font-bold text-gray-800">
-                ویرایش اطلاعات کاربر
+{t("editUserInformation")}
               </h2>
             </div>
             <button
@@ -65,7 +67,8 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="relative">
               <label className="block mb-1.5 text-sm font-medium text-gray-700">
-                نام
+                {t("firstName")}
+
               </label>
               <input
                 className={`w-full bg-gray-50 border rounded-xl py-3 px-4
@@ -74,8 +77,9 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
                          ? "border-red-400 focus:ring-red-400 bg-red-50/30"
                          : "border-gray-200 focus:ring-blue-500"
                      }`}
-                placeholder="نام را وارد کنید ..."
-                {...register("firstName", { required: "نام الزامی است" })}
+placeholder={t("firstNamePlaceholder")}
+                {...register("firstName",{ required: t("firstNameRequired") }
+)}
               />
               {errors.firstName && (
                 <div
@@ -90,12 +94,13 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
 
             <div className="relative">
               <label className="block mb-1.5 text-sm font-medium text-gray-700">
-                نام خانوادگی
+{t("lastName")}
               </label>
               <input
-                placeholder="نام خانوادگی را وارد کنید"
+placeholder={t("lastNamePlaceholder")}
                 {...register("lastName", {
-                  required: "نام خانوادگی الزامی است",
+                  required: t("lastNameRequired")
+,
                 })}
                 className={`w-full bg-gray-50 border rounded-xl py-3 px-4
                      text-gray-600 focus:outline-none focus:ring-2 transition-all ${
@@ -117,7 +122,7 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
 
             <div className="relative">
               <label className="block mb-1.5 text-sm font-medium text-gray-700">
-                ایمیل
+{t("email")}
               </label>
               <input
                 type="email"
@@ -127,13 +132,14 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
                          ? "border-red-400 focus:ring-red-400 bg-red-50/30"
                          : "border-gray-200 focus:ring-blue-500"
                      }`}
-                placeholder="ایمیلتان را وارد کنید"
+placeholder={t("emailPlaceholder")}
                 {...register("email", {
-                  required: "ایمیل الزامی است",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "فرمت ایمیل نامعتبر است",
-                  },
+                 required: t("emailRequired"),
+pattern: {
+  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+  message: t("emailInvalid")
+}
+,
                 })}
               />
               {errors.email && (
@@ -149,16 +155,17 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
 
             <div className="relative">
               <label className="block mb-1.5 text-sm font-medium text-gray-700">
-                شماره تلفن
+{t("phoneNumber")}
               </label>
               <input
-                placeholder="شماره تلفن را وارد کنید"
+placeholder={t("phonePlaceholder")}
                 {...register("phoneNumber", {
-                  required: "شماره تلفن الزامی است",
-                  pattern: {
-                    value: /^09\d{9}$/,
-                    message: "شماره تلفن باید ۱۱ رقم و با 09 شروع شود",
-                  },
+                required: t("phoneRequired"),
+pattern: {
+  value: /^09\d{9}$/,
+  message: t("phoneInvalid")
+}
+,
                 })}
                 className={`w-full bg-gray-50 border rounded-xl py-3 px-4
                      text-gray-600 focus:outline-none focus:ring-2 transition-all ${
@@ -186,7 +193,7 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
               className="bg-white border border-gray-300 text-gray-700
                py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
             >
-              انصراف
+{t("cancel")}
             </button>
             <button
               type="submit"
@@ -194,7 +201,7 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
               className="bg-[#0F2E53] text-white py-2.5 rounded-lg text-sm 
               font-medium hover:bg-[#0a1e36] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              {editUserMutation.isPending ? "در حال ثبت..." : "ثبت تغییرات"}
+{editUserMutation.isPending ? t("submitting") : t("submitChanges")}
             </button>
           </div>
         </form>

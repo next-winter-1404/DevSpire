@@ -13,16 +13,17 @@ import TwoRangeSlider from "@/components/common/TwoRangeSlider";
 const Filters = ({ resultLength }: { resultLength?: number }) => {
   const locale = useLocale();
   const t = useTranslations("fastReserve");
+const tFilters = useTranslations("mortgageRent.filters");
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+const transactionTypeOptions: IOption[] = [
+  { label: tFilters("mortgage"), value: "mortgage" },
+  { label: tFilters("rental"), value: "rental" },
+  { label: tFilters("directPurchase"), value: "direct_purchase" },
+];
 
-  const transactionTypeOptions: IOption[] = [
-    { label: "رهن", value: "mortgage" },
-    { label: "اجاره", value: "rental" },
-    { label: "خرید و فروش", value: "direct_purchase" },
-  ];
   const [transactionType, setTransactionType] = useState<string>(
     searchParams.get("transactionType") ?? transactionTypeOptions[0].value,
   );
@@ -162,11 +163,11 @@ const Filters = ({ resultLength }: { resultLength?: number }) => {
     <div className="flex flex-col gap-8 mt-10">
       <div className="flex justify-between">
         <h2 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">
-          فیلتر ها
+  {tFilters("filters")}
         </h2>
         <div className="flex gap-2 font-regular text-[20px] text-[#0D3B66]   dark:text-[#E4E4E4]">
           <span>{resultLength}</span>
-          <span>نتیجه</span>
+<span>{tFilters("results")}</span>
         </div>
       </div>
 
@@ -176,10 +177,10 @@ const Filters = ({ resultLength }: { resultLength?: number }) => {
             className="flex flex-col gap-4 w-full  
         sm:w-[320px]   lg:w-[510px]"
           >
-            <span className="font-bold text-[16px] text-[#1E2022]">جستجو</span>
+            <span className="font-bold text-[16px] text-[#1E2022]">  {tFilters("search")}</span>
             <div className="relative">
               <input
-                placeholder="نام ملک مورد نظر را سرچ کنید"
+placeholder={tFilters("searchPlaceholder")}
                 value={query}
                 onChange={(
                   e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
@@ -221,8 +222,7 @@ const Filters = ({ resultLength }: { resultLength?: number }) => {
             </div>
             <div className=" flex flex-col gap-4 justify-start items-start w-full">
               <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-                نوع معامله
-              </label>
+  {tFilters("transactionType")}              </label>
               <CustomSelect
                 defaultValue={transactionType}
                 onValueChange={getTransactionType}

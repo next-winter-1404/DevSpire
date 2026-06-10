@@ -21,7 +21,7 @@ const DeleteLocationModal = ({id, handleDeleteModal}: IProps) => {
     const deleteLocationMutation = useMutation({
         mutationFn: () => DeleteLocation(id),
             onSuccess: (res) => {
-            toast.success(res?.data?.message || "مکان مورد نظر با موفقیت حذف شد");
+toast.success(res?.data?.message || t("deleteSuccess"));
             queryClient.invalidateQueries({
                 queryKey: ["DELETELOCATION"],
             });
@@ -29,7 +29,7 @@ const DeleteLocationModal = ({id, handleDeleteModal}: IProps) => {
         },
         onError: (err) => {
             if (axios.isAxiosError(err)) {
-                toast.error(err?.response?.data?.message || "مشکلی در حذف پیش آمد");
+toast.error(err?.response?.data?.message || t("deleteError"));
             }
         },
     });

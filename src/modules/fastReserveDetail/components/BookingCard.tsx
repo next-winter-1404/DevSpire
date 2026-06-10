@@ -50,7 +50,7 @@ const BookingCard = ({ price, discountedPrice }: IProps) => {
         travelersCount: data.travelersCount,
       }),
     );
-    toast.success("اطلاعاتتان ثبت شد . برای رزرو ادامه ی مراحل را طی کنید");
+toast.success(t("bookingSaved"));
     router.push(`${pathname}/booking`);
   };
 
@@ -63,12 +63,12 @@ const BookingCard = ({ price, discountedPrice }: IProps) => {
         <div className="w-full flex flex-col gap-5 mb-6">
           <div className="flex flex-col gap-2 items-start w-full relative pb-6">
             <label className="text-[14px] text-foreground font-bold">
-              تاریخ ورود
+  {t("insertDate")}
             </label>
             <Controller
               control={control}
               name={"insertDate"}
-              rules={{ required: "تاریخ ورود الزامی است" }}
+rules={{ required: t("insertDateRequired") }}
               render={({ field: { onChange, value } }) => (
                 <DatePicker
                   containerClassName="w-full"
@@ -102,8 +102,8 @@ const BookingCard = ({ price, discountedPrice }: IProps) => {
                           isRtl ? "text-right pl-8" : "text-left pr-8"
                         }`}
                       >
-                        {datePickerValue ||
-                          (locale === "fa" ? "انتخاب تاریخ" : "Select date")}
+                     {datePickerValue || t("selectDate")}
+
                       </span>
                     </div>
                   )}
@@ -119,17 +119,17 @@ const BookingCard = ({ price, discountedPrice }: IProps) => {
 
           <div className="flex flex-col gap-2 items-start w-full relative pb-6">
             <label className="text-[14px] text-foreground font-bold">
-              تاریخ خروج
+{t("exitDate")}
             </label>
             <Controller
               control={control}
               name={`exitDate`}
               rules={{
-                required: "تاریخ خروج الزامی است",
+required: t("exitDateRequired"),
                 validate: (value) => {
                   const insert = getValues("insertDate");
                   if (insert && value && value < insert) {
-                    return "تاریخ خروج نمی‌تواند قبل از تاریخ ورود باشد";
+return t("exitBeforeInsert");
                   }
                   return true;
                 },
@@ -192,8 +192,9 @@ const BookingCard = ({ price, discountedPrice }: IProps) => {
                 type="number"
                 placeholder="0"
                 {...register("travelersCount", {
-                  required: "تعداد نفرات الزامی است",
-                  min: { value: 1, message: "حداقل باید ۱ نفر باشد" },
+                 required: t("travelersRequired"),
+min: { value: 1, message: t("travelersMin") },
+
                   valueAsNumber: true,
                 })}
                 className={`w-full bg-[#F5F5F5] rounded-[40px] py-2.5 px-5 text-[14px] outline-none

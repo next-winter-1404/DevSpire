@@ -7,6 +7,8 @@ import { Bath, BedDouble, Car, MapPin, Users } from "lucide-react";
 import CurveArrow from "../../../../../../public/icons/CurveArrow";
 import { IGeneraData } from "../types";
 import { EditOrCreateEstateAction } from "../action";
+import { useTranslations } from "next-intl";
+
 
 interface IProps {
   generalData: IGeneraData;
@@ -14,6 +16,9 @@ interface IProps {
   role: "admin" | "seller";
 }
 const EstateStep5 = ({ generalData, onPrev, role }: IProps) => {
+
+  const t = useTranslations("sellerDashboard.estateForm.step5");
+
   console.log("allData", generalData);
   const router = useRouter();
 
@@ -37,12 +42,12 @@ const EstateStep5 = ({ generalData, onPrev, role }: IProps) => {
 
   useEffect(() => {
     if (error) {
-      toast.error(error.message || "خطایی رخ داده است");
+      toast.error(error.message || t("error"));
     } else if (success) {
       if (generalData.id) {
-        toast.success("خانه ی مدنظر با موفقیت ویرایش شد");
+        toast.success(t("editSuccess"));
       } else {
-        toast.success("خانه ی شما با موفقیت اضافه شد");
+        toast.success(t("createSuccess"));
       }
       router.push(
         `/dashboard/${role == "seller" ? "seller" : "admin"}/estates-management`,
@@ -73,18 +78,18 @@ const EstateStep5 = ({ generalData, onPrev, role }: IProps) => {
           <div className="w-full lg:w-1/2 flex flex-col justify-between">
             <div className="space-y-4">
               <h1 className="text-2xl font-bold text-gray-900">
-                {generalData?.step1?.title || "عنوانی وارد نشده است"}
+                {generalData?.step1?.title || t("noTitle")}
               </h1>
 
               <div className="flex items-center gap-1 text-gray-500 text-sm">
                 <MapPin className="w-4 h-4" />
                 <span>
-                  {generalData.step2?.address || "ادرسی وارد نشده است"}
+                  {generalData.step2?.address || t("noAddress")}
                 </span>
               </div>
 
               <p className="text-gray-600 text-sm leading-relaxed text-justify">
-                {generalData?.step1?.caption || "توضیحاتی وارد نشده است"}
+                {generalData?.step1?.caption || t("noDescription")}
               </p>
             </div>
 
@@ -94,17 +99,17 @@ const EstateStep5 = ({ generalData, onPrev, role }: IProps) => {
                   ? generalData.step1.discounted_price.toLocaleString()
                   : generalData?.step1?.price
                     ? generalData?.step1?.price.toLocaleString()
-                    : "قیمت وارد نشده است"}{" "}
-                <span className="text-sm font-normal text-gray-600">تومان</span>
+                    : t("noPrice") }{" "}
+                <span className="text-sm font-normal text-gray-600">{t("toman")}</span>
               </span>
             </div>
           </div>
         </div>
         <div className="space-y-4">
-          <h3 className="font-bold text-gray-900">برچسب ها :</h3>
+          <h3 className="font-bold text-gray-900">{t("tags")} :</h3>
           <div className="flex flex-wrap gap-3">
             {Array.isArray(generalData?.step3?.tags) &&
-            generalData.step3.tags.length > 0 ? (
+              generalData.step3.tags.length > 0 ? (
               generalData.step3.tags.map((tag, index) => (
                 <span
                   key={index}
@@ -118,13 +123,13 @@ const EstateStep5 = ({ generalData, onPrev, role }: IProps) => {
                 {generalData.step3.tags}
               </span>
             ) : (
-              <p className="text-[#777777] font-bold ">موردی یافت نشده</p>
+              <p className="text-[#777777] font-bold ">{t("noTags")}  </p>
             )}
           </div>
         </div>
 
         <div className="space-y-4">
-          <h3 className="font-bold text-gray-900">سایر مشخصات :</h3>
+          <h3 className="font-bold text-gray-900"> {t("otherFeatures")} :</h3>
           <div className="flex flex-wrap gap-3">
             <FeatureBadge
               icon={<BedDouble size={16} />}
@@ -152,13 +157,13 @@ const EstateStep5 = ({ generalData, onPrev, role }: IProps) => {
           className="flex items-center gap-2 py-[13px] px-3 text-[#777777] border border-[#777777] rounded-[16px] cursor-pointer"
         >
           <CurveArrow className="rotate-270" />
-          <span className="font-regular text-[16px]">مرحله قبل</span>
+          <span className="font-regular text-[16px]"> {t("prevStep")}</span>
         </button>
         <button
           type="submit"
           className="flex items-center gap-2 py-[13px] px-3 text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer"
         >
-          <span className="font-regular text-[16px]">تایید و ثبت نهایی</span>
+          <span className="font-regular text-[16px]">{t("finalSubmit")} </span>
           <CurveArrow className="rotate-90" />
         </button>
       </div>

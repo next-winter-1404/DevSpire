@@ -7,6 +7,7 @@ import moment from "jalali-moment";
 import { Building, Calendar, MapPin } from "lucide-react";
 import { useLocale } from "next-intl";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   house: THouse;
@@ -14,6 +15,8 @@ interface IProps {
   exitDate: string;
 }
 const HotelSummeryCard = ({ house, insertDate, exitDate }: IProps) => {
+  const t = useTranslations("booking.form");
+
   const locale = useLocale();
   const router = useRouter();
   const jsInsertDate = new Date(insertDate);
@@ -42,15 +45,15 @@ const HotelSummeryCard = ({ house, insertDate, exitDate }: IProps) => {
           <div className="flex items-start sm:items-center gap-2 text-[14px] md:text-[16px]">
             <Calendar className="w-4 h-4 text-[#777777] shrink-0 mt-0.5 sm:mt-0" />
             <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-              <span className="text-[#777777]">تاریخ ورود :</span>
+<span className="text-[#777777]">{t("insertDate")} :</span>
               <span className="text-foreground font-medium">
                 {locale == "fa"
                   ? moment(jsInsertDate)
-                      .locale("fa")
-                      .format("dddd jD jMMMM jYYYY HH:mm")
+                    .locale("fa")
+                    .format("dddd jD jMMMM jYYYY HH:mm")
                   : moment(jsExitDate)
-                      .locale("en")
-                      .format("dddd D MMMM YYYY HH:mm")}
+                    .locale("en")
+                    .format("dddd D MMMM YYYY HH:mm")}
               </span>
             </div>
           </div>
@@ -58,22 +61,22 @@ const HotelSummeryCard = ({ house, insertDate, exitDate }: IProps) => {
           <div className="flex items-start sm:items-center gap-2 text-[14px] md:text-[16px]">
             <Calendar className="w-4 h-4 text-[#777777] shrink-0 mt-0.5 sm:mt-0" />
             <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-              <span className="text-[#777777]">تاریخ خروج :</span>
+<span className="text-[#777777]">{t("exitDate")} :</span>
               <span className="text-foreground font-medium">
                 {locale == "fa"
                   ? moment(jsExitDate)
-                      .locale("fa")
-                      .format("dddd jD jMMMM jYYYY HH:mm")
+                    .locale("fa")
+                    .format("dddd jD jMMMM jYYYY HH:mm")
                   : moment(jsExitDate)
-                      .locale("en")
-                      .format("dddd D MMMM YYYY HH:mm")}
+                    .locale("en")
+                    .format("dddd D MMMM YYYY HH:mm")}
               </span>
             </div>
           </div>
 
           <div className="flex items-start sm:items-center gap-2 text-[14px] md:text-[16px]">
             <MapPin className="w-4 h-4 text-[#777777] shrink-0 mt-0.5 sm:mt-0" />
-            <span className="text-[#777777] shrink-0">آدرس :</span>
+<span className="text-[#777777] shrink-0">{t("address")} :</span>
             <span className="text-foreground line-clamp-2 sm:truncate leading-relaxed">
               {house.address}
             </span>
@@ -91,7 +94,7 @@ const HotelSummeryCard = ({ house, insertDate, exitDate }: IProps) => {
             <>
               <div className="flex items-center gap-2 mb-1 md:mb-2">
                 <span className="text-[#777777] line-through font-medium text-[14px] md:text-[20px]">
-                  {parseInt(house.price).toLocaleString()} تومان
+{parseInt(house.price).toLocaleString()} {t("toman")}
                 </span>
                 <span className="bg-[#FF5555] text-[#ffff] text-[12px] md:text-[14px] font-bold px-2 py-0.5 md:py-1 rounded-full">
                   %
@@ -104,16 +107,14 @@ const HotelSummeryCard = ({ house, insertDate, exitDate }: IProps) => {
               <div className="text-[18px] md:text-[24px] font-bold text-foreground">
                 {parseInt(house.discounted_price).toLocaleString()}
                 <span className="text-[14px] md:text-[18px] font-medium">
-                  تومان
-                </span>
+{t("toman")}                </span>
               </div>
             </>
           ) : (
             <div className="text-[18px] md:text-[24px] font-bold text-foreground">
               {parseInt(house.price).toLocaleString()}
               <span className="text-[14px] md:text-[18px] font-medium">
-                تومان
-              </span>
+{t("toman")}              </span>
             </div>
           )}
         </div>
@@ -124,7 +125,7 @@ const HotelSummeryCard = ({ house, insertDate, exitDate }: IProps) => {
           border border-[#0D3B66] text-[#0D3B66] text-[14px] md:text-base rounded-[12px] md:rounded-[16px] hover:bg-blue-50 transition-colors shrink-0"
         >
           <Building className="w-4 h-4 text-[#0D3B66]" />
-          تغییر هتل
+{t("changeHotel")}
         </button>
       </div>
     </div>

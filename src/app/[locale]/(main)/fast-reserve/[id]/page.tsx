@@ -3,12 +3,12 @@ import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { Link } from "@/i18n/routing";
 import FastReserveDetailView from "@/modules/fastReserveDetail/views/FastReserveDetailView";
 import { notFound } from "next/navigation";
-
+import { getTranslations } from "next-intl/server";
 const FastReserveDetail = async ({
   params,
 }: {
   params: Promise<{ id: string }>;
-}) => {
+}) => {const t = await getTranslations("common");
   const { id } = await params;
   const param = parseInt(id);
   if (!param) {
@@ -33,14 +33,14 @@ const FastReserveDetail = async ({
           <div className="mb-4 text-6xl">🏠</div>
 
           <h3 className="mb-2 text-xl font-bold text-gray-800">
-            خانه‌ای با این شناسه پیدا نشد
+    {t("houseNotFound")}
           </h3>
 
           <Link
             href="/"
             className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition hover:opacity-90"
           >
-            بازگشت به صفحه اصلی
+    {t("backHome")}
           </Link>
         </div>
       )}

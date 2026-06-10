@@ -1,5 +1,6 @@
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { FacilityCard } from "./FacilityCard";
+import { useTranslations } from "next-intl";
 
 export default function FacilitiesTab({
   tags,
@@ -11,6 +12,7 @@ export default function FacilitiesTab({
     : typeof tags === "string" && tags.trim() !== ""
       ? [tags]
       : [];
+const t = useTranslations("fastReserveDetail");
 
   return (
     <div className="w-full">
@@ -18,7 +20,7 @@ export default function FacilitiesTab({
         <div className="flex flex-col items-center justify-center py-12 px-4 border-2 border-dashed border-gray-100 rounded-2xl bg-gray-50/50">
           <InfoCircledIcon className="text-4xl text-gray-300 mb-2" />
           <p className="text-gray-500 font-medium">
-            موردی برای نمایش ثبت نشده است
+  {t("noFacilities")}
           </p>
         </div>
       ) : (

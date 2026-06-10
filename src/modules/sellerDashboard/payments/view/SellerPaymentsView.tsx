@@ -5,6 +5,7 @@ import {
 } from "../../../CustomerDashboard/Payments/types";
 import PaymentsFilters from "../../../CustomerDashboard/Payments/components/PaymentsFilters";
 import PaymentsList from "../../../CustomerDashboard/Payments/components/PaymentsList";
+import { getTranslations } from "next-intl/server";
 
 const SellerPaymentsView = async ({
   role,
@@ -12,7 +13,8 @@ const SellerPaymentsView = async ({
 }: {
   role: "admin" | "seller" | "buyer";
   params: Record<string, string>;
-}) => {
+}) => {const t = await getTranslations("customerDashboard.payments");
+
   let res = null;
   if (role == "seller") {
     res = await apiFetch<ISellerPaymentsResponse | null>("/seller/finance", {
@@ -33,7 +35,7 @@ const SellerPaymentsView = async ({
        items-center mb-4 gap-4"
       >
         <h1 className="text-xl font-bold text-foreground">
-          لیست تراکنش های مشتریان {`(${res?.totalCount})`}{" "}
+{t("customersPayments")} ({res?.totalCount})
         </h1>
 
         <div className=" w-full md:w-[50%]">{/* <PaymentsFilters /> */}</div>
@@ -51,7 +53,7 @@ const SellerPaymentsView = async ({
            text-center px-4"
           >
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              هنوز پرداختی ثبت نشده است
+{t("noPayments")}
             </p>
           </div>
         )}

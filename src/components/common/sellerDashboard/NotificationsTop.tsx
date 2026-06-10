@@ -10,7 +10,7 @@ import { useDebounce } from "use-debounce";
 import ReadNotificationsModal from "./ReadNotificationsModal";
 
 const NotificationsTop = () => {
-  const t = useTranslations("sellerDashboard.notifications");
+const t = useTranslations("notifications");
   const locale = useLocale();
   const searchParams = useSearchParams();
   const router = useRouter();

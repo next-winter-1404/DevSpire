@@ -2,12 +2,14 @@ import { IAllUsers } from "@/components/common/types";
 import UsersManagementFilters from "../components/UsersManagementFilters";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import UsersList from "../components/UsesManagementList";
+import { getTranslations } from "next-intl/server";
 
 const UsersManagementView = async ({
   params,
 }: {
   params: Record<string, string>;
-}) => {
+}) => {const t = await getTranslations("adminDashboard.users");
+
   const res = await apiFetch<IAllUsers | null>("/users", {
     cache: "no-store",
     params,
@@ -21,7 +23,8 @@ const UsersManagementView = async ({
         className=" w-full flex flex-col md:flex-row justify-between
        items-center mb-4 gap-4"
       >
-        <h1 className="text-xl font-bold text-foreground">مدیریت کاربران</h1>
+        <h1 className="text-xl font-bold text-foreground"> {t("usersManagement")}
+</h1>
         <div className=" w-full md:w-[50%]">
           <UsersManagementFilters />
         </div>
@@ -39,7 +42,7 @@ const UsersManagementView = async ({
            text-center px-4"
           >
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              هنوز کاربری ثبت نام نکرده است
+{t("noUsersRegistered")}
             </p>
           </div>
         )}

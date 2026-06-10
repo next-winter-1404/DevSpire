@@ -3,12 +3,14 @@ import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { TSocialMediaRes } from "../types";
 import SocialMediaList from "../components/SocialMediaList";
 import SocialMediaFilters from "../components/socialMediaFilters";
+import { getTranslations } from "next-intl/server";
 
 const SocialMediaView = async ({
   params,
 }: {
   params: Record<string, string>;
-}) => {
+}) => {const t = await getTranslations("adminDashboard.socialMedia");
+
   const data = await apiFetch<TSocialMediaRes | null>("/social-media-links", {
     params,
     cache: "no-store",
@@ -23,12 +25,12 @@ const SocialMediaView = async ({
       >
         <div>
           <h2 className="text-base sm:text-lg font-bold text-foreground">
-            مدیریت شبکه‌های اجتماعی
+{t("socialMediaManagement")}
           </h2>
           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
-            {typeof data?.totalCount === "number"
-              ? `${data?.totalCount.toLocaleString()} لینک ثبت شده`
-              : `${data?.data?.length.toLocaleString()} لینک`}
+           {typeof data?.totalCount === "number"
+    ? t("linksCount", { count: data.totalCount })
+    : t("linksCount", { count: data?.data?.length ?? 0 })}
           </p>
         </div>
         <div className=" w-full md:w-[50%]">
@@ -48,7 +50,7 @@ const SocialMediaView = async ({
            h-[300px] text-center px-4"
           >
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              داده ای یافت نشد
+{t("noDataFound")}
             </p>
           </div>
         )}

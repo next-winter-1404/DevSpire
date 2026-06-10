@@ -1,8 +1,8 @@
 import { IHouseCMPayload } from "@/modules/booking/types";
 import { useComments } from "@/modules/fastReserveDetail/hooks/useComment";
-import { useTranslations } from "next-intl";
 import { Controller, useForm } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";
+import { useLocale, useTranslations } from "next-intl";
 
 const CommentForm = ({
   isReply = false,
@@ -27,6 +27,7 @@ const CommentForm = ({
       rating: 0,
     },
   });
+
 
   const getData = (data: IHouseCMPayload) => {
     postCommentMutation.mutate(
@@ -58,7 +59,8 @@ const CommentForm = ({
             type="text"
             placeholder={isReply ? t("replyTitle") : t("seeTitlePlaceHolder")}
             {...register("title", {
-              required: "عنوان کامنت الزامی است",
+required: t("commentTitleRequired")
+,
             })}
             className={`
               w-full rounded-2xl  bg-background px-4 py-3 text-sm
@@ -90,7 +92,8 @@ const CommentForm = ({
           <textarea
             rows={isReply ? 3 : 5}
             {...register("caption", {
-              required: "توضیحات لازم است",
+             required: t("commentCaptionRequired")
+,
             })}
             placeholder={
               isReply ? t("replyCaption") : t("seeCaptionPlaceHolder")
@@ -117,7 +120,7 @@ const CommentForm = ({
         <div className="flex flex-col gap-2">
           {!isReply && (
             <label className="text-[15px] font-bold text-foreground">
-              امتیاز شما
+{t("yourRating")}
             </label>
           )}
 
@@ -129,7 +132,7 @@ const CommentForm = ({
               name="rating"
               control={control}
               rules={{
-                validate: (value) => value > 0 || "امتیاز خود را انتخاب کنید",
+               validate: (value) => value > 0 || t("ratingRequired"),
               }}
               render={({ field }) => (
                 <Rating
@@ -178,9 +181,9 @@ const CommentForm = ({
               disabled:cursor-not-allowed disabled:opacity-60
             "
           >
-            {isSubmitting || postCommentMutation.isPending
-              ? "در حال ارسال..."
-              : `${t("send")} ${isReply ? t("reply") : t("comment")}`}
+           {isSubmitting || postCommentMutation.isPending
+  ? t("sending")
+  : `${t("send")} ${isReply ? t("reply") : t("comment")}`}
           </button>
         </div>
       </div>

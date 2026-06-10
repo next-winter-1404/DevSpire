@@ -8,6 +8,8 @@ import { useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useTranslations } from "next-intl";
+
 
 interface IProps {
   item: TNotification;
@@ -15,6 +17,7 @@ interface IProps {
 
 const NotifDataTableRow = ({ item }: IProps) => {
   const router = useRouter();
+const t = useTranslations("notifications");
 
   const locale = useLocale();
 
@@ -53,7 +56,7 @@ const NotifDataTableRow = ({ item }: IProps) => {
           className="flex items-center gap-2 text-[#008C78] cursor-pointer   dark:text-[#E6EDF5]"
         >
           <CircleTick />
-          <span>علامت گذاری به عنوان خوانده شده</span>
+<span>{t("markAsReadSingle")}</span>
         </button>
       )}
     </div>

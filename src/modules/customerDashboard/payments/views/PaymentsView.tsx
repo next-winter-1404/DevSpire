@@ -2,12 +2,14 @@ import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import PaymentsFilters from "../components/PaymentsFilters";
 import { IPaymentResponse } from "../types";
 import PaymentsList from "../components/PaymentsList";
+import { getTranslations } from "next-intl/server";
 
 const PaymentsView = async ({ params }: { params: Record<string, string> }) => {
   const res = await apiFetch<IPaymentResponse | null>("/payments", {
     params,
     cache: "no-store",
   });
+const t = await getTranslations("customerDashboard.payments");
 
   return (
     <div className="h-full">
@@ -16,8 +18,7 @@ const PaymentsView = async ({ params }: { params: Record<string, string> }) => {
        items-center mb-4 gap-4"
       >
         <h1 className="text-xl font-bold text-foreground">
-          لیست تراکنش های شما
-        </h1>
+{t("title")}        </h1>
 
         <div className=" w-full md:w-[50%]">
           <PaymentsFilters />
@@ -33,7 +34,7 @@ const PaymentsView = async ({ params }: { params: Record<string, string> }) => {
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              هنوز پرداختی از طرف شما ثبت نشده است
+{t("empty")}
             </p>
           </div>
         )}

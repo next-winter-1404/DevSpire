@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const NotificationsDataTable = ({ notifications }: IProps) => {
-  const t = useTranslations("sellerDashboard.notifications");
+const t = useTranslations("notifications");
 
   const unread = notifications.filter((n) => !n.isRead);
   const read = notifications.filter((n) => n.isRead);

@@ -49,12 +49,12 @@ const TwoRangeSlider = ({
         </Slider.Track>
         <Slider.Thumb
           className="block w-5 h-5 bg-white border-2 border-blue-600 rounded-full shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 cursor-grab"
-          aria-label="حداقل قیمت"
+  aria-label={t("minPrice")}
         />
 
         <Slider.Thumb
           className="block w-5 h-5 bg-white border-2 border-blue-600 rounded-full shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 cursor-grab"
-          aria-label="حداکثر قیمت"
+  aria-label={t("maxPrice")}
         />
       </Slider.Root>
       <div className="flex justify-between text-[14px] w-full">

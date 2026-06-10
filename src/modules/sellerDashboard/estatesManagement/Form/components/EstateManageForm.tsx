@@ -10,6 +10,7 @@ import EstateStep2 from "./EstateStep2";
 import EstateStep3 from "./EstateStep3";
 import EstateStep4 from "./EstateStep4";
 import EstateStep5 from "./EstateStep5";
+import { useTranslations } from "next-intl";
 
 const EstateManageForm = ({
   house,
@@ -18,6 +19,8 @@ const EstateManageForm = ({
   house: THouse | null;
   role: "admin" | "seller";
 }) => {
+  const t = useTranslations("sellerDashboard.estateForm");
+
   const [currentTab, setCurrentTab] = useState<number>(1);
   if (currentTab == 0) {
     notFound();
@@ -170,20 +173,21 @@ const EstateManageForm = ({
           />
         );
     }
-  };
-  const EditModeTabsData = [
-    { id: 1, label: "مشخصات اولیه" },
-    { id: 2, label: "موقعیت مکانی" },
-    { id: 3, label: "امکانات ملک" },
-    { id: 4, label: "تصویر ملک" },
-    { id: 5, label: "تایید نهایی" },
+  }; const EditModeTabsData = [
+    { id: 1, label: t("basicInfo") },
+    { id: 2, label: t("location") },
+    { id: 3, label: t("amenities") },
+    { id: 4, label: t("photos") },
+    { id: 5, label: t("finalConfirm") },
   ];
+
   const CreateModeTabsData = [
-    { id: 1, label: "مشخصات اولیه" },
-    { id: 2, label: "موقعیت مکانی" },
-    { id: 3, label: "امکانات ملک" },
-    { id: 4, label: "تایید نهایی" },
+    { id: 1, label: t("basicInfo") },
+    { id: 2, label: t("location") },
+    { id: 3, label: t("amenities") },
+    { id: 4, label: t("finalConfirm") },
   ];
+
 
   const activeTabsData = generalData.id ? EditModeTabsData : CreateModeTabsData;
   return (
@@ -193,11 +197,10 @@ const EstateManageForm = ({
           <button
             key={tab.id}
             onClick={() => setCurrentTab(tab.id)}
-            className={`py-2.5 px-3 border rounded-[16px] cursor-pointer transition-all ${
-              currentTab === tab.id
+            className={`py-2.5 px-3 border rounded-[16px] cursor-pointer transition-all ${currentTab === tab.id
                 ? "border-2 border-[#0D3B66] text-[#0D3B66] font-bold"
                 : "border-[#777777]"
-            }`}
+              }`}
           >
             {tab.label}
           </button>

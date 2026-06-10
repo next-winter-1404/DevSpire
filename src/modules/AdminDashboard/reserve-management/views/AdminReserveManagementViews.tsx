@@ -3,12 +3,14 @@ import ReserveFilters from "@/components/dashboard/Filters";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import ReserveList from "@/modules/sellerDashboard/ReservesManagement/components/ReserveList";
 import ReservationTable from "@/modules/sellerDashboard/ReservesManagement/components/ReserveTable";
+import { getTranslations } from "next-intl/server";
 
 const AdminReserveManagementViews = async ({
   params,
 }: {
   params: Record<string, string>;
-}) => {
+}) => {const t = await getTranslations("adminDashboard.reservations");
+
   const data = await apiFetch<TReservationsResponse | null>("/admin/bookings", {
     cache: "no-store",
     params,
@@ -22,7 +24,7 @@ const AdminReserveManagementViews = async ({
        items-center mb-4 gap-4"
       >
         <h1 className="text-xl font-bold text-foreground whitespace-nowrap">
-          لیست رزرو های وبسایت
+  {t("reservationsList")}
         </h1>
         <ReserveFilters />
       </div>
@@ -38,11 +40,11 @@ const AdminReserveManagementViews = async ({
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              هنوز رزروی ثبت نشده است
+  {t("noReservations")}
             </p>
 
             <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">
-              وقتی کاربران اقامتگاهی را رزرو کنند در اینجا نمایش داده می‌شود
+  {t("noReservationsDescription")}
             </p>
           </div>
         )}

@@ -2,12 +2,15 @@ import React from "react";
 import Close from "../../../../../public/icons/Close";
 import { AlertTriangle } from "lucide-react";
 
+import { useTranslations } from "next-intl";
+
 interface IProps {
   setIsOpenDeleteModal: (value: boolean) => void;
   deleteHouseMutation: () => void;
 }
 
 const DeleteModal = ({ setIsOpenDeleteModal, deleteHouseMutation }: IProps) => {
+  const t = useTranslations("sellerDashboard.estates");
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
@@ -31,11 +34,12 @@ const DeleteModal = ({ setIsOpenDeleteModal, deleteHouseMutation }: IProps) => {
         </div>
 
         <div className="flex flex-col items-center gap-2 text-center">
-          <h3 className="font-bold text-2xl text-gray-800">
-            آیا از حذف مطمئن هستید؟
+         <h3 className="font-bold text-2xl text-gray-800">
+            {t("deleteConfirmTitle")}
           </h3>
+
           <p className="font-normal text-base text-gray-500">
-            امکان برگشت پس از حذف وجود ندارد!
+            {t("deleteConfirmDescription")}
           </p>
         </div>
 
@@ -44,7 +48,7 @@ const DeleteModal = ({ setIsOpenDeleteModal, deleteHouseMutation }: IProps) => {
             onClick={() => setIsOpenDeleteModal(false)}
             className="flex-1 py-3 text-gray-600 bg-white border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-2xl transition-all cursor-pointer"
           >
-            انصراف
+            {t("cancel")}
           </button>
           <button
             onClick={() => {
@@ -53,7 +57,7 @@ const DeleteModal = ({ setIsOpenDeleteModal, deleteHouseMutation }: IProps) => {
             }}
             className="flex-1 py-3 text-white bg-red-500 hover:bg-red-600 shadow-lg shadow-red-500/30 active:scale-95 rounded-2xl transition-all cursor-pointer"
           >
-            بله، حذف شود
+            {t("confirmDelete")}
           </button>
         </div>
       </div>

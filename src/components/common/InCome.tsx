@@ -2,6 +2,7 @@
 
 import PieChart from "@/components/common/PieChart";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 interface InComeProps {
   title?: string;
@@ -17,7 +18,8 @@ const InCome: React.FC<InComeProps> = ({
   totalIncome,
   currentIncome,
   percentage,
-}) => {
+}) => {  const t = useTranslations("customerDashboard.income");
+
   return (
     <div className="flex flex-col w-full p-4 sm:p-5 md:p-6 bg-[#FFFFFF] rounded-[24px] dark:bg-[#262626]">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
@@ -34,7 +36,7 @@ const InCome: React.FC<InComeProps> = ({
           href="/dashboard/seller/financial"
           className="w-fit py-[10px] px-4 border border-[#DDDDDD] rounded-[40px] text-sm sm:text-base"
         >
-          مشاهده
+          {t("view")}
         </Link>
       </div>
 
@@ -43,22 +45,22 @@ const InCome: React.FC<InComeProps> = ({
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-[#E6EDF5] rounded-full shrink-0"></div>
-              <span className="text-sm sm:text-base">درآمد کل</span>
+              <span className="text-sm sm:text-base">{t("totalIncome")}</span>
             </div>
             <div className="flex gap-2 text-[13px] sm:text-[14px] text-[#1E2022] dark:text-[#F5F5F5]">
               <span>{totalIncome}</span>
-              <span>تومان</span>
+              <span>{t("currency")}</span>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-[#0D3B66] rounded-full shrink-0"></div>
-              <span className="text-sm sm:text-base">درآمد این ماه</span>
+              <span className="text-sm sm:text-base"> {t("monthlyIncome")}</span>
             </div>
             <div className="flex gap-2 text-[13px] sm:text-[14px] text-[#1E2022] dark:text-[#F5F5F5]">
               <span>{currentIncome}</span>
-              <span>تومان</span>
+              <span>{t("currency")}</span>
             </div>
           </div>
         </div>

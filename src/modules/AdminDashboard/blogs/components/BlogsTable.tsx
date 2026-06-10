@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useBlogs } from "../hooks";
 import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
 import BlogCreateEditModal from "./BlogForm";
+import { useTranslations } from "next-intl";
 
 const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
   const [openEditModal, setOpenEditModal] = useState<boolean>(false);
@@ -15,6 +16,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
   const [initialData, setInitialData] = useState<TBlog | null>(null);
 
   const { deleteBlogMutation } = useBlogs(blogId);
+const t = useTranslations("adminDashboard.blogs");
 
   return (
     <div className="w-full">
@@ -22,13 +24,12 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
         {/* هدر جدول - فقط در دسکتاپ نمایش داده می‌شود */}
         <thead className="hidden md:table-header-group bg-background border-b border-gray-100 text-gray-500 text-sm">
           <tr>
-            <th className="px-6 py-4 font-medium">شناسه</th>
-            <th className="px-6 py-4 font-medium">عنوان مقاله</th>
+            <th className="px-6 py-4 font-medium">{t("id")}</th>
+            <th className="px-6 py-4 font-medium">{t("articleTitle")} </th>
             <th className="px-6 py-4 font-medium whitespace-nowrap">
-              زمان مطالعه
-            </th>
-            <th className="px-6 py-4 font-medium">تاریخ ایجاد</th>
-            <th className="px-6 py-4 font-medium text-center">عملیات</th>
+{t("readingTime")}            </th>
+            <th className="px-6 py-4 font-medium"> {t("createdDate")}</th>
+            <th className="px-6 py-4 font-medium text-center">{t("actions")}</th>
           </tr>
         </thead>
 
@@ -50,8 +51,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
               {/* شناسه */}
               <td className="flex justify-between items-center md:table-cell md:px-6 md:py-4 mb-3 md:mb-0 text-gray-500 font-mono text-sm border-b border-gray-50 md:border-none pb-2 md:pb-0">
                 <span className="md:hidden text-xs text-gray-400 font-medium">
-                  شناسه:
-                </span>
+{t("id")}:                </span>
                 <span>#{article.id}</span>
               </td>
 
@@ -64,7 +64,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                   {article.caption}
                   {article.category_id && (
                     <span className="inline-block ms-1 mt-2 px-2.5 py-1 bg-gray-100 text-gray-600 text-[10px] md:text-xs rounded-md">
-                      دسته {article.category_id}
+{t("category")} {article.category_id}
                     </span>
                   )}
                 </div>
@@ -73,8 +73,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
               {/* زمان مطالعه */}
               <td className="flex justify-between items-center md:table-cell md:px-6 md:py-4 mb-2 md:mb-0">
                 <span className="md:hidden text-xs text-gray-400 font-medium">
-                  زمان مطالعه:
-                </span>
+{t("readingTime")}:                </span>
                 <div className="flex items-center gap-1.5 text-gray-600 text-sm">
                   <Clock className="w-4 h-4 text-gray-400" />
                   {article.estimated_reading_time}
@@ -84,8 +83,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
               {/* تاریخ ایجاد */}
               <td className="flex justify-between items-center md:table-cell md:px-6 md:py-4 mb-4 md:mb-0">
                 <span className="md:hidden text-xs text-gray-400 font-medium">
-                  تاریخ ایجاد:
-                </span>
+{t("createdDate")}:                </span>
                 <div className="flex items-center gap-1.5 text-gray-600 text-sm">
                   <Calendar className="w-4 h-4 text-gray-400" />
                   <span>{FormatDate(article.created_at, "fa")}</span>
@@ -104,7 +102,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                   <Link
                     href={`/blogs/${article.id}`}
                     className="p-2 text-gray-400 hover:text-blue-600 bg-gray-50 hover:bg-blue-50 md:bg-transparent rounded-xl md:rounded-lg transition-colors flex-1 md:flex-none flex justify-center"
-                    title="مشاهده"
+title={t("view")}
                   >
                     <Eye className="w-5 h-5" />
                   </Link>
@@ -114,7 +112,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                       setOpenEditModal(true);
                     }}
                     className="p-2 text-gray-400 hover:text-green-600 bg-gray-50 hover:bg-green-50 md:bg-transparent rounded-xl md:rounded-lg transition-colors flex-1 md:flex-none flex justify-center"
-                    title="ویرایش"
+title={t("edit")}
                   >
                     <Edit className="w-5 h-5" />
                   </button>
@@ -124,7 +122,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                       setOpenDeleteModal(true);
                     }}
                     className="p-2 text-gray-400 hover:text-red-600 bg-gray-50 hover:bg-red-50 md:bg-transparent rounded-xl md:rounded-lg transition-colors flex-1 md:flex-none flex justify-center"
-                    title="حذف"
+title={t("delete")}
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>

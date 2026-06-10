@@ -7,6 +7,8 @@ import { FormatDate } from "@/utils/helper/FormatDate";
 import { Calendar, Users } from "lucide-react";
 import EnergyChart from "@/components/common/PieChart";
 import { ResponsiveContainer } from "recharts";
+import { useTranslations, useLocale } from "next-intl";
+
 import {
   BarChart,
   Bar,
@@ -22,24 +24,27 @@ interface IProps {
   data: IAdminDashboardData | null;
   user: TUserRes | null;
 }
-const AdminDashboardCharts = ({ data, user }: IProps) => {
+const AdminDashboardCharts = ({ data, user }: IProps) => {const t = useTranslations("adminDashboard.dashboard");
+const locale = useLocale();
+
   const bookingChartData = [
-    {
-      name: "در انتظار",
-      value: data?.bookings.pendingBookings,
-      fill: "#fbbf24",
-    },
-    {
-      name: "تایید شده",
-      value: data?.bookings.conformedBookings,
-      fill: "#34d399",
-    },
-    {
-      name: "لغو شده",
-      value: data?.bookings.canceledBookings,
-      fill: "#fb7185",
-    },
-  ];
+  {
+    name: t("bookingPending"),
+    value: data?.bookings.pendingBookings,
+    fill: "#fbbf24",
+  },
+  {
+    name: t("bookingConfirmed"),
+    value: data?.bookings.conformedBookings,
+    fill: "#34d399",
+  },
+  {
+    name: t("bookingCanceled"),
+    value: data?.bookings.canceledBookings,
+    fill: "#fb7185",
+  },
+];
+
 
   return (
     <>
@@ -48,7 +53,7 @@ const AdminDashboardCharts = ({ data, user }: IProps) => {
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-lg font-semibold text-slate-700 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-orange-500" />
-              تحلیل وضعیت رزروها
+{t("bookingAnalysis")}
             </h3>
           </div>
 
@@ -89,7 +94,7 @@ const AdminDashboardCharts = ({ data, user }: IProps) => {
           </div>
         </div>
         <CompleteProfile
-          lastEditText={` آخرین ویرایش  ${FormatDate(user?.user.updated_at || "", "fa")}`}
+          lastEditText={` ${t("lastEdit")} ${FormatDate(user?.user.updated_at || "", "fa")}`}
           percentage={user?.additionalPercentage}
           linkHref="/dashboard/admin/edit-profile"
         />

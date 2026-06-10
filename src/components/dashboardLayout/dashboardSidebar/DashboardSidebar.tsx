@@ -33,7 +33,7 @@ const adminBasePath = "/dashboard/admin";
 const DashboardSidebar = ({ role }: IProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const t = useTranslations("sellerDashboard.sidebar");
+  const t = useTranslations("sellerDashboard");
 
   const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
 
@@ -154,7 +154,7 @@ const DashboardSidebar = ({ role }: IProps) => {
       },
       {
         href: `${adminBasePath}/tours-management`,
-        label: "مدیریت تور ها",
+        label: t("toursManagement"),
         Icon: UsersIcon,
       },
       {
@@ -164,17 +164,17 @@ const DashboardSidebar = ({ role }: IProps) => {
       },
       {
         href: `${adminBasePath}/social-media`,
-        label: "شبکه های اجتماعی",
+        label: t("socialMediaManagement"),
         Icon: Globe,
       },
       {
         href: `${adminBasePath}/comments-management`,
-        label: "مدیریت کامنت ها",
+        label: t("adminCommentsManagement"),
         Icon: Chat,
       },
       {
         href: `${adminBasePath}/blogs`,
-        label: "مدیریت مقالات",
+        label: t("blogsManagement"),
         Icon: Newspaper,
       },
     ],
@@ -249,7 +249,7 @@ const DashboardSidebar = ({ role }: IProps) => {
           onConfirm={() => {
             deleteCookie("refreshToken");
             deleteCookie("accessToken");
-            toast.success("با موفقیت از حسابتان خارج شدید");
+            toast.success(t("logoutSuccess"));
             router.push("/");
           }}
         />

@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import SellerCommentsFiltersModal from "./SellerCommentsFilterModal";
 import { SellerChooseHouseModal } from "./SellerChooseHouseModal";
+import { useTranslations } from "next-intl";
 
 const SellerCommentsFilters = () => {
   const pathname = usePathname();
@@ -34,6 +35,7 @@ const SellerCommentsFilters = () => {
     params.set("page", "1");
     router.push(`${pathname}?${params.toString()}`);
   }, []);
+const t = useTranslations("sellerDashboard.comments");
 
   return (
     <div className="flex items-center gap-4 w-full">
@@ -46,8 +48,8 @@ const SellerCommentsFilters = () => {
          transition-colors text-sm font-medium cursor-pointer "
       >
         <House className="w-5 h-5" />
-        بر اساس خانه های شما
-      </button>
+{t("basedOnYourHouses")}
+   </button>
       <button
         onClick={() => setIsFilterOpen(true)}
         className="flex items-center gap-2 px-4 py-3  border
@@ -56,8 +58,7 @@ const SellerCommentsFilters = () => {
          transition-colors text-sm font-medium cursor-pointer "
       >
         <Filter className="w-5 h-5" />
-        فیلتر ها
-      </button>
+{t("filters")}         </button>
       {isFilterOpen && <SellerCommentsFiltersModal onClose={onClose} />}
       {openHouseModal && (
         <SellerChooseHouseModal

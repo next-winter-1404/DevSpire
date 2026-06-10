@@ -8,8 +8,11 @@ import { useSearchParams } from "next/navigation";
 import { useDebounce } from "use-debounce";
 import { SellerChooseHouseModal } from "@/modules/SellerDashboard/CommentsManagement/components/SellerChooseHouseModal";
 import ReserveFilterModal from "@/components/dashboard/FiltersModal";
+import { useTranslations } from "next-intl";
 
 const SellerReserveFilters = () => {
+  const t = useTranslations("sellerDashboard.reservations.filters");
+
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -50,7 +53,7 @@ const SellerReserveFilters = () => {
          transition-colors text-sm font-medium cursor-pointer "
       >
         <House className="w-5 h-5" />
-        بر اساس خانه های شما
+{t("yourHouses")}
       </button>
       <button
         onClick={() => setIsFilterOpen(true)}
@@ -60,7 +63,7 @@ const SellerReserveFilters = () => {
          transition-colors text-sm font-medium cursor-pointer "
       >
         <Filter className="w-5 h-5" />
-        فیلتر ها
+{t("filters")}
       </button>
       {isFilterOpen && <ReserveFilterModal onClose={onClose} />}
       {openChooseHouse && (

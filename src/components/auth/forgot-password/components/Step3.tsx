@@ -35,17 +35,17 @@ export default function Step3({ back }: Props) {
         const finalConfirm = convertToEnglishDigits(confirmPassword.trim());
 
         if (!email) {
-            setErrorMsg("ایمیل پیدا نشد، دوباره تلاش کنید");
+setErrorMsg(t("errors.emailNotFound"));
             return;
         }
 
         if (!finalPassword || !finalConfirm) {
-            setErrorMsg("لطفاً رمز عبور را وارد کنید");
+setErrorMsg(t("errors.passwordRequired"));
             return;
         }
 
         if (finalPassword !== finalConfirm) {
-            setErrorMsg("رمز عبور و تکرار آن یکسان نیست");
+setErrorMsg(t("errors.passMismatch"));
             return;
         }
         try {
@@ -60,16 +60,17 @@ export default function Step3({ back }: Props) {
                 newPassword: finalPassword,
             });
 
-            alert("رمز عبور با موفقیت تغییر کرد");
+alert(t("successMessage"));
             localStorage.removeItem("resetEmail");
             localStorage.removeItem("resetCode");
             localStorage.removeItem("resetUserId");
             router.push("/login");
         } catch (error: any) {
             const msg =
-                error?.response?.data?.message ||
-                error?.message ||
-                "خطا در تغییر رمز";
+    error?.response?.data?.message ||
+    error?.message ||
+    t("errors.resetFailed");
+
             setErrorMsg(msg);
         } finally {
             setLoading(false);
@@ -146,7 +147,8 @@ export default function Step3({ back }: Props) {
                         onClick={handleSubmit}
                         disabled={loading}
                         className="w-full h-[52px] lg:h-[62px] rounded-[40px] px-[20px] flex justify-center items-center bg-[#0D3B66] text-white text-base cursor-pointer transition-all duration-200 hover:bg-[#0D3B66]/80 disabled:opacity-50">
-                        {loading ? "در حال تغییر..." : t("submit")}
+                        {loading ? t("loading") : t("submit")}
+
                     </button>
                     {errorMsg && (
                         <p className="text-red-500 text-sm text-center">

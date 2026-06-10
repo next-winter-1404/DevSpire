@@ -9,6 +9,8 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import DateObject from "react-date-object";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 interface FilterModalProps {
   onClose: () => void;
@@ -20,6 +22,9 @@ export default function SellerCommentsFiltersModal({
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("sellerDashboard.comments");
+  const locale = useLocale();
+  const dir = locale === "fa" ? "rtl" : "ltr";
 
   const [order, setOrder] = useState<string>(
     searchParams.get("order") ?? "DESC",
@@ -77,20 +82,20 @@ export default function SellerCommentsFiltersModal({
     <div
       className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center
        justify-center p-4"
-      dir="rtl"
+      dir={dir}
     >
       <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-5">
         <div className="flex items-center justify-between mb-5 border-b pb-4">
           <div className="flex items-center gap-4">
             <h2 className="text-lg font-bold text-gray-800">
-              فیلتر و مرتب‌سازی
+              {t("filterAndSort")}
             </h2>
             <button
               onClick={resetFilters}
               className="flex items-center gap-1 text-red-500 hover:text-red-600 text-xs bg-red-50 px-2 py-1 rounded-md"
             >
               <Trash2 className="w-3 h-3" />
-              حذف فیلترها
+              {t("removeFilters")}
             </button>
           </div>
           <button
@@ -104,7 +109,7 @@ export default function SellerCommentsFiltersModal({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block mb-1.5 text-sm font-medium text-gray-700">
-              مرتب‌سازی بر اساس
+              {t("sortBy")}
             </label>
             <select
               value={sort}
@@ -112,30 +117,31 @@ export default function SellerCommentsFiltersModal({
               className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
             >
               <option value="" disabled>
-                انتخاب کنید...
+                {t("selectOption")}
               </option>
-              <option value="created_at">تاریخ ثبت</option>
-              <option value="rating">امتیاز</option>
+
+              <option value="created_at">{t("createdAt")}</option>
+              <option value="rating">{t("rating")}</option>
             </select>
           </div>
 
           <div>
             <label className="block mb-1.5 text-sm font-medium text-gray-700">
-              ترتیب نمایش
+              {t("order")}
             </label>
             <select
               value={order}
               onChange={(e) => setOrder(e.target.value)}
               className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
             >
-              <option value="DESC">نزولی (جدیدترین)</option>
-              <option value="ASC">صعودی (قدیمی‌ترین)</option>
+              <option value="DESC">{t("desc")}</option>
+              <option value="ASC">{t("asc")}</option>
             </select>
           </div>
 
           <div>
             <label className="block mb-1.5 text-sm font-medium text-gray-700">
-              امتیاز (حداقل)
+              {t("minRating")}
             </label>
             <input
               type="number"
@@ -144,13 +150,13 @@ export default function SellerCommentsFiltersModal({
               value={rating}
               onChange={(e) => setRating(e.target.value)}
               className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
-              placeholder="مثلاً 4"
+              placeholder={t("exampleRating")}
             />
           </div>
 
           <div>
             <label className="block mb-1.5 text-sm font-medium text-gray-700">
-              تعداد در صفحه
+              {t("perPage")}
             </label>
             <input
               type="number"
@@ -164,7 +170,7 @@ export default function SellerCommentsFiltersModal({
 
           <div className="sm:col-span-2">
             <label className="block mb-1.5 text-sm font-medium text-gray-700">
-              بازه زمانی
+              {t("dateRange")}
             </label>
             <DatePicker
               value={dateRange}
@@ -179,7 +185,7 @@ export default function SellerCommentsFiltersModal({
               containerClassName="w-full"
               inputClass="w-full bg-gray-50 border border-gray-200 rounded-lg
                px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
-              placeholder="شروع تا پایان را انتخاب کنید"
+              placeholder={t("selectDateRange")}
             />
           </div>
         </div>
@@ -189,13 +195,13 @@ export default function SellerCommentsFiltersModal({
             onClick={onClose}
             className="bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
           >
-            انصراف
+            {t("cancel")}
           </button>
           <button
             onClick={applyFilters}
             className="bg-[#0F2E53] text-white py-2.5 rounded-lg text-sm font-medium hover:bg-[#0a1e36] transition-colors"
           >
-            اعمال فیلترها
+            {t("applyFilters")}
           </button>
         </div>
       </div>

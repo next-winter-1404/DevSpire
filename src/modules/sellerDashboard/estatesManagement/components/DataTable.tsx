@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import { THouse } from "@/components/common/types";
 import ActionsModal from "./ActionsModal";
+import { useTranslations } from "next-intl";
 
 export default function UserHousesTable({
   data,
@@ -14,6 +15,8 @@ export default function UserHousesTable({
   data: THouse[];
   role: "admin" | "seller";
 }) {
+  const t = useTranslations("sellerDashboard.estates");
+
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
 
   const toggleMenu = (id: number) => {
@@ -22,13 +25,14 @@ export default function UserHousesTable({
 
   const getTransactionTypeLabel = (type: string) => {
     return type === "mortgage"
-      ? "رهن"
+      ? t("mortgage")
       : type === "rental"
-        ? "اجاره"
+        ? t("rental")
         : type === "direct_purchase"
-          ? "خرید و فروش"
-          : "رزرو";
+          ? t("sale")
+          : t("reservation");
   };
+
 
   return (
     <div className="w-full">
@@ -37,17 +41,17 @@ export default function UserHousesTable({
           <table className="w-full text-sm text-right min-w-[900px] ">
             <thead className="font-medium">
               <tr className="border-b border-[#DDDDDD]">
-                <th className="py-4 px-4 whitespace-nowrap">ملک و آدرس</th>
-                <th className="py-4 px-4 whitespace-nowrap">مشخصات</th>
-                <th className="py-4 px-4 whitespace-nowrap">قیمت (تومان)</th>
+                <th className="py-4 px-4 whitespace-nowrap">{t("houseAndAddress")}</th>
+                <th className="py-4 px-4 whitespace-nowrap">{t("specifications")}</th>
+                <th className="py-4 px-4 whitespace-nowrap">{t("price")}</th>
                 <th className="py-4 px-4 whitespace-nowrap text-center">
-                  امتیاز / نظرات
+                  {t("ratingAndComments")}
                 </th>
                 <th className="py-4 px-4 whitespace-nowrap text-center">
-                  آخرین بروزرسانی
+                  {t("lastUpdate")}
                 </th>
                 <th className="py-4 px-4 whitespace-nowrap text-center">
-                  عملیات
+                  {t("actions")}
                 </th>
               </tr>
             </thead>
@@ -89,20 +93,21 @@ export default function UserHousesTable({
 
                   <td className="py-4 px-4 text-gray-600 text-[16px]">
                     <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-1" title="ظرفیت">
+                      <div className="flex items-center gap-1" title={t("capacity")}
+                      >
                         <Users size={18} className="text-gray-400" />
                         <span>{row.capacity}</span>
                       </div>
                       <div
                         className="flex items-center gap-1"
-                        title="تعداد اتاق"
+                        title={t("rooms")}
                       >
                         <BedDouble size={18} className="text-gray-400" />
                         <span>{row.rooms}</span>
                       </div>
                       <div
                         className="flex items-center gap-1"
-                        title="حمام و دستشویی"
+                        title={t("bathrooms")}
                       >
                         <Bath size={18} className="text-gray-400" />
                         <span>{row.bathrooms}</span>
@@ -206,7 +211,7 @@ export default function UserHousesTable({
               <div className="flex flex-col items-center justify-center rounded-xl bg-gray-50 py-3 dark:bg-white/5">
                 <div className="flex items-center gap-1 text-gray-500">
                   <Users size={16} />
-                  <span className="text-xs">ظرفیت</span>
+                  <span className="text-xs">{t("capacity")}</span>
                 </div>
                 <span className="mt-1 font-bold text-foreground">
                   {row.capacity}
@@ -216,7 +221,7 @@ export default function UserHousesTable({
               <div className="flex flex-col items-center justify-center rounded-xl bg-gray-50 py-3 dark:bg-white/5">
                 <div className="flex items-center gap-1 text-gray-500">
                   <BedDouble size={16} />
-                  <span className="text-xs">اتاق</span>
+                  <span className="text-xs">{t("rooms")}</span>
                 </div>
                 <span className="mt-1 font-bold text-foreground">
                   {row.rooms}
@@ -226,7 +231,7 @@ export default function UserHousesTable({
               <div className="flex flex-col items-center justify-center rounded-xl bg-gray-50 py-3 dark:bg-white/5">
                 <div className="flex items-center gap-1 text-gray-500">
                   <Bath size={16} />
-                  <span className="text-xs">حمام</span>
+                  <span className="text-xs">{t("bathrooms")}</span>
                 </div>
                 <span className="mt-1 font-bold text-foreground">
                   {row.bathrooms}
@@ -236,7 +241,7 @@ export default function UserHousesTable({
 
             <div className="mt-4 flex items-center justify-between gap-3 border-t border-[#DDDDDD] pt-4 dark:border-white/10">
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500">قیمت</span>
+                <span className="text-xs text-gray-500">{t("price")}</span>
                 {row.discounted_price ? (
                   <div className="flex flex-col">
                     <span className="text-xs text-gray-400 line-through">
@@ -254,7 +259,7 @@ export default function UserHousesTable({
               </div>
 
               <div className="flex flex-col items-end">
-                <span className="text-xs text-gray-500">آخرین بروزرسانی</span>
+                <span className="text-xs text-gray-500">{t("lastUpdate")} </span>
                 <span className="text-xs text-gray-700 dark:text-gray-300">
                   {FormatDate(row.last_updated, "fa") || "-"}
                 </span>

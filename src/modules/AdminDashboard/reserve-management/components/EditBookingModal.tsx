@@ -11,6 +11,7 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { Controller } from "react-hook-form";
+import { useTranslations } from "next-intl";
 
 interface Props {
   reservation: TReservation;
@@ -19,6 +20,7 @@ interface Props {
 
 const EditBookingModal = ({ reservation, onClose }: Props) => {
   const router = useRouter();
+  const t = useTranslations("adminDashboard.reservations");
 
   const {
     register,
@@ -45,12 +47,12 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
       return res.data;
     },
     onSuccess: (data) => {
-      toast.success(data?.message || "رزرو با موفقیت ویرایش شد");
+      toast.success(data?.message || t("editSuccess"));
       router.refresh();
       onClose();
     },
     onError: () => {
-      toast.error("خطا در ویرایش رزرو");
+      toast.error(t("editError"));
     },
   });
 
@@ -62,7 +64,8 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
       <div className="w-full max-w-3xl bg-background rounded-2xl shadow-xl overflow-y-auto max-h-[90vh]">
         <div className="relative flex items-center justify-between border-b border-border p-5">
-          <h3 className="text-lg font-bold">ویرایش رزرو</h3>
+          <h3 className="text-lg font-bold">  {t("editReservation")}
+          </h3>
           <button
             onClick={onClose}
             className="absolute left-4 top-4 p-2 rounded-full bg-muted hover:bg-muted/80"
@@ -74,28 +77,29 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label>ایمیل</label>
+              <label>{t("email")}</label>
               <input {...register("sharedEmail", {})} className="input" />
             </div>
 
             <div>
-              <label>موبایل</label>
+              <label>{t("mobile")}</label>
               <input {...register("sharedMobile", {})} className="input" />
             </div>
           </div>
 
           <div className="flex items-center gap-4 justify-center">
-            <label>وضعیت رزرو</label>
+            <label>{t("reservationStatus")}</label>
             <select {...register("status")}>
-              <option value="pending">در انتظار</option>
-              <option value="confirmed">تایید شده</option>
-              <option value="canceled">رد شده</option>
+              <option value="pending">{t("pending")}</option>
+              <option value="confirmed">{t("confirmed")}</option>
+              <option value="canceled">{t("canceled")}</option>
             </select>
           </div>
 
           <div>
             <div className="flex justify-between items-center mb-3">
-              <h4 className="font-semibold">اطلاعات مسافران</h4>
+              <h4 className="font-semibold">   {t("travelerInfo")}
+              </h4>
               <button
                 type="button"
                 onClick={() =>
@@ -117,7 +121,7 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
   "
               >
                 <Plus size={16} />
-                افزودن مسافر
+                {t("addTraveler")}
               </button>
             </div>
 
@@ -138,7 +142,8 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <User size={18} />
-                      <span className="font-medium">مسافر {index + 1}</span>
+                      <span className="font-medium">  {t("traveler")} {index + 1}
+                      </span>
                     </div>
 
                     <button
@@ -158,7 +163,7 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm mb-2">نام</label>
+                      <label className="block text-sm mb-2">{t("firstName")}</label>
 
                       <input
                         {...register(`traveler_details.${index}.firstName`)}
@@ -167,7 +172,7 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
                     </div>
 
                     <div>
-                      <label className="block text-sm mb-2">نام خانوادگی</label>
+                      <label className="block text-sm mb-2">{t("lastName")} </label>
 
                       <input
                         {...register(`traveler_details.${index}.lastName`)}
@@ -176,7 +181,7 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
                     </div>
 
                     <div>
-                      <label className="block text-sm mb-2">کد ملی</label>
+                      <label className="block text-sm mb-2">{t("nationalId")} </label>
 
                       <input
                         {...register(`traveler_details.${index}.nationalId`)}
@@ -185,20 +190,19 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
                     </div>
 
                     <div>
-                      <label className="block text-sm mb-2">جنسیت</label>
+                      <label className="block text-sm mb-2">{t("gender")}</label>
 
                       <select
                         {...register(`traveler_details.${index}.gender`)}
                         className="input"
                       >
-                        <option value="male">مرد</option>
-
-                        <option value="female">زن</option>
+                        <option value="male">{t("male")}</option>
+                        <option value="female">{t("female")}</option>
                       </select>
                     </div>
 
                     <div className="md:col-span-2">
-                      <label className="block text-sm mb-2">تاریخ تولد</label>
+                      <label className="block text-sm mb-2"> {t("birthDate")}</label>
 
                       <Controller
                         control={control}
@@ -235,7 +239,8 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
               onClick={onClose}
               className="px-4 py-2 border border-border rounded-xl"
             >
-              انصراف
+              {t("cancel")}
+
             </button>
 
             <button
@@ -244,7 +249,7 @@ const EditBookingModal = ({ reservation, onClose }: Props) => {
               className="px-4 py-2 bg-primary text-white rounded-xl flex items-center gap-2"
             >
               {isPending && <Loader2 className="animate-spin" size={16} />}
-              ذخیره تغییرات
+              {t("saveChanges")}
             </button>
           </div>
         </form>

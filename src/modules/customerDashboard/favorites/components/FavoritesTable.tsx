@@ -5,9 +5,11 @@ import { MoreVertical } from "lucide-react";
 import { IFavorites } from "../types";
 import Image from "next/image";
 import FavoritesActionsModal from "./FavoritesActionModal";
+import { useTranslations } from "next-intl";
 
 export default function FavoritesTable({ data }: { data: IFavorites[] }) {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+  const t = useTranslations("customerDashboard.favorites");
 
   return (
     <div className="w-full">
@@ -15,14 +17,18 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
         <table className="w-full min-w-[850px] text-sm text-right">
           <thead className="text-gray-600 dark:text-gray-400 font-medium">
             <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
-              <th className="py-4 px-4 whitespace-nowrap">نام اقامتگاه</th>
-              <th className="py-4 px-4 whitespace-nowrap">آدرس</th>
-              <th className="py-4 px-4 text-center whitespace-nowrap">
-                امتیاز
+              <th className="py-4 px-4 whitespace-nowrap">{t("estateName")}
               </th>
-              <th className="py-4 px-4 whitespace-nowrap">قیمت</th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("address")}
+              </th>
               <th className="py-4 px-4 text-center whitespace-nowrap">
-                عملیات
+                {t("rate")}
+
+              </th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("price")}
+              </th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">
+                {t("actions")}
               </th>
             </tr>
           </thead>
@@ -68,7 +74,8 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
                 </td>
 
                 <td className="py-4 px-4 text-gray-600 dark:text-gray-300 whitespace-nowrap align-middle">
-                  {Number(row.house?.price || 0).toLocaleString()} تومان
+                  {Number(row.house?.price || 0).toLocaleString()} {t("toman")}
+
                 </td>
 
                 <td className="py-4 px-4 text-center relative align-middle">
@@ -81,7 +88,7 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
 
         {data.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            موردی در علاقه‌مندی‌ها وجود ندارد.
+{t("emptyTable")}
           </div>
         )}
       </div>
@@ -107,7 +114,7 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
 
                 <div className="min-w-0">
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    نام اقامتگاه
+{t("estateName")}
                   </p>
                   <h3 className="mt-1 text-[15px] font-bold text-foreground line-clamp-2">
                     {row.house?.title || "-"}
@@ -122,7 +129,8 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
 
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="sm:col-span-2">
-                <p className="text-xs text-gray-500 dark:text-gray-400">آدرس</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t("address")}
+</p>
                 <p className="mt-1 text-sm font-medium text-foreground line-clamp-2">
                   {row.house?.address || "-"}
                 </p>
@@ -130,7 +138,7 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
 
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  امتیاز
+{t("rate")}
                 </p>
                 <div className="mt-1">
                   <span className="bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400 px-2 py-1 rounded text-xs inline-block">
@@ -140,9 +148,11 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
               </div>
 
               <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">قیمت</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t("price")}
+</p>
                 <p className="mt-1 text-sm font-medium text-foreground whitespace-nowrap">
-                  {Number(row.house?.price || 0).toLocaleString()} تومان
+                  {Number(row.house?.price || 0).toLocaleString()} {t("toman")}
+
                 </p>
               </div>
             </div>
@@ -151,7 +161,7 @@ export default function FavoritesTable({ data }: { data: IFavorites[] }) {
 
         {data.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            موردی در علاقه‌مندی‌ها وجود ندارد.
+{t("emptyTable")}
           </div>
         )}
       </div>

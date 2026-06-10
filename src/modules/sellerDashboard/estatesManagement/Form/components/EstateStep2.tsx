@@ -7,6 +7,9 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import dynamic from "next/dynamic";
 
+
+import { useTranslations } from "next-intl";
+
 const MapView = dynamic(() => import("@/components/common/NeshanMap"), {
   ssr: false,
   loading: () => (
@@ -21,9 +24,10 @@ interface IProps {
   handlePrev: () => void;
   handleNext: () => void;
   onChangeData: (data: IGeneraData) => void;
-}
+}  
 
 const validationSchema = z.object({
+  
   location: z.string().min(1, "لوکیشن الزامی است"),
   address: z.string().min(1, "آدرس الزامی است"),
 });
@@ -34,6 +38,8 @@ const EstateStep2 = ({
   handlePrev,
   onChangeData,
 }: IProps) => {
+  const t = useTranslations("sellerDashboard.estateForm.step2");
+
   const {
     register,
     handleSubmit,
@@ -57,7 +63,7 @@ const EstateStep2 = ({
             htmlFor="address"
             className="font-regular text-[16px] text-[#1E2022]"
           >
-            منطقه
+  {t("location")}
           </label>
           <input
             {...register("location")}
@@ -76,7 +82,8 @@ const EstateStep2 = ({
             htmlFor="address"
             className="font-regular text-[16px] text-[#1E2022]"
           >
-            آدرس
+              {t("address")}
+
           </label>
           <input
             {...register("address")}
@@ -101,13 +108,13 @@ const EstateStep2 = ({
           className="flex items-center gap-2 py-[13px] px-3 text-[#777777] border border-[#777777] rounded-[16px] cursor-pointer"
         >
           <CurveArrow className="rotate-270" />
-          <span className="font-regular text-[16px]">مرحله قبل</span>
+          <span className="font-regular text-[16px]">{t("prevStep")}</span>
         </button>
         <button
           type="submit"
           className="flex items-center gap-2 py-[13px] px-3 text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer"
         >
-          <span className="font-regular text-[16px]">تایید و ادامه</span>
+          <span className="font-regular text-[16px]"></span>
           <CurveArrow className="rotate-90" />
         </button>
       </div>

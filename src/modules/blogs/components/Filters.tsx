@@ -161,7 +161,7 @@ const Filters = ({
 
           <div className="flex flex-col gap-3">
             <span className="text-[15px] font-semibold text-gray-700 dark:text-gray-200">
-              ترتیب مرتب سازی
+{t("order")}
             </span>
 
             <CustomSelect
@@ -173,7 +173,7 @@ const Filters = ({
 
           <div className="flex flex-col gap-3">
             <span className="text-[15px] font-semibold text-gray-700 dark:text-gray-200">
-              تعداد نمایش
+{t("limit")}
             </span>
 
             <CustomSelect

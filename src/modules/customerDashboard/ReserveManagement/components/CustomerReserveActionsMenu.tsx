@@ -5,8 +5,11 @@ import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
 import ReservationDetailsModal from "@/modules/sellerDashboard/ReservesManagement/components/ReserveDetailsModal";
 import { useReservation } from "@/modules/sellerDashboard/ReservesManagement/services/hooks/useReservation";
 
+import { useTranslations, useLocale } from "next-intl";
 
 const ReserveActionsMenu = ({ id }: { id: number }) => {
+  const t = useTranslations("customerDashboard.reserves");
+  const locale = useLocale();
   const [openDetailModal, setOpenDetailModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
@@ -14,7 +17,7 @@ const ReserveActionsMenu = ({ id }: { id: number }) => {
 
   return (
     <>
-      <DropdownMenu.Root dir="rtl">
+      <DropdownMenu.Root dir={locale === "fa" ? "rtl" : "ltr"}>
         <DropdownMenu.Trigger asChild>
           <button className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-white/10">
             <MoreVertical className="w-5 h-5" />
@@ -52,7 +55,7 @@ const ReserveActionsMenu = ({ id }: { id: number }) => {
               "
             >
               <Info className="w-4 h-4" />
-              <span>جزئیات</span>
+              <span>{t("details")}</span>
             </DropdownMenu.Item>
 
             <DropdownMenu.Item
@@ -68,7 +71,7 @@ const ReserveActionsMenu = ({ id }: { id: number }) => {
               "
             >
               <Trash2 className="w-4 h-4" />
-              <span>حذف</span>
+              <span>{t("delete")}</span>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>

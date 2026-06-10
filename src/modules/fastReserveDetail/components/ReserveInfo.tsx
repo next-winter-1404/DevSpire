@@ -22,7 +22,7 @@ const ReserveInfo = ({ house }: { house: THouse }) => {
   return (
     <div className=" w-full flex flex-col gap-3 items-start overflow-hidden">
       <h2 className="text-foreground text-[24px] font-bold ">
-        {`چرا  ${house.title}  رو انتخاب کنیم؟`}
+  {t("whyChoose", { title: house.title })}
       </h2>
       <div
         ref={textRef}

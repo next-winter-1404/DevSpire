@@ -5,25 +5,39 @@ import { MoreVertical } from "lucide-react";
 import { TReservation } from "@/components/common/types";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import ReserveActionsMenu from "./CustomerReserveActionsMenu";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function ReservationTable({ data }: { data: TReservation[] }) {
+  const t = useTranslations("customerDashboard.reserves");
+  const locale = useLocale();
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+  const isRTL = locale === "fa";
 
   return (
     <div className="w-full">
       <div className="hidden md:block overflow-x-auto">
-        <table className="w-full min-w-[900px] text-sm text-right">
+        <table className={`w-full min-w-[900px] text-sm ${isRTL ? "text-right" : "text-left"}`}>
           <thead className="text-gray-600 dark:text-gray-400 font-medium">
+
+
             <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
-              <th className="py-4 px-4 whitespace-nowrap">نام اقامتگاه</th>
-              <th className="py-4 px-4 whitespace-nowrap">اطلاعات مسافرین</th>
-              <th className="py-4 px-4 whitespace-nowrap">تاریخ ثبت رزرو</th>
-              <th className="py-4 px-4 whitespace-nowrap">قیمت</th>
-              <th className="py-4 px-4 text-center whitespace-nowrap">
-                وضعیت رزرو
+              <th className="py-4 px-4 whitespace-nowrap">
+                {t("houseName")}
+              </th>
+              <th className="py-4 px-4 whitespace-nowrap">
+                {t("travelerInfo")}
+              </th>
+              <th className="py-4 px-4 whitespace-nowrap">
+                {t("createdAt")}
+              </th>
+              <th className="py-4 px-4 whitespace-nowrap">
+                {t("price")}
               </th>
               <th className="py-4 px-4 text-center whitespace-nowrap">
-                عملیات
+                {t("status")}
+              </th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">
+                {t("actions")}
               </th>
             </tr>
           </thead>
@@ -54,7 +68,9 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
 
                         {travelersCount > 1 && (
                           <span className="text-xs text-gray-500 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-2 py-0.5 rounded-full">
-                            +{travelersCount - 1} نفر
+                            {t("plusOthers", {
+                              count: travelersCount - 1,
+                            })}
                           </span>
                         )}
                       </div>
@@ -67,12 +83,12 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
                     {FormatDate(row.created_at, "fa")}
                   </td>
 
-                  <td className="py-4 px-4 text-gray-500 dark:text-gray-400 align-middle whitespace-nowrap">
+                  <td className="py-4 px-4 whitespace-nowrap">
                     {row.house?.price
-                      ? Number(row.house.price).toLocaleString()
-                      : 0}{" "}
-                    تومان
+                      ? `${Number(row.house.price).toLocaleString(locale)} ${t("toman")}`
+                      : `0 ${t("toman")}`}
                   </td>
+
 
                   <td className="py-4 px-3 whitespace-nowrap text-center align-middle">
                     <StatusBadge status={row.status} />
@@ -89,7 +105,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
 
         {data.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            رزروی برای نمایش وجود ندارد.
+            {t("noReserves")}
           </div>
         )}
       </div>
@@ -108,7 +124,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0 flex-1">
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    نام اقامتگاه
+                    {t("houseName")}
                   </p>
                   <h3 className="mt-1 text-[15px] font-bold text-foreground line-clamp-2">
                     {row.house?.title || "-"}
@@ -123,7 +139,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    اطلاعات مسافرین
+                    {t("travelerInfo")}
                   </p>
 
                   {firstTraveler ? (
@@ -134,7 +150,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
 
                       {travelersCount > 1 && (
                         <span className="text-xs text-gray-500 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-2 py-0.5 rounded-full">
-                          +{travelersCount - 1} نفر
+                          {t("plusOthers", { count: travelersCount - 1 })}
                         </span>
                       )}
                     </div>
@@ -145,7 +161,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
 
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    تاریخ ثبت رزرو
+                    {t("createdAt")}
                   </p>
                   <p className="mt-1 text-sm font-medium text-foreground whitespace-nowrap">
                     {FormatDate(row.created_at, "fa")}
@@ -154,19 +170,20 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
 
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    قیمت
+                    {t("price")}
+
                   </p>
                   <p className="mt-1 text-sm font-medium text-foreground whitespace-nowrap">
                     {row.house?.price
-                      ? Number(row.house.price).toLocaleString()
+                      ? Number(row.house.price).toLocaleString(locale)
                       : 0}{" "}
-                    تومان
+                    {t("toman")}
                   </p>
                 </div>
 
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    وضعیت رزرو
+                    {t("status")}
                   </p>
                   <div className="mt-1">
                     <StatusBadge status={row.status} />
@@ -179,7 +196,7 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
 
         {data.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            رزروی برای نمایش وجود ندارد.
+            {t("noReserves")}
           </div>
         )}
       </div>
@@ -188,20 +205,22 @@ export default function ReservationTable({ data }: { data: TReservation[] }) {
 }
 
 function StatusBadge({ status }: { status: string }) {
-  let label = "نامشخص";
-  let colorClasses =
+
+  const t = useTranslations("customerDashboard.reserves");
+
+  let label = t("unknown"); let colorClasses =
     "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200";
 
   if (status === "confirmed") {
-    label = "تایید شده";
+    label = t("statusConfirmed");
     colorClasses =
       "bg-teal-100 text-teal-700 dark:bg-teal-500/10 dark:text-teal-400";
   } else if (status === "pending") {
-    label = "در انتظار تایید";
+    label = t("statusPending");
     colorClasses =
       "bg-amber-100 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400";
   } else if (status === "canceled") {
-    label = "لغو شده";
+    label = t("statusCanceled");
     colorClasses =
       "bg-red-100 text-red-500 dark:bg-red-500/10 dark:text-red-400";
   }

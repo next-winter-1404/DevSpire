@@ -27,25 +27,25 @@ const CustomerDashboardTopCards = ({
           {
             icon: DotList,
             title: t("allOfReserves"),
-            value: allReserves || "موردی یافت نشد",
+            value: allReserves || t("notFound"),
             link: "dashboard/customer/reserves-management"
           },
           {
             icon: CheckList,
             title: t("activeReserves"),
-            value: activeReserves || "موردی یافت نشد",
+            value: activeReserves || t("notFound"),
             link: "dashboard/customer/reserves-management"
           },
           {
             icon: NotPaid,
-            title: "تایید نشده",
-            value: payments || "موردی یافت نشد",
+            title: t("notApproved"),
+            value: payments || t("notFound"),
             link: "dashboard/customer/payments"
           },
           {
             icon: Heart,
             title: t("favorites"),
-            value: favorites || "موردی یافت نشد",
+            value: favorites || t("notFound"),
             link: "dashboard/customer/favorites"
           },
         ]}

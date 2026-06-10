@@ -27,7 +27,7 @@ const CompleteProfile: React.FC<CompleteProfileProps> = ({
             {t("profCompletionChart")}
           </h2>
           <p className="text-[14px] sm:text-[16px] leading-6 text-[#777777] dark:text-[#E4E4E4]">
-            پروفایل باید حداقل ۷۰٪ تکمیل شده باشد.
+            {t("profileCompletionHint")}
           </p>
         </div>
 
@@ -35,13 +35,13 @@ const CompleteProfile: React.FC<CompleteProfileProps> = ({
           href={linkHref}
           className="w-fit rounded-[40px] border border-[#DDDDDD] px-4 py-[10px] text-sm sm:text-base"
         >
-          {linkText || "ویرایش پروفایل"}
+          {linkText || t("editProfile")}
         </Link>
       </div>
 
       <div className="flex flex-col-reverse gap-6 md:flex-row md:items-end md:justify-between">
         <span className="text-[13px] sm:text-[14px] text-[#777777] dark:text-[#E4E4E4]">
-          {lastEditText}
+          {lastEditText || t("lastEditUnknown")}
         </span>
 
         <div className="flex justify-center md:justify-end">

@@ -17,7 +17,8 @@ export default function Step2({ next, back }: Props) {
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const inputRefs = Array.from({ length: 6 }, () => useRef<HTMLInputElement>(null));
-    const t = useTranslations("auth.step2");
+    const t = useTranslations("auth.register.step2")
+;
     const locale = useLocale();
     const [canResend, setCanResend] = useState(false);
     const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
@@ -52,12 +53,12 @@ export default function Step2({ next, back }: Props) {
         const code = otp.join("");
 
         if (code.length !== 6) {
-            setErrorMsg("کد ۶ رقمی را کامل کنید");
+setErrorMsg(t("errors.codeIncomplete"));
             return;
         }
 
         if (!storedTempUserId) {
-            setErrorMsg("شناسه کاربر پیدا نشد. لطفاً دوباره ثبت‌نام را انجام دهید.");
+setErrorMsg(t("errors.userIdNotFound"));
             return;
         }
 
@@ -75,7 +76,7 @@ export default function Step2({ next, back }: Props) {
             const returnedUserId = res.data.userId;
 
             if (!returnedUserId) {
-                setErrorMsg("شناسه کاربر از سرور دریافت نشد");
+setErrorMsg(t("errors.userIdMissingFromServer"));
                 return;
             }
 
@@ -89,7 +90,7 @@ export default function Step2({ next, back }: Props) {
             if (error.response?.data?.message) {
                 setErrorMsg(error.response.data.message);
             } else {
-                setErrorMsg("ارتباط با سرور برقرار نشد");
+setErrorMsg(t("errors.serverConnection"));
             }
 
         } finally {
@@ -115,7 +116,7 @@ export default function Step2({ next, back }: Props) {
 
         } catch (error: any) {
             setErrorMsg(
-                error.response?.data?.message || "ارسال مجدد کد با خطا مواجه شد"
+error.response?.data?.message || t("errors.resendFailed")
             );
         } finally {
             setLoading(false);
@@ -199,7 +200,7 @@ export default function Step2({ next, back }: Props) {
                                 onClick={handleResend}
                                 className="text-[#0D3B66] text-[14px] underline"
                             >
-                                ارسال مجدد کد
+{t("resendCode")}
                             </button>
                         ) : (
                             <span className="text-[14px] text-[#1E2022]">
@@ -215,7 +216,7 @@ export default function Step2({ next, back }: Props) {
                         onClick={handleVerify}
                         disabled={loading}
                         className=" w-full h-[52px] lg:h-[62px] rounded-[40px] flex justify-center items-center bg-[#0D3B66] text-white text-base transition-all duration-200 hover:bg-[#0D3B66]/80 animate-[fadeText_0.7s_ease]">
-                        {loading ? "در حال بررسی..." : t("confirmContinue")}
+{loading ? t("loading") : t("confirmContinue")}
                     </button>
                 </div>
             </div>

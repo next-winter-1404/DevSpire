@@ -8,6 +8,7 @@ import httpClient from "@/core/interceptor/axios";
 import toast from "react-hot-toast";
 import { useRouter } from "@/i18n/routing";
 import axios from "axios";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   payment: IPayment;
@@ -16,6 +17,7 @@ interface IProps {
 
 const EditPaymentModal = ({ onClose, payment }: IProps) => {
   const router = useRouter();
+const t = useTranslations("customerDashboard.payments");
 
   const {
     register,
@@ -40,13 +42,13 @@ const EditPaymentModal = ({ onClose, payment }: IProps) => {
       }
     },
     onSuccess: (data) => {
-      toast.success(data?.message || "ویرایش موفقیت امیز بود");
+toast.success(data?.message || t("editSuccess"));
       onClose();
       router.refresh();
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        toast.error(err.response?.data?.message || "مشکلی پیش آمده است");
+toast.error(err.response?.data?.message || t("error"));
       }
     },
   });
@@ -67,7 +69,7 @@ const EditPaymentModal = ({ onClose, payment }: IProps) => {
       >
         <div className=" relative flex items-center justify-between border-b border-border p-5">
           <h3 className="text-lg font-bold text-foreground">
-            ویرایش اطلاعات پرداخت
+{t("editPayment")}
           </h3>
 
           <button
@@ -83,21 +85,22 @@ const EditPaymentModal = ({ onClose, payment }: IProps) => {
           <div className="flex w-full flex-col gap-4">
             <div className="relative flex w-full flex-col gap-3 pb-6">
               <label className="text-[15px] font-bold text-foreground">
-                مقدار پرداخت
+{t("amount")}
               </label>
 
               <input
                 type="number"
-                placeholder="مقدار پرداخت را وارد کنید"
+placeholder={t("amountPlaceholder")}
                 {...register("amount", {
-                  required: "مقدار پرداخت الزامی است",
-                  min: {
-                    value: 1,
-                    message: "مقدار پرداخت باید بیشتر از صفر باشد",
-                  },
-                  validate: (value) => {
-                    !isNaN(Number(value)) || "مقدار پرداخت باید عدد باشد";
-                  },
+                required: t("amountRequired"),
+min: {
+  value: 1,
+  message: t("amountMin"),
+},
+validate: (value) => {
+  return !isNaN(Number(value)) || t("amountMustBeNumber");
+},
+
                 })}
                 className={`w-full rounded-2xl  bg-background px-4 py-3 text-sm outline-none 
                     transition-all focus:ring-2 focus:ring-ring  border border-[#777777] ${
@@ -114,21 +117,22 @@ const EditPaymentModal = ({ onClose, payment }: IProps) => {
 
             <div className="relative flex w-full flex-col gap-3 pb-6">
               <label className="text-[15px] font-bold text-foreground">
-                توضیحات پرداخت
+placeholder={t("descriptionPlaceholder")}
               </label>
               <textarea
                 rows={4}
-                placeholder="توضیحات را وارد کنید"
+placeholder={t("descriptionPlaceholder")}
                 {...register("description", {
-                  required: "توضیحات الزامی است",
-                  minLength: {
-                    value: 5,
-                    message: "حداقل 5 کاراکتر وارد کنید",
-                  },
-                  maxLength: {
-                    value: 300,
-                    message: "حداکثر 300 کاراکتر مجاز است",
-                  },
+                 required: t("descriptionRequired"),
+minLength: {
+  value: 5,
+  message: t("descriptionMin"),
+},
+maxLength: {
+  value: 300,
+  message: t("descriptionMax"),
+},
+
                 })}
                 className={`w-full resize-none rounded-2xl border
   bg-background px-4 py-3 text-sm leading-7 
@@ -151,7 +155,7 @@ const EditPaymentModal = ({ onClose, payment }: IProps) => {
                 className="cursor-pointer rounded-xl border border-border
                  px-4 py-2 text-sm text-muted-foreground transition-all hover:bg-muted"
               >
-                انصراف
+{t("cancel")}
               </button>
 
               <button
@@ -164,7 +168,7 @@ const EditPaymentModal = ({ onClose, payment }: IProps) => {
                 {isSubmitting && isPending ? (
                   <>
                     <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-                    در حال ذخیره...
+{t("saveChanges")}
                   </>
                 ) : (
                   "ذخیره تغییرات"

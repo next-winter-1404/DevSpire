@@ -5,14 +5,14 @@ import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import PaymentsFilterModal from "./PaymentsFiltersModal";
-
+import { useTranslations } from "next-intl";
 const PaymentsFilters = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
-
+  const t = useTranslations("customerDashboard.payments");
   const onClose = () => {
     setIsFilterOpen(false);
   };
@@ -39,8 +39,7 @@ const PaymentsFilters = () => {
          transition-colors text-sm font-medium cursor-pointer "
       >
         <Filter className="w-5 h-5" />
-        فیلتر ها
-      </button>
+ {t("filters")}      </button>
       {isFilterOpen && <PaymentsFilterModal onClose={onClose} />}
     </div>
   );

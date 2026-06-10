@@ -4,14 +4,15 @@ import NotificationsView from "@/modules/SellerDashboard/Notifications/views/Not
 import AllNotificationsView from "./AllNotificationsView";
 import { Suspense } from "react";
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
+import { getTranslations } from "next-intl/server";
 
 interface IProps {
   params: Record<string, string>;
   tab: string;
 }
 
-const AdminNotificationsView = ({ params, tab }: IProps) => {
-  const renderTab = () => {
+const AdminNotificationsView = async ({ params, tab }: IProps) => {
+  const t = await getTranslations("adminDashboard.notifications"); const renderTab = () => {
     switch (tab) {
       case "1":
         return (
@@ -34,7 +35,7 @@ const AdminNotificationsView = ({ params, tab }: IProps) => {
       case "3":
         return <SendNotification />;
       default:
-        return "صفحه مورد نظر یافت نشد";
+        return t("pageNotFound");
     }
   };
 
@@ -43,9 +44,9 @@ const AdminNotificationsView = ({ params, tab }: IProps) => {
       <div>
         <TabsSections
           options={[
-            { id: 1, label: "همه ی اعلان های سایت" },
-            { id: 2, label: "اعلان های شما" },
-            { id: 3, label: "ارسال اعلان" },
+            { id: 1, label: t("allSiteNotifications") },
+            { id: 2, label: t("yourNotifications") },
+            { id: 3, label: t("sendNotification") },
           ]}
         />
       </div>

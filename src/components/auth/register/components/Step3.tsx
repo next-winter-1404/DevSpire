@@ -17,7 +17,8 @@ export default function Step3({ back }: Props) {
     const [storedUserId, setStoredUserId] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
-    const t = useTranslations("auth.step3");
+    const t = useTranslations("auth.register.step3")
+;
     const locale = useLocale();
     const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
     useEffect(() => {
@@ -38,12 +39,12 @@ export default function Step3({ back }: Props) {
         console.log("Submit userIdFromStorage:", userIdFromStorage);
 
         if (!userIdFromStorage) {
-            setErrorMsg("شناسه کاربر پیدا نشد");
+setErrorMsg(t("errors.userIdNotFound"));
             return;
         }
 
         if (!phoneNumber.trim()) {
-            setErrorMsg("شماره موبایل را وارد کنید");
+setErrorMsg(t("errors.phoneRequired"));
             return;
         }
 
@@ -51,17 +52,17 @@ export default function Step3({ back }: Props) {
         const normalizedConfirmPassword = toEnglishDigits(confirmPassword);
 
         if (!normalizedPassword || !normalizedConfirmPassword) {
-            setErrorMsg("لطفاً رمز عبور و تکرار آن را وارد کنید");
+setErrorMsg(t("errors.passwordsRequired"));
             return;
         }
 
         if (normalizedPassword !== normalizedConfirmPassword) {
-            setErrorMsg("رمز عبور و تکرار آن یکسان نیستند");
+setErrorMsg(t("errors.passMismatch"));
             return;
         }
 
         if (normalizedPassword.length < 8) {
-            setErrorMsg("رمز عبور باید حداقل ۸ کاراکتر باشد");
+setErrorMsg(t("errors.passwordMinLength"));
             return;
         }
 
@@ -90,11 +91,11 @@ const data = res.data;
             localStorage.removeItem("tempUserId");
             localStorage.removeItem("userId");
 
-            alert("ثبت‌نام با موفقیت کامل شد");
+alert(t("successMessage"));
 
         }catch (error: any) {
     console.error("Complete registration error:", error);
-    setErrorMsg(error.response?.data?.message || "خطا در ارتباط با سرور");
+setErrorMsg(error.response?.data?.message || t("errors.serverConnection"));
 
         } finally {
             setLoading(false);
@@ -139,7 +140,7 @@ const data = res.data;
                             type="text"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(toEnglishDigits(e.target.value))}
-                            placeholder={t("phonPlaceholder")}
+placeholder={t("phonePlaceholder")}
                             className={`w-full h-[52px] lg:h-[62px] rounded-[40px] bg-[#F5F5F5] p-[20px] ${direction === "rtl" ? "pr-[55px] text-right" : "pl-[55px] text-left"} outline-none placeholder:text-[#665d55] text-[14px] transition-all duration-300 focus:scale-[1.01] focus:shadow-[0_0_10px_rgba(13,59,102,0.15)] animate-[fadeText_0.7s_ease]`} />
                         <Image
                             src="/icons/fastReservePage/Frame.svg"
@@ -193,7 +194,7 @@ const data = res.data;
                         onClick={handleSubmit}
                         disabled={loading}
                         className=" w-full h-[52px] lg:h-[62px] rounded-[40px] px-[20px] flex justify-center items-center bg-[#0D3B66] text-white text-base cursor-pointer transition-all duration-200 hover:bg-[#0D3B66]/80 disabled:opacity-50 disabled:cursor-not-allowed animate-[fadeText_0.7s_ease]">
-                        {loading ? "در حال ثبت..." : t("submit")}
+{loading ? t("loading") : t("submit")}
                     </button>
                 </div>
             </div>

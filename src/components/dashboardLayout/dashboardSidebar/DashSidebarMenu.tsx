@@ -32,7 +32,7 @@ const adminBasePath = "/dashboard/admin";
 const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const t = useTranslations("sellerDashboard.sidebar");
+  const t = useTranslations("sellerDashboard");
 
   const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
 
@@ -238,7 +238,7 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
               onConfirm={() => {
                 deleteCookie("refreshToken");
                 deleteCookie("accessToken");
-                toast.success("با موفقیت از حسابتان خارج شدید");
+toast.success(t("logoutSuccess"));
                 router.push("/");
               }}
             />

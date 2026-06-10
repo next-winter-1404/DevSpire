@@ -8,9 +8,9 @@ import toast from "react-hot-toast";
 import { LogOut, Settings, User } from "lucide-react";
 import { DashboardIcon } from "@radix-ui/react-icons";
 import { useRouter } from "@/i18n/routing";
-import { useLocale } from "next-intl";
 import LogoutModal from "@/components/common/LogoutModal";
 import { TUser } from "@/modules/mortgageRentDetail/types";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function ProfileDropdown({ data }: { data: TUser }) {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function ProfileDropdown({ data }: { data: TUser }) {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
-
+  const t = useTranslations("profileDropdown");
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -58,12 +58,11 @@ export default function ProfileDropdown({ data }: { data: TUser }) {
       </button>
       {isOpen && (
         <div
-          className="absolute left-0 mt-3 w-50 p-2 bg-[#ffff]
-            dark:bg-[#27272A] border
-           border-gray-100 rounded-2xl
-         shadow-2xl z-50 animate-in fade-in 
-         zoom-in-95 duration-200"
+          className={`absolute top-full mt-2 w-48 p-2 bg-[#ffff] dark:bg-[#27272A] 
+    border border-gray-100 rounded-2xl shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-200
+    ${locale === "fa" ? "left-0" : "right-0"}`}
         >
+
           <div className="px-4 py-3 border-b border-gray-50 text-right">
             <p className="text-sm font-semibold text-primary ">
               {data.firstName
@@ -77,19 +76,18 @@ export default function ProfileDropdown({ data }: { data: TUser }) {
 
           <div className="py-2 text-right">
             <Link
-              href={`/dashboard/${
-                data.role == "seller"
-                  ? "seller"
-                  : data.role == "buyer"
-                    ? "customer"
-                    : "admin"
-              }`}
+              href={`/dashboard/${data.role == "seller"
+                ? "seller"
+                : data.role == "buyer"
+                  ? "customer"
+                  : "admin"
+                }`}
               className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600
                hover:bg-gray-50 hover:text-[#10375c] transition-colors"
               onClick={() => setIsOpen(false)}
             >
               <DashboardIcon />
-              داشبورد
+              {t("dashboard")}
             </Link>
           </div>
 
@@ -100,7 +98,7 @@ export default function ProfileDropdown({ data }: { data: TUser }) {
               onClick={() => setOpenLogoutModal(true)}
             >
               <LogOut size={18} />
-              خروج از حساب
+              {t("logout")}
             </button>
           </div>
           {openLogoutModal && (
@@ -111,7 +109,7 @@ export default function ProfileDropdown({ data }: { data: TUser }) {
                 setIsOpen(false);
                 deleteCookie("refreshToken");
                 deleteCookie("accessToken");
-                toast.success("با موفقیت از حسابتان خارج شدید");
+                toast.success(t("logoutSuccess"));
                 router.push("/");
                 router.refresh();
               }}

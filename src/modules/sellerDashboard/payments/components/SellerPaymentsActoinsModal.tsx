@@ -13,6 +13,7 @@ import httpClient from "@/core/interceptor/axios";
 import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import EditPaymentModal from "./EditPaymentModal";
+import { useTranslations } from "next-intl";
 
 
 const PaymentsActionsMenu = ({
@@ -25,6 +26,7 @@ const PaymentsActionsMenu = ({
   detail: IPayment;
 }) => {
   const router = useRouter();
+const t = useTranslations("customerDashboard.payments");
 
   const [openDetailModal, setOpenDetailModal] = useState<boolean>(false);
   const [openConfirm, setOpenConfirm] = useState<boolean>(false);
@@ -34,14 +36,14 @@ const PaymentsActionsMenu = ({
   const { mutate: verify, isPending } = useMutation({
     mutationFn: async () => await verifyPayment(id),
     onSuccess: (res) => {
-      toast.success(res?.data?.message || "پرداخت شما با موفقیت تایید شد");
+toast.success(res?.data?.message || t("verifySuccess"));
       router.refresh();
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         toast.error(
           err.response?.data?.message ||
-            "مشکلی در تایید پرداخت شما پیش آمده است",
+t("verifyError")
         );
       }
     },
@@ -57,12 +59,12 @@ const PaymentsActionsMenu = ({
       }
     },
     onSuccess: (data) => {
-      toast.success(data?.message || "پرداخت با موفقیت حذف شد");
+toast.success(data?.message || t("deleteSuccess"));
       router.refresh();
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        toast.error(err.response?.data?.message || "مشکلی در حذف پیش امده است");
+toast.error(err.response?.data?.message || t("deleteError"));
       }
     },
   });
@@ -107,7 +109,7 @@ const PaymentsActionsMenu = ({
               "
             >
               <CheckCircle className="w-4 h-4" />
-              <span>تایید پرداخت</span>
+<span>{t("verifyPayment")}</span>
             </DropdownMenu.Item>
 
             <DropdownMenu.Item
@@ -123,7 +125,7 @@ const PaymentsActionsMenu = ({
               "
             >
               <Info className="w-4 h-4" />
-              <span>جزئیات</span>
+<span>{t("details")}</span>
             </DropdownMenu.Item>
             {role == "admin" && (
               <>
@@ -140,7 +142,7 @@ const PaymentsActionsMenu = ({
               "
                 >
                   <InfoCircledIcon className="w-4 h-4" />
-                  <span>ویرایش </span>
+<span>{t("edit")}</span>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item
                   onSelect={() => setOpenDeleteModal(true)}
@@ -155,7 +157,7 @@ const PaymentsActionsMenu = ({
               "
                 >
                   <Trash className=" text-red-500 w-4 h-4" />
-                  <span>حذف</span>
+<span>{t("delete")}</span>
                 </DropdownMenu.Item>
               </>
             )}
@@ -174,7 +176,7 @@ const PaymentsActionsMenu = ({
 
       {openConfirm && (
         <ConfirmChangesModal
-          title="آیا بابت تایید این پرداخت مطمئن هستید؟"
+title={t("confirmVerify")}
           isOpen={openConfirm}
           onClose={() => setOpenConfirm(false)}
           onConfirm={verify}

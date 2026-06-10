@@ -37,7 +37,7 @@ export default function Step2({ next, back }: Props) {
         const email = localStorage.getItem("resetEmail")?.trim() || "";
 
         if (!email) {
-            setErrorMsg("ایمیل پیدا نشد");
+            setErrorMsg(t("errors.emailNotFound"));
             return;
         }
 
@@ -57,9 +57,10 @@ export default function Step2({ next, back }: Props) {
             firstInput?.focus();
 
         } catch (error: any) {
-            setErrorMsg(
-                error.response?.data?.message || "ارسال مجدد کد با خطا مواجه شد"
-            );
+           setErrorMsg(
+    error.response?.data?.message || t("errors.resendFailed")
+);
+
         } finally {
             setLoading(false);
         }
@@ -153,14 +154,15 @@ export default function Step2({ next, back }: Props) {
         const email = localStorage.getItem("resetEmail")?.trim() || "";
         const finalCode = convertToEnglishDigits(code.join("").trim());
 
-        if (!email) {
-            setErrorMsg("ایمیل پیدا نشد، دوباره از ابتدا شروع کنید");
-            return;
-        }
-        if (finalCode.length !== 6) {
-            setErrorMsg("کد تایید را کامل وارد کنید");
-            return;
-        }
+       if (!email) {
+    setErrorMsg(t("errors.emailNotFound"));
+    return;
+}
+if (finalCode.length !== 6) {
+    setErrorMsg(t("errors.codeIncomplete"));
+    return;
+}
+
 
         try {
             setLoading(true);
@@ -183,7 +185,7 @@ export default function Step2({ next, back }: Props) {
             console.error("خطا در تایید کد:", error);
             const message =
                 error.response?.data?.message ||
-                "کد وارد شده نامعتبر یا منقضی شده است";
+                t("errors.codeIncomplete");
 
             setErrorMsg(message);
         } finally {
@@ -259,8 +261,7 @@ export default function Step2({ next, back }: Props) {
                                 onClick={handleResend}
                                 className="text-[#0D3B66] text-[14px] underline"
                             >
-                                ارسال مجدد کد
-                            </button>
+{t("resendCode")}                            </button>
                         ) : (
                             <span className="text-[14px] text-[#1E2022]">
                                 {t("timeLeft")}: {minutes}:{seconds.toString().padStart(2, "0")}
@@ -272,8 +273,8 @@ export default function Step2({ next, back }: Props) {
                         onClick={handleSubmit}
                         disabled={loading}
                         className="w-full h-[52px] lg:h-[62px] rounded-[40px] flex justify-center items-center bg-[#0D3B66] text-white text-base transition-all duration-200 hover:bg-[#0D3B66]/80 disabled:opacity-50 animate-[fadeText_0.7s_ease]" >
-                        {loading ? "در حال بررسی..." : t("confirmContinue")}
-                    </button>
+{loading ? t("loading") : t("confirmContinue")}
+                   </button>
                 </div>
             </div>
         </div>

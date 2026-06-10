@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import AllNotificationsTable from "./AllNotificationsTable";
 import CustomPagination from "@/components/common/CustomPagination";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   data: TNotificationsResponse | null;
@@ -14,6 +15,7 @@ const AllNotificationsList = ({ data }: IProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
+const t = useTranslations("adminDashboard.notifications");
 
   const [page, setPage] = useState<number>(
     parseInt(searchParams.get("page") ?? "1"),
@@ -38,13 +40,14 @@ const AllNotificationsList = ({ data }: IProps) => {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
-            هنوز اعلانی ثبت نشده است
-          </p>
+         <p className="text-gray-500 dark:text-gray-400 text-sm">
+  {t("noNotifications")}
+</p>
 
-          <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">
-            وقتی ادمین ها برای شما اعلانی ارسال کنند در اینجا نمایش داده می‌شود
-          </p>
+<p className="text-gray-400 dark:text-gray-500 text-xs mt-2">
+  {t("noNotificationsDescription")}
+</p>
+
         </div>
       )}
       {data && (

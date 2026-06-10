@@ -6,7 +6,7 @@ import { THouse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { Link } from "@/i18n/routing";
 import { AlertCircle, ArrowRight, Home } from "lucide-react";
-
+import { getTranslations } from "next-intl/server";
 const comparisonPage = async ({
   params,
 }: {
@@ -20,7 +20,7 @@ const comparisonPage = async ({
     },
   });
   console.log(res);
-
+const t = await getTranslations("comparison");
   return (
     <Container>
       {!res ? (
@@ -33,13 +33,11 @@ const comparisonPage = async ({
           </div>
 
           <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
-            اطلاعات برای مقایسه کافی نیست
+            {t("insufficientData")}
           </h2>
 
-          <p className="text-slate-500 dark:text-slate-400 max-w-md mb-4 leading-relaxed">
-            برای انجام مقایسه، لطفاً دقیقاً دو اقامتگاه را انتخاب کنید. ممکن است
-            لینک مقایسه نامعتبر باشد یا یکی از اقامتگاه‌ها از سیستم حذف شده
-            باشد.
+          <p className="text-slate-500 dark:text-slate-400 max-w-md mb-4 leading-relaxed">            {t("errorDescription")}
+
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -49,7 +47,7 @@ const comparisonPage = async ({
                text-white rounded-2xl font-medium transition-colors"
             >
               <Home size={20} />
-              <span>بازگشت به صفحه اصلی</span>
+              <span>{t("backHome")}</span>
             </Link>
           </div>
         </div>

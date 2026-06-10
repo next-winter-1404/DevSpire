@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as Select from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 interface Option {
   value: string;
@@ -29,6 +29,7 @@ const CustomSelect = ({
   const [selectedValue, setSelectedValue] = React.useState<string>(
     defaultValue || "",
   );
+  const t = useTranslations("common.select");
   const onSelect = (value: string) => {
     if (value == "clearFilter") {
       setSelectedValue("");
@@ -99,7 +100,7 @@ const CustomSelect = ({
                   data-[highlighted]:outline-none cursor-pointer
                 "
               >
-                <Select.ItemText>حذف این فیلتر</Select.ItemText>
+                <Select.ItemText> {t("clearFilter")} </Select.ItemText>
                 <Select.ItemIndicator className="absolute right-2 top-1/2 -translate-y-1/2">
                   <CheckIcon className="w-4 h-4" />
                 </Select.ItemIndicator>

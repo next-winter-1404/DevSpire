@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useTranslations } from "next-intl";
 
 export const SellerChooseHouseModal = ({
   onClose,
@@ -41,12 +42,13 @@ export const SellerChooseHouseModal = ({
     setSelectedId(id ?? "");
     onClose();
   };
+const t = useTranslations("sellerDashboard.comments");
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="bg-white w-full max-w-lg rounded-3xl p-6 shadow-2xl flex flex-col max-h-[80vh]">
         <h1 className="text-xl font-bold mb-6 text-center">
-          انتخاب ملک برای نمایش
+          {t("chooseHouse")}
         </h1>
 
         <div className="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar">
@@ -56,7 +58,7 @@ export const SellerChooseHouseModal = ({
             ))
           ) : houses?.houses.length === 0 ? (
             <p className="text-center text-gray-500 py-10">
-              هیچ ملکی یافت نشد.
+              {t("noHouseFound")}
             </p>
           ) : (
             houses?.houses.map((item) => {
@@ -88,12 +90,12 @@ export const SellerChooseHouseModal = ({
                   </span>
                   <span className="text-sm">{`(${
                     item.transaction_type == "reservation"
-                      ? "رزرو"
+  ? t("reservation")
                       : item.transaction_type == "rental"
-                        ? "اجاره"
+  ? t("rental")
                         : item.transaction_type == "mortgage"
-                          ? "رهن"
-                          : "خرید و فروش"
+                          ? t("mortgage")
+  : t("sale")
                   })`}</span>
                   {isSelected && <div className="ml-auto text-primary">✓</div>}
                 </div>
@@ -101,20 +103,20 @@ export const SellerChooseHouseModal = ({
             })
           )}
         </div>
-
+ 
         <div className="flex items-center gap-2 mt-4 pt-4 justify-center border-t">
           <button
             onClick={() => handleAction(null)}
             className=" py-2 px-4 rounded-xl bg-red-200 text-red-500
              hover:text-red-700 transition-colors"
           >
-            حذف انتخاب فعلی
+            {t("removeSelection")}
           </button>
           <button
             onClick={onClose}
             className="px-4 py-2  rounded-xl border border-[#777777] "
           >
-            بستن
+            {t("close")}
           </button>
         </div>
       </div>

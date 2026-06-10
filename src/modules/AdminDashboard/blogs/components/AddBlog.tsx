@@ -3,9 +3,11 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import BlogCreateEditModal from "./BlogForm";
+import { useTranslations } from "next-intl";
 
 const AddBlog = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
+const t = useTranslations("adminDashboard.blogs");
 
   return (
     <>
@@ -16,7 +18,7 @@ const AddBlog = () => {
             dark:text-[#0D3B66] dark:bg-[#E6EDF5] text-sm"
       >
         <Plus />
-        <span className=" ">افزودن مقاله</span>
+        <span className=" ">{t("addArticle")}</span>
       </button>
       {openModal && (
         <BlogCreateEditModal

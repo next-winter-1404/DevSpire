@@ -7,7 +7,10 @@ import SellerTopCardsView from "./SellerTopCardsView";
 import SellerChartsView from "./SellerChartsView";
 import SellerLatestReservesView from "./SellerLatestReservesView";
 
+import { useTranslations } from "next-intl";
+
 const SellerDashboardView = () => {
+  const t = useTranslations("sellerDashboard.sdashboard");
   return (
     <div className="flex flex-col gap-4 ">
       <Suspense fallback={<DashboardCardsSkeleton />}>
@@ -20,13 +23,13 @@ const SellerDashboardView = () => {
         <div className="bg-[#FFFFFF] rounded-[24px] dark:bg-[#262626] py-4 px-6 ">
           <div className="w-full flex justify-between items-center mb-2">
             <h2 className="text-[20px] font-bold text-foreground mb-2">
-              رزرو های اخیر مشتریان
+              {t("latestReservations")}
             </h2>
             <Link
               href="/dashboard/seller/reserves-management"
               className="text-[#777777]"
             >
-              مشاهده همه
+              {t("viewAll")}
             </Link>
           </div>
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { X, Trash2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/routing";
+import { useLocale, useTranslations } from "next-intl";
 
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
@@ -17,6 +18,9 @@ interface FilterModalProps {
 export default function UsersManagementFiltersModal({
   onClose,
 }: FilterModalProps) {
+  const t = useTranslations("adminDashboard.users");
+  const locale = useLocale();
+
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -81,14 +85,14 @@ export default function UsersManagementFiltersModal({
           <div className="flex items-center justify-between mb-5 border-b pb-4">
             <div className="flex items-center gap-4">
               <h2 className="text-lg font-bold text-gray-800">
-                فیلتر و مرتب‌سازی
+                {t("filterAndSort")}
               </h2>
               <button
                 onClick={resetFilters}
                 className="flex items-center gap-1 text-red-500 hover:text-red-600 text-xs bg-red-50 px-2 py-1 rounded-md"
               >
                 <Trash2 className="w-3 h-3" />
-                حذف فیلترها
+                {t("clearFilters")}
               </button>
             </div>
             <button
@@ -102,7 +106,7 @@ export default function UsersManagementFiltersModal({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block mb-1.5 text-sm font-medium text-gray-700">
-                مرتب‌سازی بر نقش کاربر
+                {t("filterByRole")}
               </label>
               <select
                 value={role}
@@ -112,31 +116,34 @@ export default function UsersManagementFiltersModal({
                 focus:ring-blue-100 outline-none"
               >
                 <option value="" disabled>
-                  انتخاب کنید...
+                  {t("select")}
                 </option>
-                <option value="admin">ادمین</option>
-                <option value="buyer">خریدار</option>
-                <option value="seller">فروشنده</option>
+                <option value="admin">{t("admin")}
+                </option>
+                <option value="buyer">{t("buyer")}
+                </option>
+                <option value="seller">{t("seller")}
+                </option>
               </select>
             </div>
 
             <div>
               <label className="block mb-1.5 text-sm font-medium text-gray-700">
-                ترتیب نمایش
+                {t("order")}
               </label>
               <select
                 value={order}
                 onChange={(e) => setOrder(e.target.value)}
                 className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
               >
-                <option value="DESC">نزولی (جدیدترین)</option>
-                <option value="ASC">صعودی (قدیمی‌ترین)</option>
+                <option value="DESC">{t("desc")}  </option>
+                <option value="ASC">{t("asc")}</option>
               </select>
             </div>
 
             <div>
               <label className="block mb-1.5 text-sm font-medium text-gray-700">
-                تعداد در صفحه
+{t("itemsPerPage")}
               </label>
               <input
                 type="number"
@@ -149,7 +156,7 @@ export default function UsersManagementFiltersModal({
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                مرتب‌سازی بر اساس
+{t("sortBy")}
               </label>
               <select
                 value={sort}
@@ -158,16 +165,18 @@ export default function UsersManagementFiltersModal({
               px-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="" disabled>
-                  انتخاب کنید...
+{t("select")}
                 </option>
-                <option value="createdAt">تاریخ ایجاد</option>
-                <option value="updatedAt">تاریخ بروزرسانی</option>
+                <option value="createdAt">{t("createdDate")}
+</option>
+                <option value="updatedAt">{t("updatedDate")}
+</option>
               </select>
             </div>
 
             <div className="sm:col-span-2">
               <label className="block mb-1.5 text-sm font-medium text-gray-700">
-                تاریخ عضویت
+{t("createdDate")}
               </label>
               <DatePicker
                 value={membershipDate}
@@ -180,7 +189,7 @@ export default function UsersManagementFiltersModal({
                 containerClassName="w-full"
                 inputClass="w-full bg-gray-50 border border-gray-200 rounded-lg
                px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
-                placeholder="تاریخ عضویت را اننتخاب کنید"
+placeholder={t("membershipDatePlaceholder")}
               />
             </div>
           </div>
@@ -190,13 +199,14 @@ export default function UsersManagementFiltersModal({
               onClick={onClose}
               className="bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
             >
-              انصراف
+              {t("cancel")}
+
             </button>
             <button
               onClick={applyFilters}
               className="bg-[#0F2E53] text-white py-2.5 rounded-lg text-sm font-medium hover:bg-[#0a1e36] transition-colors"
             >
-              اعمال فیلترها
+{t("applyFilters")}
             </button>
           </div>
         </div>

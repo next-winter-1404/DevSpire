@@ -9,11 +9,14 @@ import { useState } from "react";
 interface IProps {
   data: TNotificationsResponse | null;
 }
+import { useTranslations } from "next-intl";
+
 
 const NotificationsList = ({ data }: IProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
+const t = useTranslations("notifications");
 
   const [page, setPage] = useState<number>(
     parseInt(searchParams.get("page") ?? "1"),
@@ -39,12 +42,10 @@ const NotificationsList = ({ data }: IProps) => {
       ) : (
         <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
           <p className="text-gray-500 dark:text-gray-400 text-sm">
-            هنوز اعلانی ثبت نشده است
-          </p>
+{t("emptyTitle")}          </p>
 
           <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">
-            وقتی ادمین ها برای شما اعلانی ارسال کنند در اینجا نمایش داده می‌شود
-          </p>
+{t("emptyDesc")}          </p>
         </div>
       )}
       {data && (

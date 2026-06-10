@@ -2,6 +2,7 @@ import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import ToursManagementTop from "../components/ToursManagementTop";
 import ToursList from "../components/ToursList";
 import { TToursResponse } from "@/components/common/types";
+import { getTranslations } from "next-intl/server";
 
 
 interface IProps {
@@ -11,6 +12,7 @@ interface IProps {
 const ToursManagementView = async ({params}: IProps) => {
 
     const data = await apiFetch<TToursResponse | null>("/locations", {params: params, cache: "no-store"},);
+const t = await getTranslations("adminDashboard.toursManagement");
 
 
     return (
@@ -22,7 +24,7 @@ const ToursManagementView = async ({params}: IProps) => {
                 <ToursList data={data}/>
                 : 
                 <div className="flex justify-center w-full">
-                    <span>توری وجود ندارد</span>
+          <span>{t("noTours")}</span>
                 </div>
             }
         </div>

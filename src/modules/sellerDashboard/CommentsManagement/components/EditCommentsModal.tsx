@@ -5,6 +5,7 @@ import { Loader2, X } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";
 import { useComments } from "../hooks";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   id: number;
@@ -13,6 +14,7 @@ interface IProps {
 
 const EditCommentsModal = ({ onClose, id }: IProps) => {
   const { commentDetail, isPending, editCommentMutation } = useComments(id);
+  const t = useTranslations("sellerDashboard.comments");
 
   const {
     register,
@@ -46,7 +48,7 @@ const EditCommentsModal = ({ onClose, id }: IProps) => {
        bg-background shadow-xl animate-in fade-in zoom-in duration-200"
       >
         <div className=" relative flex items-center justify-between border-b border-border p-5">
-          <h3 className="text-lg font-bold text-foreground">ویرایش دیدگاه</h3>
+          <h3 className="text-lg font-bold text-foreground"> {t("editTitle")}</h3>
 
           <button
             onClick={onClose}
@@ -60,7 +62,7 @@ const EditCommentsModal = ({ onClose, id }: IProps) => {
           <div className="flex flex-col items-center justify-center py-16 gap-4">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
             <p className="text-sm text-muted-foreground">
-              در حال دریافت اطلاعات ...
+              <p>{t("loadingData")}</p>
             </p>
           </div>
         ) : (
@@ -68,18 +70,17 @@ const EditCommentsModal = ({ onClose, id }: IProps) => {
             <div className="flex w-full flex-col gap-4">
               <div className="relative flex w-full flex-col gap-3 pb-6">
                 <label className="text-[15px] font-bold text-foreground">
-                  عنوان دیدگاه
-                </label>
+                  {t("commentTitle")}                </label>
 
                 <input
                   type="text"
-                  placeholder="عنوان را وارد کنید"
+                  placeholder={t("enterTitle")}
                   {...register("title", {
-                    required: "عنوان کامنت الزامی است",
+                    required: t("titleRequired")
+                    ,
                   })}
                   className={`w-full rounded-2xl  bg-background px-4 py-3 text-sm outline-none 
-                    transition-all focus:ring-2 focus:ring-ring  border border-[#777777] ${
-                      errors.title ? "  border-destructive" : " "
+                    transition-all focus:ring-2 focus:ring-ring  border border-[#777777] ${errors.title ? "  border-destructive" : " "
                     }`}
                 />
 
@@ -92,20 +93,20 @@ const EditCommentsModal = ({ onClose, id }: IProps) => {
 
               <div className="relative flex w-full flex-col gap-3 pb-6">
                 <label className="text-[15px] font-bold text-foreground">
-                  توضیحات دیدگاه
-                </label>
+                  {t("commentCaption")}                </label>
+
 
                 <textarea
                   rows={4}
-                  placeholder="توضیحات را وارد کنید"
+                  placeholder={t("enterCaption")}
                   {...register("caption", {
-                    required: "توضیحات لازم است",
+                    required: t("captionRequired")
+                    ,
                   })}
                   className={`w-full resize-none rounded-2xl border border-[#777777]
                      bg-background px-4 py-3 text-sm leading-7 
-                     outline-none transition-all focus:ring-2 focus:ring-ring ${
-                       errors.caption ? " border-destructive" : ""
-                     }`}
+                     outline-none transition-all focus:ring-2 focus:ring-ring ${errors.caption ? " border-destructive" : ""
+                    }`}
                 />
 
                 {errors.caption?.message && (
@@ -117,8 +118,7 @@ const EditCommentsModal = ({ onClose, id }: IProps) => {
 
               <div className="flex flex-col gap-2">
                 <label className="text-[15px] font-bold text-foreground">
-                  امتیاز شما
-                </label>
+                  {t("yourRating")}                </label>
 
                 <div className="relative flex items-center justify-between pb-4 mx-auto">
                   <Controller
@@ -126,7 +126,7 @@ const EditCommentsModal = ({ onClose, id }: IProps) => {
                     control={control}
                     rules={{
                       validate: (value) =>
-                        Number(value) > 0 || "امتیاز خود را انتخاب کنید",
+                        Number(value) > 0 || t("ratingRequired"),
                     }}
                     render={({ field }) => (
                       <Rating
@@ -157,8 +157,7 @@ const EditCommentsModal = ({ onClose, id }: IProps) => {
                   className="cursor-pointer rounded-xl border border-border
                  px-4 py-2 text-sm text-muted-foreground transition-all hover:bg-muted"
                 >
-                  انصراف
-                </button>
+                  {t("cancel")}                </button>
 
                 <button
                   type="submit"
@@ -170,10 +169,10 @@ const EditCommentsModal = ({ onClose, id }: IProps) => {
                   {isSubmitting && editCommentMutation.isPending ? (
                     <>
                       <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-                      در حال ذخیره...
+                      {t("saving")}
                     </>
                   ) : (
-                    "ذخیره تغییرات"
+                    t("saveChanges")
                   )}
                 </button>
               </div>

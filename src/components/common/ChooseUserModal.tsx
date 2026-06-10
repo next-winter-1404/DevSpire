@@ -6,14 +6,17 @@ import { useState } from "react";
 import { useDebounce } from "use-debounce";
 import { IAllUsers } from "./types";
 import { TUser } from "@/modules/mortgageRentDetail/types";
+import { useTranslations, useLocale } from "next-intl"; 
 
 interface IProps {
   onClose: () => void;
   handleSelectUser: (id: number) => void;
 }
-const ChooseUserModal = ({ onClose, handleSelectUser }: IProps) => {
-  const [page, setPage] = useState(1);
 
+const ChooseUserModal = ({ onClose, handleSelectUser }: IProps) => {
+  const t = useTranslations("common.chooseUser");
+  const [page, setPage] = useState(1);
+  const locale = useLocale();
   const { data: usersData, isPending } = useQuery({
     queryKey: ["ALLUSERS", page],
     queryFn: async () => {
@@ -30,12 +33,13 @@ const ChooseUserModal = ({ onClose, handleSelectUser }: IProps) => {
     justify-center bg-black/50 p-4"
     >
       <div
+       dir={locale === "fa" ? "rtl" : "ltr"}
         className="  p-6 w-full max-w-md flex 
       flex-col gap-4  bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]  
         overflow-y-auto scroll-smooth   dark:border-[#777777] dark:bg-[#262626]  "
       >
         <div className="flex justify-between items-center border-b pb-2">
-          <h3 className="font-bold">انتخاب کاربر</h3>
+          <h3 className="font-bold">{t("title")}</h3>
           <button onClick={() => onClose()} className="text-red-500 font-bold">
             ✕
           </button>
@@ -43,7 +47,7 @@ const ChooseUserModal = ({ onClose, handleSelectUser }: IProps) => {
 
         <div className="flex flex-col gap-2 min-h-[200px] max-h-[300px] overflow-y-auto">
           {isPending ? (
-            <p className="text-center text-sm mt-4">در حال بارگذاری...</p>
+            <p className="text-center text-sm mt-4 text-gray-500">{t("loading")}</p>
           ) : usersData && usersData?.data?.length > 0 ? (
             usersData.data.map((user: TUser) => (
               <div
@@ -62,7 +66,7 @@ const ChooseUserModal = ({ onClose, handleSelectUser }: IProps) => {
               </div>
             ))
           ) : (
-            <p className="text-center text-sm mt-4">کاربری یافت نشد.</p>
+            <p className="text-center text-sm mt-4">{t("noUser")}</p>
           )}
         </div>
         <div className="flex justify-between items-center pt-2 mt-auto">
@@ -72,7 +76,7 @@ const ChooseUserModal = ({ onClose, handleSelectUser }: IProps) => {
             className="px-3 py-1 bg-gray-200 dark:bg-zinc-700
              rounded-md disabled:opacity-50"
           >
-            قبلی
+            {t("prev")}
           </button>
           <span className="text-sm">صفحه {page}</span>
           <button
@@ -81,7 +85,7 @@ const ChooseUserModal = ({ onClose, handleSelectUser }: IProps) => {
             className="px-3 py-1 bg-gray-200 dark:bg-zinc-700 
             rounded-md disabled:opacity-50"
           >
-            بعدی
+            {t("next")}
           </button>
         </div>
       </div>

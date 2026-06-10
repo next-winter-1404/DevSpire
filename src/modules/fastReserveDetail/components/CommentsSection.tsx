@@ -52,12 +52,14 @@ const CommentsSection = ({ houseId }: { houseId: number }) => {
           </>
         ) : (
           <div className="flex flex-col items-center justify-center py-10 text-center">
-            <p className="text-sm text-muted-foreground mb-3">
-              هنوز نظری ثبت نشده
-            </p>
-            <p className="text-xs text-muted-foreground">
-              اولین نفری باشید که تجربه خود را از این اقامتگاه می‌نویسد
-            </p>
+           <p className="text-sm text-muted-foreground mb-3">
+  {t("noComments")}
+</p>
+
+<p className="text-xs text-muted-foreground">
+  {t("beFirstComment")}
+</p>
+
           </div>
         )}
       </div>

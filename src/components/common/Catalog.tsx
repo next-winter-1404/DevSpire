@@ -8,14 +8,15 @@ type CatalogModalProps = {
   onClose: () => void;
   photos: string[];
 };
-
+import { useTranslations, useLocale } from "next-intl";
 export default function CatalogModal({
   isOpen,
   onClose,
   photos,
 }: CatalogModalProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
+  const t = useTranslations("common.catalog");
+    const locale = useLocale();
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -33,11 +34,12 @@ export default function CatalogModal({
         onClick={onClose}
       >
         <div
+           dir={locale === "fa" ? "rtl" : "ltr"}
           className="bg-white w-full max-w-6xl rounded-2xl shadow-2xl p-6 relative overflow-y-auto max-h-[90vh]"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold">کاتالوگ تصاویر</h2>
+            <h2 className="text-xl font-bold">{t("title")}</h2>
             <button
               onClick={onClose}
               className="text-gray-500 hover:text-red-500 text-2xl"

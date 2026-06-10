@@ -2,21 +2,26 @@
 
 import { FormatDate } from "@/utils/helper/FormatDate";
 import { TNotification } from "@/components/common/types";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function AllNotificationsTable({
   data,
 }: {
   data: TNotification[];
 }) {
+  const t = useTranslations("adminDashboard.notifications");
+  const locale = useLocale();
+
   return (
     <table className="w-full text-sm text-right">
       <thead className="text-gray-600 font-medium">
         <tr className="border-b border-[#DDDDDD]">
-          <th className="py-4 px-4">عنوان</th>
-          <th className="py-4 px-4">متن پیام</th>
-          <th className="py-4 px-4 text-center">نوع</th>
-          <th className="py-4 px-4 text-center">تاریخ ثبت</th>
-          <th className="py-4 px-4 text-center">وضعیت</th>
+          <th className="py-4 px-4">{t("title")}</th>
+          <th className="py-4 px-4">{t("message")}</th>
+          <th className="py-4 px-4 text-center">{t("type")}</th>
+          <th className="py-4 px-4 text-center">{t("createdDate")}</th>
+          <th className="py-4 px-4 text-center">{t("status")}</th>
+
         </tr>
       </thead>
 
@@ -57,29 +62,30 @@ export default function AllNotificationsTable({
 }
 
 function TypeBadge({ type }: { type: string }) {
+  const t = useTranslations("adminDashboard.notifications");
   let label = type;
   let colorClasses = "bg-gray-100 text-gray-700";
 
   switch (type.toLowerCase()) {
     case "alert":
     case "warning":
-      label = "هشدار";
+      label = t("typeWarning");
       colorClasses = "bg-amber-100 text-amber-600";
       break;
     case "info":
-      label = "اطلاع‌رسانی";
+      label = t("typeInfo");
       colorClasses = "bg-blue-100 text-blue-600";
       break;
     case "success":
-      label = "موفقیت";
+      label = t("typeSuccess");
       colorClasses = "bg-teal-100 text-teal-700";
       break;
     case "error":
-      label = "خطا";
+      label = t("typeError");
       colorClasses = "bg-red-100 text-red-500";
       break;
     default:
-      label = "نامشخص";
+      label = t("typeUnknown");
       colorClasses = "bg-orange-100 text-orange-500";
   }
 
@@ -93,7 +99,8 @@ function TypeBadge({ type }: { type: string }) {
 }
 
 function ReadStatusBadge({ isRead }: { isRead: boolean }) {
-  const label = isRead ? "خوانده شده" : "جدید";
+  const t = useTranslations("adminDashboard.notifications");
+const label = isRead ? t("read") : t("new");
   const colorClasses = isRead
     ? "bg-gray-100 text-gray-500"
     : "bg-indigo-100 text-indigo-700";

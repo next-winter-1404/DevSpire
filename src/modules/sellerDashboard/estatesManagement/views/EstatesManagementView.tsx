@@ -20,7 +20,7 @@ interface IProps {
 const EstatesManagementView = ({ data, role }: IProps) => {
   const locale = useLocale();
 
-  const t = useTranslations("sellerDashboard.estatesManagement");
+  const t = useTranslations("sellerDashboard.eestatesManagement");
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -97,7 +97,7 @@ const EstatesManagementView = ({ data, role }: IProps) => {
             h-[300px] text-center px-4"
             >
               <p className="text-gray-500 dark:text-gray-400 text-sm">
-                ملکی اضافه نکردید !{" "}
+                {t("noEstates")}!{" "}
               </p>
             </div>
           )}

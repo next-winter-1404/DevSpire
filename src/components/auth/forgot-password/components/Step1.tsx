@@ -18,7 +18,7 @@ export default function Step1({ next }: Props) {
     const [errorMsg, setErrorMsg] = useState("");
     const handleSubmit = async () => {
         if (!email) {
-            setErrorMsg("لطفاً ایمیل خود را وارد کنید");
+setErrorMsg(t("errors.emailRequired"));
             return;
         }
 
@@ -38,8 +38,7 @@ export default function Step1({ next }: Props) {
         } catch (error: any) {
             console.error("خطا در ارسال درخواست:", error);
             const message =
-                error.response?.data?.message ||
-                "خطایی در برقراری ارتباط با سرور رخ داد";
+              error.response?.data?.message || t("errors.serverError");
 
             setErrorMsg(message);
         } finally {
@@ -104,8 +103,7 @@ export default function Step1({ next }: Props) {
                         onClick={handleSubmit}
                         disabled={loading}
                         className="w-full h-[52px] lg:h-[62px] rounded-[40px] px-[20px] flex justify-center items-center bg-[#0D3B66] text-white font-normal text-base cursor-pointer transition-all duration-200 hover:bg-[#0D3B66]/80 disabled:opacity-50 animate-[fadeText_0.7s_ease]">
-                        {loading ? "در حال ارسال..." : t("submit")}
-                    </button>
+{loading ? t("loading") : t("submit")}                    </button>
                 </div>
             </div>
         </div>

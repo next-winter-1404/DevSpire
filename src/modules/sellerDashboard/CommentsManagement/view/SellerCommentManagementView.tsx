@@ -5,6 +5,7 @@ import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { IAdminCommentResponse, ICommentResponse } from "../../payments/types";
 import CommentsList from "@/components/dashboard/CommentsList";
+import { getTranslations } from "next-intl/server";
 
 const SellerCommentManagementView = async ({
   params,
@@ -31,6 +32,7 @@ const SellerCommentManagementView = async ({
       cache: "no-store",
     });
   }
+  const t = await getTranslations("sellerDashboard.comments");
 
   const normalizedComments = comments
     ? role === "seller"
@@ -60,7 +62,7 @@ const SellerCommentManagementView = async ({
       >
         <h1 className="text-xl font-bold text-foreground">
           {" "}
-          کامنت های مشتریان {`(${comments?.totalCount})`}
+          {t("customerComments")} ({comments?.totalCount})
         </h1>
         <div className=" w-full md:w-[50%]">
           <SellerCommentsFilters />
@@ -76,7 +78,7 @@ const SellerCommentManagementView = async ({
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              هنوز نظری ثبت نشده است
+              {t("noCommentsYet")}
             </p>
           </div>
         )}

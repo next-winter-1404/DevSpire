@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { useTranslations } from "next-intl";
 
 import ReservationDetailsModal from "./ReserveDetailsModal";
 import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
@@ -29,7 +30,8 @@ const ReserveActionsMenu = ({
   isPending: boolean;
   role: "seller" | "admin";
   data: TReservation;
-}) => {
+}) => {const t = useTranslations("sellerDashboard.reservations.actions");
+
   const [openDetailModal, setOpenDetailModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openCancelModal, setOpenCancelModal] = useState(false);
@@ -83,7 +85,8 @@ const ReserveActionsMenu = ({
                 "
               >
                 <CheckCircle className="w-4 h-4" />
-                <span>ادامه و تایید رزرو</span>
+               <span>{t("continueReservation")}</span>
+
               </DropdownMenu.Item>
             )}
 
@@ -101,7 +104,8 @@ const ReserveActionsMenu = ({
                 "
               >
                 <XCircle className="w-4 h-4" />
-                <span>لغو رزرو</span>
+               <span>{t("cancelReservation")}</span>
+
               </DropdownMenu.Item>
             )}
 
@@ -118,7 +122,7 @@ const ReserveActionsMenu = ({
               "
             >
               <Info className="w-4 h-4" />
-              <span>جزئیات</span>
+             <span>{t("details")}</span>
             </DropdownMenu.Item>
             {role == "admin" && (
               <DropdownMenu.Item
@@ -134,7 +138,8 @@ const ReserveActionsMenu = ({
               "
               >
                 <Edit className="w-4 h-4" />
-                <span>ویرایش</span>
+             <span>{t("edit")}</span>
+
               </DropdownMenu.Item>
             )}
 
@@ -151,7 +156,8 @@ const ReserveActionsMenu = ({
               "
             >
               <Trash2 className="w-4 h-4" />
-              <span>حذف</span>
+             <span>{t("delete")}</span>
+
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>

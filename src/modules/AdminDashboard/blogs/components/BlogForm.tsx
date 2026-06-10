@@ -7,6 +7,7 @@ import { IBlogPayload, useBlogs } from "../hooks";
 import { TBlog } from "@/components/common/types";
 import { useQuery } from "@tanstack/react-query";
 import httpClient from "@/core/interceptor/axios";
+import { useTranslations } from "next-intl";
 
 type Props = {
   isOpen: boolean;
@@ -27,7 +28,8 @@ export default function BlogCreateEditModal({
   isOpen,
   onClose,
   initialData,
-}: Props) {
+}: Props) {const t = useTranslations("adminDashboard.blogs");
+
   const {
     register,
     handleSubmit,
@@ -92,7 +94,7 @@ export default function BlogCreateEditModal({
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold dark:text-white">
-            {initialData ? "ویرایش مقاله" : "ساخت مقاله جدید"}
+  {initialData ? t("editArticle") : t("createArticle")}
           </h2>
 
           <button
@@ -106,10 +108,10 @@ export default function BlogCreateEditModal({
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold dark:text-gray-200">
-              عنوان مقاله
-            </label>
+{t("title")}            </label>
             <input
-              {...register("title", { required: "عنوان الزامی است" })}
+              {...register("title", { required: t("titleRequired") })}
+
               className="
                 h-[48px]
                 rounded-xl
@@ -129,16 +131,16 @@ export default function BlogCreateEditModal({
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold dark:text-gray-200">
-              توضیح کوتاه
-            </label>
+{t("caption")}            </label>
             <textarea
               rows={3}
               {...register("caption", {
-                required: "توضیح کوتاه الزامی است",
-                maxLength: {
-                  value: 200,
-                  message: "حداکثر ۲۰۰ کاراکتر",
-                },
+               required: t("captionRequired"),
+maxLength: {
+  value: 200,
+  message: t("captionMax")
+}
+,
               })}
               className="
                 rounded-xl
@@ -158,11 +160,12 @@ export default function BlogCreateEditModal({
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold dark:text-gray-200">
-              زمان مطالعه (مثلاً 5 min)
+             {t("readingTime")}
             </label>
             <input
               {...register("estimated_reading_time", {
-                required: "زمان مطالعه الزامی است",
+              required: t("readingTimeRequired")
+,
               })}
               placeholder="5 min"
               className="
@@ -183,11 +186,11 @@ export default function BlogCreateEditModal({
           </div>
 
           {isPending ? (
-            <p className="text-foreground">درحال بارگزاری دسته بندی ها ...</p>
+            <p className="text-foreground">{t("loadingCategories")}...</p>
           ) : cats && cats.totalCount > 0 ? (
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold dark:text-gray-200">
-                دسته‌بندی
+                {t("category")}
               </label>
 
               <select
@@ -202,7 +205,7 @@ export default function BlogCreateEditModal({
                   dark:bg-[#404040]
                 "
               >
-                <option value="">انتخاب دسته‌بندی</option>
+                <option value=""> {t("selectCategory")}</option>
                 {cats.data.map((cat) => (
                   <option key={cat.id} value={cat.id}>
                     {cat.name}
@@ -227,7 +230,8 @@ export default function BlogCreateEditModal({
                 dark:bg-[#404040]
               "
             >
-              انصراف
+              {t("cancel")}
+
             </button>
 
             <button
@@ -242,11 +246,12 @@ export default function BlogCreateEditModal({
                 disabled:opacity-50
               "
             >
-              {isLoading
-                ? "در حال ذخیره..."
-                : initialData
-                  ? "ذخیره تغییرات"
-                  : "ایجاد مقاله"}
+             {isLoading
+  ? t("saving")
+  : initialData
+    ? t("saveChanges")
+    : t("createArticle")}
+
             </button>
           </div>
         </form>

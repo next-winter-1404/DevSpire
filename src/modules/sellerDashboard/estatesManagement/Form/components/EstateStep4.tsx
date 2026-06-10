@@ -11,6 +11,7 @@ import httpClient from "@/core/interceptor/axios";
 import toast from "react-hot-toast";
 import { useRouter } from "@/i18n/routing";
 import axios from "axios";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   generalData: IGeneraData;
@@ -23,6 +24,8 @@ type FormValues = {
 };
 
 const EstateStep4 = ({ generalData, handlePrev, handleNext }: IProps) => {
+  const t = useTranslations("sellerDashboard.estateForm.step4");
+
   const router = useRouter();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -45,14 +48,13 @@ const EstateStep4 = ({ generalData, handlePrev, handleNext }: IProps) => {
       }
     },
     onSuccess: (data) => {
-      toast.success(data.message || "عکس با موفقیت اپلود شد");
+toast.success(data.message || t("uploadSuccess"));
       router.refresh();
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        toast.error(
-          err.response?.data?.message || "مشکلی در اپلود پیش امده است",
-        );
+       toast.error(err.response?.data?.message || t("uploadError"));
+
       }
     },
   });
@@ -91,8 +93,7 @@ const EstateStep4 = ({ generalData, handlePrev, handleNext }: IProps) => {
         >
           <CirclePlus />
           <span className="font-regular text-[20px] text-[#1E2022]">
-            افزودن عکس
-          </span>
+{t("addPhoto")}          </span>
           <input
             type="file"
             accept="image/*"
@@ -157,8 +158,7 @@ const EstateStep4 = ({ generalData, handlePrev, handleNext }: IProps) => {
                 className="bg-green-800 absolute bottom-0 left-0 w-full 
               right-0 py-1 text-center text-white"
               >
-                تصویر اصلی
-              </p>
+{t("mainImage")}              </p>
             )}
           </div>
         ))}
@@ -171,7 +171,7 @@ const EstateStep4 = ({ generalData, handlePrev, handleNext }: IProps) => {
           className="flex items-center gap-2 py-[13px] px-3 text-[#777777] border border-[#777777] rounded-[16px] cursor-pointer"
         >
           <CurveArrow className="rotate-270" />
-          <span className="font-regular text-[16px]">مرحله قبل</span>
+          <span className="font-regular text-[16px]">{t("prevStep")}</span>
         </button>
 
         <div className="flex items-center gap-4">
@@ -182,7 +182,7 @@ const EstateStep4 = ({ generalData, handlePrev, handleNext }: IProps) => {
            text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer"
             >
               <span className="font-regular text-[16px]">
-                {isPending ? "درحال آپلود" : "آپلود عکس"}
+{isPending ? t("uploading") : t("uploadPhoto")}
               </span>
             </button>
           )}
@@ -193,7 +193,7 @@ const EstateStep4 = ({ generalData, handlePrev, handleNext }: IProps) => {
             className="flex items-center gap-2 py-[13px] px-3
            text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer"
           >
-            <span className="font-regular text-[16px]">مرحله بعد</span>
+            <span className="font-regular text-[16px]">{t("nextStep")}</span>
             <CurveArrow className="rotate-90" />
           </button>
         </div>

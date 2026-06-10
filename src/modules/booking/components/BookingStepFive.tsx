@@ -9,10 +9,12 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { CheckCircle2, Ticket, Home, XCircle } from "lucide-react";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 const BookingStepFive = () => {
   const searchParams = useSearchParams();
   const paymentId = searchParams.get("paymentId") ?? "";
+const t = useTranslations("bookingStepFive");
 
   const [status, setStatus] = useState<string | null>(
     searchParams.get("status") ?? null,
@@ -54,11 +56,11 @@ const BookingStepFive = () => {
             <div className="mb-6 h-16 w-16 animate-spin rounded-full border-4 border-blue-700 border-t-transparent" />
 
             <h2 className="text-2xl font-bold text-foreground">
-              در حال تایید پرداخت...
+{t("verifyingPayment")}
             </h2>
 
             <p className="mt-3 text-center leading-8 text-gray-500">
-              لطفاً چند لحظه صبر کنید
+{t("pleaseWait")}
             </p>
           </div>
         )}
@@ -84,28 +86,32 @@ const BookingStepFive = () => {
                 className="text-center"
               >
                 <h1 className="mb-4 text-3xl font-extrabold text-foreground">
-                  پرداخت با موفقیت انجام شد 🎉
+                {t("paymentSuccess")}
+ 🎉
                 </h1>
 
                 <p className="mx-auto max-w-md leading-8 text-gray-500">
-                  رزرو شما بعد از تایید مالک ثبت میشود
+{t("reservationAfterOwnerConfirm")}
                 </p>
               </motion.div>
             </div>
 
             <div className="mt-10 rounded-3xl border border-green-100 bg-green-50 p-6">
               <div className="flex items-center justify-between">
-                <span className="text-gray-500">وضعیت پرداخت</span>
+                <span className="text-gray-500">{t("paymentStatus")}
+</span>
 
                 <span className="rounded-full bg-green-500 px-4 py-1 text-sm font-medium text-white">
-                  موفق
+                  {t("success")}
+
                 </span>
               </div>
 
               <div className="my-5 h-px bg-green-100" />
 
               <div className="flex items-center justify-between">
-                <span className="text-gray-500">کد پرداخت</span>
+                <span className="text-gray-500">{t("paymentCode")}
+</span>
 
                 <span className="font-bold text-foreground">{paymentId}</span>
               </div>
@@ -118,7 +124,7 @@ const BookingStepFive = () => {
                 px-5 py-4 text-[18px] font-medium text-gray-700 transition hover:bg-gray-100"
               >
                 <Home size={20} />
-                بازگشت به صفحه اصلی
+{t("backHome")}
               </Link>
 
               <Link
@@ -127,7 +133,7 @@ const BookingStepFive = () => {
                 py-4 text-[18px] font-medium text-white transition hover:opacity-90"
               >
                 <Ticket size={20} />
-                بلیط‌های من
+{t("myTickets")}
               </Link>
             </div>
           </>
@@ -140,12 +146,11 @@ const BookingStepFive = () => {
             </div>
 
             <h2 className="mb-4 text-3xl font-bold text-foreground">
-              پرداخت ناموفق بود
+{t("paymentFailed")}
             </h2>
 
             <p className="max-w-md leading-8 text-gray-500">
-              متأسفانه تایید پرداخت انجام نشد. در صورت کسر وجه، مبلغ طی ۷۲ ساعت
-              آینده به حساب شما باز خواهد گشت.
+{t("paymentFailedDesc")}
             </p>
 
             <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 md:flex-row">
@@ -154,7 +159,7 @@ const BookingStepFive = () => {
                 className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-gray-300 px-5 py-4 text-[18px] font-medium text-gray-700 transition hover:bg-gray-100"
               >
                 <Home size={20} />
-                صفحه اصلی
+{t("home")}
               </Link>
 
               {/* <button

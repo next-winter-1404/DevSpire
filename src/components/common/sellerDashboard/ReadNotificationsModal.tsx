@@ -12,7 +12,7 @@ interface IProps{
 
 const ReadNotificationsModal = ({handleReadNotifsModal}: IProps) => {
 
-    const t = useTranslations("sellerDashboard.notifications");
+const t = useTranslations("notifications");
     const locale = useLocale();
 
     const readAllNotifMutation = useMutation({

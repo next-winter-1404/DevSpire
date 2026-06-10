@@ -4,6 +4,7 @@ import { MoreVertical, MessageSquare, Star } from "lucide-react";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import CommentsActionModal from "./CommentsActionModal";
 import { IComment } from "@/modules/SellerDashboard/payments/types";
+import { useLocale, useTranslations } from "next-intl";
 
 
 export default function CommentsTable({
@@ -13,22 +14,30 @@ export default function CommentsTable({
   comments: IComment[];
   role: "seller" | "admin";
 }) {
+  const t = useTranslations("commentsTable");
+  const locale = useLocale();
   return (
     <div className="w-full h-full">
       <div className="hidden md:block overflow-x-auto h-full">
         <table className="w-full min-w-[950px] text-sm text-right">
           <thead className="text-gray-600 dark:text-gray-400 font-medium dark:bg-gray-800/50">
             <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
-              <th className="py-4 px-4 whitespace-nowrap">ملک</th>
-              <th className="py-4 px-4 whitespace-nowrap">کاربر</th>
-              <th className="py-4 px-4">عنوان و نظر</th>
-              <th className="py-4 px-4 text-center whitespace-nowrap">
-                امتیاز
+              <th className="py-4 px-4 whitespace-nowrap">{t("house")}
               </th>
-              <th className="py-4 px-4 whitespace-nowrap">تاریخ ثبت</th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("user")}
+              </th>
+              <th className="py-4 px-4">{t("titleAndComment")}
+              </th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">
+                {t("rating")}
+
+              </th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("createdDate")}
+              </th>
 
               <th className="py-4 px-4 text-center whitespace-nowrap">
-                عملیات
+                {t("actions")}
+
               </th>
             </tr>
           </thead>
@@ -59,7 +68,7 @@ export default function CommentsTable({
                     <div className="mt-2 flex items-center gap-1 text-[10px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-2 py-1 rounded w-fit">
                       <MessageSquare size={10} />
                       <span className="truncate max-w-[220px]">
-                        پاسخ به: {comment.parent_comment.title}
+                        {t("replyTo")}: {comment.parent_comment.title}
                       </span>
                     </div>
                   )}
@@ -75,7 +84,7 @@ export default function CommentsTable({
                 </td>
 
                 <td className="py-4 px-4 text-gray-500 dark:text-gray-400 whitespace-nowrap align-middle">
-                  {FormatDate(comment.created_at, "fa")}
+                  {FormatDate(comment.created_at, locale)}
                 </td>
 
                 <td className="relative py-4 px-4 text-center align-middle">
@@ -88,7 +97,7 @@ export default function CommentsTable({
 
         {comments.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            نظری برای نمایش وجود ندارد.
+            {t("empty")}
           </div>
         )}
       </div>
@@ -101,13 +110,14 @@ export default function CommentsTable({
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0 flex-1">
-                <p className="text-xs text-gray-500 dark:text-gray-400">ملک</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t("house")}
+                </p>
                 <h3 className="mt-1 text-[15px] font-bold text-foreground line-clamp-2">
                   {comment.house.title}
                 </h3>
 
                 <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-                  کاربر
+                  {t("user")}
                 </p>
                 <p className="mt-1 text-sm font-medium text-foreground">
                   {comment.user.firstName} {comment.user.lastName}
@@ -121,7 +131,7 @@ export default function CommentsTable({
 
             <div className="mt-4 rounded-xl bg-gray-50 p-3 dark:bg-white/5">
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                عنوان و نظر
+                {t("titleAndComment")}
               </p>
               <p className="mt-1 font-bold text-foreground line-clamp-1">
                 {comment.title}
@@ -134,7 +144,7 @@ export default function CommentsTable({
                 <div className="mt-2 flex items-center gap-1 text-[10px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-2 py-1 rounded w-fit">
                   <MessageSquare size={10} />
                   <span className="truncate max-w-[240px]">
-                    پاسخ به: {comment.parent_comment.title}
+                    {t("replyTo")}: {comment.parent_comment.title}
                   </span>
                 </div>
               )}
@@ -143,7 +153,7 @@ export default function CommentsTable({
             <div className="mt-4 flex items-center justify-between gap-4">
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  امتیاز
+                  {t("rating")}
                 </p>
                 <div className="mt-1 flex items-center gap-1 text-amber-500">
                   <Star size={14} fill="currentColor" />
@@ -155,10 +165,10 @@ export default function CommentsTable({
 
               <div className="text-left">
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  تاریخ ثبت
+                  {t("createdDate")}
                 </p>
                 <p className="mt-1 text-sm font-medium text-foreground whitespace-nowrap">
-                  {FormatDate(comment.created_at, "fa")}
+                  {FormatDate(comment.created_at, locale)}
                 </p>
               </div>
             </div>
@@ -167,7 +177,7 @@ export default function CommentsTable({
 
         {comments.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            نظری برای نمایش وجود ندارد.
+            {t("empty")}
           </div>
         )}
       </div>

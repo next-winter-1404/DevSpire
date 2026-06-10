@@ -4,6 +4,7 @@ import { getAgeRange } from "@/utils/helper/getAgeRange";
 import { IPassenger, TravelerDetail } from "../types";
 import { useLocale } from "next-intl";
 import moment from "jalali-moment";
+import { useTranslations } from "next-intl";
 
 interface Iprops {
   traveler_details: TravelerDetail[];
@@ -11,6 +12,8 @@ interface Iprops {
 }
 
 const TravelersDataTable = ({ traveler_details, totalPrice }: Iprops) => {
+  const t = useTranslations("booking.review");
+
   const locale = useLocale();
   return (
     <div className="w-full">
@@ -18,14 +21,14 @@ const TravelersDataTable = ({ traveler_details, totalPrice }: Iprops) => {
         <table className="w-full table-auto">
           <thead className="text-[16px] text-foreground">
             <tr className="text-right font-bold">
-              <th className="p-4">بازه سنی</th>
-              <th className="p-4">نام و نام خانوادگی</th>
-              <th className="p-4">جنسیت</th>
-              <th className="p-4">کد ملی / شماره / پاسپورت</th>
-              <th className="p-4">تاریخ تولد</th>
-              <th className="p-4 text-center">خدمات</th>
-              <th className="p-4 text-center">مبلغ خدمات</th>
-              <th className="p-4">قیمت</th>
+              <th className="p-4"> {t("ageRange")}</th>
+              <th className="p-4">{t("fullName")}</th>
+              <th className="p-4">{t("gender")}</th>
+              <th className="p-4">{t("nationalIdPassport")}</th>
+              <th className="p-4">{t("birthDate")}</th>
+              <th className="p-4 text-center">{t("services")}</th>
+              <th className="p-4 text-center">{t("servicePrice")}</th>
+              <th className="p-4">{t("price")}</th>
             </tr>
           </thead>
 
@@ -39,7 +42,7 @@ const TravelersDataTable = ({ traveler_details, totalPrice }: Iprops) => {
                   {item.firstName} {item.lastName}
                 </td>
                 <td className="p-4 whitespace-nowrap">
-                  {item.gender === "male" ? "مرد" : "زن"}
+                  {item.gender === "male" ? t("male") : t("female")}
                 </td>
                 <td className="p-4 whitespace-nowrap">{item.nationalId}</td>
                 <td className="p-4 whitespace-nowrap">
@@ -51,7 +54,7 @@ const TravelersDataTable = ({ traveler_details, totalPrice }: Iprops) => {
                 <td className="p-4 text-center whitespace-nowrap">-</td>
                 <td className="p-4 whitespace-nowrap">
                   {(totalPrice / traveler_details.length).toLocaleString()}{" "}
-                  تومان
+                  {t("toman")}
                 </td>
               </tr>
             ))}
@@ -72,21 +75,23 @@ const TravelersDataTable = ({ traveler_details, totalPrice }: Iprops) => {
                 </div>
 
                 <div className="mt-1 text-sm text-gray-600">
-                  <span className="font-medium">بازه سنی:</span>{" "}
+                  <span className="font-medium">{t("ageRange")}:</span>
                   {getAgeRange(item.birthDate)}
                 </div>
 
                 <div className="mt-1 text-sm text-gray-600">
-                  <span className="font-medium">جنسیت:</span>{" "}
-                  {item.gender === "male" ? "مرد" : "زن"}
+                  <span className="font-medium">{t("gender")}:</span>
+                  {item.gender === "male" ? t("male") : t("female")}
+
+
                 </div>
               </div>
 
               <div className="text-right">
-                <div className="text-sm text-gray-600">قیمت</div>
+                <div className="text-sm text-gray-600">{t("price")}</div>
                 <div className="text-[16px] font-bold text-gray-900">
                   {(totalPrice / traveler_details.length).toLocaleString()}{" "}
-                  تومان
+                  {t("toman")}
                 </div>
               </div>
             </div>
@@ -94,13 +99,14 @@ const TravelersDataTable = ({ traveler_details, totalPrice }: Iprops) => {
             <div className="mt-4 grid grid-cols-1 gap-2 text-sm text-gray-700">
               <div className="flex justify-between gap-4">
                 <span className="font-medium text-gray-600">
-                  کد ملی / شماره / پاسپورت
+                  {t("nationalIdPassport")}
                 </span>
+
                 <span className="whitespace-nowrap">{item.nationalId}</span>
               </div>
 
               <div className="flex justify-between gap-4">
-                <span className="font-medium text-gray-600">تاریخ تولد</span>
+                <span className="font-medium text-gray-600">{t("birthDate")}</span>
                 <span className="whitespace-nowrap">
                   {locale == "fa"
                     ? moment(item.birthDate).locale("fa").format("YYYY/MM/DD")
@@ -109,12 +115,12 @@ const TravelersDataTable = ({ traveler_details, totalPrice }: Iprops) => {
               </div>
 
               <div className="flex justify-between gap-4">
-                <span className="font-medium text-gray-600">خدمات</span>
+                <span className="font-medium text-gray-600">{t("services")}</span>
                 <span>-</span>
               </div>
 
               <div className="flex justify-between gap-4">
-                <span className="font-medium text-gray-600">مبلغ خدمات</span>
+                <span className="font-medium text-gray-600">{t("servicePrice")}</span>
                 <span>-</span>
               </div>
             </div>

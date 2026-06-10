@@ -2,8 +2,10 @@ import HouseCard from "@/components/common/HouseCard";
 import { MOCK_DATA } from "../mocks/data";
 import { THouse } from "@/components/common/types";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 const ReserveCardList = ({ houses }: { houses: THouse[] }) => {
+  const t = useTranslations("fastReserve.list");
   console.log("houses", houses);
   return (
     <div className="w-full">
@@ -26,19 +28,19 @@ const ReserveCardList = ({ houses }: { houses: THouse[] }) => {
           <div className="mb-4 text-6xl">🏠</div>
 
           <h3 className="mb-2 text-xl font-bold text-gray-800">
-            خانه‌ای پیدا نشد
+            {t("noHouseTitle")}
           </h3>
 
           <p className="mb-6 max-w-md text-sm leading-7 text-gray-500">
-            در حال حاضر موردی برای نمایش وجود ندارد. فیلترها را تغییر بده یا
-            دوباره تلاش کن.
+                        {t("noHouseDesc")}
+
           </p>
 
           <Link
             href="/"
             className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition hover:opacity-90"
           >
-            بازگشت به صفحه اصلی
+            {t("backHome")}
           </Link>
         </div>
       )}

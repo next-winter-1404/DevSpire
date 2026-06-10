@@ -12,9 +12,11 @@ import {
 import { InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { TSocialLink } from "../types";
 import SocialMediaActionModal from "./SocialMediaActionModal";
+import { useTranslations } from "next-intl";
 
 export default function SocialMediaTable({ data }: { data: TSocialLink[] }) {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+  const t = useTranslations("adminDashboard.socialMedia");
 
   const rows = useMemo(() => data ?? [], [data]);
 
@@ -87,15 +89,14 @@ export default function SocialMediaTable({ data }: { data: TSocialLink[] }) {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4"></div>
 
       <div className="hidden md:block overflow-x-auto">
-        <table className="w-full min-w-[900px] text-sm text-right">
+<table className="w-full min-w-[900px] text-sm text-start">
           <thead className="text-gray-600 dark:text-gray-400 font-medium">
             <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
-              <th className="py-4 px-4 whitespace-nowrap">پلتفرم</th>
-              <th className="py-4 px-4 whitespace-nowrap">لینک</th>
-              <th className="py-4 px-4 whitespace-nowrap">دامنه</th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("platform")}</th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("link")}</th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("domain")}</th>
               <th className="py-4 px-4 text-center whitespace-nowrap">
-                عملیات
-              </th>
+                {t("actions")}              </th>
             </tr>
           </thead>
 
@@ -144,8 +145,7 @@ export default function SocialMediaTable({ data }: { data: TSocialLink[] }) {
 
         {rows.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            لینکی ثبت نشده است.
-          </div>
+            {t("noLinks")}          </div>
         )}
       </div>
 
@@ -169,8 +169,7 @@ export default function SocialMediaTable({ data }: { data: TSocialLink[] }) {
                   </span>
 
                   <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-                    لینک
-                  </p>
+                    {t("link")}                  </p>
                   <a
                     href={row.url}
                     target="_blank"
@@ -181,8 +180,7 @@ export default function SocialMediaTable({ data }: { data: TSocialLink[] }) {
                   </a>
 
                   <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-                    دامنه
-                  </p>
+                    {t("domain")}                  </p>
                   <p className="mt-1 text-sm text-foreground">
                     {safeHost(row.url)}
                   </p>
@@ -198,8 +196,7 @@ export default function SocialMediaTable({ data }: { data: TSocialLink[] }) {
 
         {rows.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            لینکی ثبت نشده است.
-          </div>
+            {t("noLinks")}          </div>
         )}
       </div>
     </section>

@@ -4,8 +4,10 @@ import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import BlogsList from "../components/BlogsList";
 import { Plus } from "lucide-react";
 import AddBlog from "../components/AddBlog";
+import { getTranslations } from "next-intl/server";
 
-const BlogsView = async ({ params }: { params: Record<string, string> }) => {
+const BlogsView = async ({ params }: { params: Record<string, string> }) => {const t = await getTranslations("adminDashboard.blogs");
+
   const data = await apiFetch<TBlogsResponse | null>("/blogs", {
     params: params,
     cache: "no-cache",
@@ -17,7 +19,7 @@ const BlogsView = async ({ params }: { params: Record<string, string> }) => {
        items-center mb-4 gap-4"
       >
         <h1 className="text-xl font-bold text-foreground">
-          مقالات وبسایت {`(${data?.totalCount ?? 0})`}
+{t("websiteArticles")} ({data?.totalCount ?? 0})
         </h1>
         <div className=" flex items-center gap-4 ">
           <ReserveFilters />
@@ -34,12 +36,11 @@ const BlogsView = async ({ params }: { params: Record<string, string> }) => {
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              هنوز مقاله ای ثبت نشده است
+{t("noArticles")}
             </p>
 
             <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">
-              میتوانید مقاله ای اضافه کنید !
-            </p>
+{t("addFirstArticle")}            </p>
           </div>
         )}
       </div>

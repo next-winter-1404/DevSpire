@@ -10,6 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
 import httpClient from "@/core/interceptor/axios";
+import { useTranslations } from "next-intl";
 
 
 const FavoritesActionsModal = ({
@@ -20,6 +21,7 @@ const FavoritesActionsModal = ({
   houseId: number;
 }) => {
   const router = useRouter();
+  const t = useTranslations("customerDashboard.favorites");
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
@@ -29,14 +31,15 @@ const FavoritesActionsModal = ({
       return res;
     },
     onSuccess: (res) => {
-      toast.success(res?.data?.message || "علاقه مندی با موفقیت حذف شد");
+      toast.success(res?.data?.message || t("deleteSuccess"));
       router.refresh();
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         toast.error(
-          err?.response?.data?.message || "مشکلی در حذف پیش آمده است",
+          err?.response?.data?.message || t("deleteError")
         );
+
       }
     },
   });
@@ -81,7 +84,8 @@ const FavoritesActionsModal = ({
                 "
               >
                 <Info className="w-4 h-4" />
-                <span>رزرو</span>
+                <span>{t("reserve")}
+                </span>
               </Link>
             </DropdownMenu.Item>
 
@@ -98,7 +102,8 @@ const FavoritesActionsModal = ({
               "
             >
               <Trash2 className="w-4 h-4" />
-              <span>حذف</span>
+              <span>{t("delete")}
+              </span>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>

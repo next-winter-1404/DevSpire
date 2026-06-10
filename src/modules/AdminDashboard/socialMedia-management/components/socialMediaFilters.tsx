@@ -9,12 +9,14 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import SocialMediaFiltersModal from "./SocialMediaFiltersModal";
 import SocialMediaModal from "./SocialMediaModal";
+import { useTranslations } from "next-intl";
 
 const SocialMediaFilters = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
+  const t = useTranslations("adminDashboard.socialMedia");
 
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -48,11 +50,8 @@ const SocialMediaFilters = () => {
       <input
         type="text"
         value={searchQuery}
-        placeholder={
-          locale === "en"
-            ? "Enter  platform ..."
-            : "پلتفرم مورد نظر را وارد کنید"
-        }
+        placeholder={t("searchPlatform")}
+
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setSearchQuery(e.target.value)
         }
@@ -70,7 +69,7 @@ const SocialMediaFilters = () => {
          transition-colors text-sm font-medium cursor-pointer whitespace-nowrap "
       >
         <Filter className="w-5 h-5" />
-        فیلتر ها
+        {t("filters")}
       </button>
       <div className="flex items-center gap-2">
         <button
@@ -82,7 +81,7 @@ const SocialMediaFilters = () => {
             setOpenSocialModal(true);
           }}
         >
-          افزودن لینک جدید
+          {t("addNewLink")}
         </button>
       </div>
       {isFilterOpen && (

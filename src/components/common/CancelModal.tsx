@@ -5,10 +5,12 @@ interface Props {
   onClose: () => void;
   onCancel: () => void;
 }
+import { useTranslations, useLocale } from "next-intl"; 
 
 export default function CancelModal({ isOpen, onClose, onCancel }: Props) {
   if (!isOpen) return null;
-
+  const t = useTranslations("common.cancelModal"); 
+  const locale = useLocale();
   return (
     <>
       <div
@@ -17,7 +19,7 @@ export default function CancelModal({ isOpen, onClose, onCancel }: Props) {
       />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-white dark:bg-[#1f2937] rounded-2xl shadow-xl p-6 text-center relative">
+        <div className="w-full max-w-md bg-white dark:bg-[#1f2937] rounded-2xl shadow-xl p-6 text-center relative"dir={locale === "fa" ? "rtl" : "ltr"}>
           <button
             onClick={onClose}
             className="absolute left-4 top-4 p-2 rounded-full bg-gray-100
@@ -27,7 +29,7 @@ export default function CancelModal({ isOpen, onClose, onCancel }: Props) {
           </button>
 
           <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
-            آیا از لغو این ایتم مطمئن هستید؟
+            {t("title")}
           </h2>
 
           <div className="flex gap-3 justify-center">
@@ -38,14 +40,14 @@ export default function CancelModal({ isOpen, onClose, onCancel }: Props) {
               }}
               className="px-6 py-2 rounded-xl bg-red-500 hover:bg-red-600 text-white text-sm font-medium transition"
             >
-              لغو کردن
+              {t("confirmBtn")}
             </button>
 
             <button
               onClick={onClose}
               className="px-6 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             >
-              انصراف
+              {t("cancelBtn")}
             </button>
           </div>
         </div>

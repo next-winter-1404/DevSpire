@@ -5,6 +5,7 @@ import { MoreVertical } from "lucide-react";
 import ReserveActionsMenu from "./ReserveActionsMenu";
 import { TReservation } from "@/components/common/types";
 import { FormatDate } from "@/utils/helper/FormatDate";
+import { useTranslations } from "next-intl";
 
 export default function ReservationTable({
   data,
@@ -12,23 +13,21 @@ export default function ReservationTable({
 }: {
   data: TReservation[];
   role: "admin" | "seller";
-}) {
+}) {const t = useTranslations("sellerDashboard.reservations.table");
+
   return (
     <div className="w-full">
       <div className="hidden md:block w-full overflow-x-auto">
         <table className="w-full min-w-[850px] text-sm text-right">
           <thead className="text-gray-600 font-medium">
             <tr className="border-b border-[#DDDDDD]">
-              <th className="py-4 px-4 whitespace-nowrap">نام اقامتگاه</th>
-              <th className="py-4 px-4 whitespace-nowrap">اطلاعات مسافرین</th>
-              <th className="py-4 px-4 whitespace-nowrap">تاریخ ثبت رزرو</th>
-              <th className="py-4 px-4 whitespace-nowrap">قیمت</th>
-              <th className="py-4 px-4 whitespace-nowrap text-center">
-                وضعیت رزرو
-              </th>
-              <th className="py-4 px-4 whitespace-nowrap text-center">
-                عملیات
-              </th>
+             <th>{t("houseName")}</th>
+<th>{t("travelersInfo")}</th>
+<th>{t("reservationDate")}</th>
+<th>{t("price")}</th>
+<th>{t("reservationStatus")}</th>
+<th>{t("actions")}</th>
+
             </tr>
           </thead>
 
@@ -74,7 +73,7 @@ export default function ReservationTable({
                     {row.house?.price
                       ? Number(row.house.price).toLocaleString()
                       : 0}{" "}
-                    تومان
+{t("currency")}
                   </td>
 
                   <td className="py-4 px-3 whitespace-nowrap text-center align-middle">
@@ -110,7 +109,8 @@ export default function ReservationTable({
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs text-gray-500">نام اقامتگاه</p>
+               <p className="text-xs text-gray-500">{t("houseName")}</p>
+
                   <h3 className="mt-1 text-[15px] font-bold text-foreground line-clamp-2">
                     {row.house?.title || "-"}
                   </h3>
@@ -129,26 +129,26 @@ export default function ReservationTable({
 
               <div className="mt-4 flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs text-gray-500">وضعیت رزرو</p>
+<p className="text-xs text-gray-500">{t("reservationStatus")}</p>
                   <div className="mt-1">
                     <StatusBadge status={row.status} />
                   </div>
                 </div>
 
                 <div className="text-left">
-                  <p className="text-xs text-gray-500">قیمت</p>
+<p className="text-xs text-gray-500">{t("price")}</p>
                   <p className="mt-1 text-[15px] font-bold text-foreground">
                     {row.house?.price
                       ? Number(row.house.price).toLocaleString()
                       : 0}{" "}
-                    تومان
+{t("currency")}
                   </p>
                 </div>
               </div>
 
               <div className="mt-4 grid grid-cols-1 gap-3 rounded-xl bg-gray-50 p-3 dark:bg-white/5">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs text-gray-500">مسافر اصلی</span>
+<span className="text-xs text-gray-500">{t("mainTraveler")}</span>
                   <span className="text-sm font-medium text-foreground">
                     {firstTraveler
                       ? `${firstTraveler.firstName} ${firstTraveler.lastName}`
@@ -157,14 +157,14 @@ export default function ReservationTable({
                 </div>
 
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs text-gray-500">تعداد مسافرین</span>
+<span className="text-xs text-gray-500">{t("travelersCount")}</span>
                   <span className="text-sm font-medium text-foreground">
                     {travelersCount}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs text-gray-500">تاریخ ثبت رزرو</span>
+<span className="text-xs text-gray-500">{t("reservationDate")}</span>
                   <span className="text-sm font-medium text-foreground">
                     {FormatDate(row.updated_at ?? "", "fa") || "-"}
                   </span>
@@ -179,17 +179,19 @@ export default function ReservationTable({
 }
 
 function StatusBadge({ status }: { status: string }) {
-  let label = "نامشخص";
+  const t = useTranslations("sellerDashboard.reservations.status");
+
+let label = t("unknown");
   let colorClasses = "bg-gray-100 text-gray-700";
 
   if (status === "confirmed") {
-    label = "تایید شده";
+  label = t("confirmed");
     colorClasses = "bg-teal-100 text-teal-700";
   } else if (status === "pending") {
-    label = "در انتظار تایید";
+  label = t("pending");
     colorClasses = "bg-amber-100 text-amber-600";
   } else {
-    label = "لغو شده";
+  label = t("canceled");
     colorClasses = "bg-red-100 text-red-500";
   }
 

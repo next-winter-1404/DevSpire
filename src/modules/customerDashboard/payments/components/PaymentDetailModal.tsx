@@ -6,6 +6,7 @@ import { X, CheckCircle2, AlertTriangle, Clock } from "lucide-react";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import PaymentDetailSkeleton from "./PaymentDetailSkeleton";
 import { IPayment } from "../types";
+import { useTranslations, useLocale } from "next-intl";
 
 interface TPaymentDetail {
   id: number;
@@ -28,6 +29,8 @@ interface IProps {
 }
 
 const PaymentDetailModal = ({ id, isOpen, onClose, detail }: IProps) => {
+  const t = useTranslations("customerDashboard.payments");
+const locale = useLocale();
   const { data, isPending, error } = useQuery({
     queryKey: ["PAYMENT_DETAIL", id],
     enabled: isOpen && !!id && !detail,
@@ -56,7 +59,7 @@ const PaymentDetailModal = ({ id, isOpen, onClose, detail }: IProps) => {
           border-b border-gray-300 dark:border-gray-700"
         >
           <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100">
-            جزئیات تراکنش
+{t("paymentDetails")}
           </h2>
 
           <button
@@ -74,7 +77,7 @@ const PaymentDetailModal = ({ id, isOpen, onClose, detail }: IProps) => {
             <div className="flex flex-col items-center justify-center py-10 text-center">
               <AlertTriangle className="w-10 h-10 text-red-500 mb-3" />
               <p className="text-sm text-red-500">
-                خطا در دریافت اطلاعات تراکنش
+{t("errorFetch")}
               </p>
             </div>
           )}
@@ -96,7 +99,7 @@ const PaymentDetailModal = ({ id, isOpen, onClose, detail }: IProps) => {
                 </div>
 
                 <h3 className="text-lg font-bold text-gray-800 dark:text-white">
-                  {parseInt(details.amount).toLocaleString("fa-IR")} تومان
+                 {parseInt(details.amount).toLocaleString(locale)} تومان
                 </h3>
 
                 <div className="mt-2">
@@ -108,28 +111,33 @@ const PaymentDetailModal = ({ id, isOpen, onClose, detail }: IProps) => {
                 className="rounded-xl border border-gray-200 dark:border-gray-700 
                 divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden"
               >
-                <InfoRow label="شناسه پرداخت" value={`#${details.id}`} />
+<InfoRow label={t("paymentId")} value={`#${details.id}`} />
+               <InfoRow
+  label={t("description")}
+  value={details.description || t("noDescription")}
+/>
+
+               <InfoRow
+  label={t("transactionId")}
+  value={details.transactionId ?? "-"}
+/>
+
                 <InfoRow
-                  label="توضیحات"
-                  value={details.description || "بدون توضیح"}
-                />
-                <InfoRow
-                  label="کد تراکنش"
-                  value={details.transactionId ?? "-"}
-                />
-                <InfoRow
-                  label="تاریخ پرداخت"
+label={t("transactionDate")}
                   value={
                     details.createdAt
                       ? FormatDate(details.createdAt, "fa")
+
+
                       : "-"
                   }
                 />
                 <InfoRow
-                  label="آخرین بروزرسانی"
+label={t("lastUpdate")}
                   value={
                     details.updatedAt
                       ? FormatDate(details.updatedAt, "fa")
+
                       : "-"
                   }
                 />
@@ -156,19 +164,21 @@ function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
 }
 
 function StatusBadge({ status }: { status: string }) {
-  let label = "نامشخص";
+    const t = useTranslations("customerDashboard.payments");
+
+  let label = t("unknown");
   let color = "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300";
 
   if (status === "completed") {
-    label = "موفق";
+    label = t("success");
     color =
       "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400";
   } else if (status === "pending") {
-    label = "در انتظار تایید";
+    label = t("pending");
     color =
       "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400";
   } else if (status === "failed") {
-    label = "ناموفق";
+    label = t("failed");
     color = "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400";
   }
 

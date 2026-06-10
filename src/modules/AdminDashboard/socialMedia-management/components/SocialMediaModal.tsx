@@ -5,6 +5,7 @@ import { z } from "zod";
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const socialValidationSchema = z.object({
   platform: z.string().min(1, "انتخاب پلتفرم الزامی است"),
@@ -19,6 +20,8 @@ interface IProps {
 }
 
 const SocialMediaModal = ({ id, onClose }: IProps) => {
+  const t = useTranslations("adminDashboard.socialMedia");
+
   const {
     SocialLinkDetail,
     isPending,
@@ -83,7 +86,7 @@ const SocialMediaModal = ({ id, onClose }: IProps) => {
          border-gray-100 dark:border-white/10"
         >
           <h3 className="text-lg font-bold text-foreground">
-            {isEditMode ? "ویرایش شبکه اجتماعی" : "افزودن شبکه اجتماعی جدید"}
+            {isEditMode ? t("editSocial") : t("addNewSocial")}
           </h3>
           <button
             onClick={onClose}
@@ -96,14 +99,13 @@ const SocialMediaModal = ({ id, onClose }: IProps) => {
         {isPending && isEditMode ? (
           <div className="flex flex-col items-center justify-center p-10 gap-3">
             <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
-            <p className="text-sm text-gray-500">در حال دریافت اطلاعات...</p>
+            <p className="text-sm text-gray-500"> {t("loadingData")}...</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit(onSubmitting)} className="p-5 space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                نوع پلتفرم
-              </label>
+                {t("platformType")}            </label>
               <select
                 {...register("platform")}
                 className={`w-full h-11 px-3 rounded-xl border bg-gray-50 dark:bg-[#111827] 
@@ -111,12 +113,13 @@ const SocialMediaModal = ({ id, onClose }: IProps) => {
                   ${errors.platform ? "border-red-500" : "border-gray-200 dark:border-white/10 focus:border-blue-500"}
                 `}
               >
-                <option value="">انتخاب کنید...</option>
-                <option value="instagram">اینستاگرام</option>
-                <option value="telegram">تلگرام</option>
-                <option value="whatsapp">واتساپ</option>
-                <option value="linkedin">لینکدین</option>
-                <option value="website">وب‌سایت</option>
+                <option value="">{t("selectPlatform")}</option>
+                <option value="instagram">{t("instagram")}</option>
+                <option value="telegram">{t("telegram")}</option>
+                <option value="whatsapp">{t("whatsapp")}</option>
+                <option value="linkedin">{t("linkedin")}</option>
+                <option value="website">{t("website")}</option>
+
               </select>
               {errors.platform && (
                 <p className="mt-1 text-xs text-red-500">
@@ -130,8 +133,7 @@ const SocialMediaModal = ({ id, onClose }: IProps) => {
                 className="block text-sm font-medium text-gray-700
                dark:text-gray-300 mb-1.5"
               >
-                {` آدرس لینک (URL)`}
-              </label>
+                {t("linkUrl")}              </label>
               <input
                 {...register("url")}
                 placeholder="https://example.com"
@@ -156,7 +158,8 @@ const SocialMediaModal = ({ id, onClose }: IProps) => {
                  dark:border-white/10 text-sm font-medium hover:bg-gray-50
                   dark:hover:bg-white/5 transition-colors"
               >
-                انصراف
+                {t("cancel")}
+
               </button>
               <button
                 type="submit"
@@ -164,7 +167,7 @@ const SocialMediaModal = ({ id, onClose }: IProps) => {
                 className="flex-[2] h-11 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
               >
                 {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                {isEditMode ? "بروزرسانی تغییرات" : "ثبت لینک جدید"}
+                {isEditMode ? t("updateChanges") : t("submitNewLink")}
               </button>
             </div>
           </form>

@@ -6,11 +6,13 @@ import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
 import { useManageUsers } from "../hooks";
 import EditUserRole from "./EditUserRole";
 import EditUserInformation from "./EditUserInformation";
+import { useTranslations } from "next-intl";
 
 const UsersManagementActionsModal = ({ id }: { id: number }) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openChangeRole, setOpenChangeRole] = useState(false);
   const [openEditUser, setOpenEditUser] = useState(false);
+const t = useTranslations("adminDashboard.users");
 
   const { deleteUserMutation } = useManageUsers(id);
 
@@ -54,7 +56,7 @@ const UsersManagementActionsModal = ({ id }: { id: number }) => {
               "
             >
               <Edit className="w-4 h-4" />
-              <span>ویرایش</span>
+<span>{t("edit")}</span>
             </DropdownMenu.Item>
 
             <DropdownMenu.Item
@@ -70,7 +72,7 @@ const UsersManagementActionsModal = ({ id }: { id: number }) => {
               "
             >
               <Key className="w-4 h-4" />
-              <span>تغییر نقش</span>
+<span>{t("changeRole")}</span>
             </DropdownMenu.Item>
 
             <DropdownMenu.Item
@@ -86,7 +88,7 @@ const UsersManagementActionsModal = ({ id }: { id: number }) => {
               "
             >
               <Trash2 className="w-4 h-4" />
-              <span>حذف</span>
+<span>{t("delete")}</span>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>

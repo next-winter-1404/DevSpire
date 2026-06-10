@@ -17,6 +17,7 @@ import Image from "next/image";
 
 import vsAnimation from "../../../public/lottie/Compare.json";
 import Lottie from "react-lottie";
+import { useLocale, useTranslations } from "next-intl";
 
 export interface ICompareProperty {
   id: number;
@@ -43,10 +44,20 @@ interface Props {
 }
 
 const formatPrice = (price: string) => {
-  return new Intl.NumberFormat("fa-IR").format(Number(price)) + " تومان";
+    const locale = useLocale();
+const t = useTranslations("common.compare");
+
+  const formatted =
+    locale === "fa"
+      ? new Intl.NumberFormat("fa-IR").format(Number(price))
+      : new Intl.NumberFormat("en-US").format(Number(price));
+
+  return `${formatted} ${t("currency")}`;
 };
 
-const formatType = (type: string) => {
+
+const formatType = (type: string) => {  const t = useTranslations("compare");
+
   switch (type) {
     case "mortgage":
       return "رهن";
@@ -61,48 +72,53 @@ const formatType = (type: string) => {
 
 const PropertyComparison: React.FC<Props> = ({ properties }) => {
   if (!properties || properties.length !== 2) return null;
-
+const t = useTranslations("common.compare");
+  const locale = useLocale();
   const [prop1, prop2] = properties;
 
   const features = [
     {
-      label: "نوع معامله",
+      label: t("features.transactionType"),
       icon: Wallet,
       val1: formatType(prop1.transaction_type),
       val2: formatType(prop2.transaction_type),
     },
     {
-      label: "تعداد اتاق",
+      label: t("features.rooms"),
       icon: BedDouble,
       val1: prop1.rooms,
       val2: prop2.rooms,
     },
     {
-      label: "سرویس بهداشتی",
+      label: t("features.bathrooms"),
       icon: Bath,
       val1: prop1.bathrooms,
       val2: prop2.bathrooms,
     },
     {
-      label: "ظرفیت پارکینگ",
+      label: t("features.parking"),
       icon: Car,
       val1: prop1.parking,
       val2: prop2.parking,
     },
     {
-      label: "ظرفیت نفرات",
+      label: t("features.capacity"),
       icon: Users,
-      val1: `${prop1.capacity} نفر`,
-      val2: `${prop2.capacity} نفر`,
+      val1: `${prop1.capacity} ${t("person")}`
+,
+      val2: `${prop2.capacity} ${t("person")}`
+,
     },
     {
-      label: "نوع حیاط",
+      label: t("features.yard"),
       icon: TreeDeciduous,
-      val1: prop1.yard_type === "green" ? "فضای سبز" : "ندارد",
-      val2: prop2.yard_type === "green" ? "فضای سبز" : "ندارد",
+      val1: prop1.yard_type ? t(`yard.${prop1.yard_type}`) : t("yard.none")
+,
+      val2: prop2.yard_type ? t(`yard.${prop1.yard_type}`) : t("yard.none")
+,
     },
     {
-      label: "تعداد نظرات",
+      label: t("features.comments"),
       icon: MessageCircle,
       val1: prop1.num_comments,
       val2: prop2.num_comments,
@@ -145,7 +161,7 @@ const PropertyComparison: React.FC<Props> = ({ properties }) => {
               >
                 <div className="w-full aspect-video md:aspect-[4/3] bg-slate-100 dark:bg-slate-800 relative rounded-2xl mb-4 flex items-center justify-center overflow-hidden group shadow-inner">
                   <Image
-                    alt="تصویر ملک"
+alt={t("propertyImageAlt")}
                     src={"/images/fastReservePage/NoImage.png"}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -197,7 +213,7 @@ const PropertyComparison: React.FC<Props> = ({ properties }) => {
         <div className="bg-slate-50/50 dark:bg-slate-900/50 px-6 py-4 border-b border-slate-200 dark:border-slate-800">
           <h4 className="font-bold text-slate-800 dark:text-white flex items-center gap-2">
             <BadgeCheck className="text-blue-500" />
-            مشخصات و امکانات
+  {t("specifications")}
           </h4>
         </div>
 
@@ -238,8 +254,7 @@ const PropertyComparison: React.FC<Props> = ({ properties }) => {
             <div key={`footer-${prop.id}`} className="p-6">
               <div className="mb-4">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">
-                  توضیحات تکمیلی
-                </span>
+{t("additionalInfo")}                </span>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
                   {prop.caption}
                 </p>
@@ -249,7 +264,8 @@ const PropertyComparison: React.FC<Props> = ({ properties }) => {
                   {prop.sellerName.charAt(0)}
                 </div>
                 <div>
-                  <div className="text-xs text-slate-500">ارائه‌دهنده</div>
+                  <div className="text-xs text-slate-500">  {t("provider")}
+</div>
                   <div className="font-semibold text-sm text-slate-800 dark:text-slate-200">
                     {prop.sellerName}
                   </div>

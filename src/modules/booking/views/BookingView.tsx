@@ -27,7 +27,8 @@ const BookingView = ({ house, houseId }: IProps) => {
     { label: t("home"), href: "/" },
     { label: t("hotelReserve"), href: "/fast-reserve" },
     {
-      label: `${t("hotelReserve")} ${house?.title ?? "موردی با این شناسه یافت نشد"}`,
+      label: `${t("hotelReserve")} ${house?.title ?? t("houseNotFound")}`
+      ,
     },
   ];
   const searchParams = useSearchParams();
@@ -113,7 +114,7 @@ const BookingView = ({ house, houseId }: IProps) => {
         <Suspense
           fallback={
             <div className="flex items-center justify-center min-h-[80vh]">
-              در حال بارگذاری...
+              {t("loading")}
             </div>
           }
         >

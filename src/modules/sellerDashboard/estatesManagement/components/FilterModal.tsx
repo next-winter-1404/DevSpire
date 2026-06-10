@@ -18,6 +18,7 @@ const FilterModal = ({setIsOpenFilterModal}:IProps) => {
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
+  const t = useTranslations("sellerDashboard.estates");
 
     const [range, setRange] = useState<[number, number]>([
         parseInt(searchParams.get("minPrice") ?? "0"),
@@ -84,7 +85,8 @@ const FilterModal = ({setIsOpenFilterModal}:IProps) => {
         <>
             <div className="flex flex-col gap-8 w-[563px] p-8 bg-[#FFFFFF] rounded-[24px] absolute top-40 right-124 z-30">
                 <div className="flex justify-between items-center">
-                    <h2 className="font-bold text-[24px] text-[#1E2022]">فیلتر ها</h2>
+                    <h2 className="font-bold text-[24px] text-[#1E2022]">             {t("filters")}
+</h2>
                     <div onClick={() => {setIsOpenFilterModal(false)}} className="flex items-center p-4 bg-[#F5F5F5] rounded-full">
                         <Close className="w-4 h-4"/>
                     </div>
@@ -98,9 +100,11 @@ const FilterModal = ({setIsOpenFilterModal}:IProps) => {
                     <button 
                     onClick={() => {setIsOpenFilterModal(false)}}
                     className="w-full py-[13px] text-[#777777] border border-[#777777] rounded-[16px] cursor-pointer">
-                        انصراف
+                                    {t("cancel")}
+
                     </button>
-                    <button className="w-full py-[13px] text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer">اعمال فیلتر</button>
+                    <button className="w-full py-[13px] text-[#FFFFFF] bg-[#0D3B66] rounded-[16px] cursor-pointer">            {t("applyFilters")}
+</button>
                 </div>
             </div>
             <div className="w-full h-full bg-black/40 backdrop-blur-sm fixed inset-0 z-0 animate-fadeIn"></div>

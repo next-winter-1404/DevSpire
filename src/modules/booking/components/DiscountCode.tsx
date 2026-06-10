@@ -2,8 +2,10 @@
 
 import { Check } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 
-const DiscountCode = () => {
+const DiscountCode = () => {const t = useTranslations("booking.form");
+
   const {
     register,
     handleSubmit,
@@ -14,19 +16,19 @@ const DiscountCode = () => {
   };
   return (
     <div className="w-full bg-[#FFFFFF] rounded-[24px] border border-[#DDDDDD] p-6 dark:bg-[#27272A]">
-      <h2 className="text-[24px] font-bold text-foreground mb-6 ">کد تخفیف</h2>
+      <h2 className="text-[24px] font-bold text-foreground mb-6 ">{t("discountCode")} </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className=" w-full flex  flex-col items-start gap-6  md:flex-row md:items-center md:justify-between "
       >
         <div className="flex flex-col gap-2 items-start w-full relative pb-6">
           <label className="text-[14px] text-foreground font-bold">
-            کد تخفیف
-          </label>
+{t("discountCode")}          </label>
           <input
-            placeholder="کد تخفیف خود را وارد کنید ..."
+placeholder={t("discountPlaceholder")}
             {...register(`discountCode`, {
-              required: "کد خود را وارد کنید",
+             required: t("discountRequired")
+,
             })}
             className={`w-full md:w-[250px]  placeholder:text-[#777777] text-foreground bg-[#F5F5F5]
                      dark:bg-[#3F3F46] rounded-[40px] p-3.5 text-[14px] outline-none focus:ring-2 ${
@@ -48,7 +50,7 @@ const DiscountCode = () => {
            hover:bg-blue-50 transition-colors shrink-0"
         >
           <Check className="w-4 h-4 text-[#0D3B66]" />
-          اعمال کد تخفیف
+{t("applyDiscount")}
         </button>
       </form>
     </div>

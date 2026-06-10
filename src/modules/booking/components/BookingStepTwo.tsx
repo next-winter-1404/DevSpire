@@ -10,6 +10,7 @@ import { RootState } from "@/redux/store/store";
 import { notFound } from "next/navigation";
 import { THouse } from "@/components/common/types";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   changeTab: (tab: number) => void;
@@ -33,6 +34,7 @@ const BookingStepTwo = ({
   ) {
     notFound();
   }
+const t = useTranslations("booking.form");
 
   const insertDate = bookingData.insertDate;
   const exitDate = bookingData.exitDate;
@@ -67,18 +69,18 @@ const BookingStepTwo = ({
         <div className="mb-4 text-6xl">🏠</div>
 
         <h3 className="mb-2 text-xl font-bold text-gray-800">
-          خانه‌ای با این شناسه پیدا نشد
+  {t("houseNotFound")}
         </h3>
 
         <p className="mb-6 max-w-md text-sm leading-7 text-gray-500">
-          در حال حاضر موردی برای نمایش وجود ندارد
+  {t("noHouseAvailable")}
         </p>
 
         <Link
           href="/fast-reserve"
           className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition hover:opacity-90"
         >
-          انتخاب مجدد
+  {t("chooseAgain")}
         </Link>
       </div>
     );
@@ -98,7 +100,7 @@ const BookingStepTwo = ({
       sharedMobile: data.sharedMobile,
     });
     getTotalPrice(totalPrice);
-    toast.success("اطلاعات شما با موفقیت ثبت شد");
+toast.success(t("bookingSaved"));
     changeTab(3);
   };
 
@@ -127,10 +129,10 @@ const BookingStepTwo = ({
         <div className=" w-full flex flex-col gap-4 md:gap-2">
           <div className="flex gap-2 items-center">
             <h2 className="text-[24px] font-bold text-foreground ">
-              قیمت کل :
+              {t("totalPrice")} :
             </h2>
             <h2 className="text-primary text-[24px] font-bold ">
-              {totalPrice.toLocaleString()} تومان
+  {totalPrice.toLocaleString()} {t("toman")}
             </h2>
           </div>
           <div className="w-full flex items-start justify-end">
@@ -138,7 +140,7 @@ const BookingStepTwo = ({
               type="submit"
               className="text-[#ffff] text-[20px] bg-primary  p-2.5 cursor-pointer rounded-[16px] "
             >
-              تایید و ادامه فرایند
+{t("confirmAndContinue")}
             </button>
           </div>
         </div>

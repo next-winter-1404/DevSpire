@@ -9,9 +9,9 @@ import DateIcon from "../../../../public/icons/Date";
 import Clock from "../../../../public/icons/Clock";
 import { useQuery } from "@tanstack/react-query";
 import { getSellerDetail } from "../services/GET/GetSellerDetail";
-import { useLocale } from "next-intl";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useLocale, useTranslations } from "next-intl";
 
 interface IProps {
   sellerId: number;
@@ -25,6 +25,7 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
     queryKey: ["GETSELLERDETAIL", sellerId],
     queryFn: () => getSellerDetail(sellerId),
   });
+const tCard = useTranslations("mortgageRent.card");
 
   const seller = data?.user;
 
@@ -67,7 +68,7 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
   if (error || !seller) {
     return (
       <div className="p-6 border border-red-200 rounded-[24px] text-center text-sm text-red-500">
-        خطا در دریافت اطلاعات فروشنده
+{tCard("sellerError")}
       </div>
     );
   }
@@ -91,23 +92,25 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
       <div className="flex justify-between items-center w-full">
         <div className="flex items-center gap-2 text-[15px] text-[#0D3B66]">
           <Money />
-          <span>قیمت از :</span>
+<span>{tCard("priceFrom")}</span>
         </div>
 
         <div className="flex gap-2 font-bold text-[18px] text-[#1E2022]">
           <span>{Number(amount).toLocaleString()}</span>
-          <span>تومان</span>
+<span>{tCard("toman")}</span>
         </div>
       </div>
 
       <button className="flex justify-center items-center gap-3 w-full py-3 text-white bg-[#0D3B66] rounded-[40px] hover:opacity-90 transition">
         <MobileCall />
-        <span>تماس با **** {seller.phoneNumber?.slice(0, 4)}</span>
+<span>
+  {tCard("callSeller")} **** {seller.phoneNumber?.slice(0, 4)}
+</span>
       </button>
 
       <button className="flex justify-center items-center gap-3 w-full py-3 text-[#FF7F11] border border-[#FF7F11] rounded-[40px] hover:bg-[#FF7F11] hover:text-white transition">
         <Chat />
-        <span>گفت و گو با فروشنده</span>
+<span>{tCard("chatWithSeller")}</span>
       </button>
 
       <div className="flex justify-between w-full text-[13px] text-[#777777]">

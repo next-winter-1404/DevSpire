@@ -6,12 +6,15 @@ import Chats from "../../../../../public/icons/Chats";
 import Estates from "../../../../../public/icons/Estates";
 import CountUp from "react-countup";
 import Group from "../../../../../public/icons/Group";
+import { useTranslations } from "next-intl";
 
 const AdminDashboardHeader = ({
   data,
 }: {
   data: IAdminDashboardData | null;
 }) => {
+  const t = useTranslations("adminDashboard.dashboard");
+
   return (
     <div className="flex flex-col md:flex-row md:items-center w-full gap-4">
       <div className=" md:flex-3">
@@ -19,20 +22,26 @@ const AdminDashboardHeader = ({
           items={[
             {
               icon: Group,
-              title: "کل کاربران",
-              value: data?.users?.userCount || "موردی یافت نشد",
+              title: t("totalUsers")
+              ,
+              value: data?.users?.userCount || t("notFound")
+              ,
               link: "dashboard/admin/users-management"
             },
             {
               icon: Estates,
-              title: "کل املاک",
-              value: data?.houses || "موردی یافت نشد",
+              title: t("totalEstates")
+              ,
+              value: data?.houses || t("notFound")
+              ,
               link: "dashboard/admin/estates-management"
             },
             {
               icon: Chats,
-              title: "نظرات کاربران",
-              value: data?.comments || "موردی یافت نشد",
+              title: t("userComments")
+              ,
+              value: data?.comments || t("notFound")
+              ,
               link: "dashboard/admin/comments-management"
             },
           ]}
@@ -51,7 +60,7 @@ const AdminDashboardHeader = ({
           </div>
           <div className="z-10">
             <p className="text-slate-400 text-sm font-medium mb-1">
-              میانگین امتیازات
+              {t("averageRating")}
             </p>
             <div className="flex items-center gap-2">
               <p className="text-3xl font-bold text-white">

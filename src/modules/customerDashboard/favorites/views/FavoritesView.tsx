@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { IFavoritesResponse } from "../types";
 import FavoritesList from "../components/FavoritesList";
+import { getTranslations } from "next-intl/server";
 
 interface IProps {
   params: Record<string, string>;
@@ -13,6 +14,7 @@ const FavoritesView = async ({ params }: IProps) => {
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value as string;
   const decoded = jwtDecode<IDecodedToken>(token);
+const t = await getTranslations("customerDashboard.favorites");
 
   const data = await apiFetch<IFavoritesResponse | null>(
     `/favorites/user/${decoded.id}`,
@@ -28,7 +30,7 @@ const FavoritesView = async ({ params }: IProps) => {
        items-center mb-4 gap-4 md:gap-0"
       >
         <h1 className="text-xl font-bold text-foreground whitespace-nowrap ">
-          لیست علاقه مندی ها
+          {t("title")}
         </h1>
         <div className=" w-full md:w-[50%]">
           <ReserveFilters />
@@ -44,11 +46,12 @@ const FavoritesView = async ({ params }: IProps) => {
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              ملکی به علاقه هایتان اضافه نکردید !{" "}
+              {t("emptyTitle")}
+              !{" "}
             </p>
 
             <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">
-              بعد از اضافه کردن ملک به به علاقه مندیتان اینجا نمایش داده میشوند
+              {t("emptyDesc")}
             </p>
           </div>
         )}

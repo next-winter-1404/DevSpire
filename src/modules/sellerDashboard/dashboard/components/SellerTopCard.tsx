@@ -19,37 +19,39 @@ const SellerTopCard = ({
   commentsCount: number | undefined;
   houses: number | undefined;
 }) => {
-  const t = useTranslations("sellerDashboard.dashboard");
+  const t = useTranslations("sellerDashboard.sdashboard");
 
   return (
     <>
       <TopCards
+
         items={[
           {
             icon: Money,
-            title: " تعداد پرداختی ها",
-            value: stats?.totalPayments || "موردی یافت نشد",
-            link: "/dashboard/seller/payments"
+            title: t("totalPayments"),
+            value: stats?.totalPayments ?? t("noData"),
+            link: "/dashboard/seller/payments",
           },
           {
             icon: CheckList,
-            title: " تعداد رزرو ها",
-            value: stats?.totalBookings || "موردی یافت نشد",
-            link: "/dashboard/seller/reserves-management"
+            title: t("totalBookings"),
+            value: stats?.totalBookings ?? t("noData"),
+            link: "/dashboard/seller/reserves-management",
           },
           {
             icon: Chats,
-            title: "تعداد کامنت ها",
-            value: commentsCount || "موردی یافت نشد",
-            link: "/dashboard/seller/comments-management"
+            title: t("totalComments"),
+            value: commentsCount ?? t("noData"),
+            link: "/dashboard/seller/comments-management",
           },
           {
             icon: House,
-            title: "تعداد خانه ها",
-            value: houses || "موردی یافت نشد",
-            link: "/dashboard/seller/estates-management"
+            title: t("totalHouses"),
+            value: houses ?? t("noData"),
+            link: "/dashboard/seller/estates-management",
           },
         ]}
+
       />
     </>
   );

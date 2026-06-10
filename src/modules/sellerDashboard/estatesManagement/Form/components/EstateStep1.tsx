@@ -9,6 +9,7 @@ import httpClient from "@/core/interceptor/axios";
 import { Rating } from "react-simple-star-rating";
 import { ICategoryResponse } from "@/modules/AdminDashboard/blogs/components/BlogForm";
 import { IGeneraData, IStep1Data } from "../types";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   generalData: IGeneraData;
@@ -44,6 +45,8 @@ const validationSchema = z
   );
 
 const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
+  const t = useTranslations("sellerDashboard.estateForm.step1");
+
   const { data: cats, isPending } = useQuery({
     queryKey: ["ALLCATEGORIES"],
     queryFn: async () => {
@@ -62,12 +65,11 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
     defaultValues: generalData.step1,
     mode: "onSubmit",
   });
-
   const transactionTypeOptions = [
-    { value: "reservation", label: "رزرو" },
-    { value: "mortgage", label: "رهن" },
-    { value: "rental", label: "اجاره ای" },
-    { value: "direct_purchase", label: "خرید و فروش" },
+    { value: "reservation", label: t("transactions.reservation") },
+    { value: "mortgage", label: t("transactions.mortgage") },
+    { value: "rental", label: t("transactions.rental") },
+    { value: "direct_purchase", label: t("transactions.directPurchase") },
   ];
 
   const inputClass =
@@ -94,14 +96,15 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-6 md:gap-8 w-full"
     >
+
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
         <div className="flex flex-col gap-3 w-full">
           <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            نام ملک
-          </label>
+            {t("title")}          </label>
           <input
             {...register("title")}
-            placeholder="مثلا ویلای ساحلی"
+            placeholder={t("titlePlaceholder")}
             type="text"
             className={inputClass}
           />
@@ -114,12 +117,11 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
 
         <div className="flex flex-col gap-3 w-full">
           <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            ظرفیت
-          </label>
+            {t("capacity")}          </label>
           <input
             {...register("capacity")}
             type="number"
-            placeholder="مثلا ۴"
+            placeholder={t("capacityPlaceholder")}
             className={inputClass}
           />
           {errors.capacity && (
@@ -133,8 +135,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
         <div className="flex flex-col gap-3 w-full">
           <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            نوع معامله
-          </span>
+            {t("transactionType")}          </span>
 
           <Controller
             name="transaction_type"
@@ -158,12 +159,11 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
         </div>
 
         {isPending ? (
-          <p className="text-foreground">درحال بارگزاری دسته بندی ها ...</p>
+          <p className="text-foreground">{t("loadingCategories")}...</p>
         ) : cats && cats.totalCount > 0 ? (
           <div className="flex flex-col gap-3 w-full">
             <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-              نوع ملک
-            </span>
+              {t("estateType")}            </span>
 
             <Controller
               name="category"
@@ -193,8 +193,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
         <div className="flex flex-col gap-3 w-full">
           <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            قیمت (تومان)
-          </label>
+            {t("price")}          </label>
           <input {...register("price")} type="number" className={inputClass} />
           {errors.price && (
             <span className="text-red-500 text-xs md:text-sm">
@@ -205,12 +204,11 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
 
         <div className="flex flex-col gap-3 w-full">
           <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            قیمت تخفیف خورده (اختیاری)
-          </label>
+            {t("discountedPrice")}          </label>
           <input
             {...register("discounted_price")}
             type="number"
-            placeholder="در صورت داشتن تخفیف وارد کنید"
+            placeholder={t("discountPlaceholder")}
             className={inputClass}
           />
           {errors.discounted_price && (
@@ -224,8 +222,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
         <div className="flex flex-col gap-3 w-full">
           <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            امتیاز اولیه
-          </span>
+            {t("initialRate")}          </span>
 
           <div className="flex items-center pb-2 md:pb-4">
             <Controller
@@ -258,8 +255,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
 
       <div className="flex flex-col gap-3 w-full">
         <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-          توضیحات
-        </label>
+          {t("description")}        </label>
         <textarea
           {...register("caption")}
           rows={5}
@@ -272,7 +268,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
           type="submit"
           className="w-full md:w-fit flex items-center justify-center gap-2 py-[13px] px-4 text-white bg-[#0D3B66] rounded-[16px]"
         >
-          <span className="text-[14px] md:text-[16px]">تایید و ادامه</span>
+          <span className="text-[14px] md:text-[16px]"> {t("submitAndContinue")} </span>
           <CurveArrow className="rotate-90" />
         </button>
       </div>

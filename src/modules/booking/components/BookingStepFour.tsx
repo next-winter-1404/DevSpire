@@ -8,13 +8,15 @@ import toast from "react-hot-toast";
 import { usePathname } from "@/i18n/routing";
 import axios from "axios";
 import { notFound } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   amount: number | string;
   bookingId: number | string;
   houseId: number;
 }
-const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
+const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {const t = useTranslations("booking.payment");
+
   const pathname = usePathname();
   const isRequested = useRef<boolean>(false);
   const {
@@ -25,7 +27,7 @@ const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
     mutationKey: ["POSTPAYMENT"],
     mutationFn: (data: IPaymentRequest) => PostPayment(data),
     onSuccess: (res) => {
-      toast.success("به صفحه پرداخت هدایت میشوید");
+toast.success(t("redirectingToGateway"));
       console.log(res.data);
       localStorage.setItem("houseId", String(houseId));
       window.location.href = res.data.paymentUrl;
@@ -33,11 +35,11 @@ const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         if (err.response?.status === 403) {
-          toast.error("شما دسترسی لازم برای انجام این عملیات را ندارید");
+toast.error(t("noPermission"));
         } else if (err.response?.status == 400) {
           toast.error(err.response?.data?.message || "400 bad request");
         } else {
-          toast.error("خطا در اتصال به درگاه پرداخت");
+toast.error(t("gatewayConnectionError"));
         }
       }
     },
@@ -69,11 +71,11 @@ const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
           />
 
           <p className="text-lg font-semibold text-gray-700">
-            در حال انتقال به درگاه پرداخت
+{t("redirecting")}
           </p>
 
           <p className="mt-2 text-sm text-gray-500 animate-pulse">
-            لطفاً چند لحظه صبر کنید…
+{t("pleaseWait")}
           </p>
         </div>
       ) : error ? (
@@ -82,7 +84,7 @@ const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
             ✕
           </div>
           <p className="text-lg font-semibold text-gray-800 mb-2">
-            مشکلی در اتصال به درگاه پرداخت پیش آمد
+{t("gatewayError")}
           </p>
         </div>
       ) : (
@@ -93,7 +95,7 @@ const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
           />
 
           <p className="text-lg font-semibold text-gray-700">
-            درگاهی با مشخصات شما یافت نشد !
+{t("gatewayNotFound")}
           </p>
         </div>
       )}

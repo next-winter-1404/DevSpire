@@ -3,6 +3,7 @@ import { IGeneraData, IStep3Data } from "../types";
 import { Controller, useForm } from "react-hook-form";
 import CurveArrow from "../../../../../../public/icons/CurveArrow";
 import TagsInput from "@/components/common/TagsInput";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   generalData: IGeneraData;
@@ -12,16 +13,20 @@ interface IProps {
 }
 
 const EstateStep3 = ({
+
   generalData,
   handleNext,
   handlePrev,
   onChangeData,
 }: IProps) => {
+  const t = useTranslations("sellerDashboard.estateForm.step3");
+
   const { register, handleSubmit, control } = useForm<IStep3Data>({
     defaultValues: generalData.step3,
   });
 
   const onSubmit = (data: IStep3Data) => {
+
     onChangeData({
       ...generalData,
       step3: {
@@ -47,8 +52,7 @@ const EstateStep3 = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
         <div className="flex flex-col gap-3 md:gap-4 w-full">
           <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            تعداد اتاق
-          </label>
+            {t("rooms")}          </label>
           <input
             {...register("rooms")}
             type="number"
@@ -59,8 +63,7 @@ const EstateStep3 = ({
 
         <div className="flex flex-col gap-3 md:gap-4 w-full">
           <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            تعداد پارکینگ
-          </label>
+            {t("parking")}          </label>
           <input
             {...register("parking")}
             type="number"
@@ -74,8 +77,7 @@ const EstateStep3 = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
         <div className="flex flex-col gap-3 md:gap-4 w-full">
           <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            تعداد حمام
-          </label>
+            {t("bathrooms")}          </label>
           <input
             {...register("bathrooms")}
             type="number"
@@ -86,8 +88,7 @@ const EstateStep3 = ({
 
         <div className="flex flex-col gap-3 md:gap-4 w-full">
           <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
-            برچسب ها
-          </label>
+            {t("tags")}          </label>
 
           <Controller
             name="tags"
@@ -102,7 +103,7 @@ const EstateStep3 = ({
                       ? [field.value]
                       : (field.value ?? [])
                   }
-                  placeholder="تایپ کنید و Enter بزنید..."
+                  placeholder={t("tagsPlaceholder")}
                 />
               </div>
             )}
@@ -118,14 +119,14 @@ const EstateStep3 = ({
           className="w-full md:w-fit flex items-center justify-center gap-2 py-[13px] px-3 text-[#777777] border border-[#777777] rounded-[16px]"
         >
           <CurveArrow className="rotate-270" />
-          <span className="text-[14px] md:text-[16px]">مرحله قبل</span>
+          <span className="text-[14px] md:text-[16px]"> {t("prevStep")}</span>
         </button>
 
         <button
           type="submit"
           className="w-full md:w-fit flex items-center justify-center gap-2 py-[13px] px-3 text-white bg-[#0D3B66] rounded-[16px]"
         >
-          <span className="text-[14px] md:text-[16px]">تایید و ادامه</span>
+          <span className="text-[14px] md:text-[16px]"> {t("submitAndContinue")}</span>
           <CurveArrow className="rotate-90" />
         </button>
       </div>

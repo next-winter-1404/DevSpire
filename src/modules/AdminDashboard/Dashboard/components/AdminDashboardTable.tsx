@@ -1,8 +1,11 @@
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import UserManagementTable from "../../UsersManagement/components/UserManagementTable";
 import { IAllUsers } from "@/components/common/types";
+import { getTranslations } from "next-intl/server";
 
 const AdminDashboardTable = async () => {
+  const t = await getTranslations("adminDashboard.dashboard");
+
   const res = await apiFetch<IAllUsers | null>("/users", {
     cache: "no-store",
     params: {
@@ -19,14 +22,14 @@ const AdminDashboardTable = async () => {
          bg-[#ffff] dark:bg-[#262626]"
     >
       <h2 className="text-[24px] font-bold text-foreground p-4">
-        جدیدترین کاربران
+        {t("latestUsers")}
       </h2>
       {res && res?.totalCount > 0 ? (
         <UserManagementTable data={res.data} />
       ) : (
         <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
           <p className="text-gray-500 dark:text-gray-400 text-sm">
-            هنوز کاربری ثبت نام نکرده است
+            {t("noUsers")}
           </p>
         </div>
       )}

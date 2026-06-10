@@ -10,20 +10,22 @@ import {
 import { ElementType } from "react";
 import * as Progress from "@radix-ui/react-progress";
 import { useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 
 interface ISteps {
   id: number;
   title: string;
   icon: ElementType;
 }
-const BookingStepper = ({ currentStep = 2 }: { currentStep?: number }) => {
+const BookingStepper = ({ currentStep = 2 }: { currentStep?: number }) => {const t = useTranslations("booking.stepper");
+
   const locale = useLocale();
   const stpes: ISteps[] = [
-    { id: 1, title: "انتخاب هتل", icon: Building2Icon },
-    { id: 2, title: "مشخصات مسافران", icon: UsersIcon },
-    { id: 3, title: "تایید اطلاعات", icon: CheckCheck },
-    { id: 4, title: "پرداخت آنلاین", icon: CreditCard },
-    { id: 5, title: "صدور بلیط", icon: ReceiptIcon },
+    { id: 1, title: t("selectHotel"), icon: Building2Icon },
+  { id: 2, title: t("travelerInfo"), icon: UsersIcon },
+  { id: 3, title: t("confirmInfo"), icon: CheckCheck },
+  { id: 4, title: t("onlinePayment"), icon: CreditCard },
+  { id: 5, title: t("ticketIssued"), icon: ReceiptIcon },
   ];
   const totalStep = stpes.length;
   const progressPercent = ((currentStep - 1) / (totalStep - 1)) * 100;

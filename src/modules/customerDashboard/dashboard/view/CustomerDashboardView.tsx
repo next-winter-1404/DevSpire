@@ -5,8 +5,11 @@ import DashboardCardsSkeleton from "@/components/dashboard/DashboardCardsSkeleto
 import DashboardChartsSkeleton from "@/components/dashboard/DashboardChartsSkeleton";
 import CustomerLatestReservesView from "./CustomerLatestReservesView";
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
-
+import { getTranslations } from "next-intl/server";
 const CustomerDashboardView = async () => {
+const t = await getTranslations("customerDashboard.dashboard");
+
+
   return (
     <div className="flex flex-col gap-4 ">
       <Suspense fallback={<DashboardCardsSkeleton />}>
@@ -18,7 +21,7 @@ const CustomerDashboardView = async () => {
       <Suspense fallback={<DashboardTableSkeleton />}>
         <div className="bg-[#FFFFFF] rounded-[24px] dark:bg-[#262626] py-4 px-6 ">
           <h2 className="text-[20px] font-bold text-foreground mb-2">
-            رزرو های اخیر
+            {t("recentReserves")}
           </h2>
           <CustomerLatestReservesView />
         </div>

@@ -10,6 +10,7 @@ import { useRouter } from "@/i18n/routing";
 import toast from "react-hot-toast";
 import axios from "axios";
 import NotificationsGifWrapper from "./NotificationsGifWrapper";
+import { useTranslations } from "next-intl";
 
 export interface ISendNotifPayload {
   room: string;
@@ -22,6 +23,8 @@ export interface ISendNotifPayload {
 }
 
 const SendNotification = () => {
+  const t = useTranslations("adminDashboard.notifications");
+
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -61,7 +64,7 @@ const SendNotification = () => {
       }
     },
     onSuccess: (data) => {
-      toast.success(data?.message || "اعلان با موفقیت ارسال شد");
+      toast.success(data?.message || t("sendSuccess"));
       router.refresh();
       reset({
         room: "",
@@ -76,7 +79,7 @@ const SendNotification = () => {
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         toast.error(
-          err?.response?.data?.message || "مشکلی در ارسال اعلان پیش امده است",
+          err?.response?.data?.message || t("sendError")
         );
       }
     },
@@ -97,7 +100,7 @@ const SendNotification = () => {
           className="flex flex-col gap-4 max-w-lg"
         >
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">کاربر گیرنده </label>
+            <label className="text-sm font-medium">{t("receiverUser")}  </label>
             <div className="flex items-center gap-3">
               <button
                 type="button"
@@ -105,8 +108,9 @@ const SendNotification = () => {
                 className="px-4 py-2 border rounded-md bg-secondary text-sm"
               >
                 {selectedUserId > 0
-                  ? `کاربر با ID ${selectedUserId} انتخاب شد`
-                  : "انتخاب کاربر"}
+  ? t("selectedUser", { id: selectedUserId })
+  : t("selectUser")}
+
               </button>
             </div>
             {errors.notification?.userId && (
@@ -115,7 +119,7 @@ const SendNotification = () => {
                 text-xs font-medium"
               >
                 <AlertCircle className="w-3.5 h-3.5" />
-                <span>انتخاب کاربر الزامی است</span>
+<span>{t("userRequired")}</span>
               </div>
             )}
             <input
@@ -124,16 +128,17 @@ const SendNotification = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">Room</label>
+            <label className="text-sm font-medium">{t("room")}</label>
             <input
-              {...register("room", { required: "وارد کردن Room الزامی است" })}
+              {...register("room", {
+                required: t("roomRequired")
+              })}
               className={`w-full  border rounded-xl py-3 px-4
-                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${
-                       errors?.room
-                         ? "border-red-400 focus:ring-red-400 bg-red-50/30"
-                         : "border-gray-200 focus:ring-blue-500"
-                     }`}
-              placeholder="شناسه اتاق چت را وارد کنید..."
+                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${errors?.room
+                  ? "border-red-400 focus:ring-red-400 bg-red-50/30"
+                  : "border-gray-200 focus:ring-blue-500"
+                }`}
+              placeholder={t("roomPlaceholder")}
             />
             {errors.room && (
               <div
@@ -147,18 +152,18 @@ const SendNotification = () => {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">عنوان اعلان </label>
+            <label className="text-sm font-medium">{t("notificationTitle")}</label>
             <input
               {...register("notification.title", {
-                required: "عنوان الزامی است",
+                required: t("titleRequired")
+                ,
               })}
               className={`w-full  border rounded-xl py-3 px-4
-                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${
-                       errors?.notification?.title
-                         ? "border-red-400 focus:ring-red-400 bg-red-50/30"
-                         : "border-gray-200 focus:ring-blue-500"
-                     }`}
-              placeholder="عنوان پیام"
+                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${errors?.notification?.title
+                  ? "border-red-400 focus:ring-red-400 bg-red-50/30"
+                  : "border-gray-200 focus:ring-blue-500"
+                }`}
+              placeholder={t("titlePlaceholder")}
             />
             {errors.notification?.title && (
               <div
@@ -172,18 +177,18 @@ const SendNotification = () => {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">متن پیام </label>
+            <label className="text-sm font-medium">{t("notificationMessage")}</label>
             <textarea
               {...register("notification.message", {
-                required: "متن پیام الزامی است",
+                required: t("messageRequired")
+                ,
               })}
               className={`w-full  border rounded-xl py-3 px-4
-                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${
-                       errors?.notification?.message
-                         ? "border-red-400 focus:ring-red-400 bg-red-50/30"
-                         : "border-gray-200 focus:ring-blue-500"
-                     }`}
-              placeholder="متن اعلان را اینجا بنویسید..."
+                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${errors?.notification?.message
+                  ? "border-red-400 focus:ring-red-400 bg-red-50/30"
+                  : "border-gray-200 focus:ring-blue-500"
+                }`}
+              placeholder={t("messagePlaceholder")}
             />
             {errors.notification?.message && (
               <div
@@ -197,7 +202,7 @@ const SendNotification = () => {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">نوع اعلان</label>
+            <label className="text-sm font-medium"> {t("notificationType")}</label>
             <select
               {...register("notification.type")}
               className="w-full border rounded-xl py-3 px-4
@@ -216,7 +221,8 @@ const SendNotification = () => {
             className="mt-4 px-4 py-2 text-white bg-primary cursor-pointer
            rounded-[24px] w-fit hover:opacity-90"
           >
-            {isPending ? "درحال ارسال" : " ارسال اعلان"}{" "}
+            {isPending ? t("sending") : t("sendNotification")}
+{" "}
           </button>
         </form>
 

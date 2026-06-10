@@ -6,6 +6,7 @@ import { IPayment } from "../types";
 import { useEffect, useRef, useState } from "react";
 import PaymentDetailModal from "./PaymentDetailModal";
 import PaymentsActionsMenu from "@/modules/SellerDashboard/Payments/components/SellerPaymentsActoinsModal";
+import { useTranslations, useLocale } from "next-intl";
 
 export function PaymentTable({
   data,
@@ -15,8 +16,9 @@ export function PaymentTable({
   role: "seller" | "admin" | "buyer";
 }) {
   const [openModal, setOpenModal] = useState<number | null>(null);
-
+  const t = useTranslations("customerDashboard.payments");
   const openForRow = (id: number) => setOpenModal(id);
+  const locale = useLocale();
 
   return (
     <div className="w-full h-full">
@@ -24,14 +26,12 @@ export function PaymentTable({
         <table className="w-full min-w-[900px] text-sm text-right ">
           <thead className="text-gray-600 dark:text-gray-400 font-medium dark:bg-gray-800/50">
             <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
-              <th className="py-4 px-4 whitespace-nowrap">شناسه پرداخت</th>
-              <th className="py-4 px-4">توضیحات</th>
-              <th className="py-4 px-4 whitespace-nowrap">مبلغ (تومان)</th>
-              <th className="py-4 px-4 whitespace-nowrap">تاریخ تراکنش</th>
-              <th className="py-4 px-4 text-center whitespace-nowrap">وضعیت</th>
-              <th className="py-4 px-4 text-center whitespace-nowrap">
-                عملیات
-              </th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("paymentId")}</th>
+              <th className="py-4 px-4">{t("description")}</th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("amountToman")}</th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("transactionDate")}</th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">{t("status")}</th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">{t("actions")}</th>
             </tr>
           </thead>
 
@@ -46,11 +46,11 @@ export function PaymentTable({
                 </td>
 
                 <td className="py-4 px-4 text-gray-700 dark:text-gray-200 align-middle max-w-[260px] truncate">
-                  {row.description || "بدون توضیح"}
+                  {row.description || t("noDescription")}
                 </td>
 
                 <td className="py-4 px-4 text-gray-900 dark:text-gray-100 align-middle font-semibold whitespace-nowrap">
-                  {Number(row.amount).toLocaleString("fa-IR")}
+                  {Number(row.amount).toLocaleString(locale)}
                 </td>
 
                 <td className="py-4 px-4 text-gray-500 dark:text-gray-400 align-middle whitespace-nowrap">
@@ -81,7 +81,7 @@ export function PaymentTable({
 
         {data.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            پرداختی‌ای برای نمایش وجود ندارد.
+            {t("noPayments")}
           </div>
         )}
       </div>
@@ -95,17 +95,16 @@ export function PaymentTable({
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0 flex-1">
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  شناسه پرداخت
-                </p>
+                  {t("paymentId")}                </p>
                 <p className="mt-1 font-mono text-[14px] font-semibold text-foreground whitespace-nowrap">
                   #{row.id}
                 </p>
 
                 <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-                  توضیحات
+                  {t("description")}
                 </p>
                 <p className="mt-1 text-sm text-foreground line-clamp-2">
-                  {row.description || "بدون توضیح"}
+                  {row.description || t("noDescription")}
                 </p>
               </div>
 
@@ -137,7 +136,8 @@ export function PaymentTable({
             <div className="mt-4 flex items-center justify-between gap-4">
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  وضعیت
+                  {t("status")}
+
                 </p>
                 <div className="mt-1">
                   <StatusBadge status={row.status} />
@@ -146,10 +146,10 @@ export function PaymentTable({
 
               <div className="text-left">
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  مبلغ (تومان)
+                  {t("amountToman")}
                 </p>
                 <p className="mt-1 text-[15px] font-bold text-foreground whitespace-nowrap">
-                  {Number(row.amount).toLocaleString()}
+                  {Number(row.amount).toLocaleString(locale)}
                 </p>
               </div>
             </div>
@@ -157,7 +157,7 @@ export function PaymentTable({
             <div className="mt-4 rounded-xl bg-gray-50 p-3 dark:bg-white/5">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-xs text-gray-500 dark:text-gray-400">
-                  تاریخ تراکنش
+                  {t("transactionDate")}
                 </span>
                 <span className="text-sm font-medium text-foreground whitespace-nowrap">
                   {row.createdAt ? FormatDate(row.createdAt, "fa") : "-"}
@@ -169,7 +169,7 @@ export function PaymentTable({
 
         {data.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            پرداختی‌ای برای نمایش وجود ندارد.
+            {t("noPayments")}
           </div>
         )}
       </div>
@@ -186,20 +186,21 @@ export function PaymentTable({
 }
 
 function StatusBadge({ status }: { status: string }) {
-  let label = "نامشخص";
+  const t = useTranslations("customerDashboard.payments");
+  let label = t("unknown");
   let colorClasses =
     "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300";
 
   if (status === "completed") {
-    label = "موفق";
+    label = t("success");
     colorClasses =
       "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400";
   } else if (status === "pending") {
-    label = "در انتظار تایید";
+    label = t("pending");
     colorClasses =
       "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400";
   } else if (status === "failed") {
-    label = "ناموفق";
+    label = t("failed");
     colorClasses =
       "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400";
   }

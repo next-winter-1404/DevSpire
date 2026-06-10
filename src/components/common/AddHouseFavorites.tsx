@@ -13,14 +13,14 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { getCookie } from "cookies-next";
 import { useRouter } from "@/i18n/routing";
-
+import { useTranslations } from "next-intl";
 interface IProps {
   isFavorite: boolean;
   houseId: number;
 }
 const AddHouseFavorites = ({ isFavorite, houseId }: IProps) => {
   const router = useRouter();
-
+  const t = useTranslations("common.favorites");
   const [isAdded, setIsAdded] = useState<boolean>(isFavorite);
   const token = getCookie("accessToken");
 
@@ -40,14 +40,13 @@ const AddHouseFavorites = ({ isFavorite, houseId }: IProps) => {
     onSuccess: (res) => {
       console.log(res.data);
       toast.success(
-        res.data.message || "ملک مورد نظر به علاقه مندیتون اضافه شد",
-      );
+        res.data.message || t("successMessage"));
       router.refresh();
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         toast.error(
-          err.response?.data.message || "مشکلی پیش امد دوباره امتحان کنید",
+          err.response?.data.message || t("errorMessage")
         );
       }
     },

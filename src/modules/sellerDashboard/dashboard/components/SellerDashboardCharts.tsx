@@ -1,6 +1,6 @@
 import CompleteProfile from "@/components/common/CompleteProfile";
 import InCome from "@/components/common/InCome";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ISellerPayments } from "../views/SellerChartsView";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
@@ -11,12 +11,12 @@ interface IProps {
   user: TUserRes | null;
 }
 const SellerDashboardCharts = ({ payments, user }: IProps) => {
-  const t = useTranslations("sellerDashboard.dashboard");
-
+ const t = useTranslations("sellerDashboard.sdashboard");
+  const locale = useLocale();
   return (
     <div className="flex gap-4 flex-col md:flex-row">
       <InCome
-        title="نمودار درامد این ماه"
+        title={t("monthlyIncomeChart")}
         totalIncome={String(payments?.totalAmount.toLocaleString()) || ""}
         currentIncome={String(payments?.totalCurrentMonthAmount) || ""}
         percentage={
@@ -26,11 +26,13 @@ const SellerDashboardCharts = ({ payments, user }: IProps) => {
         }
       />
 
-      <CompleteProfile
-        lastEditText={` آخرین ویرایش  ${FormatDate(user?.user.updated_at || "", "fa")}`}
-        percentage={user?.additionalPercentage}
-        linkHref="/dashboard/seller/edit-profile"
-      />
+     
+<CompleteProfile
+  lastEditText={`${t("lastEdit")} ${FormatDate(user?.user.updated_at || "", "fa")}`}
+  percentage={user?.additionalPercentage}
+  linkHref="/dashboard/seller/edit-profile"
+/>
+
     </div>
   );
 };

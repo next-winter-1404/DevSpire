@@ -16,9 +16,13 @@ interface IProps {
   onClose: () => void;
   id: number;
 }
+import { useTranslations } from "next-intl";
+
 
 const CommentsDetailModal = ({ onClose, id }: IProps) => {
   const { commentDetail, isPending } = useComments(id);
+
+const t = useTranslations("sellerDashboard.comments");
 
   if (isPending) {
     return (
@@ -26,7 +30,7 @@ const CommentsDetailModal = ({ onClose, id }: IProps) => {
         <div className="flex flex-col items-center gap-4 p-8 bg-background rounded-2xl border border-border shadow-2xl">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
           <p className="text-sm text-muted-foreground animate-pulse">
-            در حال دریافت جزئیات...
+<p>{t("loadingDetail")}</p>
           </p>
         </div>
       </div>
@@ -45,7 +49,7 @@ const CommentsDetailModal = ({ onClose, id }: IProps) => {
           className="flex items-center justify-between border-b
          border-border p-5 bg-muted/30 relative "
         >
-          <h3 className="text-lg font-bold text-foreground">جزئیات دیدگاه</h3>
+          <h3 className="text-lg font-bold text-foreground">{t("detailTitle")} </h3>
           <button
             onClick={onClose}
             className="absolute left-4 top-4 p-2 rounded-full bg-gray-100
@@ -89,8 +93,7 @@ const CommentsDetailModal = ({ onClose, id }: IProps) => {
             <Home className="h-4 w-4 text-muted-foreground" />
             <div className="flex flex-col">
               <span className="text-[11px] uppercase tracking-wider text-muted-foreground">
-                مربوط به خانه:
-              </span>
+{t("relatedToHouse")}!             </span>
               <span className="text-sm font-medium text-foreground">
                 {commentDetail.house.title}
               </span>
@@ -101,7 +104,7 @@ const CommentsDetailModal = ({ onClose, id }: IProps) => {
             <div className="border-r-4 border-primary/50 bg-primary/5 p-4 rounded-r-lg space-y-2">
               <div className="flex items-center gap-2 text-primary">
                 <MessageSquare className="h-4 w-4" />
-                <span className="text-xs font-bold">پاسخ به:</span>
+                <span className="text-xs font-bold"> {t("replyTo")}:</span>
               </div>
               <p className="text-sm text-foreground/80 italic">
                 {commentDetail.parent_comment.title}
@@ -116,8 +119,7 @@ const CommentsDetailModal = ({ onClose, id }: IProps) => {
             className="px-6 py-2 rounded-xl bg-primary text-white
              text-sm font-medium hover:opacity-90 transition-opacity"
           >
-            بستن
-          </button>
+{t("close")}          </button>
         </div>
       </div>
     </div>

@@ -1,8 +1,11 @@
 import HouseCard from "@/components/common/HouseCard";
 import { THouse } from "@/components/common/types";
 import { Link } from "@/i18n/routing";
+import { useLocale, useTranslations } from "next-intl";
 
 const MortgageRentList = ({ data }: { data: THouse[] | undefined }) => {
+  const tList = useTranslations("mortgageRent.list");
+
   return (
     <div className="w-full">
       {data && data.length > 0 ? (
@@ -21,19 +24,18 @@ const MortgageRentList = ({ data }: { data: THouse[] | undefined }) => {
           <div className="mb-4 text-6xl">🏠</div>
 
           <h3 className="mb-2 text-xl font-bold text-gray-800">
-            خانه‌ای پیدا نشد
+  {tList("notFoundTitle")}
           </h3>
 
-          <p className="mb-6 max-w-md text-sm leading-7 text-gray-500">
-            در حال حاضر موردی برای نمایش وجود ندارد. فیلترها را تغییر بده یا
-            دوباره تلاش کن.
+          <p className="mb-6 max-w-md text-sm leading-7 text-gray-500">  {tList("notFoundDesc")}
+
           </p>
 
           <Link
             href="/"
             className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition hover:opacity-90"
           >
-            بازگشت به صفحه اصلی
+  {tList("backHome")}
           </Link>
         </div>
       )}

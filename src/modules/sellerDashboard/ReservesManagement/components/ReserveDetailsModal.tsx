@@ -4,6 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import { useReservation } from "../services/hooks/useReservation";
 import { TReservationStatus } from "@/components/common/types";
+import { useTranslations } from "next-intl";
 
 interface Props {
   isOpen: boolean;
@@ -19,6 +20,7 @@ export default function ReservationDetailsModal({
   const { reserveDetails, isPending, error } = useReservation(id);
 
   if (!isOpen) return null;
+const t = useTranslations("sellerDashboard.reservations.details");
 
   const startDate = reserveDetails?.booking.reservedDates?.[0];
   const endDate = reserveDetails?.booking.reservedDates?.[1];
@@ -44,7 +46,8 @@ export default function ReservationDetailsModal({
         >
           <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold">
-              {isPending ? <Skeleton width={120} /> : "جزئیات رزرو"}
+        {isPending ? <Skeleton width={120} /> : t("title")}
+
             </h2>
 
             <button
@@ -64,12 +67,11 @@ export default function ReservationDetailsModal({
                 </div>
 
                 <h3 className="text-base font-semibold mb-2">
-                  اطلاعات رزرو دریافت نشد
+                 {t("errorTitle")}
                 </h3>
 
                 <p className="text-sm text-gray-500 dark:text-gray-400 max-w-sm leading-6">
-                  دریافت جزئیات این رزرو با مشکل مواجه شد. لطفاً دوباره تلاش
-                  کنید.
+                   {t("errorDescription")}
                 </p>
               </div>
             ) : (
@@ -79,7 +81,7 @@ export default function ReservationDetailsModal({
 
                   <div>
                     <div className="text-gray-600 dark:text-gray-300 mb-1">
-                      تاریخ رزرو
+{t("reservationDate")}
                     </div>
 
                     <div className="font-medium">
@@ -94,7 +96,7 @@ export default function ReservationDetailsModal({
 
                   <div className="w-full">
                     <div className="text-gray-600 dark:text-gray-300 mb-2">
-                      مسافران
+{t("travelers")}
                     </div>
 
                     <div className="space-y-2 h-[170px] overflow-y-auto scroll-smooth">
@@ -124,7 +126,8 @@ export default function ReservationDetailsModal({
                           ),
                         )
                       ) : (
-                        <div className="text-gray-500">مسافری ثبت نشده</div>
+                        <div className="text-gray-500"> {t("noTravelers")}
+</div>
                       )}
                     </div>
                   </div>
@@ -135,7 +138,7 @@ export default function ReservationDetailsModal({
 
                   <div>
                     <div className="text-gray-600 dark:text-gray-300">
-                      ایمیل
+                      {t("email")}
                     </div>
 
                     <div className="font-medium">
@@ -148,7 +151,9 @@ export default function ReservationDetailsModal({
 
                   <div>
                     <div className="text-gray-600 dark:text-gray-300">
-                      شماره موبایل
+                     {t("mobile")}
+
+
                     </div>
 
                     <div className="font-medium">
@@ -158,7 +163,7 @@ export default function ReservationDetailsModal({
                 </div>
                 <div className="flex gap-2 mt-3">
                   <span className="text-gray-600 dark:text-gray-300">
-                    وضعیت رزرو:
+                   {t("status")}:
                   </span>
 
                   <StatusBadge status={reserveDetails.booking.status} />
@@ -176,8 +181,8 @@ export default function ReservationDetailsModal({
                 hover:bg-gray-200 dark:hover:bg-gray-700
                 transition
               "
-            >
-              بستن
+            >{t("close")}
+
             </button>
           </div>
         </div>
@@ -187,17 +192,19 @@ export default function ReservationDetailsModal({
 }
 
 function StatusBadge({ status }: { status: string }) {
-  let label = "نامشخص";
+  const t = useTranslations("sellerDashboard.reservations.status");
+
+  let label = t("unknown");
   let colorClasses = "bg-gray-100 text-gray-700";
 
   if (status === "confirmed") {
-    label = "تایید شده";
+    label = t("confirmed");
     colorClasses = "bg-teal-100 text-teal-700";
   } else if (status === "pending") {
-    label = "در انتظار تایید";
+    label = t("pending");
     colorClasses = "bg-amber-100 text-amber-600";
   } else {
-    label = "لغو شده";
+  label = t("canceled");
     colorClasses = "bg-red-100 text-red-500";
   }
 

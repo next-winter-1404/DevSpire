@@ -11,6 +11,7 @@ import { useMutation } from "@tanstack/react-query";
 import { AddBooking } from "../services/Post/addBooking";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   bookingData: TBookingRequest | null;
@@ -26,6 +27,7 @@ const BookingStepThree = ({
 }: IProps) => {
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("booking.review");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -36,7 +38,7 @@ const BookingStepThree = ({
     mutationFn: async (data: TBookingRequest) => await AddBooking(data),
     onSuccess: (res) => {
       if (res.status === 200 || res.status === 201) {
-        toast.success("اطلاعات شما با موفقیت ثبت شد");
+        toast.success(t("bookingSaved"));
         getBookingId(res.data.id);
         changeTab(4);
       } else {
@@ -46,11 +48,11 @@ const BookingStepThree = ({
     onError: (err) => {
       if (axios.isAxiosError(err)) {
         if (err.response?.status === 403) {
-          toast.error("شما دسترسی لازم برای انجام این عملیات را ندارید");
+          toast.error(t("noPermission"));
         } else if (err.response?.status == 400) {
-          toast.error(err.response?.data?.message || "400 bad request");
+          toast.error(err.response?.data?.message || t("badRequest"));
         } else {
-          toast.error("مشکلی در ارسال اطلاعات پیش آمد");
+          toast.error(t("submitError"));
         }
       }
     },
@@ -64,14 +66,14 @@ const BookingStepThree = ({
       <div className="w-full bg-[#FFFFFF] rounded-[24px] border border-[#DDDDDD] p-6 dark:bg-[#27272A] mb-8 ">
         <div className="w-full flex items-center justify-between mb-8">
           <h2 className="text-[24px] font-bold text-foreground ">
-            مشخصات مسافران
+            {t("travelerInfo")}
           </h2>
           <button
             onClick={() => changeTab(2)}
             className="flex items-center gap-2 text-primary text-[16px] cursor-pointer "
           >
             <Edit size={20} />
-            ویرایش مسافران
+            {t("editTravelers")}
           </button>
         </div>
         <TravelersDataTable
@@ -82,23 +84,22 @@ const BookingStepThree = ({
       <div className="w-full bg-[#FFFFFF] rounded-[24px] border border-[#DDDDDD] p-6 dark:bg-[#27272A] mb-8 ">
         <div className="flex flex-col  md:flex-row md:items-center gap-2 mb-6 ">
           <h2 className="text-[24px] text-foreground font-bold ">
-            اطلاع رسانی سفر
+            {t("tripNotification")}
           </h2>
-          <p className=" text-[16px] text-[#777777] font-medium ">{`( اطلاعات بلیط و اطلاع رسانی بعدی به این آدرس ارسال می شود )`}</p>
+          <p className=" text-[16px] text-[#777777] font-medium ">{t("tripNotificationDesc")}
+          </p>
         </div>
         <div className="flex flex-col md:flex-row md:flex-start md:items-center gap-16 ">
           <div className="flex flex-col gap-2 items-start  ">
             <label className="text-[16px] text-foreground font-bold">
-              شماره تلفن
-            </label>
+              {t("phoneNumber")}            </label>
             <p className="text-[#777777] text-[16px] ">
               {bookingData.sharedMobile}
             </p>
           </div>
           <div className="flex flex-col gap-2 items-start  ">
             <label className="text-[16px] text-foreground font-bold">
-              ایمیل
-            </label>
+              {t("email")}            </label>
             <p className="text-[#777777] text-[16px] ">
               {bookingData.sharedEmail}
             </p>
@@ -110,9 +111,9 @@ const BookingStepThree = ({
       </div>
       <div className=" w-full flex flex-col gap-4 md:gap-6">
         <div className="flex gap-2 items-center">
-          <h2 className="text-[24px] font-bold text-foreground ">قیمت کل :</h2>
+          <h2 className="text-[24px] font-bold text-foreground ">{t("totalPrice")} :</h2>
           <h2 className="text-primary text-[24px] font-bold ">
-            {totalPrice.toLocaleString()} تومان
+            {totalPrice.toLocaleString()} {t("toman")}
           </h2>
         </div>
         <div className=" w-full flex  flex-col items-start gap-6  md:flex-row md:items-center md:justify-between ">
@@ -120,13 +121,13 @@ const BookingStepThree = ({
             onClick={() => changeTab(2)}
             className="p-2.5 cursor-pointer rounded-[16px] text-[#777777] border border-[#777777]  text-[20px] "
           >
-            مرحله قبل
+            {t("previousStep")}
           </button>
           <button
             onClick={() => postBooking(bookingData)}
             className="text-[#ffff] text-[20px] bg-primary  p-2.5 cursor-pointer rounded-[16px] "
           >
-            {isPending ? "درحال بارگذاری اطلاعات" : "تایید و ادامه فرایند"}
+            {isPending ? t("loadingBooking") : t("confirmAndContinue")}
           </button>
         </div>
       </div>

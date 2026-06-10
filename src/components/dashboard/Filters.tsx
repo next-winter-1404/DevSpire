@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ReserveFilterModal from "./FiltersModal";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const ReserveFilters = () => {
   const pathname = usePathname();
@@ -19,6 +20,7 @@ const ReserveFilters = () => {
 
   const locale = useLocale();
   const isRTL = locale == "fa";
+const t = useTranslations("reserveFilters");
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -42,7 +44,7 @@ const ReserveFilters = () => {
          transition-colors text-sm font-medium cursor-pointer "
       >
         <Filter className="w-5 h-5" />
-        فیلتر ها
+{t("filters")}
       </button>
       {isFilterOpen && <ReserveFilterModal onClose={onClose} />}
     </>

@@ -1,5 +1,7 @@
 "use client";
 import { Home, Users, MessageSquare, Star, Calendar } from "lucide-react";
+import { useTranslations } from "next-intl";
+
 import {
   BarChart,
   Bar,
@@ -31,25 +33,29 @@ interface DashboardData {
 }
 
 const AdminDashboard = ({ data }: { data: DashboardData }) => {
+  const t = useTranslations("adminDashboard.dashboard");
+
   // ۱. تغییر نام color به fill در دیتا
   const bookingChartData = [
     {
-      name: "در انتظار",
+      name: t("bookingPending")
+      ,
       value: data.bookings.pendingBookings,
       fill: "#fbbf24",
     },
     {
-      name: "تایید شده",
+      name: t("bookingConfirmed"),
       value: data.bookings.conformedBookings,
       fill: "#34d399",
     },
-    { name: "لغو شده", value: data.bookings.canceledBookings, fill: "#fb7185" },
+    { name: t("bookingCanceled"), value: data.bookings.canceledBookings, fill: "#fb7185" },
   ];
 
   const userChartData = [
-    { name: "خریداران", value: data.users.buyers, fill: "#3b82f6" },
-    { name: "فروشندگان", value: data.users.sellers, fill: "#818cf8" },
-    { name: "مدیران", value: data.users.admins, fill: "#1e293b" },
+    { name: t("buyers"), value: data.users.buyers, fill: "#3b82f6" },
+    { name: t("sellers"), value: data.users.sellers, fill: "#818cf8" },
+    { name: t("admins"), value: data.users.admins, fill: "#1e293b" },
+
   ];
 
   return (
@@ -59,11 +65,9 @@ const AdminDashboard = ({ data }: { data: DashboardData }) => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-slate-900">
-              خلاصه وضعیت سیستم
-            </h1>
+{t("systemOverview")}            </h1>
             <p className="text-slate-500 mt-1">
-              آمار و ارقام و نمودارهای تحلیلی پلتفرم
-            </p>
+{t("systemOverviewDescription")}            </p>
           </div>
         </div>
 
@@ -74,11 +78,12 @@ const AdminDashboard = ({ data }: { data: DashboardData }) => {
               <Home className="w-40 h-40" />
             </div>
             <h3 className="text-emerald-50 font-medium mb-1">
-              کل املاک ثبت شده
+{t("totalEstates")}
             </h3>
             <div className="flex items-end gap-3 mt-4">
               <span className="text-5xl font-black">{data.houses}</span>
-              <span className="text-emerald-100 mb-1">ویلا / خانه</span>
+              <span className="text-emerald-100 mb-1">{t("estateUnit")}
+</span>
             </div>
           </div>
 
@@ -87,7 +92,7 @@ const AdminDashboard = ({ data }: { data: DashboardData }) => {
             <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 flex items-center justify-between hover:shadow-md transition-all">
               <div>
                 <p className="text-slate-500 text-sm font-medium mb-1">
-                  نظرات کاربران
+{t("userComments")}
                 </p>
                 <p className="text-3xl font-bold text-slate-800">
                   {data.comments}
@@ -101,7 +106,7 @@ const AdminDashboard = ({ data }: { data: DashboardData }) => {
               <div className="absolute left-0 bottom-0 w-24 h-24 bg-yellow-500/10 rounded-full blur-2xl"></div>
               <div className="z-10">
                 <p className="text-slate-400 text-sm font-medium mb-1">
-                  میانگین امتیازات
+{t("averageRating")}
                 </p>
                 <div className="flex items-center gap-2">
                   <p className="text-3xl font-bold text-white">
@@ -121,7 +126,7 @@ const AdminDashboard = ({ data }: { data: DashboardData }) => {
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-lg font-semibold text-slate-700 flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-orange-500" />
-                تحلیل وضعیت رزروها
+{t("bookingAnalysis")}
               </h3>
             </div>
 
@@ -168,7 +173,7 @@ const AdminDashboard = ({ data }: { data: DashboardData }) => {
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-slate-700 flex items-center gap-2">
                 <Users className="w-5 h-5 text-blue-500" />
-                ترکیب کاربران
+{t("usersComposition")}
               </h3>
             </div>
 
@@ -198,7 +203,8 @@ const AdminDashboard = ({ data }: { data: DashboardData }) => {
                 <span className="text-2xl font-bold text-slate-800">
                   {data.users.userCount}
                 </span>
-                <span className="text-xs text-slate-500">کاربر</span>
+                <span className="text-xs text-slate-500">{t("users")}
+</span>
               </div>
             </div>
 

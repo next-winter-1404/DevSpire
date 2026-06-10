@@ -6,29 +6,29 @@ import Image from "next/image";
 import { TUser } from "@/modules/mortgageRentDetail/types";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import UsersManagementActionsModal from "./UsersManagementActionModal";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function UserManagementTable({ data }: { data: TUser[] }) {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+  const t = useTranslations("adminDashboard.users");
+  const locale = useLocale();
 
   const renderRoleBadge = (role: string) => {
     switch (role) {
       case "admin":
         return (
           <span className="bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400 px-2 py-1 rounded text-xs">
-            ادمین
-          </span>
+            {t("admin")}          </span>
         );
       case "buyer":
         return (
           <span className="bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400 px-2 py-1 rounded text-xs">
-            خریدار
-          </span>
+            {t("buyer")}          </span>
         );
       case "seller":
         return (
           <span className="bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400 px-2 py-1 rounded text-xs">
-            فروشنده
-          </span>
+            {t("seller")}          </span>
         );
       default:
         return (
@@ -45,15 +45,14 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
         <table className="w-full min-w-[1050px] text-sm text-right">
           <thead className="text-gray-600 dark:text-gray-400 font-medium">
             <tr className="border-b border-[#DDDDDD] dark:border-gray-700">
-              <th className="py-4 px-4 whitespace-nowrap">کاربر</th>
-              <th className="py-4 px-4 text-center whitespace-nowrap">نقش</th>
-              <th className="py-4 px-4 whitespace-nowrap">شماره تماس</th>
+              <th className="py-4 px-4 whitespace-nowrap">{t("user")}</th>
+              <th className="py-4 px-4 text-center whitespace-nowrap">{t("role")}</th>
+              <th className="py-4 px-4 whitespace-nowrap"> {t("phoneNumber")}</th>
               <th className="py-4 px-4 text-center whitespace-nowrap">
-                وضعیت ایمیل
-              </th>
-              <th className="py-4 px-4 whitespace-nowrap">تاریخ عضویت</th>
+{t("phoneNumber")}              </th>
+              <th className="py-4 px-4 whitespace-nowrap"> {t("membershipDate")}</th>
               <th className="py-4 px-4 text-center whitespace-nowrap">
-                عملیات
+                {t("actions")}
               </th>
             </tr>
           </thead>
@@ -112,12 +111,10 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
                 <td className="py-4 px-4 text-center align-middle">
                   {row.emailVerified ? (
                     <span className="bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400 px-2 py-1 rounded text-xs border border-emerald-100 dark:border-emerald-500/20">
-                      تایید شده
-                    </span>
+{t("emailVerified")}                    </span>
                   ) : (
                     <span className="bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400 px-2 py-1 rounded text-xs border border-rose-100 dark:border-rose-500/20">
-                      تایید نشده
-                    </span>
+{t("emailNotVerified")}                    </span>
                   )}
                 </td>
 
@@ -135,7 +132,7 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
 
         {data.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            کاربری برای نمایش وجود ندارد.
+{t("noUsers")}
           </div>
         )}
       </div>
@@ -164,7 +161,8 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
 
                 <div className="min-w-0">
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    کاربر
+                    {t("user")}
+
                   </p>
                   <h3 className="mt-1 text-[15px] font-bold text-foreground line-clamp-1">
                     {row.firstName} {row.lastName}
@@ -182,22 +180,22 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
 
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">نقش</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t("role")}
+</p>
                 <div className="mt-1">{renderRoleBadge(row.role)}</div>
               </div>
 
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  وضعیت ایمیل
+{t("emailStatus")}
                 </p>
                 <div className="mt-1">
                   {row.emailVerified ? (
                     <span className="bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400 px-2 py-1 rounded text-xs border border-emerald-100 dark:border-emerald-500/20">
-                      تایید شده
-                    </span>
+{t("emailVerified")}                      </span>
                   ) : (
                     <span className="bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400 px-2 py-1 rounded text-xs border border-rose-100 dark:border-rose-500/20">
-                      تایید نشده
+                 {t("emailNotVerified")} 
                     </span>
                   )}
                 </div>
@@ -205,7 +203,7 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
 
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  شماره تماس
+{t("phoneNumber")}
                 </p>
                 <p className="mt-1 text-sm font-medium text-foreground whitespace-nowrap">
                   {row.phoneNumber || "-"}
@@ -214,7 +212,7 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
 
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  تاریخ عضویت
+{t("membershipDate")}
                 </p>
                 <p className="mt-1 text-sm font-medium text-foreground whitespace-nowrap">
                   {FormatDate(row.createdAt, "fa") || "-"}
@@ -226,7 +224,7 @@ export default function UserManagementTable({ data }: { data: TUser[] }) {
 
         {data.length === 0 && (
           <div className="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
-            کاربری برای نمایش وجود ندارد.
+{t("noUsers")}
           </div>
         )}
       </div>
