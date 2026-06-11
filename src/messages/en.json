@@ -8,7 +8,8 @@
     "aboutUs": "About Us",
     "contactUs": "Contact Us",
     "login": "Login",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "propertyValuation": "property valuation"
   },
   "footer": {
     "logo": "Logo",
@@ -479,8 +480,8 @@
       "seeAllBtn": "See All"
     }
   },
-  "adminDashboard":{
-    "locationsManagement":{
+  "adminDashboard": {
+    "locationsManagement": {
       "title": "Locations Management",
       "filters": "Filters",
       "addLocation": "Add Location",
@@ -501,7 +502,7 @@
       "delete": "Delete",
       "sureAboutDeleteLocation": "Are you sure about delete this location?"
     },
-    "toursManagement":{
+    "toursManagement": {
       "title": "Tours Management",
       "filters": "Filters",
       "actions": "Actions",

@@ -7,7 +7,7 @@ import { FormatDate } from "@/utils/helper/FormatDate";
 import { IPaymentResponse } from "../../payments/types";
 import PaymentStatusChart from "./PaymentsStatusChart";
 
-type TUser = {
+export type TUser = {
   id: number;
   role: string;
   membershipDate: null;

@@ -20,7 +20,7 @@ type IBlogCard = {
 const BlogCard = ({ item }: IBlogCard) => {
   return (
     <div
-      className="group  bg-white border border-gray-200 rounded-[24px] overflow-hidden 
+      className="group  bg-[#ffff] border border-gray-200 rounded-[24px] overflow-hidden 
         transition-all duration-300 ease-in-out cursor-pointer
         hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-2
         dark:bg-[#404040] dark:border-[#777777] dark:hover:shadow-none"

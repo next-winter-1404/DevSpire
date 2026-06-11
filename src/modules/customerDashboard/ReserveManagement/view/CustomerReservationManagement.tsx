@@ -22,9 +22,7 @@ const CustomerReservationManagementView = async ({
        items-center mb-4 gap-4"
       >
         <h1 className="text-xl font-bold text-foreground">لیست رزرو های شما</h1>
-        <div className=" w-full md:w-[50%]">
-          <ReserveFilters />
-        </div>
+        <ReserveFilters />
       </div>
       <div
         className="h-[90%]  border-[#DDDDDD] 

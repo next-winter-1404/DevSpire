@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import LanguageSwitcher from "../../common/LanguageSwitcher";
 import Menu from "../../../../public/icons/Menu";
 import { Link } from "@/i18n/routing";
 import { usePathname } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Links } from "@/modules/header/mock/Links";
 import HeaderMenu from "./HeaderMenu";
 import ToggleTheme from "../../common/ToggleTheme";
@@ -16,6 +16,7 @@ import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/Custo
 const Header = ({ user }: { user: TUserRes | null }) => {
   const pathname = usePathname();
   const t = useTranslations("header");
+  const locale = useLocale();
 
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
 
@@ -47,23 +48,35 @@ const Header = ({ user }: { user: TUserRes | null }) => {
             </div>
           </div>
           <div className="hidden   md:flex md:items-center md:gap-8">
-            {Links.map((item, index) => (
-              <Link
-                key={index}
-                href={item.link}
-                className={`${
-                  (
-                    item.link == "/"
-                      ? pathname == "/"
-                      : pathname.includes(item.link)
-                  )
-                    ? "font-bold text-[#0D3B66] border-b-2 border-[#0D3B66] pb-2 "
-                    : "hover:font-bold  "
-                } transition-all `}
-              >
-                {t(`${item.title}`)}
-              </Link>
-            ))}
+            {Links.map((item, index) => {
+              const isActive =
+                item.link === "/"
+                  ? pathname === "/"
+                  : pathname.includes(item.link);
+
+              return (
+                <Link
+                  key={index}
+                  href={item.link}
+                  className={`relative group transition-all ${
+                    isActive ? "font-bold text-[#0D3B66]" : "hover:font-bold"
+                  }`}
+                >
+                  {t(item.title)}
+
+                  <span
+                    className={`absolute -bottom-1.5 h-0.5 w-full bg-primary transition-all duration-200
+                       ease-out
+        ${locale === "fa" ? "right-0 " : "left-0 "}
+        ${
+          isActive
+            ? "scale-x-100 opacity-100"
+            : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+        }`}
+                  />
+                </Link>
+              );
+            })}
           </div>
           <div className="flex gap-2 md:gap-6">
             <div className="hidden md:block">

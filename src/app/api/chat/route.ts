@@ -6,9 +6,9 @@ export const POST = async (req: NextRequest) => {
   let systemContent = "";
 
   if (type === "chat") {
-    houses = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/houses`).then(
-      (res) => res.json(),
-    );
+    houses = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/houses?limit=20`,
+    ).then((res) => res.json());
 
     systemContent = `
 تو دستیار هوشمند سایت املاک هستی.

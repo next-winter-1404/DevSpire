@@ -8,7 +8,8 @@
     "aboutUs": "درباره ما",
     "contactUs": "ارتباط با ما",
     "login": "ورود",
-    "signUp": "ثبت نام"
+    "signUp": "ثبت نام",
+    "propertyValuation": "تخمین قیمت هوشمند"
   },
   "footer": {
     "logo": "لوگو",
@@ -477,8 +478,8 @@
       "seeAllBtn": "مشاهده همه"
     }
   },
-  "adminDashboard":{
-    "locationsManagement":{
+  "adminDashboard": {
+    "locationsManagement": {
       "title": "مدیریت مکان ها",
       "filters": "فیلترها",
       "addLocation": "افزودن مکان",
@@ -499,7 +500,7 @@
       "delete": "حذف",
       "sureAboutDeleteLocation": "آیا از حذف این مکان اطمینان دارید؟"
     },
-    "toursManagement":{
+    "toursManagement": {
       "title": "مدیریت تور ها",
       "filters": "فیلتر ها",
       "actions": "عملیات",
