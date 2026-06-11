@@ -46,9 +46,11 @@ const AddHouseFavorites = ({ isFavorite, houseId }: IProps) => {
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
-        toast.error(
-          err.response?.data.message || "مشکلی پیش امد دوباره امتحان کنید",
-        );
+        if (err.response?.status != 401 && err.response?.status != 403) {
+          toast.error(
+            err.response?.data?.message || "مشکلی پیش امد دوباره امتحان کنید",
+          );
+        }
       }
     },
   });

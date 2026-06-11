@@ -16,6 +16,7 @@ import { THouse } from "@/components/common/types";
 import ImageBox from "@/modules/fastReserveDetail/components/ImageBox";
 import DetailTitle from "@/modules/fastReserveDetail/components/DetailTitle";
 import DetailTabs from "@/modules/fastReserveDetail/components/DetailTabs";
+import PropertyQAView from "@/modules/property/Q&A/views/PropertyQAView";
 
 interface IProps {
   data: THouse;
@@ -100,6 +101,9 @@ const MortgageRentDetailViewx = ({ data, sliderData }: IProps) => {
           </div>
         </div>
       )}
+      <div className="mt-10">
+        <PropertyQAView id={data.id} />
+      </div>
     </Container>
   );
 };

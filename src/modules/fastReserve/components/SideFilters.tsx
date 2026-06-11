@@ -80,6 +80,15 @@ const FastReserveSideFilters = () => {
   );
   const [query, setQuery] = useState(searchParams.get("query") ?? "");
   const [locQuery, setLocQuery] = useState(searchParams.get("location") ?? "");
+  const [prevUrlLocation, setPrevUrlLocation] = useState(
+    searchParams.get("location"),
+  );
+
+  const currentLocation = searchParams.get("location");
+  if (currentLocation !== prevUrlLocation) {
+    setPrevUrlLocation(currentLocation);
+    setLocQuery(currentLocation || "");
+  }
 
   const [search] = useDebounce(query, 950);
   const [location] = useDebounce(locQuery, 950);
@@ -117,6 +126,7 @@ const FastReserveSideFilters = () => {
       router.push(`${pathname}?${newQueryString}`, { scroll: false });
     }
   }, [search, range, sort, Area, location, propertyType, order, limit]);
+
   const deleteFilter = (key: string) => {
     const params = new URLSearchParams(searchParams.toString());
     const isAvailble = params.get(key);

@@ -1,13 +1,13 @@
 import CompleteProfile from "@/components/common/CompleteProfile";
-import PaymentStatusChart from "./PaymentsStatusChart";
-import { IPaymentResponse } from "../../Payments/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
 import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import { FormatDate } from "@/utils/helper/FormatDate";
+import { IPaymentResponse } from "../../payments/types";
+import PaymentStatusChart from "./PaymentsStatusChart";
 
-type TUser = {
+export type TUser = {
   id: number;
   role: string;
   membershipDate: null;

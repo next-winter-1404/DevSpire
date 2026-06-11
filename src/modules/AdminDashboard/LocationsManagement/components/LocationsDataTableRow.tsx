@@ -40,12 +40,14 @@ const LocationsDataTableRow = ({ item }: IProps) => {
       dark:text-[#E4E4E4] dark:hover:bg-[#404040]">
         <Dots/>
       </td>
-      {isOpenActionsModal && (
-        <LocationActionsMenu
-          handleActionsModal={handleActionsModal}
-          id={item.id}
-        />
-      )}
+      <td>
+        {isOpenActionsModal && (
+          <LocationActionsMenu
+            handleActionsModal={handleActionsModal}
+            id={item.id}
+          />
+        )}
+      </td>
     </tr>
   );
 };

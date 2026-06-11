@@ -11,31 +11,34 @@ const RentVillaCard = ({ item }: { item: THouse }) => {
   const locale = useLocale();
 
   return (
-    <div className="flex gap-4 w-full p-2 bg-[#F5F5F5] rounded-[24px]   sm:w-[320px]   dark:bg-[#404040]">
-      <Image
-        src={RentVillaImg}
-        alt="rentVilla"
-        width={125}
-        height={100}
-        className="rounded-[16px]"
-      />
-      <div className="flex flex-col gap-6 w-full">
-        <div className="flex flex-col items-start">
-          <span className="font-regular text-[20px] text-[1E2022]   dark:text-[#E4E4E4]">
+    <div
+      className="flex gap-4 w-full p-2 bg-[#F5F5F5] rounded-[24px] h-[150px]
+     sm:w-[320px] dark:bg-[#404040]"
+    >
+      <div className="relative w-[125px] h-full flex-shrink-0">
+        <Image
+          src={RentVillaImg}
+          alt="rentVilla"
+          fill
+          className="rounded-[16px] object-cover"
+        />
+      </div>
+
+      <div className="flex flex-col justify-between w-full py-1">
+        <div className="flex flex-col items-start gap-1">
+          <span className="font-regular text-[18px] sm:text-[20px] text-[#1E2022] dark:text-[#E4E4E4] line-clamp-2">
             اجاره ویلا در {item.location}
           </span>
-          <span className="font-regular text-[16px] text-[#777777]">
+          <span className="font-regular text-[14px] sm:text-[16px] text-[#777777]">
             {item.num_comments} مورد
           </span>
         </div>
+
         <Link
           href={`/mortgage-rent/${item.id}`}
-          className="flex justify-between w-full pl-1"
+          className="flex justify-between items-center w-full pl-1"
         >
-          <span
-            className="font-regular text-[16px] text-[#0D3B66]   
-                    dark:text-[#E4E4E4] dark:border-[#E4E4E4]"
-          >
+          <span className="font-regular text-[16px] text-[#0D3B66] dark:text-[#E4E4E4]">
             {t("seeButton")}
           </span>
           <BigArrowLink

@@ -1,12 +1,6 @@
 "use client";
-import { useMutation } from "@tanstack/react-query";
-import { motion } from "framer-motion";
-import Image from "next/image";
 import { notFound, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { verifyPayment } from "../services/Post/verifyPayment";
-import toast from "react-hot-toast";
-import axios from "axios";
+import { useState } from "react";
 import { CheckCircle2, Ticket, Home, XCircle } from "lucide-react";
 import { Link } from "@/i18n/routing";
 
@@ -42,12 +36,10 @@ const BookingStepFive = () => {
     return notFound();
   }
   return (
-    <div className="flex min-h-[80vh] items-center justify-center bg-gradient-to-b from-white to-gray-50 px-4 py-10">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-2xl rounded-[32px] border border-gray-100 bg-white p-6 shadow-xl md:p-10"
+    <div className="flex min-h-[80vh] items-center justify-center bg-gradient-to-b bg-background px-4 py-10">
+      <div
+        className="w-full max-w-2xl rounded-[32px] border border-gray-100 bg-background
+       p-6 shadow-xl md:p-10"
       >
         {status == "pending" && (
           <div className="flex flex-col items-center justify-center py-10">
@@ -66,23 +58,13 @@ const BookingStepFive = () => {
         {status !== "pending" && status === "success" && (
           <>
             <div className="flex flex-col items-center">
-              <motion.div
-                initial={{ scale: 0.7, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.4 }}
-                className="relative mb-6"
-              >
+              <div className="relative mb-6">
                 <div className="absolute inset-0 rounded-full bg-green-500/20 blur-3xl" />
 
                 <CheckCircle2 className="relative h-28 w-28 text-green-500" />
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-center"
-              >
+              <div className="text-center">
                 <h1 className="mb-4 text-3xl font-extrabold text-foreground">
                   پرداخت با موفقیت انجام شد 🎉
                 </h1>
@@ -90,7 +72,7 @@ const BookingStepFive = () => {
                 <p className="mx-auto max-w-md leading-8 text-gray-500">
                   رزرو شما بعد از تایید مالک ثبت میشود
                 </p>
-              </motion.div>
+              </div>
             </div>
 
             <div className="mt-10 rounded-3xl border border-green-100 bg-green-50 p-6">
@@ -122,7 +104,7 @@ const BookingStepFive = () => {
               </Link>
 
               <Link
-                href="/dashboard/my-tickets"
+                href="/dashboard/customer/reserves-management"
                 className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-primary px-5 
                 py-4 text-[18px] font-medium text-white transition hover:opacity-90"
               >
@@ -167,7 +149,7 @@ const BookingStepFive = () => {
             </div>
           </div>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 };

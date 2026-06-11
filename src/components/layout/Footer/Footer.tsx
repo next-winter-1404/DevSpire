@@ -4,8 +4,22 @@ import Linkedin from "../../../../public/icons/Linkedin";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Logo from "../../../../public/icons/Logo";
+import { apiFetch } from "@/core/Server-fetch/fetchApi";
+import { Link } from "@/i18n/routing";
+import { Globe, Network, Webcam } from "lucide-react";
 
-const Footer = () => {
+export interface ISocials {
+  id: 9;
+  platform: string;
+  url: "https://bale.com/real_adminBale";
+}
+
+export interface ISocialsRes {
+  data: ISocials[];
+  totalCount: number;
+}
+
+const Footer = ({ socials }: { socials: ISocials[] }) => {
   const t = useTranslations("footer");
 
   return (
@@ -20,10 +34,22 @@ const Footer = () => {
             <div className="lg:w-[501px]">
               <p className="text-[#FFFFFF]">{t("footerText")}</p>
             </div>
-            <div className="flex gap-8">
-              <Telegram />
-              <Instagram />
-              <Linkedin />
+            <div className="flex items-center flex-wrap gap-8">
+              {socials &&
+                socials.length > 0 &&
+                socials.map((item) => (
+                  <Link key={item.id} href={item.url}>
+                    {item.platform == "telegram" ? (
+                      <Telegram />
+                    ) : item.platform == "instagram" ? (
+                      <Instagram />
+                    ) : item.platform == "linkedin" ? (
+                      <Linkedin />
+                    ) : (
+                      <Globe className="text-white" />
+                    )}
+                  </Link>
+                ))}
             </div>
           </div>
           <div className="flex flex-col gap-6 mt-6 md:mt-0  lg:flex-row">

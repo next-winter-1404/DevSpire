@@ -16,8 +16,7 @@ import {
 import Image from "next/image";
 
 import vsAnimation from "../../../public/lottie/Compare.json";
-import Lottie from "react-lottie";
-
+import Lottie from "lottie-react";
 export interface ICompareProperty {
   id: number;
   title: string;
@@ -109,15 +108,6 @@ const PropertyComparison: React.FC<Props> = ({ properties }) => {
     },
   ];
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: vsAnimation,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
   return (
     <div className="md:w-[90%] mx-auto w-full relative">
       <div
@@ -134,7 +124,10 @@ const PropertyComparison: React.FC<Props> = ({ properties }) => {
           shadow-xl border-4 border-[#777777]/20 dark:border-slate-800 flex items-center 
           justify-center overflow-hidden"
           >
-            <Lottie options={defaultOptions} width={"100%"} height={"100%"} />
+            <Lottie
+              animationData={vsAnimation}
+              style={{ width: "100%", height: "100%" }}
+            />
           </div>
 
           <div className="grid grid-cols-2 divide-x divide-x-reverse divide-slate-200 dark:divide-slate-800">

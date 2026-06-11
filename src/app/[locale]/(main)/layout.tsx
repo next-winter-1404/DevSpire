@@ -1,4 +1,5 @@
-import Footer from "@/components/layout/Footer/Footer";
+import AIChatModal from "@/components/common/Assistant/AIChatModal";
+import Footer, { ISocialsRes } from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
@@ -29,14 +30,19 @@ export default async function MainLayout({
     });
   }
 
+  const socials = await apiFetch<ISocialsRes>("/social-media-links");
+
   return (
     <>
       <header>
         <Header user={user} />
       </header>
-      <main className="pt-[60px]">{children}</main>
+      <main className="pt-[60px]">
+        {children}
+        <AIChatModal />
+      </main>
       <footer className="pt-10 pb-8 px-4 sm:py-6 sm:px-6 lg:px-12">
-        <Footer />
+        <Footer socials={socials?.data || []} />
       </footer>
     </>
   );

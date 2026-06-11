@@ -2,6 +2,7 @@ import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkelet
 import DashboardCardsSkeleton from "@/components/dashboard/DashboardCardsSkeleton";
 import DashboardChartsSkeleton from "@/components/dashboard/DashboardChartsSkeleton";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const AdminDashboardSkeleton = () => {
   return (

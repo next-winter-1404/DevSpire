@@ -10,6 +10,7 @@ import { THouse } from "@/components/common/types";
 import { Link } from "@/i18n/routing";
 import SliderWrapper from "@/components/common/SliderWrapper";
 import HouseCard from "@/components/common/HouseCard";
+import PropertyQAView from "@/modules/property/Q&A/views/PropertyQAView";
 
 interface IProps {
   house: THouse;
@@ -90,6 +91,9 @@ const FastReserveDetailView = ({ house, sliderData }: IProps) => {
           </div>
         </div>
       )}
+      <div className="mt-10">
+        <PropertyQAView id={house.id} />
+      </div>
     </Container>
   );
 };

@@ -74,8 +74,10 @@ export default function ContactForm() {
             <textarea
               placeholder={t("messagePlaceholder")}
               value={message}
+              rows={8}
               onChange={(e) => setMessage(e.target.value)}
-              className="lex-1 h-[110px] lg:h-[192px] resize-none outline-none text-sm text-gray-700 dark:text-gray-100 bg-transparent text-start placeholder-gray-400 dark:placeholder-gray-500"
+              className=" w-full resize-none outline-none text-sm text-gray-700 dark:text-gray-100 
+              bg-transparent text-start placeholder-gray-400 dark:placeholder-gray-500"
             />
           </div>
         </div>

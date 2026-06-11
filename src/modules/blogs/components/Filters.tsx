@@ -104,9 +104,8 @@ const Filters = ({
         p-6
         rounded-3xl
         border border-[#E5E7EB]
-        bg-white
         shadow-sm        
-        dark:bg-[#2B2B2B]
+        bg-background
         dark:border-[#3A3A3A]
       "
       >

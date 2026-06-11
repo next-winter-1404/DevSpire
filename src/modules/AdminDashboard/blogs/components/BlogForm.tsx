@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect } from "react";
@@ -5,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { X } from "lucide-react";
 import { IBlogPayload, useBlogs } from "../hooks";
 import { TBlog } from "@/components/common/types";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import httpClient from "@/core/interceptor/axios";
 
 type Props = {
@@ -32,6 +33,9 @@ export default function BlogCreateEditModal({
     register,
     handleSubmit,
     reset,
+    getValues,
+    setValue,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<IBlogPayload>();
 
@@ -56,6 +60,44 @@ export default function BlogCreateEditModal({
     },
   });
 
+  const { mutate: sendMessage, isPending: pendingMessage } = useMutation({
+    mutationFn: async (data: {
+      title: string;
+      estimated_reading_time: string;
+    }) => {
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            messages: [{ role: "user", content: "مقاله بنویس" }],
+            blogsDetail: {
+              title: data.title,
+              estimated_reading_time: data.estimated_reading_time,
+            },
+            type: "blog",
+          }),
+        });
+        const result = await res.json();
+        return result;
+      } catch (err) {
+        throw err;
+      }
+    },
+    onSuccess: (data) => {
+      setValue(
+        "caption",
+        data?.data?.choices?.[0]?.message?.content || "پاسخی دریافت نشد",
+      );
+    },
+    onError: (err: any) => {
+      setValue(
+        "caption",
+        err.response?.data?.message || err.message || "server error",
+      );
+    },
+  });
+
   const { createBlogMutation, editBlogMutation } = useBlogs(
     initialData?.id || 0,
   );
@@ -73,6 +115,9 @@ export default function BlogCreateEditModal({
     (createBlogMutation.isPending || editBlogMutation.isPending);
 
   if (!isOpen) return null;
+
+  const captionInput = watch("caption");
+  const titleInput = watch("title");
 
   return (
     <div
@@ -126,46 +171,17 @@ export default function BlogCreateEditModal({
               </span>
             )}
           </div>
-
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold dark:text-gray-200">
-              توضیح کوتاه
-            </label>
-            <textarea
-              rows={3}
-              {...register("caption", {
-                required: "توضیح کوتاه الزامی است",
-                maxLength: {
-                  value: 200,
-                  message: "حداکثر ۲۰۰ کاراکتر",
-                },
-              })}
-              className="
-                rounded-xl
-                bg-gray-100
-                p-4
-                outline-none
-                focus:ring-2 focus:ring-blue-500
-                dark:bg-[#404040]
-              "
-            />
-            {errors.caption && (
-              <span className="text-sm text-red-500">
-                {errors.caption.message}
-              </span>
-            )}
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold dark:text-gray-200">
-              زمان مطالعه (مثلاً 5 min)
-            </label>
-            <input
-              {...register("estimated_reading_time", {
-                required: "زمان مطالعه الزامی است",
-              })}
-              placeholder="5 min"
-              className="
+          <div className="grid grid-cols-1 md:grid-cols-2 items-stretch gap-5">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold dark:text-gray-200">
+                زمان مطالعه (مثلاً 5 min)
+              </label>
+              <input
+                {...register("estimated_reading_time", {
+                  required: "زمان مطالعه الزامی است",
+                })}
+                placeholder="5 min"
+                className="
                 h-[48px]
                 rounded-xl
                 bg-gray-100
@@ -174,45 +190,95 @@ export default function BlogCreateEditModal({
                 focus:ring-2 focus:ring-blue-500
                 dark:bg-[#404040]
               "
-            />
-            {errors.estimated_reading_time && (
-              <span className="text-sm text-red-500">
-                {errors.estimated_reading_time.message}
-              </span>
-            )}
-          </div>
+              />
+              {errors.estimated_reading_time && (
+                <span className="text-sm text-red-500">
+                  {errors.estimated_reading_time.message}
+                </span>
+              )}
+            </div>
+            {isPending ? (
+              <p className="text-foreground">درحال بارگزاری دسته بندی ها ...</p>
+            ) : cats && cats.totalCount > 0 ? (
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-semibold dark:text-gray-200">
+                  دسته‌بندی
+                </label>
 
-          {isPending ? (
-            <p className="text-foreground">درحال بارگزاری دسته بندی ها ...</p>
-          ) : cats && cats.totalCount > 0 ? (
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold dark:text-gray-200">
-                دسته‌بندی
-              </label>
-
-              <select
-                {...register("category_id")}
-                className="
-                  h-[48px]
+                <select
+                  {...register("category_id")}
+                  className="
+                py-3
                   rounded-xl
                   bg-gray-100
                   px-4
                   outline-none
                   focus:ring-2 focus:ring-blue-500
                   dark:bg-[#404040]
+                  text-foreground
                 "
-              >
-                <option value="">انتخاب دسته‌بندی</option>
-                {cats.data.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </option>
-                ))}
-              </select>
+                >
+                  <option value="">انتخاب دسته‌بندی</option>
+                  {cats?.data?.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold dark:text-gray-200">
+              متن مقاله
+            </label>
+            <div className="relative w-full">
+              <textarea
+                rows={7}
+                {...register("caption", {
+                  required: "متن مقاله الزامی است",
+                })}
+                className=" 
+        w-full
+        rounded-xl
+        bg-gray-100
+        p-4
+        pb-12 /* اضافه کردن پدینگ در پایین برای اینکه متن زیر دکمه نرود */
+        outline-none
+        focus:ring-2 focus:ring-blue-500
+        dark:bg-[#404040]
+      "
+              />
+
+              {!captionInput && titleInput && (
+                <button
+                  disabled={pendingMessage}
+                  type="button"
+                  onClick={() =>
+                    sendMessage({
+                      title: getValues("title") ?? "بدون عنوان",
+                      estimated_reading_time:
+                        getValues("estimated_reading_time") ?? "5 min",
+                    })
+                  }
+                  className="bg-blue-700/60 hover:bg-blue-700 transition
+                 text-white px-3 py-1.5 rounded-lg backdrop-blur-sm
+        text-sm absolute bottom-3 right-3 cursor-pointer z-10"
+                >
+                  {pendingMessage ? "درحال ساخت ..." : "ساخت با هوش مصنوعی 💫"}
+                </button>
+              )}
             </div>
-          ) : (
-            ""
-          )}
+
+            {errors.caption && (
+              <span className="text-sm text-red-500">
+                {errors.caption.message}
+              </span>
+            )}
+          </div>
 
           <div className="flex justify-end gap-4 mt-4">
             <button

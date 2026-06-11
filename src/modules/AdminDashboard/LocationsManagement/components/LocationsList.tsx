@@ -51,7 +51,10 @@ const LocationsList = ({ data }: IProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-6 p-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]   dark:bg-[#262626] dark:border-[#777777]">
+    <div
+      className="flex flex-col gap-6 p-4 bg-[#FFFFFF] border h-full
+     border-[#DDDDDD] rounded-[24px]   dark:bg-[#262626] dark:border-[#777777]"
+    >
       <LocationsDataTable data={data.data} />
       <div className="flex justify-between">
         <div>

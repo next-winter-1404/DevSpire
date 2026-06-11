@@ -19,7 +19,6 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
   return (
     <div className="w-full">
       <table className="w-full text-right border-collapse">
-        {/* هدر جدول - فقط در دسکتاپ نمایش داده می‌شود */}
         <thead className="hidden md:table-header-group bg-background border-b border-gray-100 text-gray-500 text-sm">
           <tr>
             <th className="px-6 py-4 font-medium">شناسه</th>
@@ -32,14 +31,13 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
           </tr>
         </thead>
 
-        {/* بدنه جدول */}
         <tbody className="block md:table-row-group divide-y-0 md:divide-y divide-gray-100">
           {blog.map((article) => (
             <tr
               key={article.id}
               className="
                 block md:table-row 
-                bg-white md:bg-transparent 
+                 md:bg-transparent 
                 border border-gray-100 md:border-none 
                 rounded-2xl md:rounded-none 
                 shadow-sm md:shadow-none 
@@ -47,7 +45,6 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                 hover:bg-blue-50/30 transition-colors group relative
               "
             >
-              {/* شناسه */}
               <td className="flex justify-between items-center md:table-cell md:px-6 md:py-4 mb-3 md:mb-0 text-gray-500 font-mono text-sm border-b border-gray-50 md:border-none pb-2 md:pb-0">
                 <span className="md:hidden text-xs text-gray-400 font-medium">
                   شناسه:
@@ -55,7 +52,6 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                 <span>#{article.id}</span>
               </td>
 
-              {/* عنوان مقاله */}
               <td className="block md:table-cell md:px-6 md:py-4 mb-3 md:mb-0">
                 <div className="font-semibold text-gray-800 mb-1">
                   {article.title}
@@ -70,7 +66,6 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                 </div>
               </td>
 
-              {/* زمان مطالعه */}
               <td className="flex justify-between items-center md:table-cell md:px-6 md:py-4 mb-2 md:mb-0">
                 <span className="md:hidden text-xs text-gray-400 font-medium">
                   زمان مطالعه:
@@ -81,7 +76,6 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                 </div>
               </td>
 
-              {/* تاریخ ایجاد */}
               <td className="flex justify-between items-center md:table-cell md:px-6 md:py-4 mb-4 md:mb-0">
                 <span className="md:hidden text-xs text-gray-400 font-medium">
                   تاریخ ایجاد:
@@ -92,7 +86,6 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                 </div>
               </td>
 
-              {/* عملیات */}
               <td className="block md:table-cell md:px-6 md:py-4 border-t border-gray-100 md:border-none pt-3 md:pt-0">
                 <div
                   className="
