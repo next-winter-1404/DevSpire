@@ -11,6 +11,8 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { MoreVertical } from "lucide-react";
 import { DeleteHouse } from "../services/DELETE/deleteHouse";
 import DeleteModal from "./DeleteModal";
+import QAListModal from "@/modules/property/Q&A/components/QAListModal";
+import { QuestionMarkIcon } from "@radix-ui/react-icons";
 
 interface IProps {
   onClose: () => void;
@@ -20,6 +22,7 @@ interface IProps {
 
 const ActionsModal = ({ onClose, item, role }: IProps) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const [isOpenQA, setIsOpenQA] = useState(false);
 
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -77,6 +80,16 @@ const ActionsModal = ({ onClose, item, role }: IProps) => {
                 <span>ویرایش</span>
               </Link>
             </DropdownMenu.Item>
+            <DropdownMenu.Item asChild>
+              <button
+                onClick={() => setIsOpenQA(true)}
+                className="flex items-center gap-2 rounded-md p-2 outline-none cursor-pointer
+                 hover:bg-slate-100 dark:hover:bg-sky-950 "
+              >
+                <QuestionMarkIcon />
+                <span>سوالات ملک</span>
+              </button>
+            </DropdownMenu.Item>
 
             <DropdownMenu.Item
               onSelect={() => setIsOpenDeleteModal(true)}
@@ -97,6 +110,11 @@ const ActionsModal = ({ onClose, item, role }: IProps) => {
               deleteHouseMutation.mutate();
             }}
           />
+        </>
+      )}
+      {isOpenQA && (
+        <>
+          <QAListModal houseId={item.id} onClose={() => setIsOpenQA(false)} />
         </>
       )}
     </>

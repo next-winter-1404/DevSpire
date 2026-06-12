@@ -24,7 +24,9 @@ const PropertyQAView = async ({ id }: { id: number }) => {
         </div>
 
         {res && res?.length > 0 ? (
-          <PropertyQAList data={res} />
+          <div className="max-h-[650px] overflow-y-auto scroll-smooth">
+            <PropertyQAList isSeller={false} data={res} />
+          </div>
         ) : (
           <div className="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
             <p className="text-slate-400">

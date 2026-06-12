@@ -23,7 +23,7 @@ export default function AnswerQuestionModal({
   questionId,
   question,
 }: AnswerQuestionModalProps) {
-  const router = useRouter();
+  const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onClose = () => setIsOpen(false);
   const {
@@ -55,7 +55,9 @@ export default function AnswerQuestionModal({
         questionId,
         answer: "",
       });
-      router.refresh();
+      queryClient.invalidateQueries({
+        queryKey: ["GETQA"],
+      });
       onClose();
     },
 

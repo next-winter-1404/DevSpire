@@ -15,10 +15,16 @@ export interface IQAItem {
   updated_at: string;
 }
 
-const PropertyQAList = ({ data }: { data: IQAItem[] }) => {
+const PropertyQAList = ({
+  data,
+  isSeller,
+}: {
+  data: IQAItem[];
+  isSeller: boolean;
+}) => {
   const locale = useLocale();
   return (
-    <div className="space-y-6 max-h-[600px] overflow-y-auto scroll-smooth">
+    <div className="space-y-6 ">
       {data.map((item) => (
         <div
           key={item.id}
@@ -46,12 +52,14 @@ const PropertyQAList = ({ data }: { data: IQAItem[] }) => {
                 </p>
               </div>
             </div>
-            <div className="mt-3">
-              <AnswerQuestionModal
-                questionId={item.id}
-                question={item.question}
-              />
-            </div>
+            {isSeller && (
+              <div className="mt-3">
+                <AnswerQuestionModal
+                  questionId={item.id}
+                  question={item.question}
+                />
+              </div>
+            )}
           </div>
 
           {item.answer ? (
