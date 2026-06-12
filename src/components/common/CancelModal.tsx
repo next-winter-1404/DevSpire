@@ -17,7 +17,10 @@ export default function CancelModal({ isOpen, onClose, onCancel }: Props) {
       />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-white dark:bg-[#1f2937] rounded-2xl shadow-xl p-6 text-center relative">
+        <div
+          className="w-full max-w-md bg-[#ffff] dark:bg-[#1f2937] rounded-2xl shadow-xl
+         p-6 text-center relative"
+        >
           <button
             onClick={onClose}
             className="absolute left-4 top-4 p-2 rounded-full bg-gray-100

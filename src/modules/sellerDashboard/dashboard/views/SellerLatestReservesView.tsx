@@ -2,20 +2,41 @@ import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { TReservationsResponse } from "@/components/common/types";
 import { BookOpen } from "lucide-react";
 import ReservationTable from "../../ReservesManagement/components/ReserveTable";
+import { cookies } from "next/headers";
+import { getUserIdFromToken } from "@/utils/helper/token";
+import { ISellerBookings } from "../../ReservesManagement/view/SellerReserveManagementView";
 
 const SellerLatestReservesView = async () => {
-  const data = await apiFetch<TReservationsResponse | null>("/bookings", {
-    params: {
-      limit: "6",
-      sort: "created_at",
-      order: "DESC",
+  const cookieStore = await cookies();
+  const sellerId = getUserIdFromToken(
+    cookieStore?.get("accessToken")?.value as string,
+  );
+  const data = await apiFetch<ISellerBookings | null>(
+    `/bookings/${sellerId}/customers`,
+    {
+      params: {
+        limit: "6",
+        sort: "created_at",
+        order: "DESC",
+      },
+      next: {
+        revalidate: 60,
+      },
     },
-    cache: "no-store",
-  });
+  );
+
+  let normalizedData: TReservationsResponse | null = null;
+
+  if (data) {
+    normalizedData = {
+      data: data.bookings,
+      totalCount: data.totalCount,
+    } as TReservationsResponse;
+  }
   return (
     <>
-      {data ? (
-        <ReservationTable data={data.data} />
+      {normalizedData ? (
+        <ReservationTable role="seller" data={normalizedData?.data} />
       ) : (
         <div className="flex flex-col items-center justify-center min-h-[260px] text-center">
           <BookOpen className="text-gray-400 dark:text-gray-500 text-6xl mb-4" />

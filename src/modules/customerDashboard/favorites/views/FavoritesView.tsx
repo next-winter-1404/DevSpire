@@ -30,9 +30,7 @@ const FavoritesView = async ({ params }: IProps) => {
         <h1 className="text-xl font-bold text-foreground whitespace-nowrap ">
           لیست علاقه مندی ها
         </h1>
-        <div className=" w-full md:w-[50%]">
-          <ReserveFilters />
-        </div>
+        <ReserveFilters />
       </div>
       <div
         className="h-[90%]  border-[#DDDDDD] 

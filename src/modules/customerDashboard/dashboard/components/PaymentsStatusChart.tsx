@@ -6,7 +6,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const PaymentStatusChart = ({ percentage }: { percentage: number }) => {
   return (
-    <div className="flex flex-col flex-grow p-4 sm:p-6 bg-white rounded-[24px] dark:bg-[#262626]">
+    <div className="flex flex-col flex-grow p-4 sm:p-6 bg-[#ffff] rounded-[24px] dark:bg-[#262626]">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
         <div className="flex flex-col gap-2 min-w-0">
           <h2 className="font-bold text-[18px] sm:text-[20px] text-[#1E2022] dark:text-[#F5F5F5]">

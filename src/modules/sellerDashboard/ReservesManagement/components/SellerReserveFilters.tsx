@@ -1,13 +1,12 @@
 "use client";
 
-import { Filter, House, Search } from "lucide-react";
+import { Filter, House } from "lucide-react";
 import { useLocale } from "next-intl";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
-import { useDebounce } from "use-debounce";
-import { SellerChooseHouseModal } from "@/modules/SellerDashboard/CommentsManagement/components/SellerChooseHouseModal";
 import ReserveFilterModal from "@/components/dashboard/FiltersModal";
+import { SellerChooseHouseModal } from "../../CommentsManagement/components/SellerChooseHouseModal";
 
 const SellerReserveFilters = () => {
   const pathname = usePathname();

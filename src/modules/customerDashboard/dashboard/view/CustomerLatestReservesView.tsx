@@ -1,7 +1,7 @@
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import ReservationTable from "../../ReserveManagement/components/CustomerReserveTable";
 import { TReservationsResponse } from "@/components/common/types";
 import { BookOpen } from "lucide-react";
+import ReservationTable from "../../ReserveManagement/components/CustomerReserveTable";
 
 const CustomerLatestReservesView = async () => {
   const data = await apiFetch<TReservationsResponse | null>("/bookings", {

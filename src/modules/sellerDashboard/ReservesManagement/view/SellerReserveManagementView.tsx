@@ -3,17 +3,39 @@ import ReserveFilters from "../../../../components/dashboard/Filters";
 import ReserveList from "../components/ReserveList";
 import { useLocale } from "next-intl";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import { TReservationsResponse } from "@/components/common/types";
+import { TReservation, TReservationsResponse } from "@/components/common/types";
+import { getUserIdFromToken } from "@/utils/helper/token";
+import { cookies } from "next/headers";
 
+export interface ISellerBookings {
+  bookings: TReservation[];
+  totalCount: number;
+}
 const SellerReserveManagementView = async ({
   params,
 }: {
   params: Record<string, string>;
 }) => {
-  const data = await apiFetch<TReservationsResponse | null>("/bookings", {
-    params,
-    cache: "no-store",
-  });
+  const cookieStore = await cookies();
+  const sellerId = getUserIdFromToken(
+    cookieStore?.get("accessToken")?.value as string,
+  );
+  const data = await apiFetch<ISellerBookings | null>(
+    `/bookings/${sellerId}/customers`,
+    {
+      params,
+      cache: "no-store",
+    },
+  );
+
+  let normalizedData: TReservationsResponse | null = null;
+
+  if (data) {
+    normalizedData = {
+      data: data.bookings,
+      totalCount: data.totalCount,
+    } as TReservationsResponse;
+  }
 
   return (
     <div className="h-full">
@@ -24,7 +46,7 @@ const SellerReserveManagementView = async ({
         <h1 className="text-xl font-bold text-foreground">
           لیست رزرو های مشتریان
         </h1>
-        <div className=" w-full md:w-[50%]">
+        <div className="">
           <ReserveFilters />
         </div>
       </div>
@@ -33,8 +55,8 @@ const SellerReserveManagementView = async ({
       rounded-[24px] overflow-hidden  dark:border-[#333333]
          bg-[#ffff] dark:bg-[#262626]"
       >
-        {data && data?.totalCount > 0 ? (
-          <ReserveList role="seller" data={data} />
+        {normalizedData && normalizedData?.totalCount > 0 ? (
+          <ReserveList role="seller" data={normalizedData} />
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">

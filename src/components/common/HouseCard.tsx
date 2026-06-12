@@ -88,7 +88,9 @@ const HouseCard = ({ property, className, transactionType }: props) => {
               width={20}
               height={20}
             />
-            <span>{property.location}</span>
+            {typeof property.location === "string" && (
+              <span>{property.location}</span>
+            )}
           </div>
         </div>
 

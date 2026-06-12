@@ -63,7 +63,7 @@ const ReserveActionsMenu = ({
               border
               border-gray-100
               dark:border-[#333333]
-              bg-white
+              bg-[#ffff]
               dark:bg-[#262626]
               p-1
               shadow-lg

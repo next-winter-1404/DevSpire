@@ -10,7 +10,7 @@ const DashboardCardsSkeleton = () => {
       {arr.map((i) => (
         <div
           key={i}
-          className="flex flex-col justify-between bg-white
+          className="flex flex-col justify-between bg-[#ffff]
            dark:bg-[#262626] rounded-[24px] p-4 shadow-sm"
         >
           <div className="flex items-center justify-between">

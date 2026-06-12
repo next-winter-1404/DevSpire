@@ -1,10 +1,7 @@
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import {
-  IPaymentResponse,
-  ISellerPaymentsResponse,
-} from "../../../CustomerDashboard/Payments/types";
-import PaymentsFilters from "../../../CustomerDashboard/Payments/components/PaymentsFilters";
-import PaymentsList from "../../../CustomerDashboard/Payments/components/PaymentsList";
+import PaymentsFilters from "@/modules/CustomerDashboard/Payments/components/PaymentsFilters";
+import PaymentsList from "@/modules/CustomerDashboard/Payments/components/PaymentsList";
+import { ISellerPaymentsResponse } from "@/modules/CustomerDashboard/payments/types";
 
 const SellerPaymentsView = async ({
   role,
@@ -36,7 +33,9 @@ const SellerPaymentsView = async ({
           لیست تراکنش های مشتریان {`(${res?.totalCount})`}{" "}
         </h1>
 
-        <div className=" w-full md:w-[50%]">{/* <PaymentsFilters /> */}</div>
+        <div className=" w-full md:w-[50%]">
+          <PaymentsFilters />
+        </div>
       </div>
       <div
         className="h-[90%]  border-[#DDDDDD] 

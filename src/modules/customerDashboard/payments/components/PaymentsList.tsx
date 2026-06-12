@@ -3,8 +3,8 @@ import CustomPagination from "@/components/common/CustomPagination";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { PaymentTable } from "@/modules/CustomerDashboard/Payments/components/PaymentsTable";
 import { IPaymentResponse, ISellerPaymentsResponse } from "../types";
+import { PaymentTable } from "./PaymentsTable";
 
 const PaymentsList = ({
   buyerData,

@@ -36,7 +36,7 @@ export default function ReservationDetailsModal({
         <div
           className="
             w-full max-w-lg
-            bg-white dark:bg-[#1f2937]
+            bg-[#ffff] dark:bg-[#1f2937]
             rounded-2xl shadow-2xl
             text-gray-800 dark:text-gray-100
             animate-scaleIn overflow-hidden

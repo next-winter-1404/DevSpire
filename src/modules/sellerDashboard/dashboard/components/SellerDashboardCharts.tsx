@@ -18,7 +18,7 @@ const SellerDashboardCharts = ({ payments, user }: IProps) => {
       <InCome
         title="نمودار درامد این ماه"
         totalIncome={String(payments?.totalAmount.toLocaleString()) || ""}
-        currentIncome={String(payments?.totalCurrentMonthAmount) || ""}
+        currentIncome={String(payments?.totalCurrentMonthAmount) ?? "0"}
         percentage={
           ((payments?.totalCurrentMonthAmount || 0) /
             (payments?.totalAmount || 0)) *

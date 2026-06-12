@@ -44,12 +44,13 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
        bg-black/40 backdrop-blur-sm"
       dir="rtl"
     >
-      <div className="bg-white rounded-3xl shadow-xl w-full max-w-md p-6">
+      <div className="bg-background rounded-3xl shadow-xl w-full max-w-md p-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold text-gray-800">فیلتر و مرتب‌سازی</h2>
           <button
             onClick={onClose}
-            className="p-2 bg-gray-50 rounded-full cursor-pointer hover:bg-gray-100 transition"
+            className="p-2 bg-gray-50 dark:bg-blue-50 rounded-full cursor-pointer
+             hover:bg-gray-100 transition text-foreground"
           >
             <X className="w-5 h-5" />
           </button>
@@ -63,7 +64,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 
+              className="w-full bg-background border border-gray-100 rounded-xl py-3 
               px-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="" disabled>
@@ -83,7 +84,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
             <select
               value={order}
               onChange={(e) => setOrder(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-background border border-gray-100 rounded-xl py-3 px-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="DESC">نزولی - جدید به قدیم</option>
               <option value="ASC">صعودی - قدیم به جدید</option>
@@ -100,7 +101,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
               max={100}
               value={limit}
               onChange={(e) => setLimit(Number(e.target.value))}
-              className="w-full bg-gray-50 border border-gray-100 rounded-xl
+              className="w-full bg-background border border-gray-100 rounded-xl
                py-3 px-4 text-gray-600 focus:outline-none focus:ring-2
                 focus:ring-blue-500"
             />
@@ -113,7 +114,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3
+              className="w-full bg-background border border-gray-100 rounded-xl py-3
                px-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="" disabled>
@@ -148,7 +149,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
           </button>
           <button
             onClick={onClose}
-            className="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 rounded-xl font-medium transition-colors cursor-pointer"
+            className="flex-1 bg-background border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 rounded-xl font-medium transition-colors cursor-pointer"
           >
             انصراف
           </button>

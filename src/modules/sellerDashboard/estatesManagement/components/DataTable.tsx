@@ -78,9 +78,12 @@ export default function UserHousesTable({
                         <span className="font-bold text-[16px] text-foreground line-clamp-1">
                           {row.title}
                         </span>
-                        <span className="text-xs text-gray-500 line-clamp-1 truncate max-w-[220px]">
-                          {row.location}
-                        </span>
+                        {typeof row.location === "string" && (
+                          <span className="text-xs text-gray-500 line-clamp-1 truncate max-w-[220px]">
+                            {row.location}
+                          </span>
+                        )}
+
                         <div className="flex gap-1 mt-1">
                           <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">
                             {getTransactionTypeLabel(row.transaction_type)}
@@ -181,9 +184,11 @@ export default function UserHousesTable({
                   <span className="font-bold text-[15px] text-foreground line-clamp-1">
                     {row.title}
                   </span>
-                  <span className="text-xs text-gray-500 mt-1 line-clamp-2">
-                    {row.location}
-                  </span>
+                  {typeof row.location === "string" && (
+                    <span className="text-xs text-gray-500 mt-1 line-clamp-2">
+                      {row.location}
+                    </span>
+                  )}
 
                   <div className="flex flex-wrap gap-2 mt-2">
                     <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-1 rounded-full">

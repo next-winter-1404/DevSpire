@@ -5,7 +5,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const DashboardChartsSkeleton = () => {
   return (
     <div className="grid md:grid-cols-2 gap-4">
-      <div className="flex flex-col bg-white dark:bg-[#262626] rounded-[24px] p-6">
+      <div className="flex flex-col bg-[#ffff] dark:bg-[#262626] rounded-[24px] p-6">
         <div className="flex justify-between items-center mb-6">
           <Skeleton width={120} height={20} />
           <Skeleton width={90} height={32} borderRadius={24} />
@@ -22,7 +22,7 @@ const DashboardChartsSkeleton = () => {
         </div>
       </div>
 
-      <div className="flex flex-col bg-white dark:bg-[#262626] rounded-[24px] p-6">
+      <div className="flex flex-col bg-[#ffff] dark:bg-[#262626] rounded-[24px] p-6">
         <div className="flex justify-between items-center mb-6">
           <Skeleton width={100} height={20} />
           <Skeleton width={90} height={32} borderRadius={24} />
