@@ -380,8 +380,6 @@
     "lastNameRequired": "last name is required"
   },
 
-
-
   "dashboardHeader": {
     "balance": "Balance :",
     "seller": "(Seller)",
@@ -484,7 +482,7 @@
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
     },
-    "socialBookMarks":{
+    "socialBookMarks": {
       "title": "Social BookMarks",
       "filtersBtn": "Filters",
       "socialBookMarkName": "Social bookmark name",
@@ -519,7 +517,8 @@
       "confirm": "Confirm",
       "edit": "Edit",
       "delete": "Delete",
-      "sureAboutDeleteCategory": "Are you sure about delete this category?"
+      "sureAboutDeleteCategory": "Are you sure about delete this category?",
+      "categoryNamePlc": "name of category"
     },
     "locationsManagement": {
       "title": "Locations Management",

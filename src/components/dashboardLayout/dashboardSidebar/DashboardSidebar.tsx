@@ -22,21 +22,17 @@ import { Globe } from "lucide-react";
 import Chat from "../../../../public/icons/Chat";
 import Category from "../../../../public/icons/Category";
 import BookMark from "../../../../public/icons/BookMark";
-
+import MobileCall from "../../../../public/icons/MobileCall";
 
 interface IProps {
   role: "seller" | "buyer" | "admin";
 }
 
-
 const sellerBasePath = "/dashboard/seller";
 const customerBasePath = "/dashboard/customer";
 const adminBasePath = "/dashboard/admin";
 
-
 const DashboardSidebar = ({ role }: IProps) => {
-
-
   const t = useTranslations("dashboardSidebar");
   const router = useRouter();
   const pathname = usePathname();
@@ -110,7 +106,7 @@ const DashboardSidebar = ({ role }: IProps) => {
         href: `${customerBasePath}/social-bookmarks`,
         label: t("socialBookMarks"),
         Icon: BookMark,
-      },      
+      },
       {
         href: `${customerBasePath}/reserves-management`,
         label: t("reservesManagement"),
@@ -144,11 +140,6 @@ const DashboardSidebar = ({ role }: IProps) => {
     ],
     management: [
       {
-        href: `${adminBasePath}/categories`,
-        label: t("categories"),
-        Icon: Category,
-      },
-      {
         href: `${adminBasePath}/estates-management`,
         label: t("estatesManagement"),
         Icon: Estates,
@@ -159,39 +150,53 @@ const DashboardSidebar = ({ role }: IProps) => {
         Icon: CheckList,
       },
       {
-        href: `${adminBasePath}/locations-management`,
-        label: t("locationsManagement"),
-        Icon: Location,
-      },
-      {
         href: `${adminBasePath}/users-management`,
         label: t("usersManagement"),
         Icon: UsersIcon,
       },
       {
-        href: `${adminBasePath}/tours-management`,
-        label: "مدیریت تور ها",
-        Icon: UsersIcon,
+        href: `${adminBasePath}/locations-management`,
+        label: t("locationsManagement"),
+        Icon: Location,
       },
       {
         href: `${adminBasePath}/payments`,
         label: t("paymentsManagement"),
         Icon: FinantialManagement,
       },
-      {
-        href: `${adminBasePath}/social-media`,
-        label: "شبکه های اجتماعی",
-        Icon: Globe,
-      },
+
       {
         href: `${adminBasePath}/comments-management`,
         label: "مدیریت کامنت ها",
         Icon: Chat,
       },
       {
+        href: `${adminBasePath}/categories`,
+        label: t("categories"),
+        Icon: Category,
+      },
+
+      {
+        href: `${adminBasePath}/tours-management`,
+        label: "مدیریت تور ها",
+        Icon: UsersIcon,
+      },
+
+      {
+        href: `${adminBasePath}/social-media`,
+        label: "شبکه های اجتماعی",
+        Icon: Globe,
+      },
+
+      {
         href: `${adminBasePath}/blogs`,
         label: "مدیریت مقالات",
         Icon: Newspaper,
+      },
+      {
+        href: `${adminBasePath}/contact-us`,
+        label: "ارتباط با ما",
+        Icon: MobileCall,
       },
     ],
   };

@@ -1,40 +1,37 @@
 import { useTranslations } from "next-intl";
-import { TCategory } from "../../../../components/common/types"
+import { TCategory } from "../../../../components/common/types";
 import CategoriesDataTableRow from "./CategoriesDataTableRow";
 
-
-interface IProps{
-    data: TCategory[];
+interface IProps {
+  data: TCategory[];
 }
 
-const CategoriesDataTable = ({data}: IProps) => {
+const CategoriesDataTable = ({ data }: IProps) => {
+  const t = useTranslations("adminDashboard.categories");
 
-    const t = useTranslations("adminDashboard.categories");
+  return (
+    <div className="w-full overflow-x-auto">
+      <table className="w-full border-collapse">
+        <thead className="hidden md:table-header-group font-bold text-[#1E2022] dark:text-[#E4E4E4]">
+          <tr>
+            <th className="px-6 py-3 text-start">
+              <span>{t("categoryName")}</span>
+            </th>
 
+            <th className="px-6 py-3 text-center w-[120px]">
+              <span>{t("actions")}</span>
+            </th>
+          </tr>
+        </thead>
 
-    return (
-        <table className="flex flex-col gap-4">
-            <thead className="hidden font-bold text-[#1E2022]   md:flex">
-                <tr className="w-full px-6">
-                    <td className="w-[98%] text-[#1E2022]   dark:text-[#E4E4E4]">
-                        <span>{t("categoryName")}</span>
-                    </td>
-                    <td className="text-[#1E2022]   dark:text-[#E4E4E4]">
-                        <span>{t("actions")}</span>
-                    </td>
-                </tr>
-            </thead>
-            <tbody className="flex flex-col">
-                {
-                    data?.map((item) => (
-                        <CategoriesDataTableRow item={item} key={item.id}/>
-                    ))
-                }
-            </tbody>
-        </table>
-    )
+        <tbody>
+          {data?.map((item) => (
+            <CategoriesDataTableRow item={item} key={item.id} />
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
-}
-
-export default CategoriesDataTable
-
+export default CategoriesDataTable;

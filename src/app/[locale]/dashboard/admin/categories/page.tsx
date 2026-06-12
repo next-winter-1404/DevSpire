@@ -3,11 +3,9 @@ import DashboardContainer from "@/components/dashboard/DashboardContainer";
 import CategoriesView from "@/modules/AdminDashboard/Categories/views/CategoriesView";
 import { Suspense } from "react";
 
-
 interface IProps {
   searchParams: Promise<{ [key: string]: string | null }>;
 }
-
 
 const page = async ({ searchParams }: IProps) => {
   const params = await searchParams;

@@ -380,8 +380,6 @@
     "lastNameRequired": "نام خانوادگی نیاز است"
   },
 
-
-
   "dashboardHeader": {
     "balance": "موجودی :",
     "seller": "(فروشنده)",
@@ -482,7 +480,7 @@
       "recentCustomerBookings": "رزرو های اخیر مشتریان",
       "seeAllBtn": "مشاهده همه"
     },
-    "socialBookMarks":{
+    "socialBookMarks": {
       "title": "نشانک های اجتماعی",
       "filtersBtn": "فیلتر ها",
       "socialBookMarkName": "نام نشانک اجتماعی",
@@ -517,7 +515,8 @@
       "confirm": "تایید",
       "edit": "ویرایش",
       "delete": "حذف",
-      "sureAboutDeleteCategory": "آیا از حذف این دسته بندی اطمینان دارید؟"
+      "sureAboutDeleteCategory": "آیا از حذف این دسته بندی اطمینان دارید؟",
+      "categoryNamePlc": "نام دسته بندی"
     },
     "locationsManagement": {
       "title": "مدیریت مکان ها",

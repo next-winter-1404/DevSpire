@@ -1,19 +1,26 @@
-import { TReservationsResponse } from "@/components/common/types";
 import ReserveFilters from "@/components/dashboard/Filters";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import ReserveList from "@/modules/sellerDashboard/ReservesManagement/components/ReserveList";
+import ContactUsList from "../components/ContactUsList";
 
-const AdminReserveManagementViews = async ({
+export interface IContactUS {
+  id: number;
+  title: string | null;
+  message: string | null;
+}
+export interface IContactUsRes {
+  data: IContactUS[];
+  totalCount: number;
+}
+const AdminContactUsView = async ({
   params,
 }: {
   params: Record<string, string>;
 }) => {
-  const data = await apiFetch<TReservationsResponse | null>("/admin/bookings", {
+  const data = await apiFetch<IContactUsRes | null>("/contact-us", {
     cache: "no-store",
     params,
   });
   console.log(data);
-
   return (
     <div className="h-full">
       <div
@@ -21,7 +28,7 @@ const AdminReserveManagementViews = async ({
        items-center mb-4 gap-4"
       >
         <h1 className="text-xl font-bold text-foreground whitespace-nowrap">
-          لیست رزرو های وبسایت
+          لیست پیام های وبسایت
         </h1>
         <ReserveFilters />
       </div>
@@ -32,16 +39,16 @@ const AdminReserveManagementViews = async ({
       >
         {data && data?.totalCount > 0 ? (
           <div className="w-full h-full">
-            <ReserveList role="admin" data={data} />
+            <ContactUsList data={data} />
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-[300px] text-center px-4">
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              هنوز رزروی ثبت نشده است
+              هنوز پیامی ثبت نشده است
             </p>
 
             <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">
-              وقتی کاربران اقامتگاهی را رزرو کنند در اینجا نمایش داده می‌شود
+              وقتی کاربران پیامی ثبت کنند در اینجا نمایش داده می‌شود
             </p>
           </div>
         )}
@@ -50,4 +57,4 @@ const AdminReserveManagementViews = async ({
   );
 };
 
-export default AdminReserveManagementViews;
+export default AdminContactUsView;
