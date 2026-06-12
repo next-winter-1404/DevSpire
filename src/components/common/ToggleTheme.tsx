@@ -17,7 +17,9 @@ const ToggleTheme = () => {
       className="rounded-full  cursor-pointer  "
     >
       {theme == "light" ? (
-        <div className="bg-slate-700/50 rounded-full transition-all duration-100 hover:bg-[#644DB3] p-2 flex items-center justify-center">
+        <div className="text-[#0D3B66] border border-[#0D3B66] rounded-full transition-all duration-100 p-2 flex items-center 
+        justify-center   
+        hover:text-[#FFFFFF] hover:bg-[#0D3B66]">
           <div className="relative w-5 h-5   md:w-[25px] md:h-[25px]">
             <Moon className="object-contain"/>
           </div>

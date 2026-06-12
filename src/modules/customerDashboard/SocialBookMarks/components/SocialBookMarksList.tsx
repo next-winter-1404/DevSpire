@@ -1,23 +1,21 @@
 "use client";
 import CustomPagination from "@/components/common/CustomPagination";
-import { TCategoriesResponse } from "@/components/common/types";
+import { TSocialBookMarksResponse } from "@/components/common/types";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import CustomSelect from "@/components/common/CustomSelectOption";
-import { useTranslations } from "next-intl";
-import CategoriesDataTable from "./CategoriesDataTable";
+import SocialBookMarksDataTable from "./SocialBookMarksDataTable";
 
 
 interface IProps {
-  data: TCategoriesResponse;
+  data: TSocialBookMarksResponse;
 }
 
 
-const CategoriesList = ({ data }: IProps) => {
+const SocialBookMarksList = ({ data }: IProps) => {
 
   
-  const t = useTranslations("adminDashboard.categories");
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -50,7 +48,7 @@ const CategoriesList = ({ data }: IProps) => {
 
   return (
     <div className="flex flex-col gap-6 p-4 bg-[#FFFFFF] border border-[#DDDDDD] rounded-[24px]   dark:bg-[#262626] dark:border-[#777777]">
-      <CategoriesDataTable data={data.data} />
+      <SocialBookMarksDataTable data={data.data} />
       <div className="flex justify-between">
         <div>
           <CustomPagination
@@ -72,4 +70,4 @@ const CategoriesList = ({ data }: IProps) => {
   );
 };
 
-export default CategoriesList;
+export default SocialBookMarksList;

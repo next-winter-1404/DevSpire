@@ -379,31 +379,35 @@
     "max50Chars": "must be less than 50 characters",
     "lastNameRequired": "last name is required"
   },
+
+
+
+  "dashboardHeader": {
+    "balance": "Balance :",
+    "seller": "(Seller)",
+    "customer": "(Customer)",
+    "admin": "(Admin)"
+  },
+  "dashboardSidebar": {
+    "logo": "Logo",
+    "menu": "Menu",
+    "dashboard": "Dashboard",
+    "userProfile": "User Profile",
+    "notifications": "Notifications",
+    "management": "Management",
+    "socialBookMarks": "Social Bookmarks",
+    "categories": "Categories",
+    "estatesManagement": "Estates Management",
+    "reservesManagement": "Reserves Management",
+    "locationsManagement": "Locations Management",
+    "usersManagement": "Users Management",
+    "finantialManagement": "Finantial Management",
+    "paymentsManagement": "Payments Management",
+    "commentsManagement": "Comments Management",
+    "favorites": "Favorites",
+    "logOut": "Log Out"
+  },
   "sellerDashboard": {
-    "header": {
-      "balance": "Balance :",
-      "seller": "(Seller)",
-      "customer": "(Customer)",
-      "admin": "(Admin)"
-    },
-    "sidebar": {
-      "logo": "Logo",
-      "menu": "Menu",
-      "dashboard": "Dashboard",
-      "userProfile": "User Profile",
-      "notifications": "Notifications",
-      "management": "Management",
-      "categories": "Categories",
-      "estatesManagement": "Estates Management",
-      "reservesManagement": "Reserves Management",
-      "locationsManagement": "Locations Management",
-      "usersManagement": "Users Management",
-      "finantialManagement": "Finantial Management",
-      "paymentsManagement": "Payments Management",
-      "commentsManagement": "Comments Management",
-      "favorites": "Favorites",
-      "logOut": "Log Out"
-    },
     "dashboard": {
       "allOfEstates": "All of Estates",
       "activeReserves": "Active Reserves",
@@ -479,6 +483,23 @@
       "EditProfileBtn": "Edit Profile",
       "recentCustomerBookings": "Recent Customer Bookings",
       "seeAllBtn": "See All"
+    },
+    "socialBookMarks":{
+      "title": "Social BookMarks",
+      "filtersBtn": "Filters",
+      "socialBookMarkName": "Social bookmark name",
+      "searchPlc": "Enter the social bookmark name",
+      "actions": "Actions",
+      "filters": "Filters",
+      "showNumber": "Show Number",
+      "sortBy": "Sort By",
+      "order": "Order",
+      "cancel": "Cancel",
+      "applyFilters": "Apply Filters",
+      "confirm": "Confirm",
+      "edit": "Edit",
+      "delete": "Delete",
+      "sureAboutDeleteSocBookMark": "Are you sure about delete this bookmark?"
     }
   },
   "adminDashboard": {
@@ -487,7 +508,7 @@
       "filtersBtn": "Filters",
       "addCategoryBtn": "Add Category",
       "categoryName": "Category Name",
-      "categoryNamePlc": "Enter the category name",
+      "searchPlc": "Enter the category name",
       "actions": "Actions",
       "filters": "Filters",
       "showNumber": "Show Number",

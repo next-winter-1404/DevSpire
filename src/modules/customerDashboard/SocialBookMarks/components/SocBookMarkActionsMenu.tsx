@@ -3,17 +3,19 @@ import Trash from "../../../../../public/icons/Trash";
 import { Link } from "@/i18n/routing";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import DeleteCategoryModal from "./DeleteCategoryModal";
+import DeleteSocialBookMarkModal from "./DeleteSocBookMarkModal";
+
 
 interface IProps {
   handleActionsModal: (value: boolean) => void;
   id: number;
 }
 
-const CategoryActionsMenu = ({ handleActionsModal, id }: IProps) => {
+
+const SocBookMarkActionsMenu = ({ handleActionsModal, id }: IProps) => {
 
 
-  const t = useTranslations("adminDashboard.categories");
+  const t = useTranslations("customerDashboard.socialBookMarks");
   const locale = useLocale();
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false);
 
@@ -60,10 +62,10 @@ const CategoryActionsMenu = ({ handleActionsModal, id }: IProps) => {
         </div>
       </div>
       {isOpenDeleteModal && (
-        <DeleteCategoryModal id={id} handleDeleteCatModal={handleDeleteCatModal} />
+        <DeleteSocialBookMarkModal id={id} handleDeleteCatModal={handleDeleteCatModal} />
       )}
     </>
   );
 };
 
-export default CategoryActionsMenu;
+export default SocBookMarkActionsMenu;
