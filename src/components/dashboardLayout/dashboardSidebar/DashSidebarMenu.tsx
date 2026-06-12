@@ -23,20 +23,26 @@ import Category from "../../../../public/icons/Category";
 import Location from "../../../../public/icons/Location";
 import { Globe, UsersIcon } from "lucide-react";
 import Chat from "../../../../public/icons/Chat";
+import BookMark from "../../../../public/icons/BookMark";
+
 
 interface IProps {
   role: string | undefined;
   toggleMenu: (value: boolean) => void;
 }
 
+
 const sellerBasePath = "/dashboard/seller";
 const customerBasePath = "/dashboard/customer";
 const adminBasePath = "/dashboard/admin";
 
+
 const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
+
+
+  const t = useTranslations("dashboardSidebar");
   const router = useRouter();
   const pathname = usePathname();
-  const t = useTranslations("sellerDashboard.sidebar");
 
   const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
 
@@ -103,6 +109,11 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
       },
     ],
     management: [
+      {
+        href: `${customerBasePath}/social-bookmarks`,
+        label: t("socialBookMarks"),
+        Icon: BookMark,
+      },
       {
         href: `${customerBasePath}/reserves-management`,
         label: t("reservesManagement"),

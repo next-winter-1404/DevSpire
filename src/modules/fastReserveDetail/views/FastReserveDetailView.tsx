@@ -44,6 +44,7 @@ const FastReserveDetailView = ({ house, sliderData }: IProps) => {
         <div className="w-full md:w-[67%] ">
           <div className=" mb-10 md:mb-8">
             <DetailTitle
+              houseId={house.id}
               rating={house.rate}
               location={house.address}
               title={house.title}

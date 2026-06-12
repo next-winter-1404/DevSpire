@@ -1,6 +1,6 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import CategoriesView from "@/modules/AdminDashboard/Categories/views/CategoriesView";
+import SocialBookMarksView from "@/modules/CustomerDashboard/SocialBookMarks/views/SocialBookMarksView";
 import { Suspense } from "react";
 
 
@@ -16,13 +16,14 @@ const page = async ({ searchParams }: IProps) => {
     limit: params.limit ?? "5",
     sort: params.sort ?? "",
     order: params.order ?? "DESC",
-    name: params.name ?? "",
+    houseId: params.houseId ?? "",
+    note: params.note ?? "",
   } as Record<string, string>;
 
   return (
     <DashboardContainer>
       <Suspense fallback={<DashboardTableSkeleton />}>
-        <CategoriesView params={payLoad} />
+        <SocialBookMarksView params={payLoad} />
       </Suspense>
     </DashboardContainer>
   );

@@ -18,23 +18,28 @@ import { useState } from "react";
 import LogoutModal from "@/components/common/LogoutModal";
 import { Newspaper, UsersIcon } from "lucide-react";
 import Location from "../../../../public/icons/Location";
-
 import { Globe } from "lucide-react";
 import Chat from "../../../../public/icons/Chat";
 import Category from "../../../../public/icons/Category";
+import BookMark from "../../../../public/icons/BookMark";
+
 
 interface IProps {
   role: "seller" | "buyer" | "admin";
 }
 
+
 const sellerBasePath = "/dashboard/seller";
 const customerBasePath = "/dashboard/customer";
 const adminBasePath = "/dashboard/admin";
 
+
 const DashboardSidebar = ({ role }: IProps) => {
+
+
+  const t = useTranslations("dashboardSidebar");
   const router = useRouter();
   const pathname = usePathname();
-  const t = useTranslations("sellerDashboard.sidebar");
 
   const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
 
@@ -101,6 +106,11 @@ const DashboardSidebar = ({ role }: IProps) => {
       },
     ],
     management: [
+      {
+        href: `${customerBasePath}/social-bookmarks`,
+        label: t("socialBookMarks"),
+        Icon: BookMark,
+      },      
       {
         href: `${customerBasePath}/reserves-management`,
         label: t("reservesManagement"),

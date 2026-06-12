@@ -192,8 +192,29 @@ export interface IDashboardStats {
 
 
 
-/// Admin Dashboard ///
+/// Customer Dashboard ///
 
+
+export type TSocialBookMark = {
+  id: number;
+  title: string;
+}
+export type TSocialBookMarksResponse = {
+  data: TSocialBookMark[];
+  totalCount: number;
+}
+export type ISocialBookMarksParams = {
+  page: number;
+  limit: number;
+  sort: string;
+  order: string;
+  houseId: number;
+  note: string;
+}
+
+
+
+/// Admin Dashboard ///
 
 
 export type TNotification = {
