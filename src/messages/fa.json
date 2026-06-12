@@ -378,31 +378,35 @@
     "max50Chars": "حداکثر باید 50 کاراکتر باشد",
     "lastNameRequired": "نام خانوادگی نیاز است"
   },
+
+
+
+  "dashboardHeader": {
+    "balance": "موجودی :",
+    "seller": "(فروشنده)",
+    "customer": "(خریدار)",
+    "admin": "(ادمین)"
+  },
+  "dashboardSidebar": {
+    "logo": "لوگو",
+    "menu": "منو",
+    "dashboard": "داشبورد",
+    "userProfile": "مشخصات کاربری",
+    "notifications": "اعلان ها",
+    "management": "مدیریت",
+    "socialBookMarks": "نشانک های اجتماعی",
+    "categories": "دسته بندی ها",
+    "estatesManagement": "مدیریت املاک",
+    "reservesManagement": "مدیریت رزرو ها",
+    "locationsManagement": "مدیریت مکان ها",
+    "usersManagement": "مدیریت کاربران",
+    "finantialManagement": "مدیریت مالی",
+    "paymentsManagement": "مدیریت پرداخت ها",
+    "commentsManagement": "مدیریت نظرات",
+    "favorites": "علاقه مندی ها",
+    "logOut": "خروج از حساب"
+  },
   "sellerDashboard": {
-    "header": {
-      "balance": "موجودی :",
-      "seller": "(فروشنده)",
-      "customer": "(خریدار)",
-      "admin": "(ادمین)"
-    },
-    "sidebar": {
-      "logo": "لوگو",
-      "menu": "منو",
-      "dashboard": "داشبورد",
-      "userProfile": "مشخصات کاربری",
-      "notifications": "اعلان ها",
-      "management": "مدیریت",
-      "categories": "دسته بندی ها",
-      "estatesManagement": "مدیریت املاک",
-      "reservesManagement": "مدیریت رزرو ها",
-      "locationsManagement": "مدیریت مکان ها",
-      "usersManagement": "مدیریت کاربران",
-      "finantialManagement": "مدیریت مالی",
-      "paymentsManagement": "مدیریت پرداخت ها",
-      "commentsManagement": "مدیریت نظرات",
-      "favorites": "علاقه مندی ها",
-      "logOut": "خروج از حساب"
-    },
     "dashboard": {
       "allOfEstates": "کل ملک ها",
       "activeReserves": "رزرو های فعال",
@@ -476,6 +480,23 @@
       "EditProfileBtn": "ویرایش پروفایل",
       "recentCustomerBookings": "رزرو های اخیر مشتریان",
       "seeAllBtn": "مشاهده همه"
+    },
+    "socialBookMarks":{
+      "title": "نشانک های اجتماعی",
+      "filtersBtn": "فیلتر ها",
+      "socialBookMarkName": "نام نشانک اجتماعی",
+      "searchPlc": "نام نشانک اجتماعی را وارد کنید",
+      "actions": "عملیات",
+      "filters": "فیلتر ها",
+      "showNumber": "تعداد نمایش",
+      "sortBy": "مرتب سازی بر اساس",
+      "order": "ترتیب مرتب سازی",
+      "cancel": "انصراف",
+      "applyFilters": "اعمال فیلتر ها",
+      "confirm": "تایید",
+      "edit": "ویرایش",
+      "delete": "حذف",
+      "sureAboutDeleteSocBookMark": "آیا از حذف این نشانک اطمینان دارید؟"
     }
   },
   "adminDashboard":{
@@ -484,7 +505,7 @@
       "filtersBtn": "فیلتر ها",
       "addCategoryBtn": "افزودن دسته بندی",
       "categoryName": "نام دسته بندی",
-      "categoryNamePlc": "نام دسته بندی را وارد کنید",
+      "searchPlc": "نام دسته بندی را وارد کنید",
       "actions": "عملیات",
       "filters": "فیلتر ها",
       "showNumber": "تعداد نمایش",

@@ -25,7 +25,7 @@ const AddCategoryModal = ({handleAddCatModal}: IProps) => {
         onSuccess: (res) => {
             handleAddCatModal(false);
             setName("");
-            toast.success(res?.data?.message || "مکان مورد نظر با موفقیت افزوده شد");
+            toast.success(res?.data?.message || "دسته بندی مورد نظر با موفقیت افزوده شد");
             queryClient.invalidateQueries({
                 queryKey: ["ADDCATEGORY"],
             });

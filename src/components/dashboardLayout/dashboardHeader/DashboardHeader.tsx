@@ -20,7 +20,7 @@ interface IProps {
 const DashboardHeader = ({ hasNotification, userInfo }: IProps) => {
 
 
-  const t = useTranslations("sellerDashboard.header");
+  const t = useTranslations("dashboardHeader");
 
   const [isOpenSidebarMenu, setIsOpenSidebarMenu] = useState<boolean>(false);
 
