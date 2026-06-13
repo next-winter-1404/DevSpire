@@ -74,8 +74,9 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
   ];
 
   const inputClass =
-    "w-full h-12 rounded-[16px] border border-[#DDDDDD] bg-white px-4 outline-none " +
-    "dark:bg-[#2A2D2F] dark:text-white dark:placeholder:text-white/40 dark:border-white/10";
+    "w-full h-12 rounded-[16px] border border-[#DDDDDD] bg-white px-4 outline-none transition-all " +
+    "dark:!bg-[#1f1f1f] dark:!border-[#333] dark:!text-white dark:placeholder:text-gray-500 " +
+    "focus:border-blue-500 dark:focus:border-blue-400";
 
   const onSubmit = (data: IStep1Data) => {
     onChangeData({
@@ -180,7 +181,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full">
         <div className="flex flex-col gap-3 w-full">
-          <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
+          <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:!text-gray-200">
             نوع معامله
           </span>
 
@@ -192,8 +193,8 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
                 options={transactionTypeOptions}
                 defaultValue={field.value}
                 onValueChange={field.onChange}
-                className="w-full bg-white border border-[#DDDDDD] 
-                rounded-[16px] dark:bg-[#2A2D2F] dark:border-white/10"
+                className="w-full bg-white border border-[#DDDDDD] rounded-[16px] dark:!bg-[#1f1f1f] dark:!border-[#333] dark:!text-white"
+
               />
             )}
           />
@@ -206,7 +207,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
         </div>
 
         {isPending ? (
-          <p className="text-foreground">درحال بارگزاری دسته بندی ها ...</p>
+          <p className="text-foreground dark:text-gray-400">درحال بارگزاری دسته بندی ها ...</p>
         ) : cats && cats.totalCount > 0 ? (
           <div className="flex flex-col gap-3 w-full">
             <span className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
@@ -221,8 +222,8 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
                   options={categoryOptions}
                   defaultValue={String(field.value)}
                   onValueChange={field.onChange}
-                  className="w-full bg-white border border-[#DDDDDD] rounded-[16px] 
-                  dark:bg-[#2A2D2F] dark:border-white/10"
+                  className="w-full bg-white border border-[#DDDDDD] rounded-[16px] dark:!bg-[#1f1f1f] dark:!border-[#333] dark:!text-white"
+
                 />
               )}
             />
@@ -312,7 +313,7 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
           <textarea
             {...register("caption")}
             rows={5}
-            className="w-full resize-none rounded-2xl bg-white border border-[#DDDDDD] px-4 py-3 text-sm leading-7 outline-none focus:ring-2 focus:ring-blue-700/20 dark:bg-[#2A2D2F] dark:text-white dark:border-white/10"
+            className="w-full resize-none rounded-2xl bg-white border border-[#DDDDDD] px-4 py-3 text-sm leading-7 outline-none focus:ring-2 focus:ring-blue-700/20 dark:!bg-[#1f1f1f] dark:!text-white dark:!border-[#333]"
           />
           {!captionInput && titleInput && (
             <button

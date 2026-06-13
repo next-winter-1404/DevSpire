@@ -24,11 +24,8 @@ const BlogsView = async ({ params }: { params: Record<string, string> }) => {
           <AddBlog />
         </div>
       </div>
-      <div
-        className="h-[90%]  border-[#DDDDDD] 
-      rounded-[24px] overflow-hidden  dark:border-[#333333]
-         bg-[#ffff] dark:bg-[#262626]"
-      >
+      <div className="h-[90%] border border-[#DDDDDD] dark:border-[#333333] rounded-[24px] overflow-hidden bg-white dark:!bg-[#262626]">
+
         {data && data?.totalCount > 0 ? (
           <BlogsList data={data} />
         ) : (

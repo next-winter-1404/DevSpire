@@ -126,13 +126,7 @@ export default function BlogCreateEditModal({
     >
       <div
         className="
-        w-full max-w-[600px]
-        bg-[#ffff]
-        rounded-3xl
-        p-8
-        shadow-xl
-        animate-in fade-in zoom-in-95
-        dark:bg-[#2B2B2B]
+      w-full max-w-[600px] bg-white dark:!bg-[#262626] rounded-3xl p-8 shadow-xl border dark:border-[#333333]
       "
       >
         <div className="flex items-center justify-between mb-6">
@@ -155,15 +149,8 @@ export default function BlogCreateEditModal({
             </label>
             <input
               {...register("title", { required: "عنوان الزامی است" })}
-              className="
-                h-[48px]
-                rounded-xl
-                bg-gray-100
-                px-4
-                outline-none
-                focus:ring-2 focus:ring-blue-500
-                dark:bg-[#404040]
-              "
+              className="h-[48px] rounded-xl bg-gray-100 dark:bg-[#333333] dark:text-white px-4 outline-none focus:ring-2 focus:ring-blue-500 border border-transparent dark:border-[#444]"
+
             />
             {errors.title && (
               <span className="text-sm text-red-500">
@@ -284,14 +271,7 @@ export default function BlogCreateEditModal({
             <button
               type="button"
               onClick={onClose}
-              className="
-                px-5 py-2
-                rounded-full
-                bg-gray-100
-                hover:bg-gray-200
-                transition
-                dark:bg-[#404040]
-              "
+              className="px-5 py-2 rounded-full bg-gray-100 dark:bg-[#333333] dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#444] transition"
             >
               انصراف
             </button>

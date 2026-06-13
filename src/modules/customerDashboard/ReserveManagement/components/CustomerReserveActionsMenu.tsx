@@ -26,30 +26,35 @@ const ReserveActionsMenu = ({ id }: { id: number }) => {
             sideOffset={5}
             align="start"
             className="
-              z-50
-              min-w-[150px]
-              overflow-hidden
-              rounded-xl
-              border
-              border-gray-100
-              dark:border-[#333333]
-              bg-white
-              dark:bg-[#262626]
-              p-1
-              shadow-lg
-            "
+  z-50
+  min-w-[150px]
+  overflow-hidden
+  rounded-xl
+  border
+  border-gray-100
+  dark:border-[#333]
+ bg-white  dark:!bg-[#262626]
+
+  p-1
+  shadow-lg
+"
+
           >
             <DropdownMenu.Item
               onSelect={() => setOpenDetailModal(true)}
               className="
-                flex items-center gap-2
-                px-4 py-2
-                text-xs
-                cursor-pointer
-                outline-none
-                hover:bg-blue-50/50
-                hover:text-blue-600
-              "
+  flex items-center gap-2
+  px-4 py-2
+  text-xs
+  cursor-pointer
+  outline-none
+  text-gray-700
+  dark:text-gray-200
+  hover:bg-blue-50/50
+  dark:hover:bg-[#333333]
+  hover:text-blue-600
+"
+
             >
               <Info className="w-4 h-4" />
               <span>جزئیات</span>
@@ -58,19 +63,23 @@ const ReserveActionsMenu = ({ id }: { id: number }) => {
             <DropdownMenu.Item
               onSelect={() => setOpenDeleteModal(true)}
               className="
-                flex items-center gap-2
-                px-4 py-2
-                text-xs
-                cursor-pointer
-                outline-none
-                text-red-600
-                hover:bg-red-50
-              "
+      flex items-center gap-2
+      px-4 py-2
+      text-xs
+      cursor-pointer
+      outline-none
+      text-red-600
+      dark:text-red-400
+      hover:bg-red-50
+      dark:hover:bg-[#333333]
+      
+    "
             >
               <Trash2 className="w-4 h-4" />
               <span>حذف</span>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
+
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
 

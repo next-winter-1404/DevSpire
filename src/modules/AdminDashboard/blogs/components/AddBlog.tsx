@@ -11,9 +11,8 @@ const AddBlog = () => {
     <>
       <button
         onClick={() => setOpenModal(true)}
-        className="flex items-center gap-3 py-3 px-4 text-[#FFFFFF] bg-[#0D3B66] 
-              rounded-[16px] cursor-pointer whitespace-nowrap
-            dark:text-[#0D3B66] dark:bg-[#E6EDF5] text-sm"
+        className="flex items-center gap-3 py-3 px-4 text-white !bg-[#0D3B66] rounded-[16px] cursor-pointer whitespace-nowrap dark:!bg-[#E6EDF5] dark:!text-[#0D3B66] text-sm font-bold transition-all hover:opacity-90"
+
       >
         <Plus />
         <span className=" ">افزودن مقاله</span>

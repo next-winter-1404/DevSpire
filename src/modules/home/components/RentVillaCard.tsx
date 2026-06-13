@@ -12,8 +12,7 @@ const RentVillaCard = ({ item }: { item: THouse }) => {
 
   return (
     <div
-      className="flex gap-4 w-full p-2 bg-[#F5F5F5] rounded-[24px] h-[150px]
-     sm:w-[320px] dark:bg-[#404040]"
+      className="flex gap-4 w-full p-2 bg-[#F5F5F5] rounded-[24px] h-[150px] sm:w-[320px] dark:bg-[#262626]"
     >
       <div className="relative w-[125px] h-full flex-shrink-0">
         <Image
@@ -26,9 +25,11 @@ const RentVillaCard = ({ item }: { item: THouse }) => {
 
       <div className="flex flex-col justify-between w-full py-1">
         <div className="flex flex-col items-start gap-1">
-          <span className="font-regular text-[18px] sm:text-[20px] text-[#1E2022] dark:text-[#E4E4E4] line-clamp-2">
+          <span className="font-regular text-[18px] sm:text-[20px] text-[#1E2022] dark:text-gray-200 line-clamp-2">
             اجاره ویلا در {item.location}
           </span>
+          ط
+
           <span className="font-regular text-[14px] sm:text-[16px] text-[#777777]">
             {item.num_comments} مورد
           </span>

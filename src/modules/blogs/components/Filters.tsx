@@ -100,15 +100,17 @@ const Filters = ({
       </div>
       <div
         className="
-        relative
-        p-6
-        rounded-3xl
-        border border-[#E5E7EB]
-        shadow-sm        
-        bg-background
-        dark:border-[#3A3A3A]
-      "
+    relative
+    p-6
+    rounded-3xl
+    border border-[#E5E7EB]
+    bg-white
+    shadow-sm        
+    dark:!bg-[#262626]
+    dark:border-[#333333]
+  "
       >
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="flex flex-col gap-3 max-w-[520px]">
             <span className="text-[15px] font-semibold text-gray-700 dark:text-gray-200">
@@ -121,23 +123,15 @@ const Filters = ({
                 onChange={getQuery}
                 placeholder={t("searchPlaceholder")}
                 className="
-                w-full
-                h-[48px]
-                rounded-full
-                bg-gray-100
-                px-5
-                text-[15px]
-                outline-none
-                transition
+w-full h-[48px] rounded-full bg-gray-100 px-5 text-[15px] outline-none transition
+focus:ring-2 focus:ring-blue-500
+dark:bg-[#333333]
+dark:text-white
+dark:placeholder-gray-500
+border border-transparent
+dark:border-[#444]
+"/>
 
-                focus:ring-2
-                focus:ring-blue-500
-                focus:bg-white
-
-                dark:bg-[#404040]
-                dark:focus:bg-[#4A4A4A]
-              "
-              />
 
               <Search
                 className={`absolute top-[50%] translate-y-[-50%] 

@@ -19,7 +19,8 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
   return (
     <div className="w-full">
       <table className="w-full text-right border-collapse">
-        <thead className="hidden md:table-header-group bg-background border-b border-gray-100 text-gray-500 text-sm">
+        {/* هدر جدول - فقط در دسکتاپ نمایش داده می‌شود */}
+        <thead className="hidden md:table-header-group bg-gray-50 dark:bg-[#333333] border-b border-gray-100 dark:border-[#444] text-gray-500 dark:text-gray-400 text-sm">
           <tr>
             <th className="px-6 py-4 font-medium">شناسه</th>
             <th className="px-6 py-4 font-medium">عنوان مقاله</th>
@@ -31,20 +32,16 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
           </tr>
         </thead>
 
-        <tbody className="block md:table-row-group divide-y-0 md:divide-y divide-gray-100">
+        {/* بدنه جدول */}
+        <tbody className="block md:table-row-group divide-y-0 md:divide-y divide-gray-100 dark:divide-[#333333]">
           {blog.map((article) => (
             <tr
               key={article.id}
-              className="
-                block md:table-row 
-                 md:bg-transparent 
-                border border-gray-100 md:border-none 
-                rounded-2xl md:rounded-none 
-                shadow-sm md:shadow-none 
-                p-4 mb-4 md:p-0 md:mb-0 
-                hover:bg-blue-50/30 transition-colors group relative
-              "
-            >
+              className="block md:table-row bg-transparent dark:bg-transparent border border-gray-100 dark:border-[#333333] md:border-none rounded-2xl md:rounded-none p-4 mb-4 md:p-0 md:mb-0 hover:bg-gray-50 dark:hover:bg-[#333333]/50 transition-colors group relative"
+>
+
+
+              {/* شناسه */}
               <td className="flex justify-between items-center md:table-cell md:px-6 md:py-4 mb-3 md:mb-0 text-gray-500 font-mono text-sm border-b border-gray-50 md:border-none pb-2 md:pb-0">
                 <span className="md:hidden text-xs text-gray-400 font-medium">
                   شناسه:
@@ -53,9 +50,8 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
               </td>
 
               <td className="block md:table-cell md:px-6 md:py-4 mb-3 md:mb-0">
-                <div className="font-semibold text-gray-800 mb-1">
-                  {article.title}
-                </div>
+                <div className="font-semibold text-gray-800 dark:text-[#F5F5F5] mb-1">{article.title}</div>
+
                 <div className="text-gray-500 text-xs truncate max-w-[250px] md:max-w-xs">
                   {article.caption}
                   {article.category_id && (
@@ -96,7 +92,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                 >
                   <Link
                     href={`/blogs/${article.id}`}
-                    className="p-2 text-gray-400 hover:text-blue-600 bg-gray-50 hover:bg-blue-50 md:bg-transparent rounded-xl md:rounded-lg transition-colors flex-1 md:flex-none flex justify-center"
+                    className="p-2 bg-gray-50 dark:bg-[#333333] hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-600 bg-gray-50 hover:bg-blue-50 md:bg-transparent rounded-xl md:rounded-lg transition-colors flex-1 md:flex-none flex justify-center"
                     title="مشاهده"
                   >
                     <Eye className="w-5 h-5" />
@@ -106,7 +102,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                       setInitialData(article);
                       setOpenEditModal(true);
                     }}
-                    className="p-2 text-gray-400 hover:text-green-600 bg-gray-50 hover:bg-green-50 md:bg-transparent rounded-xl md:rounded-lg transition-colors flex-1 md:flex-none flex justify-center"
+                    className="p-2 bg-gray-50 dark:bg-[#333333] hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-400 hover:text-green-600 bg-gray-50 hover:bg-green-50 md:bg-transparent rounded-xl md:rounded-lg transition-colors flex-1 md:flex-none flex justify-center"
                     title="ویرایش"
                   >
                     <Edit className="w-5 h-5" />
@@ -116,7 +112,7 @@ const BlogsTable = ({ blog }: { blog: TBlog[] }) => {
                       setBlogId(article.id);
                       setOpenDeleteModal(true);
                     }}
-                    className="p-2 text-gray-400 hover:text-red-600 bg-gray-50 hover:bg-red-50 md:bg-transparent rounded-xl md:rounded-lg transition-colors flex-1 md:flex-none flex justify-center"
+                    className="p-2 bg-gray-50 dark:bg-[#333333] hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-400 hover:text-red-600 bg-gray-50 hover:bg-red-50 md:bg-transparent rounded-xl md:rounded-lg transition-colors flex-1 md:flex-none flex justify-center"
                     title="حذف"
                   >
                     <Trash2 className="w-5 h-5" />

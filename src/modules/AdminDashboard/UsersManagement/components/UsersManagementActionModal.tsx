@@ -28,18 +28,18 @@ const UsersManagementActionsModal = ({ id }: { id: number }) => {
             sideOffset={5}
             align="start"
             className="
-              z-50
-              min-w-[150px]
-              overflow-hidden
-              rounded-xl
-              border
-              border-gray-100
-              dark:border-[#333333]
-              bg-white
-              dark:bg-[#262626]
-              p-1
-              shadow-lg
-            "
+      z-50
+      min-w-[150px]
+      overflow-hidden
+      rounded-xl
+      border
+      border-gray-100
+      dark:border-[#333333]
+      bg-white
+      dark:!bg-[#262626] 
+      p-1
+      shadow-lg
+    "
           >
             <DropdownMenu.Item
               onSelect={() => setOpenEditUser(true)}

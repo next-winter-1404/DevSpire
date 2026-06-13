@@ -44,11 +44,12 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <form
           onSubmit={handleSubmit(handlingSubmit)}
-          className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-5"
+          className="bg-white dark:!bg-[#1A1A1A]  w-full max-w-lg rounded-2xl shadow-xl p-5"
         >
           <div className="flex items-center justify-between mb-5 border-b pb-4">
             <div className="flex items-center gap-4">
-              <h2 className="text-lg font-bold text-gray-800">
+              <h2 className="text-lg text-gray-800 dark:text-gray-100
+ font-bold">
                 ویرایش اطلاعات کاربر
               </h2>
             </div>
@@ -64,16 +65,18 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="relative">
-              <label className="block mb-1.5 text-sm font-medium text-gray-700">
+              <label className="block text-gray-800 dark:text-gray-100
+ mb-1.5 text-sm font-medium text-gray-700">
                 نام
               </label>
               <input
-                className={`w-full bg-gray-50 border rounded-xl py-3 px-4
-                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${
-                       errors.firstName
-                         ? "border-red-400 focus:ring-red-400 bg-red-50/30"
-                         : "border-gray-200 focus:ring-blue-500"
-                     }`}
+                className={`w-full dark:text-gray-200
+ bg-gray-50 dark:bg-[#262626]
+ border rounded-xl dark:border-[#333] py-3 px-4
+                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${errors.firstName
+                    ? "border-red-400 focus:ring-red-400 bg-red-50/30"
+                    : "border-gray-200 focus:ring-blue-500"
+                  }`}
                 placeholder="نام را وارد کنید ..."
                 {...register("firstName", { required: "نام الزامی است" })}
               />
@@ -89,7 +92,8 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
             </div>
 
             <div className="relative">
-              <label className="block mb-1.5 text-sm font-medium text-gray-700">
+              <label className="block text-gray-800 dark:text-gray-100
+ mb-1.5 text-sm font-medium">
                 نام خانوادگی
               </label>
               <input
@@ -97,12 +101,13 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
                 {...register("lastName", {
                   required: "نام خانوادگی الزامی است",
                 })}
-                className={`w-full bg-gray-50 border rounded-xl py-3 px-4
-                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${
-                       errors.lastName
-                         ? "border-red-400 focus:ring-red-400 bg-red-50/30"
-                         : "border-gray-200 focus:ring-blue-500"
-                     }`}
+                className={`w-full dark:border-[#333]
+dark:text-gray-200
+dark:bg-[#262626] bg-gray-50 border rounded-xl py-3 px-4
+                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${errors.lastName
+                    ? "border-red-400 focus:ring-red-400 bg-red-50/30"
+                    : "border-gray-200 focus:ring-blue-500"
+                  }`}
               />
               {errors.lastName && (
                 <div
@@ -116,17 +121,19 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
             </div>
 
             <div className="relative">
-              <label className="block mb-1.5 text-sm font-medium text-gray-700">
+              <label className="text-gray-800  dark:text-gray-100
+ block mb-1.5 text-sm font-medium">
                 ایمیل
               </label>
               <input
                 type="email"
-                className={`w-full bg-gray-50 border rounded-xl py-3 px-4
-                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${
-                       errors.email
-                         ? "border-red-400 focus:ring-red-400 bg-red-50/30"
-                         : "border-gray-200 focus:ring-blue-500"
-                     }`}
+                className={`w-full dark:border-[#333]
+dark:bg-[#262626] dark:text-gray-200
+ bg-gray-50 border rounded-xl py-3 px-4
+                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${errors.email
+                    ? "border-red-400 focus:ring-red-400 bg-red-50/30"
+                    : "border-gray-200 focus:ring-blue-500"
+                  }`}
                 placeholder="ایمیلتان را وارد کنید"
                 {...register("email", {
                   required: "ایمیل الزامی است",
@@ -148,7 +155,8 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
             </div>
 
             <div className="relative">
-              <label className="block mb-1.5 text-sm font-medium text-gray-700">
+              <label className="block text-gray-800 dark:text-gray-100
+ mb-1.5 text-sm font-medium text-gray-700">
                 شماره تلفن
               </label>
               <input
@@ -160,12 +168,13 @@ const EditUserInformation = ({ id, onClose }: IProps) => {
                     message: "شماره تلفن باید ۱۱ رقم و با 09 شروع شود",
                   },
                 })}
-                className={`w-full bg-gray-50 border rounded-xl py-3 px-4
-                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${
-                       errors.phoneNumber
-                         ? "border-red-400 focus:ring-red-400 bg-red-50/30"
-                         : "border-gray-200 focus:ring-blue-500"
-                     }`}
+                className={`w-full dark:border-[#333]
+dark:bg-[#262626] dark:text-gray-200
+ bg-gray-50 border rounded-xl py-3 px-4
+                     text-gray-600 focus:outline-none focus:ring-2 transition-all ${errors.phoneNumber
+                    ? "border-red-400 focus:ring-red-400 bg-red-50/30"
+                    : "border-gray-200 focus:ring-blue-500"
+                  }`}
               />
               {errors.phoneNumber && (
                 <div

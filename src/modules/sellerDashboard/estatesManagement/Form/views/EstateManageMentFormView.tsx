@@ -13,7 +13,7 @@ const EstateManageMentFormView = ({
   return (
     <div className="w-full">
       <div className="flex justify-between">
-        <h1 className="font-bold text-[24px] text-[#1E2022]">مدیریت املاک</h1>
+        <h1 className="font-bold text-[24px] dark:text-white text-[#1E2022]">مدیریت املاک</h1>
         <Link
           href={`/dashboard/${role == "seller" ? "seller" : "admin"}/estates-management`}
           className="flex items-center gap-2"

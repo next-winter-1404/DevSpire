@@ -43,29 +43,37 @@ export default function ReserveFilterModal({ onClose }: FilterModalProps) {
        bg-black/40 backdrop-blur-sm"
       dir="rtl"
     >
-      <div className="bg-white rounded-3xl shadow-xl w-full max-w-md p-6">
+      <div className="bg-white dark:!bg-[#262626] rounded-3xl shadow-xl w-full max-w-md p-6 border dark:border-[#333]">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold text-gray-800">فیلتر و مرتب‌سازی</h2>
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100
+ ">فیلتر و مرتب‌سازی</h2>
           <button
             onClick={onClose}
-            className="p-2 bg-gray-50 rounded-full cursor-pointer
-             hover:bg-gray-100 text-gray-500 transition"
+            className="p-2
+bg-gray-50 dark:bg-[#262626]
+rounded-full
+hover:bg-gray-100 dark:hover:bg-[#333]
+text-gray-500 dark:text-gray-300
+cursor-pointer transition"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 " />
           </button>
         </div>
 
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block dark:text-gray-300 text-sm font-medium text-gray-700 mb-2">
               مرتب‌سازی بر اساس
             </label>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-100
-               rounded-xl py-3 px-4 text-gray-600 focus:outline-none
-                focus:ring-2 focus:ring-blue-500"
+              className="w-full
+bg-gray-50 dark:bg-[#262626]
+border border-gray-200 dark:border-[#333]
+rounded-xl py-3 px-4
+text-gray-700 dark:text-gray-200
+focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="created_at">تاریخ ایجاد </option>
               <option value="updated_at">تاریخ بروزرسانی </option>
@@ -75,15 +83,19 @@ export default function ReserveFilterModal({ onClose }: FilterModalProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block dark:text-gray-300 text-sm font-medium text-gray-700 mb-2">
               ترتیب
             </label>
             <select
               value={order}
               onChange={(e) => setOrder(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-100
-               rounded-xl py-3 px-4 text-gray-600 focus:outline-none focus:ring-2
-                focus:ring-blue-500"
+              className="w-full
+bg-gray-50 dark:bg-[#262626]
+border border-gray-200 dark:border-[#333]
+rounded-xl py-3 px-4
+
+text-gray-700 dark:text-gray-200
+focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="DESC">نزولی - جدید به قدیم</option>
               <option value="ASC">صعودی - قدیم به جدید </option>
@@ -91,7 +103,7 @@ export default function ReserveFilterModal({ onClose }: FilterModalProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block dark:text-gray-300 text-sm font-medium text-gray-700 mb-2">
               تعداد در صفحه
             </label>
             <input
@@ -100,9 +112,13 @@ export default function ReserveFilterModal({ onClose }: FilterModalProps) {
               max={100}
               value={limit}
               onChange={(e) => setLimit(Number(e.target.value))}
-              className="w-full bg-gray-50 border border-gray-100 
-              rounded-xl py-3 px-4 text-gray-600 focus:outline-none 
-              focus:ring-2 focus:ring-blue-500"
+              className="w-full
+bg-gray-50 dark:bg-[#262626]
+border border-gray-200 dark:border-[#333]
+rounded-xl py-3 px-4
+text-gray-700 dark:text-gray-200
+focus:outline-none focus:ring-2 focus:ring-blue-500"
+
             />
           </div>
         </div>
@@ -117,14 +133,18 @@ export default function ReserveFilterModal({ onClose }: FilterModalProps) {
           </button>
           <button
             onClick={onClose}
-            className="flex-1 bg-white border border-gray-300
-             hover:bg-gray-50 text-gray-700 py-3 rounded-xl font-medium 
-             transition-colors cursor-pointer "
+            className="flex-1
+bg-white dark:!bg-[#262626]
+border border-gray-300 dark:border-[#333]
+hover:bg-gray-50 dark:hover:bg-[#333]
+text-gray-700 dark:text-gray-200
+py-3 rounded-xl font-medium transition-colors cursor-pointer"
+
           >
             انصراف
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

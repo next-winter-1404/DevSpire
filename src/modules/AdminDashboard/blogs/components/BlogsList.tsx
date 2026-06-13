@@ -23,11 +23,11 @@ const BlogsList = ({ data }: { data: TBlogsResponse }) => {
     router.push(`${pathname}?${params.toString()}`);
   };
   return (
-    <div className="h-full flex flex-col justify-between">
+<div className="h-full flex flex-col justify-between bg-transparent dark:bg-transparent">
       <div className="h-[86%] overflow-y-auto scroll-auto w-full">
         <BlogsTable blog={data.data} />
       </div>
-      <div className="flex items-center pb-4 ">
+      <div className="flex items-center justify-center pb-4 border-t border-gray-100 dark:border-[#333333] pt-4">
         <CustomPagination
           currentPage={page}
           totalPages={Math.ceil(data.totalCount / limit)}

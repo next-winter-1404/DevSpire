@@ -35,8 +35,8 @@ const EstateStep3 = ({
   };
 
   const inputClass =
-    "w-full h-12 px-4 bg-white border border-[#DDDDDD] rounded-[16px] outline-none " +
-    "dark:bg-[#2A2D2F] dark:text-white dark:placeholder:text-white/40 dark:border-white/10";
+    "w-full h-12 px-4 bg-white border border-[#DDDDDD] dark:!bg-[#1f1f1f] rounded-[16px] outline-none " +
+    " dark:text-white dark:placeholder:text-white/40 dark:border-white/10";
 
   return (
     <form
@@ -84,7 +84,7 @@ const EstateStep3 = ({
           />
         </div>
 
-        <div className="flex flex-col gap-3 md:gap-4 w-full">
+        <div className="flex  flex-col gap-3 md:gap-4 w-full">
           <label className="text-[14px] md:text-[16px] text-[#1E2022] dark:text-white/80">
             برچسب ها
           </label>
@@ -94,7 +94,7 @@ const EstateStep3 = ({
             control={control}
             defaultValue={generalData.step3.tags || []}
             render={({ field }) => (
-              <div className="w-full">
+              <div className="w-full ">
                 <TagsInput
                   onChange={field.onChange}
                   value={

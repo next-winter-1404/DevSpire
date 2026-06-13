@@ -38,13 +38,14 @@ const CommentsActionModal = ({ id, role }: IProps) => {
             align="start"
             className="
               z-50
+                bg-white
+             dark:!bg-[#1A1A1A] 
               min-w-[150px]
               overflow-hidden
               rounded-xl
               border
               border-gray-100
-              bg-white
-              dark:bg-[#262626]
+            
               dark:border-[#333333]
               p-1
               shadow-lg

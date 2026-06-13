@@ -47,7 +47,7 @@ const PaymentDetailModal = ({ id, isOpen, onClose, detail }: IProps) => {
       bg-black/50 backdrop-blur-sm animate-fadeIn"
     >
       <div
-        className="relative w-[92%] max-w-md rounded-2xl bg-[#ffff] dark:bg-[#1f2937]
+        className="relative w-[92%] max-w-md rounded-2xl bg-white dark:!bg-[#1f2937]
           shadow-xl border border-gray-200 dark:border-gray-700
           animate-scaleIn overflow-hidden"
       >

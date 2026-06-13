@@ -44,7 +44,8 @@ export const SellerChooseHouseModal = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-white w-full max-w-lg rounded-3xl p-6 shadow-2xl flex flex-col max-h-[80vh]">
+      <div className=" bg-white  dark:!bg-[#1A1A1A] border dark:border-[#333]
+ w-full max-w-lg rounded-3xl p-6 shadow-2xl flex flex-col max-h-[80vh]">
         <h1 className="text-xl font-bold mb-6 text-center">
           انتخاب ملک برای نمایش
         </h1>
@@ -65,11 +66,11 @@ export const SellerChooseHouseModal = ({
                 <div
                   key={item.id}
                   onClick={() => handleAction(String(item.id))}
-                  className={`flex items-center gap-4 p-2 rounded-2xl cursor-pointer transition-all border ${
-                    isSelected
-                      ? "bg-primary/10 border-primary"
-                      : "hover:bg-gray-50 border-transparent"
-                  }`}
+                  className={`flex items-center gap-4 p-2 rounded-2xl cursor-pointer transition-all border ${isSelected
+                    ? "bg-primary/10 border-primary"
+                    : "hover:bg-gray-50 dark:hover:bg-[#262626] border-transparent"
+                    }`}
+
                 >
                   <div className="w-12 h-12 rounded-full overflow-hidden relative shrink-0 bg-gray-200">
                     {item.photos?.[10] && (
@@ -82,19 +83,21 @@ export const SellerChooseHouseModal = ({
                     )}
                   </div>
                   <span
-                    className={`font-medium ${isSelected ? "text-primary" : "text-gray-700"}`}
+                    className={`font-medium ${isSelected ? "text-primary" : "text-gray-700 dark:text-gray-400"
+                      }`}
                   >
+
+
                     {item.title}
                   </span>
-                  <span className="text-sm">{`(${
-                    item.transaction_type == "reservation"
-                      ? "رزرو"
-                      : item.transaction_type == "rental"
-                        ? "اجاره"
-                        : item.transaction_type == "mortgage"
-                          ? "رهن"
-                          : "خرید و فروش"
-                  })`}</span>
+                  <span className="text-sm">{`(${item.transaction_type == "reservation"
+                    ? "رزرو"
+                    : item.transaction_type == "rental"
+                      ? "اجاره"
+                      : item.transaction_type == "mortgage"
+                        ? "رهن"
+                        : "خرید و فروش"
+                    })`}</span>
                   {isSelected && <div className="ml-auto text-primary">✓</div>}
                 </div>
               );

@@ -46,7 +46,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
     >
       <div className="bg-background rounded-3xl shadow-xl w-full max-w-md p-6">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold text-gray-800">فیلتر و مرتب‌سازی</h2>
+          <h2 className="text-xl font-bold text-gray-800 dark:text-white">فیلتر و مرتب‌سازی</h2>
           <button
             onClick={onClose}
             className="p-2 bg-gray-50 dark:bg-blue-50 rounded-full cursor-pointer
@@ -58,7 +58,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
 
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
               مرتب‌سازی بر اساس
             </label>
             <select
@@ -67,7 +67,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
               className="w-full bg-background border border-gray-100 rounded-xl py-3 
               px-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="" disabled>
+              <option value="" disabled className="dark:bg-[#1A1A1A]">
                 انتخاب کنید...
               </option>
               <option value="createdAt">تاریخ ایجاد</option>
@@ -78,13 +78,13 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
               ترتیب
             </label>
             <select
               value={order}
               onChange={(e) => setOrder(e.target.value)}
-              className="w-full bg-background border border-gray-100 rounded-xl py-3 px-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-background dark:bg-[#262626] border border-gray-100 dark:border-[#333] rounded-xl py-3 px-4 text-gray-600 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="DESC">نزولی - جدید به قدیم</option>
               <option value="ASC">صعودی - قدیم به جدید</option>
@@ -92,7 +92,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
               تعداد در صفحه
             </label>
             <input
@@ -108,7 +108,7 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
               وضعیت
             </label>
             <select
@@ -155,6 +155,6 @@ export default function PaymentsFilterModal({ onClose }: FilterModalProps) {
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

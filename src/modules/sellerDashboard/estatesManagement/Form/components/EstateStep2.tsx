@@ -103,7 +103,7 @@ const EstateStep2 = ({
             id="location"
             type="text"
             className="w-full h-12 indent-4 bg-[#FFFFFF] border border-[#DDDDDD] 
-            rounded-[16px] bg-background "
+            rounded-[16px] bg-background dark:!border-[#2d2d2d] "
           />
           {errors.location && (
             <span className="text-red-500 text-sm absolute bottom-0 right-0">
@@ -122,7 +122,7 @@ const EstateStep2 = ({
             {...register("address")}
             id="address"
             type="text"
-            className="w-full h-12 indent-4 bg-background border border-[#DDDDDD] rounded-[16px]"
+            className="w-full h-12 indent-4 bg-background border dark:!border-[#2d2d2d] border-[#DDDDDD] rounded-[16px]"
           />
           {errors.address && (
             <span className="text-red-500 text-sm absolute bottom-0 right-0">

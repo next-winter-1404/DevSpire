@@ -40,7 +40,7 @@ const PaymentsActionsMenu = ({
       if (axios.isAxiosError(err)) {
         toast.error(
           err.response?.data?.message ||
-            "مشکلی در تایید پرداخت شما پیش آمده است",
+          "مشکلی در تایید پرداخت شما پیش آمده است",
         );
       }
     },
@@ -79,19 +79,10 @@ const PaymentsActionsMenu = ({
           <DropdownMenu.Content
             sideOffset={5}
             align="start"
-            className="
-              z-50
-              min-w-[160px]
-              overflow-hidden
-              rounded-xl
-              border
-              border-gray-100
-              dark:border-[#333333]
-              bg-[#ffff]
-              dark:bg-[#262626]
-              p-1
-              shadow-lg
-            "
+            className="z-50 min-w-[160px] overflow-hidden rounded-xl border border-gray-100 p-1 shadow-lg 
+    bg-white 
+    dark:!bg-[#1A1A1A] 
+    dark:border-[#333333]"
           >
             <DropdownMenu.Item
               onSelect={() => setOpenConfirm(true)}
@@ -103,6 +94,7 @@ const PaymentsActionsMenu = ({
                 outline-none
                 hover:bg-blue-50/50
                 hover:text-blue-600
+                
               "
             >
               <CheckCircle className="w-4 h-4" />

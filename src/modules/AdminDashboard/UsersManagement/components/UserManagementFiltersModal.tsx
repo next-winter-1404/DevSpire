@@ -77,10 +77,10 @@ export default function UsersManagementFiltersModal({
         onClick={() => onClose()}
       />
       <div className="fixed inset-0 z-50 flex items-center justify-center">
-        <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-5">
-          <div className="flex items-center justify-between mb-5 border-b pb-4">
+        <div className="bg-white dark:!bg-[#1A1A1A] w-full max-w-lg rounded-2xl shadow-xl p-5 border dark:border-[#333]">
+          <div className="flex items-center justify-between mb-5 border-b pb-4 dark:border-[#333]">
             <div className="flex items-center gap-4">
-              <h2 className="text-lg font-bold text-gray-800">
+              <h2 className="text-lg font-bold text-gray-800 dark:text-white">
                 فیلتر و مرتب‌سازی
               </h2>
               <button
@@ -93,7 +93,7 @@ export default function UsersManagementFiltersModal({
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 bg-gray-100 rounded-full hover:bg-gray-200 text-gray-600"
+              className="p-1.5 bg-gray-100 dark:bg-[#333] rounded-full hover:bg-gray-200 dark:hover:bg-[#444] text-gray-600 dark:text-gray-300"
             >
               <X className="w-5 h-5" />
             </button>
@@ -101,13 +101,14 @@ export default function UsersManagementFiltersModal({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block mb-1.5 text-sm font-medium text-gray-700">
+              <label className="block mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300
+">
                 مرتب‌سازی بر نقش کاربر
               </label>
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full bg-gray-50 border
+                className="w-full dark:border-[#333] bg-gray-50 dark:bg-[#262626] border
                border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2
                 focus:ring-blue-100 outline-none"
               >
@@ -121,13 +122,14 @@ export default function UsersManagementFiltersModal({
             </div>
 
             <div>
-              <label className="block mb-1.5 text-sm font-medium text-gray-700">
+              <label className="block mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300
+">
                 ترتیب نمایش
               </label>
               <select
                 value={order}
                 onChange={(e) => setOrder(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
+                className="w-full dark:text-gray-200 dark:border-[#333] bg-gray-50 border dark:bg-[#262626] border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
               >
                 <option value="DESC">نزولی (جدیدترین)</option>
                 <option value="ASC">صعودی (قدیمی‌ترین)</option>
@@ -135,7 +137,8 @@ export default function UsersManagementFiltersModal({
             </div>
 
             <div>
-              <label className="block mb-1.5 text-sm font-medium text-gray-700">
+              <label className="block mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300
+">
                 تعداد در صفحه
               </label>
               <input
@@ -144,17 +147,18 @@ export default function UsersManagementFiltersModal({
                 max={100}
                 value={limit}
                 onChange={(e) => setLimit(Number(e.target.value))}
-                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
+                className="w-full bg-gray-50 dark:bg-[#262626] border border-gray-200 dark:border-[#333] rounded-lg px-3 py-2 text-sm  text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-100 outline-none"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300
+ mb-2">
                 مرتب‌سازی بر اساس
               </label>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 
+                className="w-full dark:bg-[#262626] dark:border-[#333] bg-gray-50 border border-gray-100 rounded-xl py-3 
               px-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="" disabled>
@@ -166,7 +170,8 @@ export default function UsersManagementFiltersModal({
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block mb-1.5 text-sm font-medium text-gray-700">
+              <label className="block mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300
+">
                 تاریخ عضویت
               </label>
               <DatePicker
@@ -177,18 +182,18 @@ export default function UsersManagementFiltersModal({
                 calendar={persian}
                 locale={persian_fa}
                 format="YYYY/MM/DD"
+
                 containerClassName="w-full"
-                inputClass="w-full bg-gray-50 border border-gray-200 rounded-lg
-               px-3 py-2 text-sm focus:ring-2 focus:ring-blue-100 outline-none"
+                inputClass="w-full bg-gray-50 dark:text-gray-200 dark:bg-[#262626] border border-gray-200 dark:border-[#333] rounded-lg px-3 py-2 text-sm dark:text-gray-200 text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-100 outline-none"
                 placeholder="تاریخ عضویت را اننتخاب کنید"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mt-6 pt-4 border-t">
+          <div className="grid grid-cols-2 gap-3 mt-6 pt-4 border-t dark:border-[#333]">
             <button
               onClick={onClose}
-              className="bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+              className="bg-white  dark:bg-[#262626] border border-gray-300 dark:border-[#444] text-gray-700 dark:text-gray-700 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-[#333] transition-colors"
             >
               انصراف
             </button>
