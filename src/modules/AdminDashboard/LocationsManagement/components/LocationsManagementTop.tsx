@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Filter from "../../../../../public/icons/Filter";
 import Plus from "../../../../../public/icons/Plus";
-import AddLocationsModal from "./AddLocationsModal";
+import AddLocationModal from "./AddLocationModal";
 import { useTranslations } from "next-intl";
 import FilterLocationsModal from "./FilterLocationsModal";
 
@@ -55,7 +55,7 @@ const LocationsManagementTop = () => {
         <FilterLocationsModal handleLocFilterModal={handleLocFilterModal} />
       )}
       {isOpenAddLocModal && (
-        <AddLocationsModal handleAddLocationModal={handleAddLocationModal} />
+        <AddLocationModal handleAddLocationModal={handleAddLocationModal} />
       )}
     </>
   );

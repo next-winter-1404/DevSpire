@@ -3,8 +3,10 @@ import Container from "@/components/common/Container";
 import { MessageSquare } from "lucide-react";
 import PropertyQAList, { IQAItem, IQARes } from "../components/PropertyQA";
 import AskQuestionModal from "../components/AskQA";
+import { useTranslations } from "next-intl";
 
-const PropertyQAView = async ({ id }: { id: number }) => {
+const PropertyQAView = async ({ id }: { id: number }) => {const t = useTranslations("PropertyQA");
+
   const res = await apiFetch<IQAItem[] | null>(`/property-QA/${id}`, {
     cache: "no-store",
   });
@@ -18,7 +20,7 @@ const PropertyQAView = async ({ id }: { id: number }) => {
             <div className="bg-[#0d3b66] p-2 rounded-lg">
               <MessageSquare className="text-white w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-[#0d3b66]">پرسش و پاسخ</h2>
+            <h2 className="text-2xl font-bold text-[#0d3b66]">{t("listTitle")}</h2>
           </div>
           <AskQuestionModal houseId={id} />
         </div>
@@ -30,7 +32,7 @@ const PropertyQAView = async ({ id }: { id: number }) => {
         ) : (
           <div className="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
             <p className="text-slate-400">
-              هنوز سوالی برای این ملک ثبت نشده است.
+  {t("emptyState")}
             </p>
           </div>
         )}

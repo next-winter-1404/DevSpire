@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import httpClient from "@/core/interceptor/axios";
+import { useTranslations } from "next-intl";
 
 type CreateAnswerRequest = {
   questionId: number;
@@ -22,7 +23,8 @@ type AnswerQuestionModalProps = {
 export default function AnswerQuestionModal({
   questionId,
   question,
-}: AnswerQuestionModalProps) {
+}: AnswerQuestionModalProps) {const t = useTranslations("PropertyQA");
+
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onClose = () => setIsOpen(false);
@@ -49,7 +51,7 @@ export default function AnswerQuestionModal({
     },
 
     onSuccess: () => {
-      toast.success("پاسخ شما با موفقیت ثبت شد");
+toast.success(t("answerSuccess"));
 
       reset({
         questionId,
@@ -62,7 +64,7 @@ export default function AnswerQuestionModal({
     },
 
     onError: (err) => {
-      const fallbackMessage = "مشکلی در ثبت پاسخ پیش آمد";
+const fallbackMessage = t("answerFallbackError");
 
       if (axios.isAxiosError(err)) {
         const status = err.response?.status;
@@ -104,7 +106,7 @@ export default function AnswerQuestionModal({
         className="flex items-center gap-3 text-foreground "
       >
         <MessageCircle className=" w-4 h-4" />
-        <span className="text-sm">پاسخ دادن</span>
+        <span className="text-sm">{t("submitAnswer")} </span>
       </button>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
@@ -128,10 +130,11 @@ export default function AnswerQuestionModal({
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-black">ثبت پاسخ</h3>
-                    <p className="mt-1 text-sm text-white/60">
-                      پاسخ خود را برای این پرسش ثبت کنید
-                    </p>
+                    <h3 className="text-xl font-black">{t("answerModalTitle")}</h3>
+<p className="mt-1 text-sm text-white/60">
+  {t("answerModalDesc")}
+</p>
+
                   </div>
                 </div>
 
@@ -170,7 +173,7 @@ export default function AnswerQuestionModal({
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="text-sm font-bold text-[#0d3b66]">
-                    متن پاسخ
+  {t("answerTextLabel")}
                   </label>
 
                   <span
@@ -185,25 +188,25 @@ export default function AnswerQuestionModal({
                 </div>
 
                 <textarea
-                  {...register("answer", {
-                    required: "متن پاسخ الزامی است",
-                    minLength: {
-                      value: 5,
-                      message: "پاسخ باید حداقل ۵ کاراکتر باشد",
-                    },
-                    maxLength: {
-                      value: 500,
-                      message: "پاسخ نمی‌تواند بیشتر از ۵۰۰ کاراکتر باشد",
-                    },
-                    validate: {
-                      notOnlySpace: (value) =>
-                        value.trim().length > 0 || "پاسخ نمی‌تواند خالی باشد",
-                      meaningful: (value) =>
-                        value.trim().length >= 5 ||
-                        "لطفاً پاسخ کامل‌تری وارد کنید",
-                    },
-                  })}
-                  placeholder="مثلاً: به دلیل موقعیت مکانی مناسب، امکانات کامل و کیفیت ساخت بالا، قیمت این ملک بالاتر است."
+              {...register("answer", {
+  required: t("validation.answerRequired"),
+  minLength: {
+    value: 5,
+    message: t("validation.answerMin"),
+  },
+  maxLength: {
+    value: 500,
+    message: t("validation.answerMax"),
+  },
+  validate: {
+    notOnlySpace: (value) =>
+      value.trim().length > 0 || t("validation.answerEmpty"),
+    meaningful: (value) =>
+      value.trim().length >= 5 || t("validation.answerMeaningful"),
+  },
+})}
+
+placeholder={t("answerPlaceholder")}
                   className={`min-h-[160px] w-full resize-none rounded-3xl border
                      px-5 py-4 text-sm leading-7 text-slate-700 outline-none transition
                       placeholder:text-slate-400  ${
@@ -221,9 +224,8 @@ export default function AnswerQuestionModal({
               </div>
 
               <div className="rounded-2xl border border-[#0d3b66]/10 bg-[#0d3b66]/5 px-4 py-3">
-                <p className="text-xs leading-6 text-slate-500">
-                  پاسخ شما پس از ثبت در بخش پرسش و پاسخ این ملک نمایش داده
-                  می‌شود.
+                <p className="text-xs leading-6 text-slate-500">{t("answerHint")}
+
                 </p>
               </div>
 
@@ -233,17 +235,18 @@ export default function AnswerQuestionModal({
                   disabled={!isValid || isPending}
                   className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#ff7f11] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/20 transition hover:bg-[#e86f00] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
                 >
-                  {isPending ? (
-                    <>
-                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
-                      در حال ثبت پاسخ...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4 rotate-180" />
-                      ثبت پاسخ
-                    </>
-                  )}
+                {isPending ? (
+  <>
+    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+    {t("submittingAnswer")}
+  </>
+) : (
+  <>
+    <Send className="h-4 w-4 rotate-180" />
+    {t("submitAnswer")}
+  </>
+)}
+
                 </button>
 
                 <button
@@ -252,7 +255,7 @@ export default function AnswerQuestionModal({
                   disabled={isPending}
                   className="rounded-2xl border border-slate-200 px-5 py-3 text-sm font-bold text-slate-500 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  انصراف
+{t("cancel")}
                 </button>
               </div>
             </form>

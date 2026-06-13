@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import { useState } from "react";
 import httpClient from "@/core/interceptor/axios";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 type CreatePropertyQARequest = {
   houseId: number;
@@ -22,6 +23,7 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onClose = () => setIsOpen(false);
+const t = useTranslations("PropertyQA");
 
   const {
     register,
@@ -46,7 +48,7 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
     },
 
     onSuccess: () => {
-      toast.success("سؤال شما با موفقیت ثبت شد");
+toast.success(t("questionSuccess"));
 
       reset({
         houseId,
@@ -57,7 +59,7 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
     },
 
     onError: (err) => {
-      const fallbackMessage = "مشکلی در ثبت سؤال پیش آمد";
+const fallbackMessage = t("questionFallbackError");
 
       if (axios.isAxiosError(err)) {
         const status = err.response?.status;
@@ -99,7 +101,7 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
            text-sm font-medium transition-all shadow-md"
         onClick={() => setIsOpen(true)}
       >
-        پرسیدن سوال جدید
+{t("askNewQuestion")}
       </button>
       {isOpen && (
         <div
@@ -126,10 +128,11 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-black">پرسیدن سؤال</h3>
-                    <p className="mt-1 text-sm text-white/60">
-                      سؤال خود را درباره این ملک از میزبان بپرسید
-                    </p>
+                    <h3 className="text-xl font-black">{t("askModalTitle")}</h3>
+<p className="mt-1 text-sm text-white/60">
+  {t("askModalDesc")}
+</p>
+
                   </div>
                 </div>
 
@@ -156,7 +159,7 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="text-sm font-bold text-[#0d3b66]">
-                    متن سؤال
+  {t("questionTextLabel")}
                   </label>
 
                   <span
@@ -171,25 +174,25 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
                 </div>
 
                 <textarea
-                  {...register("question", {
-                    required: "متن سؤال الزامی است",
-                    minLength: {
-                      value: 5,
-                      message: "سؤال باید حداقل ۵ کاراکتر باشد",
-                    },
-                    maxLength: {
-                      value: 250,
-                      message: "سؤال نمی‌تواند بیشتر از ۲۵۰ کاراکتر باشد",
-                    },
-                    validate: {
-                      notOnlySpace: (value) =>
-                        value.trim().length > 0 || "سؤال نمی‌تواند خالی باشد",
-                      meaningful: (value) =>
-                        value.trim().length >= 5 ||
-                        "لطفاً سؤال واضح‌تری وارد کنید",
-                    },
-                  })}
-                  placeholder="مثلاً: آیا این ملک پارکینگ اختصاصی دارد؟"
+                 {...register("question", {
+  required: t("validation.questionRequired"),
+  minLength: {
+    value: 5,
+    message: t("validation.questionMin"),
+  },
+  maxLength: {
+    value: 250,
+    message: t("validation.questionMax"),
+  },
+  validate: {
+    notOnlySpace: (value) =>
+      value.trim().length > 0 || t("validation.questionEmpty"),
+    meaningful: (value) =>
+      value.trim().length >= 5 || t("validation.questionMeaningful"),
+  },
+})}
+
+placeholder={t("askPlaceholder")}
                   className={`min-h-[140px] w-full resize-none rounded-3xl border
                      px-5 py-4 text-sm leading-7 text-slate-700 outline-none transition
                       placeholder:text-slate-400 ${
@@ -207,9 +210,8 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
               </div>
 
               <div className="rounded-2xl border border-[#0d3b66]/10 bg-[#0d3b66]/5 px-4 py-3">
-                <p className="text-xs leading-6 text-slate-500">
-                  سؤال شما بعد از ثبت برای میزبان ارسال می‌شود و پاسخ آن در همین
-                  بخش نمایش داده خواهد شد.
+                <p className="text-xs leading-6 text-slate-500">{t("askHint")}
+
                 </p>
               </div>
 
@@ -222,20 +224,18 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
                    shadow-lg shadow-orange-500/20 transition hover:bg-[#e86f00] 
                    disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
                 >
-                  {isPending ? (
-                    <>
-                      <span
-                        className="h-4 w-4 animate-spin rounded-full border-2
-                       border-white/40 border-t-white"
-                      />
-                      در حال ثبت سؤال...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4 rotate-180" />
-                      ثبت سؤال
-                    </>
-                  )}
+                 {isPending ? (
+  <>
+    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+    {t("submittingQuestion")}
+  </>
+) : (
+  <>
+    <Send className="h-4 w-4 rotate-180" />
+    {t("submitQuestion")}
+  </>
+)}
+
                 </button>
 
                 <button
@@ -244,7 +244,7 @@ export default function AskQuestionModal({ houseId }: AskQuestionModalProps) {
                   disabled={isPending}
                   className="rounded-2xl border border-slate-200 px-5 py-3 text-sm font-bold text-slate-500 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  انصراف
+{t("cancel")}
                 </button>
               </div>
             </form>

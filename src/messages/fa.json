@@ -379,7 +379,6 @@
     "max50Chars": "حداکثر باید 50 کاراکتر باشد",
     "lastNameRequired": "نام خانوادگی نیاز است"
   },
-
   "dashboardHeader": {
     "balance": "موجودی :",
     "seller": "(فروشنده)",
@@ -551,5 +550,104 @@
       "delete": "حذف",
       "sureAboutDeleteTour": "آیا از حذف این تور اطمینان دارید؟"
     }
+  },
+  "Valuation": {
+    "heroTitle": "قیمت تقریبی ملک خود را",
+    "heroTitleHighlight": " فوری و هوشمند بدانید",
+    "heroDesc": "با وارد کردن مشخصات ملک، سیستم ارزش‌گذاری ما بر اساس اطلاعات ارسالی شما قیمت تخمینی را محاسبه می‌کند. این تجربه سریع، شفاف و قابل اعتماد طراحی شده است.",
+    "badge": "ارزش‌گذاری هوشمند",
+    "formTitle": "مشخصات ملک",
+    "formDesc": "اطلاعات ملک را وارد کنید تا قیمت تخمینی به صورت هوشمند محاسبه شود.",
+    "amenitiesSelected": "امکانات انتخاب شده",
+    "size": "متراژ",
+    "sizePlaceholder": "مثلاً 120",
+    "rooms": "تعداد اتاق",
+    "room": "اتاق",
+    "location": "موقعیت ملک",
+    "locationPlaceholder": "مثلاً تهران، نیاوران",
+    "amenities": "امکانات رفاهی",
+    "calculateBtn": "محاسبه ارزش ملک",
+    "calculating": "در حال محاسبه...",
+    "resultBadge": "خروجی مدل پیش‌بینی",
+    "resultTitle": "ارزش تخمینی ملک شما",
+    "resultDesc": "نتیجه بر اساس اطلاعاتی که وارد کرده‌اید محاسبه می‌شود و می‌تواند مبنای اولیه‌ای برای قیمت‌گذاری دقیق‌تر باشد.",
+    "estimatedPrice": "قیمت تخمینی",
+    "currency": "تومان",
+    "unitSize": "متر",
+    "notSpecified": "ثبت نشده",
+    "noResultTitle": "هنوز محاسبه‌ای انجام نشده",
+    "noResultSubtitle": "منتظر اطلاعات ملک شما هستیم",
+    "noResultDesc": "فرم را کامل کنید تا قیمت تقریبی ملک شما در این بخش نمایش داده شود.",
+    "disclaimer": "این قیمت یک تخمین هوشمند است و بهتر است در کنار تحلیل کارشناس و شرایط واقعی بازار بررسی شود.",
+    "errors": {
+      "sizeRequired": "متراژ الزامی است",
+      "sizeMin": "متراژ باید بیشتر از صفر باشد",
+      "roomsRequired": "تعداد اتاق الزامی است",
+      "roomsMin": "تعداد اتاق باید حداقل یک باشد",
+      "locationRequired": "موقعیت ملک الزامی است",
+      "amenitiesRequired": "حداقل یک امکانات رفاهی را انتخاب کنید",
+      "serverError": "مشکلی پیش آمده است"
+    },
+    "amenitiesList": {
+      "pool": "استخر",
+      "sauna": "سونا",
+      "parking": "پارکینگ",
+      "storage": "انباری",
+      "elevator": "آسانسور",
+      "balcony": "بالکن",
+      "lobby": "لابی",
+      "jacuzzi": "جکوزی",
+      "master": "مستر"
+    }
+  },
+  "PropertyQA": {
+    "listTitle": "پرسش و پاسخ",
+    "askNewQuestion": "پرسیدن سوال جدید",
+    "questionsTitle": "پرسش ها",
+    "questionLabel": "سوال کاربر",
+    "questionTextLabel": "متن پرسش",
+    "answerLabel": "پاسخ",
+    "answerTextLabel": "متن پاسخ",
+    "answerAction": "پاسخ دادن",
+    "waitingForAnswer": "در انتظار پاسخ ...",
+    "emptyState": "هنوز سوالی برای این ملک ثبت نشده است.",
+    "loading": "در حال دریافت اطلاعات ...",
+    "askModalTitle": "پرسیدن سؤال",
+    "askModalDesc": "سؤال خود را درباره این ملک از میزبان بپرسید",
+    "askPlaceholder": "مثلاً: آیا این ملک پارکینگ اختصاصی دارد؟",
+    "askHint": "سؤال شما بعد از ثبت برای میزبان ارسال می‌شود و پاسخ آن در همین بخش نمایش داده خواهد شد.",
+    "submitQuestion": "ثبت سؤال",
+    "submittingQuestion": "در حال ثبت سؤال...",
+    "cancel": "انصراف",
+    "questionSuccess": "سؤال شما با موفقیت ثبت شد",
+    "questionFallbackError": "مشکلی در ثبت سؤال پیش آمد",
+    "answerModalTitle": "ثبت پاسخ",
+    "answerModalDesc": "پاسخ خود را برای این پرسش ثبت کنید",
+    "answerPlaceholder": "مثلاً: به دلیل موقعیت مکانی مناسب، امکانات کامل و کیفیت ساخت بالا، قیمت این ملک بالاتر است.",
+    "answerHint": "پاسخ شما پس از ثبت در بخش پرسش و پاسخ این ملک نمایش داده می‌شود.",
+    "submitAnswer": "ثبت پاسخ",
+    "submittingAnswer": "در حال ثبت پاسخ...",
+    "answerSuccess": "پاسخ شما با موفقیت ثبت شد",
+    "answerFallbackError": "مشکلی در ثبت پاسخ پیش آمد",
+    "validation": {
+      "questionRequired": "متن سؤال الزامی است",
+      "questionMin": "سؤال باید حداقل ۵ کاراکتر باشد",
+      "questionMax": "سؤال نمی‌تواند بیشتر از ۲۵۰ کاراکتر باشد",
+      "questionEmpty": "سؤال نمی‌تواند خالی باشد",
+      "questionMeaningful": "لطفاً سؤال واضح‌تری وارد کنید",
+      "answerRequired": "متن پاسخ الزامی است",
+      "answerMin": "پاسخ باید حداقل ۵ کاراکتر باشد",
+      "answerMax": "پاسخ نمی‌تواند بیشتر از ۵۰۰ کاراکتر باشد",
+      "answerEmpty": "پاسخ نمی‌تواند خالی باشد",
+      "answerMeaningful": "لطفاً پاسخ کامل‌تری وارد کنید"
+    }
+  },  "AIChat": {
+    "title": "دستیار هوشمند",
+    "status": "آنلاین و آماده پاسخگویی",
+    "welcome": "سلام! چطور می‌تونم کمکتون کنم؟",
+    "placeholder": "پیام خود را بنویسید...",
+    "noResponse": "پاسخی دریافت نشد",
+    "serverError": "خطایی در سرور رخ داد"
   }
+
 }

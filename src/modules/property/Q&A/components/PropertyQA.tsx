@@ -1,8 +1,8 @@
 import React from "react";
 import { User, CheckCircle2, HelpCircle, MessageCircle } from "lucide-react";
-import { useLocale } from "next-intl";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import AnswerQuestionModal from "./AnswerQA";
+import { useTranslations, useLocale } from "next-intl";
 
 export interface IQAItem {
   id: number;
@@ -22,7 +22,9 @@ const PropertyQAList = ({
   data: IQAItem[];
   isSeller: boolean;
 }) => {
+  const t = useTranslations("PropertyQA");
   const locale = useLocale();
+
   return (
     <div className="space-y-6 ">
       {data.map((item) => (
@@ -41,7 +43,7 @@ const PropertyQAList = ({
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                    سوال کاربر
+                    {t("questionLabel")}
                   </span>
                   <span className="text-xs text-slate-400">
                     {FormatDate(item.created_at, locale == "fa" ? "fa" : "en")}
@@ -73,7 +75,7 @@ const PropertyQAList = ({
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-sm font-bold text-[#0d3b66]">
-                      پاسخ
+                      {t("answerLabel")}
                     </span>
                     <CheckCircle2 className="w-4 h-4 text-green-500" />
                   </div>
@@ -84,7 +86,7 @@ const PropertyQAList = ({
           ) : (
             <div className="px-6 py-4 bg-orange-50/30 border-t border-orange-100">
               <span className="text-sm text-orange-600 italic">
-                در انتظار پاسخ ...
+                {t("waitingForAnswer")}
               </span>
             </div>
           )}

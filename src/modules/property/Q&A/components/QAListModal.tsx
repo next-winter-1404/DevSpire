@@ -2,13 +2,15 @@ import httpClient from "@/core/interceptor/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2, X } from "lucide-react";
 import PropertyQAList, { IQAItem } from "./PropertyQA";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   onClose: () => void;
   houseId: number;
 }
 
-const QAListModal = ({ onClose, houseId }: IProps) => {
+const QAListModal = ({ onClose, houseId }: IProps) => {const t = useTranslations("PropertyQA");
+
   const { data, isPending } = useQuery({
     queryKey: ["GETQA"],
     queryFn: async () => {
@@ -30,7 +32,7 @@ const QAListModal = ({ onClose, houseId }: IProps) => {
        bg-background shadow-xl animate-in fade-in zoom-in duration-200"
       >
         <div className=" relative flex items-center justify-between border-b border-border p-5">
-          <h3 className="text-lg font-bold text-foreground">پرسش ها</h3>
+          <h3 className="text-lg font-bold text-foreground"> {t("questionsTitle")}</h3>
           <button
             onClick={onClose}
             className="absolute left-4 top-4 p-2 rounded-full bg-gray-100
@@ -43,7 +45,7 @@ const QAListModal = ({ onClose, houseId }: IProps) => {
           <div className="flex flex-col items-center justify-center py-16 gap-4">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
             <p className="text-sm text-muted-foreground">
-              در حال دریافت اطلاعات ...
+  {t("loading")}
             </p>
           </div>
         )}
@@ -54,7 +56,7 @@ const QAListModal = ({ onClose, houseId }: IProps) => {
         ) : (
           <div className="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
             <p className="text-slate-400">
-              هنوز سوالی برای این ملک ثبت نشده است.
+  {t("emptyState")}
             </p>
           </div>
         )}

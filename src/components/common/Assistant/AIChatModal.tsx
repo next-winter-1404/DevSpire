@@ -7,6 +7,7 @@ import chatAnimation from "../../../../public/lottie/chatbot.json";
 import { useLocale } from "next-intl";
 import { useMutation } from "@tanstack/react-query";
 import Lottie from "lottie-react";
+import { useTranslations } from "next-intl";
 
 type Message = {
   id: string;
@@ -21,13 +22,15 @@ interface IPayload {
 type TRole = "user" | "assistant";
 
 export default function AIChatModal() {
+  const t = useTranslations("AIChat");
+
   const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "سلام! چطور می‌تونم کمکتون کنم؟",
+      text: t("welcome"),
       sender: "ai",
       time: new Date().toLocaleTimeString("fa-IR", {
         hour: "2-digit",
@@ -53,7 +56,7 @@ export default function AIChatModal() {
     onSuccess: (data) => {
       const aiMessage: Message = {
         id: Date.now().toString(),
-        text: data?.data?.choices?.[0]?.message?.content || "پاسخی دریافت نشد",
+        text: data?.data?.choices?.[0]?.message?.content || t("noResponse"),
         sender: "ai",
         time: new Date().toLocaleTimeString(locale == "fa" ? "fa-IR" : "", {
           hour: "2-digit",
@@ -65,7 +68,7 @@ export default function AIChatModal() {
     onError: (err: any) => {
       const aiMessage: Message = {
         id: Date.now().toString(),
-        text: err.response?.data?.message || err.message || "server error",
+        text: err.response?.data?.message || err.message || t("serverError"),
         sender: "ai",
         time: new Date().toLocaleTimeString(locale == "fa" ? "fa-IR" : "", {
           hour: "2-digit",
@@ -120,11 +123,10 @@ export default function AIChatModal() {
     >
       <div
         className={`absolute bottom-10 ${locale == "fa" ? "right-0" : "left-0"} 
-              transition-all duration-300 ease-in-out transform origin-bottom-right ${
-                isOpen
-                  ? "scale-100 opacity-100 translate-y-0"
-                  : "scale-90 opacity-0 translate-y-4 pointer-events-none"
-              }`}
+              transition-all duration-300 ease-in-out transform origin-bottom-right ${isOpen
+            ? "scale-100 opacity-100 translate-y-0"
+            : "scale-90 opacity-0 translate-y-4 pointer-events-none"
+          }`}
       >
         <div
           className="w-[350px] sm:w-[400px] h-[500px] max-h-[80vh] bg-background
@@ -150,9 +152,9 @@ export default function AIChatModal() {
               </div>
               <div>
                 <h3 className="text-white font-semibold text-base">
-                  دستیار هوشمند
+                  {t("title")}
                 </h3>
-                <p className="text-blue-100 text-xs">آنلاین و آماده پاسخگویی</p>
+                <p className="text-blue-100 text-xs">{t("status")}</p>
               </div>
             </div>
             <button
@@ -174,16 +176,14 @@ export default function AIChatModal() {
                 className={`flex w-full ${msg.sender === "user" ? "justify-start" : "justify-end"}`}
               >
                 <div
-                  className={`flex flex-col gap-1 max-w-[80%] ${
-                    msg.sender === "user" ? "items-start" : "items-end"
-                  }`}
+                  className={`flex flex-col gap-1 max-w-[80%] ${msg.sender === "user" ? "items-start" : "items-end"
+                    }`}
                 >
                   <div
-                    className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-sm ${
-                      msg.sender === "user"
+                    className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-sm ${msg.sender === "user"
                         ? "bg-primary text-white rounded-tr-sm"
                         : "bg-[#ffff] dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-tl-sm border border-gray-100 dark:border-gray-700"
-                    }`}
+                      }`}
                   >
                     {msg.text}
                   </div>
@@ -236,7 +236,7 @@ export default function AIChatModal() {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="پیام خود را بنویسید..."
+                placeholder={t("placeholder")}
                 className="flex-1 bg-transparent border-none focus:outline-none px-4 text-sm
                  text-gray-700 dark:text-gray-200"
                 disabled={isPending}
@@ -244,11 +244,10 @@ export default function AIChatModal() {
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isPending}
-                className={`p-2.5 rounded-full flex items-center justify-center transition-all ${
-                  inputValue.trim() && !isPending
+                className={`p-2.5 rounded-full flex items-center justify-center transition-all ${inputValue.trim() && !isPending
                     ? "bg-primary text-white shadow-md"
                     : "bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed"
-                }`}
+                  }`}
               >
                 {isPending ? (
                   <Loader2 size={18} className="animate-spin" />
@@ -265,11 +264,10 @@ export default function AIChatModal() {
         onClick={() => setIsOpen(!isOpen)}
         className={`bg-primary border-[#777777]/20 text-white p-3 rounded-full h-16 w-16
            shadow-lg
-           transition-all duration-300 hover:scale-105 flex items-center justify-center ${
-             isOpen
-               ? "rotate-90 opacity-0 pointer-events-none absolute"
-               : "rotate-0 opacity-100 relative"
-           }`}
+           transition-all duration-300 hover:scale-105 flex items-center justify-center ${isOpen
+            ? "rotate-90 opacity-0 pointer-events-none absolute"
+            : "rotate-0 opacity-100 relative"
+          }`}
       >
         <Lottie
           animationData={chatAnimation}
