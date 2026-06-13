@@ -132,43 +132,41 @@ const EstateStep4 = ({ generalData, handlePrev, handleNext }: IProps) => {
           </div>
         ))}
       </div> */}
-        {[
-          "/images/fastReservePage/house1.png",
-          "/images/fastReservePage/house2.png",
-          "/images/fastReservePage/bigHouse.png",
-        ].map((item, index) => (
-          <div
-            key={index}
-            className={`relative w-50 h-50 rounded-[24px] 
+        {generalData.step4?.photos?.length > 0 &&
+          generalData?.step4?.photos?.map((item, index) => (
+            <div
+              key={index}
+              className={`relative w-50 h-50 rounded-[24px] 
             overflow-hidden  ${
               index == 0
                 ? "border-8 border-green-800 "
                 : "border border-gray-200"
             }`}
-          >
-            <Image
-              src={item}
-              alt={`photo-${index}`}
-              fill
-              className="object-cover"
-            />
-            {index == 0 && (
-              <p
-                className="bg-green-800 absolute bottom-0 left-0 w-full 
+            >
+              <Image
+                src={"/images/fastReservePage/house1.png"}
+                alt={`photo-${index}`}
+                fill
+                className="object-cover"
+              />
+              {index == 0 && (
+                <p
+                  className="bg-green-800 absolute bottom-0 left-0 w-full 
               right-0 py-1 text-center text-white"
-              >
-                تصویر اصلی
-              </p>
-            )}
-          </div>
-        ))}
+                >
+                  تصویر اصلی
+                </p>
+              )}
+            </div>
+          ))}
       </div>
 
       <div className="flex justify-between">
         <button
           type="button"
           onClick={handlePrev}
-          className="flex items-center gap-2 py-[13px] px-3 text-[#777777] border border-[#777777] rounded-[16px] cursor-pointer"
+          className="flex items-center gap-2 py-[13px] px-3 text-[#777777] border
+           border-[#777777] rounded-[16px] cursor-pointer"
         >
           <CurveArrow className="rotate-270" />
           <span className="font-regular text-[16px]">مرحله قبل</span>

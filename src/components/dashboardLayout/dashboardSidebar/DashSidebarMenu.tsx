@@ -21,25 +21,21 @@ import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import ToggleTheme from "@/components/common/ToggleTheme";
 import Category from "../../../../public/icons/Category";
 import Location from "../../../../public/icons/Location";
-import { Globe, UsersIcon } from "lucide-react";
+import { Globe, Newspaper, UsersIcon } from "lucide-react";
 import Chat from "../../../../public/icons/Chat";
 import BookMark from "../../../../public/icons/BookMark";
-
+import MobileCall from "../../../../public/icons/MobileCall";
 
 interface IProps {
   role: string | undefined;
   toggleMenu: (value: boolean) => void;
 }
 
-
 const sellerBasePath = "/dashboard/seller";
 const customerBasePath = "/dashboard/customer";
 const adminBasePath = "/dashboard/admin";
 
-
 const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
-
-
   const t = useTranslations("dashboardSidebar");
   const router = useRouter();
   const pathname = usePathname();
@@ -147,9 +143,9 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
     ],
     management: [
       {
-        href: `${adminBasePath}/categories`,
-        label: t("categories"),
-        Icon: Category,
+        href: `${adminBasePath}/estates-management`,
+        label: t("estatesManagement"),
+        Icon: Estates,
       },
       {
         href: `${adminBasePath}/reserves-management`,
@@ -157,38 +153,50 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
         Icon: CheckList,
       },
       {
-        href: `${adminBasePath}/locations-management`,
-        label: t("locationsManagement"),
-        Icon: Location,
-      },
-      {
         href: `${adminBasePath}/users-management`,
         label: t("usersManagement"),
         Icon: UsersIcon,
       },
       {
-        href: `${adminBasePath}/tours-management`,
-        label: "مدیریت تور ها",
-        Icon: UsersIcon,
+        href: `${adminBasePath}/locations-management`,
+        label: t("locationsManagement"),
+        Icon: Location,
       },
       {
         href: `${adminBasePath}/payments`,
         label: t("paymentsManagement"),
         Icon: FinantialManagement,
       },
-      {
-        href: `${adminBasePath}/social-media`,
-        label: "شبکه های اجتماعی",
-        Icon: Globe,
-      },
+
       {
         href: `${adminBasePath}/comments-management`,
         label: "مدیریت کامنت ها",
         Icon: Chat,
       },
+      {
+        href: `${adminBasePath}/categories`,
+        label: t("categories"),
+        Icon: Category,
+      },
+
+      {
+        href: `${adminBasePath}/social-media`,
+        label: "شبکه های اجتماعی",
+        Icon: Globe,
+      },
+
+      {
+        href: `${adminBasePath}/blogs`,
+        label: "مدیریت مقالات",
+        Icon: Newspaper,
+      },
+      {
+        href: `${adminBasePath}/contact-us`,
+        label: "ارتباط با ما",
+        Icon: MobileCall,
+      },
     ],
   };
-
 
   const menuItems =
     role == "seller"
@@ -197,10 +205,8 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
         ? customerMenuItems
         : adminMenuItems;
 
-
-
   return (
-    <div className="flex fixed inset-0 z-50   md:hidden">
+    <div className="flex fixed inset-0 z-50 h-screen  md:hidden">
       <div
         onClick={() => {
           toggleMenu(false);
@@ -256,11 +262,11 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-4 mt-2">
+        <div className="flex flex-col gap-4 mt-2 overflow-y-auto scroll-smooth">
           <h3 className="font-regular text-[16px] text-[#0D3B66] dark:text-[#E6EDF5]">
             {t("management")}
           </h3>
-          <div className="flex flex-col gap-6 font-regular text-[16px]">
+          <div className="flex flex-col gap-6  font-regular text-[16px]">
             {menuItems.management.map(({ href, label, Icon }) => (
               <div
                 key={href}

@@ -78,7 +78,10 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-6 p-6 border border-[#DDDDDD] rounded-[24px] bg-white">
+      <div
+        className="flex flex-col items-center gap-6 p-6 border
+       border-[#DDDDDD] rounded-[24px] bg-background"
+      >
         <div className="flex flex-col items-center gap-3">
           <Image
             src={EstateOwner}
@@ -88,7 +91,7 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
             className="w-28 h-28 rounded-full object-cover bg-blue-800/20"
           />
 
-          <span className="text-[18px] font-medium text-[#1E2022]">
+          <span className="text-[18px] font-medium text-foreground">
             {seller.firstName} {seller.lastName}
           </span>
         </div>
@@ -99,7 +102,7 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
             <span>قیمت از :</span>
           </div>
 
-          <div className="flex gap-2 font-bold text-[18px] text-[#1E2022]">
+          <div className="flex gap-2 font-bold text-[18px] text-foreground">
             <span>{Number(amount).toLocaleString()}</span>
             <span>تومان</span>
           </div>

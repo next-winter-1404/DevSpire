@@ -324,8 +324,8 @@ const EstateStep1 = ({ generalData, handleNext, onChangeData }: IProps) => {
                   capacity: String(getValues("capacity")) ?? "نامشخض",
                 })
               }
-              className="bg-blue-700/60 hover:bg-blue-700 transition
-                 text-white px-3 py-1.5 rounded-lg backdrop-blur-sm
+              className="bg-blue-900  transition
+                 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700
         text-sm absolute bottom-3 right-3 cursor-pointer z-10"
             >
               {pendingMessage ? "درحال ساخت ..." : "ساخت با هوش مصنوعی 💫"}

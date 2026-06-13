@@ -26,7 +26,7 @@ const LocManagementDetailView = async ({ params }: IProps) => {
             href={"/dashboard/admin/locations-management"}
             className="text-primary cursor-pointer"
           >
-            لیست املاک
+            لیست مکان ها
           </Link>
         </div>
         <div className="h-full">

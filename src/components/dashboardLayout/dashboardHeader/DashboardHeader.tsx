@@ -18,8 +18,6 @@ interface IProps {
 }
 
 const DashboardHeader = ({ hasNotification, userInfo }: IProps) => {
-
-
   const t = useTranslations("dashboardHeader");
 
   const [isOpenSidebarMenu, setIsOpenSidebarMenu] = useState<boolean>(false);
@@ -47,10 +45,10 @@ const DashboardHeader = ({ hasNotification, userInfo }: IProps) => {
           className=" w-11 h-11 md:w-12 md:h-12 rounded-[40px]"
         />
         <div className="flex flex-col gap-1">
-          <div className="flex items-center md:gap-1">
+          <div className="flex flex-col md:flex-row items-center md:gap-1">
             <span
-              className="font-regular text-[20px] text-[#1E2022] 
-              dark:text-[#F5F5F5] hidden md:block "
+              className="font-regular text-[16px] md:text-[20px] text-[#1E2022] 
+              dark:text-[#F5F5F5] "
             >
               {userInfo?.user?.firstName || "بدون نام"}{" "}
               {userInfo?.user?.lastName}

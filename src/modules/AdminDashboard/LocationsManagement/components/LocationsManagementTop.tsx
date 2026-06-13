@@ -2,9 +2,9 @@
 import { useState } from "react";
 import Filter from "../../../../../public/icons/Filter";
 import Plus from "../../../../../public/icons/Plus";
-import AddLocationsModal from "./AddLocationsModal";
 import { useTranslations } from "next-intl";
 import FilterLocationsModal from "./FilterLocationsModal";
+import AddLocationsModal from "./AddLocationModal";
 
 const LocationsManagementTop = () => {
   const t = useTranslations("adminDashboard.locationsManagement");

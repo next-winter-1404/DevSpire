@@ -52,6 +52,7 @@ const MortgageRentDetailViewx = ({ data, sliderData }: IProps) => {
         <div className="w-full md:w-[67%] ">
           <div className=" mb-10 md:mb-8">
             <DetailTitle
+              houseId={data.id}
               rating={data.rate}
               location={data.address}
               title={data.title}

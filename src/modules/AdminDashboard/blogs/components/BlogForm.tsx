@@ -264,7 +264,7 @@ export default function BlogCreateEditModal({
                         getValues("estimated_reading_time") ?? "5 min",
                     })
                   }
-                  className="bg-blue-700/60 hover:bg-blue-700 transition
+                  className="bg-primary hover:bg-blue-700 transition
                  text-white px-3 py-1.5 rounded-lg backdrop-blur-sm
         text-sm absolute bottom-3 right-3 cursor-pointer z-10"
                 >

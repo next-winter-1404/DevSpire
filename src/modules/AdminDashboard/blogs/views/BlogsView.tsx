@@ -2,7 +2,6 @@ import { TBlogsResponse } from "@/components/common/types";
 import ReserveFilters from "@/components/dashboard/Filters";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import BlogsList from "../components/BlogsList";
-import { Plus } from "lucide-react";
 import AddBlog from "../components/AddBlog";
 
 const BlogsView = async ({ params }: { params: Record<string, string> }) => {
