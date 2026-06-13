@@ -29,8 +29,7 @@ const FilterCategoriesModal = ({ handleLocFilterModal }: IProps) => {
     { id: 1, value: "", label: locale === "en" ? "Choose your value" : "مقدار مورد نظر را انتخاب کنید" },
     { id: 2, value: "created_at", label: locale === "en" ? "Created At" : "ساخته شده" },
     { id: 3, value: "updated_at", label: locale === "en" ? "Updated At" : "ویرایش شده" },
-    { id: 4, value: "name", label: locale === "en" ? "Name" : "نام" },
-    { id: 5, value: "clear", label: locale === "en" ? "Delete this filter" : "حذف این فیلتر" },
+    { id: 4, value: "clear", label: locale === "en" ? "Delete this filter" : "حذف این فیلتر" },
   ];
   const orderOptions = [
     { id: 1, value: "DESC", label: locale === "en" ? "Descending" : "نزولی" },

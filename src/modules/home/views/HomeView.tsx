@@ -20,7 +20,7 @@ const HomeView = () => {
       <RentVilla/>
       <FeaturesSec/>
       <NeedHelp/>
-      {/* <SayAboutUs/> */}
+      <SayAboutUs/>
     </div>
   );
 };
