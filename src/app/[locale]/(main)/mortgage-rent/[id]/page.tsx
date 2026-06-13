@@ -1,7 +1,7 @@
 import { THouse, THousesResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { Link } from "@/i18n/routing";
-import MortgageRentDetailViewx from "@/modules/mortgageRentDetail/views/MortgageRentDetailView";
+import MortgageRentDetailViewx from "@/modules/main/mortgageRentDetail/views/MortgageRentDetailView";
 
 const MortgageRentDetail = async ({
   params,

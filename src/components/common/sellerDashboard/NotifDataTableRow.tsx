@@ -2,12 +2,12 @@
 import { FormatDate } from "@/utils/helper/FormatDate";
 import CircleTick from "../../../../public/icons/CircleTick";
 import { TNotification } from "../types";
-import { ReadNotification } from "@/modules/SellerDashboard/Notifications/services/PUT/ReadNotification";
 import { useMutation } from "@tanstack/react-query";
 import { useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { ReadNotification } from "@/modules/dashboard/sellerDashboard/Notifications/services/PUT/ReadNotification";
 
 interface IProps {
   item: TNotification;

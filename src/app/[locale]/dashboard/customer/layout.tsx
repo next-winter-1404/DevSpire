@@ -2,8 +2,8 @@ import DashboardHeader from "@/components/dashboardLayout/dashboardHeader/Dashbo
 import DashboardSidebar from "@/components/dashboardLayout/dashboardSidebar/DashboardSidebar";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { redirect } from "@/i18n/routing";
-import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
-import { IDecodedToken } from "@/modules/fastReserveDetail/types";
+import { TUserRes } from "@/modules/dashboard/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { IDecodedToken } from "@/modules/main/fastReserveDetail/types";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 

@@ -1,6 +1,6 @@
 import { THouse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import BookingView from "@/modules/booking/views/BookingView";
+import BookingView from "@/modules/main/booking/views/BookingView";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 

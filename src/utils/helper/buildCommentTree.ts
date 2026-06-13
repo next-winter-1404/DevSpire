@@ -1,7 +1,7 @@
 import {
   ICommentItem,
   ICommentTreeItem,
-} from "@/modules/fastReserveDetail/types";
+} from "@/modules/main/fastReserveDetail/types";
 
 export const BuildCommentTree = (flatComments: ICommentItem[]) => {
   const commentMap: Record<number, ICommentTreeItem> = {};

@@ -6,10 +6,10 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import ConfirmDeleteModal from "@/components/common/ConfirmDeleteModal";
-import EditCommentsModal from "@/modules/sellerDashboard/CommentsManagement/components/EditCommentsModal";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import CommentsDetailModal from "@/modules/sellerDashboard/CommentsManagement/components/CommentsDetailModal";
-import { useComments } from "@/modules/sellerDashboard/CommentsManagement/hooks";
+import { useComments } from "@/modules/dashboard/sellerDashboard/CommentsManagement/hooks";
+import EditCommentsModal from "@/modules/dashboard/sellerDashboard/CommentsManagement/components/EditCommentsModal";
+import CommentsDetailModal from "@/modules/dashboard/sellerDashboard/CommentsManagement/components/CommentsDetailModal";
 
 interface IProps {
   id: number;

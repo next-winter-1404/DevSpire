@@ -10,7 +10,7 @@ import { DashboardIcon } from "@radix-ui/react-icons";
 import { useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 import LogoutModal from "@/components/common/LogoutModal";
-import { TUser } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
+import { TUser } from "@/modules/dashboard/customerDashboard/dashboard/components/CustomerDashboardCharts";
 
 export default function ProfileDropdown({ data }: { data: TUser }) {
   const router = useRouter();

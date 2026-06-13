@@ -10,7 +10,7 @@ import { useState } from "react";
 import Menu from "../../../../public/icons/Menu";
 import DashSidebarMenu from "../dashboardSidebar/DashSidebarMenu";
 import EstateOwner from "../../../../public/images/mortgageRentDetail/estate-owner.jpg";
-import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
+import { TUserRes } from "@/modules/dashboard/customerDashboard/dashboard/components/CustomerDashboardCharts";
 
 interface IProps {
   hasNotification: boolean;

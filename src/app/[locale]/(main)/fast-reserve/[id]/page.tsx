@@ -1,7 +1,7 @@
 import { THouse, THousesResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { Link } from "@/i18n/routing";
-import FastReserveDetailView from "@/modules/fastReserveDetail/views/FastReserveDetailView";
+import FastReserveDetailView from "@/modules/main/fastReserveDetail/views/FastReserveDetailView";
 import { notFound } from "next/navigation";
 
 const FastReserveDetail = async ({

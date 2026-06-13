@@ -1,6 +1,6 @@
 import { IFastReserveParams, THousesResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import FastReserveView from "@/modules/fastReserve/views/FastReserveView";
+import FastReserveView from "@/modules/main/fastReserve/views/FastReserveView";
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | undefined }>;

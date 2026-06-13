@@ -1,6 +1,6 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import SocialMediaView from "@/modules/AdminDashboard/socialMedia-management/views/SocialMediaView";
+import SocialMediaView from "@/modules/dashboard/AdminDashboard/socialMedia-management/views/SocialMediaView";
 import React, { Suspense } from "react";
 
 const SocialMediaManagementPage = async ({

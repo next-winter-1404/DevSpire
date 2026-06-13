@@ -1,10 +1,9 @@
-import HomeView from "@/modules/home/views/HomeView";
-
+import HomeView from "@/modules/main/home/views/HomeView";
 
 export default function Home() {
-  return(
+  return (
     <div>
-      <HomeView/>
+      <HomeView />
     </div>
-  ) 
+  );
 }

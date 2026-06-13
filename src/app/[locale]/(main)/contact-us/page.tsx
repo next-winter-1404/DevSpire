@@ -1,6 +1,5 @@
-import ContactView from "@/modules/contact-us/views/ContactView";
+import ContactView from "@/modules/main/contact-us/views/ContactView";
 
 export default function ContactUsPage() {
   return <ContactView />;
 }
-

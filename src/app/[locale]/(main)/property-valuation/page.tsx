@@ -1,4 +1,4 @@
-import PropertyValuationView from "@/modules/property/property-valuation/views/PropertyValuationView";
+import PropertyValuationView from "@/modules/main/property/property-valuation/views/PropertyValuationView";
 import React from "react";
 
 const PropertyValuationPage = () => {

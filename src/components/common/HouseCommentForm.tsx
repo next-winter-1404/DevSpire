@@ -1,5 +1,5 @@
-import { IHouseCMPayload } from "@/modules/booking/types";
-import { useComments } from "@/modules/fastReserveDetail/hooks/useComment";
+import { IHouseCMPayload } from "@/modules/main/booking/types";
+import { useComments } from "@/modules/main/fastReserveDetail/hooks/useComment";
 import { useTranslations } from "next-intl";
 import { Controller, useForm } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";

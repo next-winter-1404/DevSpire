@@ -1,6 +1,6 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import FavoritesView from "@/modules/CustomerDashboard/Favorites/views/FavoritesView";
+import FavoritesView from "@/modules/dashboard/customerDashboard/favorites/views/FavoritesView";
 import React, { Suspense } from "react";
 
 const FavoritesPage = async ({

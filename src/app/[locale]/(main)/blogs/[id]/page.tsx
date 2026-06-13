@@ -1,6 +1,6 @@
 import { TBlog } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import ArticleDetailView from "@/modules/blogDetail/views/BlogDetailView";
+import ArticleDetailView from "@/modules/main/blogDetail/views/BlogDetailView";
 import { notFound } from "next/navigation";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {

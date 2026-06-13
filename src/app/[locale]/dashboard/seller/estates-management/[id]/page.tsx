@@ -1,7 +1,7 @@
 import { THouse } from "@/components/common/types";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import EstateManageMentFormView from "@/modules/sellerDashboard/estatesManagement/Form/views/EstateManageMentFormView";
+import EstateManageMentFormView from "@/modules/dashboard/sellerDashboard/estatesManagement/Form/views/EstateManageMentFormView";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;

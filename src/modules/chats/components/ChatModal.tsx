@@ -16,11 +16,11 @@ import {
 } from "lucide-react";
 import { getCookie } from "cookies-next";
 import { jwtDecode } from "jwt-decode";
-import { IDecodedToken } from "@/modules/fastReserveDetail/types";
 import toast from "react-hot-toast";
 import { useRouter } from "@/i18n/routing";
 import { useChat } from "../hooks";
-import { TUser } from "@/modules/mortgageRentDetail/types";
+import { TUser } from "@/modules/main/mortgageRentDetail/types";
+import { IDecodedToken } from "@/modules/main/fastReserveDetail/types";
 
 export type TMessage = {
   id: number;

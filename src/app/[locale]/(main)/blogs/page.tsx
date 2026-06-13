@@ -1,6 +1,6 @@
 import { IBlogsParams, TBlogsResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import BlogsView from "@/modules/blogs/views/BlogsView";
+import BlogsView from "@/modules/main/blogs/views/BlogsView";
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | undefined }>;

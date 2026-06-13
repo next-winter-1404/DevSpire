@@ -1,4 +1,4 @@
-import { IDecodedToken } from "@/modules/fastReserveDetail/types";
+import { IDecodedToken } from "@/modules/main/fastReserveDetail/types";
 import { jwtDecode } from "jwt-decode";
 
 export function isTokenExpired(token: string) {

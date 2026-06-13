@@ -1,6 +1,6 @@
 import { THousesResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import MortgageRentView from "@/modules/mortgageRent/views/MortgageRentView";
+import MortgageRentView from "@/modules/main/mortgageRent/views/MortgageRentView";
 
 const page = async ({
   searchParams,
