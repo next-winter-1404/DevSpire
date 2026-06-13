@@ -12,7 +12,7 @@ interface IProps{
 const FilterToursModal = ({handleTourFilterModal}: IProps) => {
 
 
-    const t = useTranslations("adminDashboard.tours");
+    const t = useTranslations("adminDashboard.toursManagement");
     const locale = useLocale();
     const searchParams = useSearchParams();
     const router = useRouter();

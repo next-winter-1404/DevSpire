@@ -12,7 +12,7 @@ import CustomSelect from "@/components/common/CustomSelectOption";
 
 const ToursManagementTop = () => {
 
-    const t = useTranslations("sellerDashboard.notifications");
+    const t = useTranslations("adminDashboard.toursManagement");
     const locale = useLocale();
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -63,17 +63,13 @@ const ToursManagementTop = () => {
     return (
         <>
             <div className="flex flex-col items-center gap-4 w-full   sm:flex-row sm:justify-between">
-                <div className="flex flex-col items-center gap-4   lg:flex-row">
+                <div className="flex flex-col items-center gap-4 w-full   sm:w-auto   lg:flex-row">
                     <h1 className="font-bold whitespace-nowrap text-[24px] text-[#1E2022] dark:text-[#F5F5F5]">{t("title")}</h1>
                     <div className="flex flex-col gap-2 w-full   sm:flex-row">
                         <input
                         type="text"
                         value={searchQuery}
-                        placeholder={
-                            locale === "en"
-                            ? "Enter search text..."
-                            : "عبارت مورد نظر را وارد کنید"
-                        }
+                        placeholder={t("searchPlc")}
                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
                             setSearchQuery(e.target.value)
                         }

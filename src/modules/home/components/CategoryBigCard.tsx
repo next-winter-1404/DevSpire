@@ -11,13 +11,14 @@ interface ICategoryBigCard{
 
 const CategoryBigCard = ({imageUrl , title}: ICategoryBigCard) => {
 
-    const locale = useLocale()
+    const locale = useLocale();
 
     return (
         <div 
         style={{ backgroundImage: `url('${imageUrl}')` }}
-        className='flex flex-col justify-end w-[305px] h-[542px] pb-4 px-4 bg-cover bg-center rounded-[24px] 
+        className='flex flex-col justify-end w-full h-[542px] pb-4 px-4 bg-cover bg-center rounded-[24px] 
         before:absolute before:inset-0 before:bg-black/50 overflow-hidden relative
+        md:w-[305px]
         dark:bg-black/100'>
             <div className='flex justify-between items-center relative z-10'>
                 <div className='py-2 px-4 bg-[#FFFFFF] rounded-[48px] cursor-pointer   dark:bg-[#262626]'>
