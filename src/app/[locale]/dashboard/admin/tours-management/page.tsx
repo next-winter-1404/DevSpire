@@ -13,13 +13,10 @@ const page = async ({searchParams}: IProps) => {
 
     const params = await searchParams;
     const payLoad = {
+        title: params.title ?? "",
+        tag: params.tag ?? "",
         page: params.page ?? "1",
         limit: params.limit ?? "5",
-        sort: params.sort ?? "",
-        order: params.order ?? "DESC",
-        area_name: params.area_name ?? "",
-        lat: params.lat ?? "",
-        lng: params.lng ?? "",
     } as Record<string, string>;
 
     return (

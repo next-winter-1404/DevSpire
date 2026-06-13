@@ -19,15 +19,15 @@ const SocialBookMarksTop = () => {
     const pathname = usePathname();
 
     const [isOpenFilterModal, setIsOpenFilterModal] = useState<boolean>(false);
-    const [query, setQuery] = useState(searchParams.get("name") ?? "");
+    const [query, setQuery] = useState(searchParams.get("note") ?? "");
     const [search] = useDebounce(query, 950);
 
     useEffect(() => {
         const params = new URLSearchParams(searchParams.toString());
         if (search) {
-            params.set("name", search);
+            params.set("note", search);
         } else {
-            params.delete("name");
+            params.delete("note");
         }
         params.set("page", "1");
         
