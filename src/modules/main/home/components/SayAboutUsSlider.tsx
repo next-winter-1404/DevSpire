@@ -16,23 +16,23 @@ interface Props {
 }
 
 const SayAboutUsSlider = ({ data }: Props) => {
-  const locale = useLocale();
+  // const locale = useLocale();
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerView = 3;
-  const totalSlides = Math.ceil(data.length / itemsPerView);
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const itemsPerView = 3;
+  // const totalSlides = Math.ceil(data.length / itemsPerView);
 
-  const nextSlide = () => {
-    if (currentIndex < totalSlides - 1) {
-      setCurrentIndex((prev) => prev + 1);
-    }
-  };
+  // const nextSlide = () => {
+  //   if (currentIndex < totalSlides - 1) {
+  //     setCurrentIndex((prev) => prev + 1);
+  //   }
+  // };
 
-  const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1);
-    }
-  };
+  // const prevSlide = () => {
+  //   if (currentIndex > 0) {
+  //     setCurrentIndex((prev) => prev - 1);
+  //   }
+  // };
 
   return (
     <div className="flex flex-col items-center gap-10 w-full">

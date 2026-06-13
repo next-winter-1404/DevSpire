@@ -541,9 +541,11 @@
     },
     "toursManagement": {
       "title": "مدیریت تور ها",
+      "searchPlc": "عبارت مورد نظر را وارد کنید",
       "filters": "فیلتر ها",
       "actions": "عملیات",
       "showNumber": "تعداد نمایش",
+      "sortBy": "مرتب سازی بر اساس",
       "order": "ترتیب مرتب سازی",
       "cancel": "انصراف",
       "applyFilters": "اعمال فیلتر ها",

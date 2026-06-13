@@ -543,9 +543,11 @@
     },
     "toursManagement": {
       "title": "Tours Management",
+      "searchPlc": "Enter the desire phrase",
       "filters": "Filters",
       "actions": "Actions",
       "showNumber": "Show Number",
+      "sortBy": "Sort By",
       "order": "Order",
       "cancel": "Cancel",
       "applyFilters": "Apply Filters",
