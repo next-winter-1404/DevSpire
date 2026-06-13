@@ -23,7 +23,8 @@ type AnswerQuestionModalProps = {
 export default function AnswerQuestionModal({
   questionId,
   question,
-}: AnswerQuestionModalProps) {const t = useTranslations("PropertyQA");
+}: AnswerQuestionModalProps) {
+  const t = useTranslations("PropertyQA");
 
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -51,7 +52,7 @@ export default function AnswerQuestionModal({
     },
 
     onSuccess: () => {
-toast.success(t("answerSuccess"));
+      toast.success(t("answerSuccess"));
 
       reset({
         questionId,
@@ -64,7 +65,7 @@ toast.success(t("answerSuccess"));
     },
 
     onError: (err) => {
-const fallbackMessage = t("answerFallbackError");
+      const fallbackMessage = t("answerFallbackError");
 
       if (axios.isAxiosError(err)) {
         const status = err.response?.status;
@@ -120,8 +121,8 @@ const fallbackMessage = t("answerFallbackError");
            bg-background shadow-2xl shadow-slate-950/20"
           >
             <div className="relative bg-[#0d3b66] px-6 py-6 text-white">
-              <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
-              <div className="absolute -bottom-20 right-10 h-44 w-44 rounded-full bg-[#ff7f11]/20 blur-3xl" />
+              <div className="absolute -start-16 -top-16 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+              <div className="absolute -bottom-20 end-10 h-44 w-44 rounded-full bg-[#ff7f11]/20 blur-3xl" />
 
               <div className="relative flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">
@@ -131,9 +132,9 @@ const fallbackMessage = t("answerFallbackError");
 
                   <div>
                     <h3 className="text-xl font-black">{t("answerModalTitle")}</h3>
-<p className="mt-1 text-sm text-white/60">
-  {t("answerModalDesc")}
-</p>
+                    <p className="mt-1 text-sm text-white/60">
+                      {t("answerModalDesc")}
+                    </p>
 
                   </div>
                 </div>
@@ -173,47 +174,45 @@ const fallbackMessage = t("answerFallbackError");
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="text-sm font-bold text-[#0d3b66]">
-  {t("answerTextLabel")}
+                    {t("answerTextLabel")}
                   </label>
 
                   <span
-                    className={`text-xs ${
-                      answerValue.length > 500
-                        ? "text-[#ff5555]"
-                        : "text-slate-400"
-                    }`}
+                    className={`text-xs ${answerValue.length > 500
+                      ? "text-[#ff5555]"
+                      : "text-slate-400"
+                      }`}
                   >
                     {answerValue.length}/500
                   </span>
                 </div>
 
                 <textarea
-              {...register("answer", {
-  required: t("validation.answerRequired"),
-  minLength: {
-    value: 5,
-    message: t("validation.answerMin"),
-  },
-  maxLength: {
-    value: 500,
-    message: t("validation.answerMax"),
-  },
-  validate: {
-    notOnlySpace: (value) =>
-      value.trim().length > 0 || t("validation.answerEmpty"),
-    meaningful: (value) =>
-      value.trim().length >= 5 || t("validation.answerMeaningful"),
-  },
-})}
+                  {...register("answer", {
+                    required: t("validation.answerRequired"),
+                    minLength: {
+                      value: 5,
+                      message: t("validation.answerMin"),
+                    },
+                    maxLength: {
+                      value: 500,
+                      message: t("validation.answerMax"),
+                    },
+                    validate: {
+                      notOnlySpace: (value) =>
+                        value.trim().length > 0 || t("validation.answerEmpty"),
+                      meaningful: (value) =>
+                        value.trim().length >= 5 || t("validation.answerMeaningful"),
+                    },
+                  })}
 
-placeholder={t("answerPlaceholder")}
+                  placeholder={t("answerPlaceholder")}
                   className={`min-h-[160px] w-full resize-none rounded-3xl border
                      px-5 py-4 text-sm leading-7 text-slate-700 outline-none transition
-                      placeholder:text-slate-400  ${
-                        errors.answer
-                          ? "border-[#ff5555] focus:ring-4 focus:ring-[#ff5555]/10"
-                          : "border-slate-200 focus:border-[#ff7f11] focus:ring-4 focus:ring-[#ff7f11]/10"
-                      }`}
+                      placeholder:text-slate-400  ${errors.answer
+                      ? "border-[#ff5555] focus:ring-4 focus:ring-[#ff5555]/10"
+                      : "border-slate-200 focus:border-[#ff7f11] focus:ring-4 focus:ring-[#ff7f11]/10"
+                    }`}
                 />
 
                 {errors.answer && (
@@ -235,17 +234,17 @@ placeholder={t("answerPlaceholder")}
                   disabled={!isValid || isPending}
                   className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#ff7f11] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/20 transition hover:bg-[#e86f00] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
                 >
-                {isPending ? (
-  <>
-    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
-    {t("submittingAnswer")}
-  </>
-) : (
-  <>
-    <Send className="h-4 w-4 rotate-180" />
-    {t("submitAnswer")}
-  </>
-)}
+                  {isPending ? (
+                    <>
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                      {t("submittingAnswer")}
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4 rotate-180" />
+                      {t("submitAnswer")}
+                    </>
+                  )}
 
                 </button>
 
@@ -255,7 +254,7 @@ placeholder={t("answerPlaceholder")}
                   disabled={isPending}
                   className="rounded-2xl border border-slate-200 px-5 py-3 text-sm font-bold text-slate-500 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-{t("cancel")}
+                  {t("cancel")}
                 </button>
               </div>
             </form>

@@ -9,7 +9,8 @@ interface IProps {
   houseId: number;
 }
 
-const QAListModal = ({ onClose, houseId }: IProps) => {const t = useTranslations("PropertyQA");
+const QAListModal = ({ onClose, houseId }: IProps) => {
+  const t = useTranslations("PropertyQA");
 
   const { data, isPending } = useQuery({
     queryKey: ["GETQA"],
@@ -35,7 +36,8 @@ const QAListModal = ({ onClose, houseId }: IProps) => {const t = useTranslations
           <h3 className="text-lg font-bold text-foreground"> {t("questionsTitle")}</h3>
           <button
             onClick={onClose}
-            className="absolute left-4 top-4 p-2 rounded-full bg-gray-100
+            className="absolute start-4 top-4 p-2 rounded-full bg-gray-100
+
             cursor-pointer dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
           >
             <X className="w-4 h-4" />
@@ -45,7 +47,7 @@ const QAListModal = ({ onClose, houseId }: IProps) => {const t = useTranslations
           <div className="flex flex-col items-center justify-center py-16 gap-4">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
             <p className="text-sm text-muted-foreground">
-  {t("loading")}
+              {t("loading")}
             </p>
           </div>
         )}
@@ -56,7 +58,7 @@ const QAListModal = ({ onClose, houseId }: IProps) => {const t = useTranslations
         ) : (
           <div className="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
             <p className="text-slate-400">
-  {t("emptyState")}
+              {t("emptyState")}
             </p>
           </div>
         )}
