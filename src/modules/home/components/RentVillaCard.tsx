@@ -26,9 +26,11 @@ const RentVillaCard = ({ item }: { item: THouse }) => {
 
       <div className="flex flex-col justify-between w-full py-1">
         <div className="flex flex-col items-start gap-1">
-          <span className="font-regular text-[18px] sm:text-[20px] text-[#1E2022] dark:text-[#E4E4E4] line-clamp-2">
-            اجاره ویلا در {item.location}
-          </span>
+          {typeof item.location == "string" && (
+            <span className="font-regular text-[18px] sm:text-[20px] text-[#1E2022] dark:text-[#E4E4E4] line-clamp-2">
+              اجاره ویلا در {item.location}
+            </span>
+          )}
           <span className="font-regular text-[14px] sm:text-[16px] text-[#777777]">
             {item.num_comments} مورد
           </span>

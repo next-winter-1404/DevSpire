@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { THouse } from "./types";
 import { getDiscount } from "@/utils/helper/getDiscount";
 import AddHouseFavorites from "./AddHouseFavorites";
@@ -13,6 +13,7 @@ type props = {
 };
 
 const HouseCard = ({ property, className, transactionType }: props) => {
+  const locale = useLocale();
   const t = useTranslations("fastReserve");
   return (
     <div
@@ -26,7 +27,9 @@ const HouseCard = ({ property, className, transactionType }: props) => {
           fill
           className="object-cover"
         />
-        <div className="relative right-3 top-3 flex items-center gap-4">
+        <div
+          className={`relative ${locale == "fa" ? "right-3" : "left-3"} top-3 flex items-center gap-4`}
+        >
           <AddHouseFavorites
             houseId={property.id}
             isFavorite={property.isFavorite}
@@ -35,8 +38,8 @@ const HouseCard = ({ property, className, transactionType }: props) => {
         </div>
         {property.discounted_price && (
           <div
-            className="absolute top-3 left-3 bg-[#FF5555] text-white
-           rounded-full text-[16px] w-13 h-13 flex items-center justify-center"
+            className={`absolute top-3 ${locale == "fa" ? "left-3" : "right-3"} bg-[#FF5555] text-white
+           rounded-full text-[16px] w-13 h-13 flex items-center justify-center`}
           >
             {getDiscount(
               parseInt(property.price),
