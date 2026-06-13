@@ -23,15 +23,15 @@ const LocationsDataTableRow = ({item}: IProps) => {
         dark:border-[#777777]
         md:flex md:items-center">
             <td className="flex flex-col w-full gap-2   md:flex-row">
-                <td className="text-[#1E2022]   md:w-[40%]   dark:text-[#E4E4E4]">
+                <div className="text-[#1E2022]   md:w-[40%]   dark:text-[#E4E4E4]">
                     <span>{item.title}</span>
-                </td>
-                <td className="text-[#1E2022]   md:w-[30%]   dark:text-[#E4E4E4]">
+                </div>
+                <div className="text-[#1E2022]   md:w-[30%]   dark:text-[#E4E4E4]">
                     <span></span>
-                </td>
-                <td className="text-[#1E2022]   md:w-[30%]   dark:text-[#E4E4E4]">
+                </div>
+                <div className="text-[#1E2022]   md:w-[30%]   dark:text-[#E4E4E4]">
                     <span></span>
-                </td>
+                </div>
             </td>
             <td onClick={() => {handleActionsModal(true)}} className="p-1 text-[#1E2022] rounded-[8px] cursor-pointer   
             hover:bg-[#F5F5F5]
