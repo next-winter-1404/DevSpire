@@ -2,6 +2,30 @@ import { THouse, THousesResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { Link } from "@/i18n/routing";
 import MortgageRentDetailViewx from "@/modules/main/mortgageRentDetail/views/MortgageRentDetailView";
+import { customMetadataGenerator } from "@/utils/helper/Metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  const data = await apiFetch<THouse | null>(`/houses/${id}`, {
+    next: {
+      revalidate: 70,
+    },
+  });
+  if (!data) {
+    return customMetadataGenerator({
+      title: "not found",
+    });
+  }
+  return customMetadataGenerator({
+    title: data.title,
+    description: data.caption,
+  });
+}
 
 const MortgageRentDetail = async ({
   params,
@@ -21,9 +45,20 @@ const MortgageRentDetail = async ({
       limit: "10",
     },
   });
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "house",
+    title: data?.title,
+    rating: data?.rate,
+    description: data?.caption,
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {data ? (
         <MortgageRentDetailViewx sliderData={sliderData?.houses} data={data} />
       ) : (
