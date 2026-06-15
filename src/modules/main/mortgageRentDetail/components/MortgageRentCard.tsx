@@ -43,8 +43,6 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
     },
   );
 
-  const [openChatModal, setOpenChatModal] = useState<boolean>(false);
-
   if (isPending) {
     return (
       <div className="flex flex-col items-center gap-6 p-6 border border-[#DDDDDD] rounded-[24px]">
@@ -113,10 +111,7 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
           <span>تماس با **** {seller.phoneNumber?.slice(0, 4)}</span>
         </button>
 
-        <button
-          onClick={() => setOpenChatModal(true)}
-          className="flex justify-center items-center gap-3 w-full py-3 text-[#FF7F11] border border-[#FF7F11] rounded-[40px] hover:bg-[#FF7F11] hover:text-white transition"
-        >
+        <button className="flex justify-center items-center gap-3 w-full py-3 text-[#FF7F11] border border-[#FF7F11] rounded-[40px] hover:bg-[#FF7F11] hover:text-white transition">
           <Chat />
           <span>گفت و گو با فروشنده</span>
         </button>

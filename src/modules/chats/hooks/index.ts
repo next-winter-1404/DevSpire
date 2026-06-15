@@ -11,6 +11,7 @@ export interface ISendMessagePayload {
   createdAt: string;
   updatedAt: string;
 }
+
 export const useChat = () => {
   const queryClient = useQueryClient();
   const { data: messages, isPending } = useQuery({
@@ -28,7 +29,7 @@ export const useChat = () => {
     mutationFn: async (data: ISendMessagePayload) => {
       try {
         const res = await httpClient.post("/chats/send", data);
-        return res.data;
+        return res.data as TMessage;
       } catch (err) {
         throw err;
       }
