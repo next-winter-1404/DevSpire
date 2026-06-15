@@ -9,7 +9,9 @@ import { usePathname, useRouter } from "@/i18n/routing";
 import FilterCategoriesModal from "./FilterCategoriesModal";
 import AddCategoryModal from "./AddCategoryModal";
 
+
 const CategoriesTop = () => {
+
   const t = useTranslations("adminDashboard.categories");
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -54,7 +56,6 @@ const CategoriesTop = () => {
           <h1 className="font-bold text-xl sm:text-2xl text-[#1E2022] dark:text-[#F5F5F5] whitespace-nowrap">
             {t("title")}
           </h1>
-
           <input
             value={query}
             onChange={getQuery}

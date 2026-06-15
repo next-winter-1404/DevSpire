@@ -5,6 +5,7 @@ import CategorySmallCard from "./CategorySmallCard";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import Container from "@/components/common/Container";
 
+
 const Categories = async () => {
   const data = await apiFetch<TCategoriesResponse>("/categories", {
     params: {
@@ -17,7 +18,6 @@ const Categories = async () => {
 
   const categories = data?.data?.slice(0, 8) || [];
 
-  // جلوگیری از کرش کردن در صورت خالی بودن دیتا
   if (categories.length < 7) return null;
 
   const categorySmallCards1 = [
@@ -54,19 +54,14 @@ const Categories = async () => {
             <CategoriesTop />
           </div>
 
-          {/* کانتینر اصلی کارت‌ها: در موبایل ستونی، در دسکتاپ ردیفی */}
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 w-full">
-            {/* کارت بزرگ سمت راست/بالا */}
             <div className="w-full lg:w-1/3 flex justify-center">
               <CategoryBigCard
                 title={categories[6]?.name}
                 imageUrl="/images/home/apartment.jpg"
               />
             </div>
-
-            {/* ستون میانی (کارت‌های کوچک) */}
             <div className="flex flex-col gap-6 lg:gap-10 w-full px-6 ">
-              {/* ردیف اول کارت‌های کوچک */}
               <div className="flex flex-col sm:flex-row gap-6 lg:gap-10 w-full">
                 {categorySmallCards1.map((item) => (
                   <div
@@ -80,7 +75,6 @@ const Categories = async () => {
                   </div>
                 ))}
               </div>
-              {/* ردیف دوم کارت‌های کوچک */}
               <div className="flex flex-col sm:flex-row gap-6 lg:gap-10 w-full">
                 {categorySmallCards2.map((item) => (
                   <div
@@ -95,8 +89,6 @@ const Categories = async () => {
                 ))}
               </div>
             </div>
-
-            {/* کارت بزرگ سمت چپ/پایین */}
             <div className="w-full lg:w-1/3 flex justify-center">
               <CategoryBigCard
                 title={categories[2]?.name}

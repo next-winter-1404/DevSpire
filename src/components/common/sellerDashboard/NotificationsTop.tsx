@@ -65,7 +65,7 @@ const NotificationsTop = () => {
         className="flex flex-col justify-between gap-6 w-full 
         lg:flex-row lg:gap-0"
       >
-        <div className="flex flex-col items-center gap-4   lg:flex-row">
+        <div className="flex flex-col items-start gap-4   sm:items-center   lg:flex-row">
           <h1 className="font-bold whitespace-nowrap text-[24px] text-[#1E2022] dark:text-[#F5F5F5]">
             {t("title")}
           </h1>

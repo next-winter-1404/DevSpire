@@ -22,7 +22,7 @@ const LocationsManagementTop = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-4 w-full   sm:flex-row sm:justify-between">
+      <div className="flex flex-col items-start gap-4 w-full   sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">
           {t("title")}
         </h1>
