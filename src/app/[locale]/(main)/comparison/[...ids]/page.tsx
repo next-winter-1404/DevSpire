@@ -5,7 +5,15 @@ import PropertyComparison, {
 import { THouse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { Link } from "@/i18n/routing";
+import { customMetadataGenerator } from "@/utils/helper/Metadata";
 import { AlertCircle, ArrowRight, Home } from "lucide-react";
+
+export async function generateMetadata() {
+  return customMetadataGenerator({
+    title: "مقایسه املاک",
+    description: "ملک های مورد نظرتان را باهم مقایسه کنید",
+  });
+}
 
 const comparisonPage = async ({
   params,

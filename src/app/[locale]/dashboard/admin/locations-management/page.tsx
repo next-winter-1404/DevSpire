@@ -1,6 +1,6 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import LocationsManagementView from "@/modules/AdminDashboard/LocationsManagement/views/LocationsManagementView";
+import LocationsManagementView from "@/modules/dashboard/AdminDashboard/LocationsManagement/views/LocationsManagementView";
 import { Suspense } from "react";
 
 interface IProps {

@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useDebounce } from "use-debounce";
 import { IAllUsers } from "./types";
-import { TUser } from "@/modules/mortgageRentDetail/types";
+import { TUser } from "@/modules/main/mortgageRentDetail/types";
 
 interface IProps {
   onClose: () => void;

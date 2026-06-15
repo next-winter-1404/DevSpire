@@ -2,8 +2,8 @@ import AIChatModal from "@/components/common/Assistant/AIChatModal";
 import Footer, { ISocialsRes } from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
-import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
-import { IDecodedToken } from "@/modules/fastReserveDetail/types";
+import { TUserRes } from "@/modules/dashboard/customerDashboard/dashboard/components/CustomerDashboardCharts";
+import { IDecodedToken } from "@/modules/main/fastReserveDetail/types";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 

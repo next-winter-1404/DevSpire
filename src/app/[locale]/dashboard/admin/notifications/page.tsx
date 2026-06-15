@@ -1,5 +1,5 @@
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import AdminNotificationsView from "@/modules/AdminDashboard/Notifications/view/AdminNotificationsView";
+import AdminNotificationsView from "@/modules/dashboard/AdminDashboard/notifications/view/AdminNotificationsView";
 
 const AdminNotificationsPage = async ({
   searchParams,

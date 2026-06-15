@@ -65,7 +65,7 @@ export default function AIChatModal() {
     onError: (err: any) => {
       const aiMessage: Message = {
         id: Date.now().toString(),
-        text: err.response?.data?.message || err.message || "server error",
+        text: locale == "fa" ? "مشکلی پیش آمده است" : "server error",
         sender: "ai",
         time: new Date().toLocaleTimeString(locale == "fa" ? "fa-IR" : "", {
           hour: "2-digit",

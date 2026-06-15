@@ -1,3 +1,5 @@
+import { TUser } from "@/modules/main/mortgageRentDetail/types";
+
 export type IFastReserveParams = {
   page?: string;
   sort?: string;
@@ -189,20 +191,16 @@ export interface IDashboardStats {
   averageRating: string;
 }
 
-
-
-
 /// Customer Dashboard ///
-
 
 export type TSocialBookMark = {
   id: number;
   title: string;
-}
+};
 export type TSocialBookMarksResponse = {
   data: TSocialBookMark[];
   totalCount: number;
-}
+};
 export type ISocialBookMarksParams = {
   page: number;
   limit: number;
@@ -210,28 +208,25 @@ export type ISocialBookMarksParams = {
   order: string;
   houseId: number;
   note: string;
-}
-
-
+};
 
 /// Admin Dashboard ///
 
-
 export type TNotification = {
-  id: number,
-  userId: number,
-  title: string,
-  message: string,
-  type: string,
-  data: Record<string, unknown>, 
-  isRead: true,
-  createdAt: string,
-  updatedAt: string
-}
+  id: number;
+  userId: number;
+  title: string;
+  message: string;
+  type: string;
+  data: Record<string, unknown>;
+  isRead: true;
+  createdAt: string;
+  updatedAt: string;
+};
 export type TNotificationsResponse = {
   data: TNotification[];
   totalCount: number;
-}
+};
 export type INotificationsParams = {
   page?: string;
   limit?: string;
@@ -241,36 +236,34 @@ export type INotificationsParams = {
   message?: string;
   sort?: string;
   order?: string;
-}
-
+};
 
 export type TCategory = {
   id: number;
   name: string;
-}
+};
 export type TCategoriesResponse = {
   data: TCategory[];
   totalCount: number;
-}
+};
 export type ICategoriesParams = {
   page: number;
   limit: number;
   sort: string;
   order: string;
   name: string;
-}
-
+};
 
 export type TLocation = {
   id: number;
   areaName: string;
   lat: string;
   lng: string;
-}
+};
 export type TLocationsResponse = {
   data: TLocation[];
   totalCount: number;
-}
+};
 export type ILocationsParams = {
   page: number;
   limit: number;
@@ -279,8 +272,7 @@ export type ILocationsParams = {
   area_name: string;
   lat: string;
   lng: string;
-}
-
+};
 
 export type TTour = {
   id: number;
@@ -300,11 +292,11 @@ export type TTour = {
   schedule: string[];
   createdAt: string;
   updatedAt: string;
-}
+};
 export type TToursResponse = {
   data: TTour[];
   totalCount: number;
-}
+};
 export type IToursParams = {
   page: number;
   limit: number;
@@ -313,4 +305,9 @@ export type IToursParams = {
   title: string;
   tag: string;
   userId: number;
-}
+};
+
+export type IAllUsers = {
+  data: TUser[];
+  totalCount: number;
+};

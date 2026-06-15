@@ -177,12 +177,6 @@ const DashboardSidebar = ({ role }: IProps) => {
       },
 
       {
-        href: `${adminBasePath}/tours-management`,
-        label: "مدیریت تور ها",
-        Icon: UsersIcon,
-      },
-
-      {
         href: `${adminBasePath}/social-media`,
         label: "شبکه های اجتماعی",
         Icon: Globe,

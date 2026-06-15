@@ -10,7 +10,7 @@ import { DashboardIcon } from "@radix-ui/react-icons";
 import { useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 import LogoutModal from "@/components/common/LogoutModal";
-import { TUser } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
+import { TUser } from "@/modules/dashboard/customerDashboard/dashboard/components/CustomerDashboardCharts";
 
 export default function ProfileDropdown({ data }: { data: TUser }) {
   const router = useRouter();
@@ -58,11 +58,11 @@ export default function ProfileDropdown({ data }: { data: TUser }) {
       </button>
       {isOpen && (
         <div
-          className="absolute left-0 mt-3 w-50 p-2 bg-[#ffff]
+          className={`absolute ${locale == "fa" ? "left-0" : "right-0"} mt-3 w-50 p-2 bg-[#ffff]
             dark:bg-[#27272A] border
            border-gray-100 rounded-2xl
          shadow-2xl z-50 animate-in fade-in 
-         zoom-in-95 duration-200"
+         zoom-in-95 duration-200`}
         >
           <div className="px-4 py-3 border-b border-gray-50 text-right">
             <p className="text-sm font-semibold text-primary ">
@@ -89,7 +89,7 @@ export default function ProfileDropdown({ data }: { data: TUser }) {
               onClick={() => setIsOpen(false)}
             >
               <DashboardIcon />
-              داشبورد
+              {locale == "fa" ? "داشبورد" : "dashboard"}
             </Link>
           </div>
 
@@ -100,7 +100,7 @@ export default function ProfileDropdown({ data }: { data: TUser }) {
               onClick={() => setOpenLogoutModal(true)}
             >
               <LogOut size={18} />
-              خروج از حساب
+              {locale == "fa" ? " خروج از حساب" : "logout "}
             </button>
           </div>
           {openLogoutModal && (

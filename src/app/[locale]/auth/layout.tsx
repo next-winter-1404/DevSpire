@@ -1,5 +1,12 @@
 import AuthImagePanel from "@/modules/auth/components/AuthImagePanel";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 export default async function authLayout({
   children,
 }: {

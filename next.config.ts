@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "www.digisportcar.com",
       },
+      {
+        protocol: "https",
+        hostname: "localhost",
+      },
     ],
   },
 };

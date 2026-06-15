@@ -1,13 +1,11 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import SocialBookMarksView from "@/modules/CustomerDashboard/SocialBookMarks/views/SocialBookMarksView";
+import SocialBookmarksView from "@/modules/dashboard/customerDashboard/SocialBookMarks/views/SocialBookMarksView";
 import { Suspense } from "react";
-
 
 interface IProps {
   searchParams: Promise<{ [key: string]: string | null }>;
 }
-
 
 const page = async ({ searchParams }: IProps) => {
   const params = await searchParams;
@@ -23,7 +21,7 @@ const page = async ({ searchParams }: IProps) => {
   return (
     <DashboardContainer>
       <Suspense fallback={<DashboardTableSkeleton />}>
-        <SocialBookMarksView params={payLoad} />
+        <SocialBookmarksView params={payLoad} />
       </Suspense>
     </DashboardContainer>
   );

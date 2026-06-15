@@ -3,8 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { MoreVertical, MessageSquare, Star } from "lucide-react";
 import { FormatDate } from "@/utils/helper/FormatDate";
 import CommentsActionModal from "./CommentsActionModal";
-import { IComment } from "@/modules/SellerDashboard/payments/types";
-
+import { IComment } from "@/modules/dashboard/sellerDashboard/payments/types";
 
 export default function CommentsTable({
   comments,
