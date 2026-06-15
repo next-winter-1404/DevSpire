@@ -9,7 +9,9 @@ import { usePathname, useRouter } from "@/i18n/routing";
 import FilterCategoriesModal from "./FilterCategoriesModal";
 import AddCategoryModal from "./AddCategoryModal";
 
+
 const CategoriesTop = () => {
+
   const t = useTranslations("adminDashboard.categories");
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -49,9 +51,9 @@ const CategoriesTop = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-4 w-full sm:flex-row sm:justify-between">
-        <div className="flex items-center gap-4">
-          <h1 className="font-bold text-[24px] text-[#1E2022] dark:text-[#F5F5F5]">
+      <div className="flex flex-col items-center gap-4 w-full   sm:flex-row sm:justify-between">
+        <div className="flex flex-col items-start gap-4 w-full   sm:flex-row sm:items-center sm:w-auto">
+          <h1 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">
             {t("title")}
           </h1>
           <input
@@ -59,7 +61,7 @@ const CategoriesTop = () => {
             onChange={getQuery}
             type="text"
             placeholder={t("searchPlc")}
-            className="w-80 h-12 indent-4 bg-background border border-[#DDDDDD] rounded-[16px]"
+            className="w-full h-12 indent-4 bg-background border border-[#DDDDDD] rounded-[16px]   sm:w-80   dark:border-[#777777]"
           />
         </div>
         <div className="flex flex-col items-center gap-4 w-full sm:flex-row sm:w-auto">

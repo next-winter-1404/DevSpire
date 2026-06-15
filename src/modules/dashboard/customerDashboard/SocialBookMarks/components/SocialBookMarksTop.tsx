@@ -7,7 +7,9 @@ import { useDebounce } from "use-debounce";
 import { usePathname, useRouter } from "@/i18n/routing";
 import FilterSocBookMarksModal from "./FilterSocBookMarksModal";
 
+
 const SocialBookMarksTop = () => {
+
   const t = useTranslations("customerDashboard.socialBookMarks");
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -43,8 +45,8 @@ const SocialBookMarksTop = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-4 w-full sm:flex-row sm:justify-between">
-        <div className="flex flex-col items-center gap-4 w-full   sm:flex-row">
+      <div className="flex flex-col items-center gap-4 w-full   sm:flex-row sm:justify-between">
+        <div className="flex flex-col items-start gap-4 w-full   sm:flex-row sm:items-center">
           <h1 className="font-bold text-[24px] text-[#1E2022] dark:text-[#F5F5F5]">
             {t("title")}
           </h1>
