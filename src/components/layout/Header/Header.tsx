@@ -5,13 +5,12 @@ import Menu from "../../../../public/icons/Menu";
 import { Link } from "@/i18n/routing";
 import { usePathname } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
-import { Links } from "@/modules/header/mock/Links";
+import { Links } from "@/modules/main/header/mock/Links";
 import HeaderMenu from "./HeaderMenu";
 import ToggleTheme from "../../common/ToggleTheme";
 import Logo from "../../../../public/icons/Logo";
 import ProfileDropdown from "./ProfileDropdown";
-import { TUser } from "@/modules/mortgageRentDetail/types";
-import { TUserRes } from "@/modules/CustomerDashboard/Dashboard/components/CustomerDashboardCharts";
+import { TUserRes } from "@/modules/dashboard/customerDashboard/dashboard/components/CustomerDashboardCharts";
 
 const Header = ({ user }: { user: TUserRes | null }) => {
   const pathname = usePathname();

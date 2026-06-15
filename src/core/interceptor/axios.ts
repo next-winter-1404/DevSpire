@@ -66,7 +66,7 @@ httpClient.interceptors.response.use(
       // if we dont have refreshToken
       if (!refreshToken) {
         deleteCookie("accessToken");
-        toast.error("unAuthorized");
+        toast.error("sign in again");
         window.location.href = "/auth/login";
         return Promise.reject(error);
       }

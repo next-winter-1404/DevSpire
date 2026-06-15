@@ -1,17 +1,11 @@
-import CategoryDetailView from "@/modules/AdminDashboard/CategoryDetail/views/CategoryDetailView";
-
-
+import CategoryDetailView from "@/modules/dashboard/AdminDashboard/CategoryDetail/views/CategoryDetailView";
 
 const page = ({ params }: { params: Promise<{ id: string }> }) => {
+  return (
+    <div>
+      <CategoryDetailView params={params} />
+    </div>
+  );
+};
 
-
-    return (
-        <div>
-            <CategoryDetailView params={params}/>
-        </div>
-    )
-
-}
-
-export default page
-
+export default page;

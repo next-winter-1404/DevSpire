@@ -1,8 +1,31 @@
 import { THouse, THousesResponse } from "@/components/common/types";
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { Link } from "@/i18n/routing";
-import FastReserveDetailView from "@/modules/fastReserveDetail/views/FastReserveDetailView";
-import { notFound } from "next/navigation";
+import FastReserveDetailView from "@/modules/main/fastReserveDetail/views/FastReserveDetailView";
+import { customMetadataGenerator } from "@/utils/helper/Metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const param = parseInt(id);
+
+  const data = await apiFetch<THouse | null>(`/houses/${param}`, {
+    next: { revalidate: 80 },
+  });
+
+  if (!data) {
+    return customMetadataGenerator({
+      title: "not found",
+    });
+  }
+  return customMetadataGenerator({
+    title: data.title,
+    description: data.caption,
+  });
+}
 
 const FastReserveDetail = async ({
   params,
@@ -11,12 +34,17 @@ const FastReserveDetail = async ({
 }) => {
   const { id } = await params;
   const param = parseInt(id);
-  if (!param) {
-    notFound();
-  }
+
   const data = await apiFetch<THouse | null>(`/houses/${param}`, {
     next: { revalidate: 80 },
   });
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "house",
+    title: data?.title,
+    rating: data?.rate,
+    description: data?.caption,
+  };
   console.log(data);
   const sliderData = await apiFetch<THousesResponse | null>("/houses", {
     params: {
@@ -26,6 +54,10 @@ const FastReserveDetail = async ({
   });
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {data ? (
         <FastReserveDetailView sliderData={sliderData?.houses} house={data} />
       ) : (

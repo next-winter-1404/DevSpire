@@ -1,0 +1,41 @@
+"use client";
+import CustomPagination from "@/components/common/CustomPagination";
+import { usePathname, useRouter } from "@/i18n/routing";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { TBlogsResponse } from "@/components/common/types";
+import BlogsTable from "./BlogsTable";
+
+const BlogsList = ({ data }: { data: TBlogsResponse }) => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const [page, setPage] = useState<number>(
+    parseInt(searchParams.get("page") ?? "1"),
+  );
+  const limit = parseInt(searchParams.get("limit") ?? "6");
+
+  const onPageChange = (pageNum: number) => {
+    setPage(pageNum);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", String(pageNum));
+    router.push(`${pathname}?${params.toString()}`);
+  };
+  return (
+<div className="h-full flex flex-col justify-between bg-transparent dark:bg-transparent">
+      <div className="h-[86%] overflow-y-auto scroll-auto w-full">
+        <BlogsTable blog={data.data} />
+      </div>
+      <div className="flex items-center justify-center pb-4 border-t border-gray-100 dark:border-[#333333] pt-4">
+        <CustomPagination
+          currentPage={page}
+          totalPages={Math.ceil(data.totalCount / limit)}
+          onPageChange={onPageChange}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default BlogsList;

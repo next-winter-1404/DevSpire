@@ -20,7 +20,7 @@ const CompleteProfile: React.FC<CompleteProfileProps> = ({
   const t = useTranslations("customerDashboard.dashboard");
 
   return (
-    <div className="w-full rounded-[24px] bg-[#ffff] p-4 sm:p-5 md:p-6 dark:bg-[#262626]">
+    <div className="w-full rounded-[24px] bg-white dark:!bg-[#262626] p-4 sm:p-5 md:p-6 border border-transparent dark:!border-[#333333]">
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-2">
           <h2 className="text-[18px] sm:text-[20px] font-bold text-[#1E2022] dark:text-[#F5F5F5]">

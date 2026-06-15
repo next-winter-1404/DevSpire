@@ -1,18 +1,18 @@
 "use client";
 
-import {
-  IDecodedToken,
-  TAddFavoriteHouse,
-} from "@/modules/fastReserveDetail/types";
 import { useMutation } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { PostFavoriteHouse } from "@/modules/fastReserveDetail/services/POST/AddFavoriteHouse";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { getCookie } from "cookies-next";
 import { useRouter } from "@/i18n/routing";
+import {
+  IDecodedToken,
+  TAddFavoriteHouse,
+} from "@/modules/main/fastReserveDetail/types";
+import { PostFavoriteHouse } from "@/modules/main/fastReserveDetail/services/POST/AddFavoriteHouse";
 
 interface IProps {
   isFavorite: boolean;

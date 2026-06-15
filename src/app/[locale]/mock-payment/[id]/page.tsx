@@ -1,7 +1,7 @@
 import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { Link } from "@/i18n/routing";
-import { IGetPayment } from "@/modules/booking/types";
-import MockPaymentView from "@/modules/booking/views/MockPaymentView";
+import { IGetPayment } from "@/modules/main/booking/types";
+import MockPaymentView from "@/modules/main/booking/views/MockPaymentView";
 
 interface IProps {
   params: Promise<{ id: string }>;

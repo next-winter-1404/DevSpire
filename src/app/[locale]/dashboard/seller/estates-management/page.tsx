@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import EstateManagementDataStreaming from "@/modules/sellerDashboard/estatesManagement/views/EstateManagementDataStreaming";
 import { IUserHouseParams } from "@/components/common/types";
+import EstateManagementDataStreaming from "@/modules/dashboard/sellerDashboard/estatesManagement/views/EstateManagementDataStreaming";
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | undefined }>;

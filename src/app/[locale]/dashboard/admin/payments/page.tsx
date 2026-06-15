@@ -1,6 +1,6 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import SellerPaymentsView from "@/modules/sellerDashboard/payments/view/SellerPaymentsView";
+import SellerPaymentsView from "@/modules/dashboard/sellerDashboard/payments/view/SellerPaymentsView";
 import { Suspense } from "react";
 
 const AdminPaymentsManagement = async ({

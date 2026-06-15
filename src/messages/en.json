@@ -2,7 +2,7 @@
   "header": {
     "logo": "Logo",
     "home": "Home",
-    "fastReserve": "Fast Reserve",
+    "fastReserve": "Reservation",
     "mortgageAndRent": "Mortgage and Rent",
     "blogs": "Blogs",
     "aboutUs": "About Us",
@@ -542,9 +542,11 @@
     },
     "toursManagement": {
       "title": "Tours Management",
+      "searchPlc": "Enter the desire phrase",
       "filters": "Filters",
       "actions": "Actions",
       "showNumber": "Show Number",
+      "sortBy": "Sort By",
       "order": "Order",
       "cancel": "Cancel",
       "applyFilters": "Apply Filters",

@@ -1,6 +1,6 @@
 import { DashboardTableSkeleton } from "@/components/common/DashboardTableSkeleton";
 import DashboardContainer from "@/components/dashboard/DashboardContainer";
-import NotificationsView from "@/modules/SellerDashboard/Notifications/views/NotificationsView";
+import NotificationsView from "@/modules/dashboard/sellerDashboard/Notifications/views/NotificationsView";
 import { Suspense } from "react";
 
 interface IProps {

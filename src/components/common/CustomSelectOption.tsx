@@ -58,7 +58,7 @@ const CustomSelect = ({
       >
         <Select.Value placeholder={placeholder} />
         <Select.Icon>
-          <ChevronDownIcon className="w-5 h-5 transition-transform duration-200 data-[state=open]:rotate-180 text-[#1E2022]" />
+          <ChevronDownIcon className="w-5 h-5 transition-transform duration-200 data-[state=open]:rotate-180 text-[#1E2022] dark:text-gray-300" />
         </Select.Icon>
       </Select.Trigger>
 
@@ -67,9 +67,12 @@ const CustomSelect = ({
           position="popper"
           sideOffset={5}
           className="
-            w-[var(--radix-select-trigger-width)] bg-[#ffff] dark:bg-[#3F3F46] 
-            rounded-2xl shadow-lg z-50 overflow-hidden border dark:border-gray-700
-          "
+  w-[var(--radix-select-trigger-width)] 
+  bg-white dark:bg-[#262626]
+  rounded-2xl shadow-lg z-50 overflow-hidden 
+  border border-gray-200 dark:border-[#333333]
+"
+
         >
           <Select.Viewport className="p-2">
             {options.map((option) => (
@@ -79,7 +82,7 @@ const CustomSelect = ({
                 className="
                   text-right text-[15px] p-2 pr-8 rounded-md relative select-none
                   text-gray-800 dark:text-gray-200 
-                  data-[highlighted]:bg-gray-100 dark:data-[highlighted]:bg-gray-600 
+data-[highlighted]:bg-gray-100 dark:data-[highlighted]:bg-[#333333]
                   data-[highlighted]:outline-none cursor-pointer
                 "
               >

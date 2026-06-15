@@ -1,6 +1,6 @@
 "use client";
 import Close from "../../../../public/icons/Close";
-import { Links } from "@/modules/header/mock/Links";
+import { Links } from "@/modules/main/header/mock/Links";
 import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
