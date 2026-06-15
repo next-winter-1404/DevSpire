@@ -110,7 +110,6 @@ const Filters = ({
     dark:border-[#333333]
   "
       >
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="flex flex-col gap-3 max-w-[520px]">
             <span className="text-[15px] font-semibold text-gray-700 dark:text-gray-200">
@@ -130,8 +129,8 @@ dark:text-white
 dark:placeholder-gray-500
 border border-transparent
 dark:border-[#444]
-"/>
-
+"
+              />
 
               <Search
                 className={`absolute top-[50%] translate-y-[-50%] 
@@ -154,7 +153,7 @@ dark:border-[#444]
 
           <div className="flex flex-col gap-3">
             <span className="text-[15px] font-semibold text-gray-700 dark:text-gray-200">
-              ترتیب مرتب سازی
+              {locale == "fa" ? "ترتیب مرتب سازی" : "order"}{" "}
             </span>
 
             <CustomSelect
@@ -166,7 +165,7 @@ dark:border-[#444]
 
           <div className="flex flex-col gap-3">
             <span className="text-[15px] font-semibold text-gray-700 dark:text-gray-200">
-              تعداد نمایش
+              {locale == "fa" ? " تعداد نمایش" : "limit"}{" "}
             </span>
 
             <CustomSelect

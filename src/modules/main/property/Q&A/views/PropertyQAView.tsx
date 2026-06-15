@@ -5,7 +5,8 @@ import PropertyQAList, { IQAItem } from "../components/PropertyQA";
 import AskQuestionModal from "../components/AskQA";
 import { useTranslations } from "next-intl";
 
-const PropertyQAView = async ({ id }: { id: number }) => {const t = useTranslations("PropertyQA");
+const PropertyQAView = async ({ id }: { id: number }) => {
+  const t = useTranslations("PropertyQA");
 
   const res = await apiFetch<IQAItem[] | null>(`/property-QA/${id}`, {
     cache: "no-store",
@@ -20,7 +21,9 @@ const PropertyQAView = async ({ id }: { id: number }) => {const t = useTranslati
             <div className="bg-[#0d3b66] p-2 rounded-lg">
               <MessageSquare className="text-white w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-[#0d3b66]">{t("listTitle")}</h2>
+            <h2 className="text-2xl font-bold text-[#0d3b66]">
+              {t("listTitle")}
+            </h2>
           </div>
           <AskQuestionModal houseId={id} />
         </div>
@@ -30,10 +33,8 @@ const PropertyQAView = async ({ id }: { id: number }) => {const t = useTranslati
             <PropertyQAList isSeller={false} data={res} />
           </div>
         ) : (
-          <div className="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
-            <p className="text-slate-400">
-  {t("emptyState")}
-            </p>
+          <div className="text-center py-20 bg-background rounded-3xl border-2 border-dashed border-slate-200">
+            <p className="text-slate-400">{t("emptyState")}</p>
           </div>
         )}
       </div>

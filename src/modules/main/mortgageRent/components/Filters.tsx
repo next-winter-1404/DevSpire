@@ -162,11 +162,11 @@ const Filters = ({ resultLength }: { resultLength?: number }) => {
     <div className="flex flex-col gap-8 mt-10">
       <div className="flex justify-between">
         <h2 className="font-bold text-[24px] text-[#1E2022]   dark:text-[#F5F5F5]">
-          فیلتر ها
+          {locale == "fa" ? "فیلترها" : "filters"}
         </h2>
         <div className="flex gap-2 font-regular text-[20px] text-[#0D3B66]   dark:text-[#E4E4E4]">
           <span>{resultLength}</span>
-          <span>نتیجه</span>
+          <span>{locale == "fa" ? "نتیجه" : "result"}</span>
         </div>
       </div>
 
@@ -176,7 +176,9 @@ const Filters = ({ resultLength }: { resultLength?: number }) => {
             className="flex flex-col gap-4 w-full  
         sm:w-[320px]   lg:w-[510px]"
           >
-            <span className="font-bold text-[16px] text-[#1E2022]">جستجو</span>
+            <span className="font-bold text-[16px] text-foreground">
+              {locale == "fa" ? "جستجو" : "search"}
+            </span>
             <div className="relative">
               <input
                 placeholder="نام ملک مورد نظر را سرچ کنید"
@@ -221,7 +223,7 @@ const Filters = ({ resultLength }: { resultLength?: number }) => {
             </div>
             <div className=" flex flex-col gap-4 justify-start items-start w-full">
               <label className="text-[16px] text-[#1E2022] dark:text-[#FAFAFA] font-bold">
-                نوع معامله
+                {locale == "fa" ? "نوع معامله" : "transaction type"}{" "}
               </label>
               <CustomSelect
                 defaultValue={transactionType}

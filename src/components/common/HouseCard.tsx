@@ -28,7 +28,7 @@ const HouseCard = ({ property, className, transactionType }: props) => {
           className="object-cover"
         />
         <div
-          className={`relative ${locale == "fa" ? "right-3" : "left-3"} top-3 flex items-center gap-4`}
+          className={` absolute ${locale == "fa" ? "right-3" : "left-3"} top-3 flex items-center gap-4`}
         >
           <AddHouseFavorites
             houseId={property.id}
@@ -42,31 +42,42 @@ const HouseCard = ({ property, className, transactionType }: props) => {
            rounded-full text-[16px] w-13 h-13 flex items-center justify-center`}
           >
             {getDiscount(
-              parseInt(property.price),
-              parseInt(property.discounted_price),
+              parseInt(property.price || "0"),
+              parseInt(property.discounted_price || "0"),
             ).toFixed(0)}
             ٪ -
           </div>
         )}
       </div>
 
-      <div className="px-8 pb-6 pt-5 flex flex-col gap-3  ">
-        <div className=" flex flex-wrap items-center gap-4 text-[20px] font-bold">
+      <div className="px-8 pb-6 pt-5 flex flex-col  gap-3  ">
+        <div className=" flex flex-nowrap items-center gap-4 text-[20px] font-bold  ">
           {property.discounted_price && (
             <>
-              <span className=" flex justify-start items-center gap-2 text-[#777777] line-through decoration-1">
-                {parseInt(property.price).toLocaleString()}
-                <span>{t("toman")}</span>
+              <span
+                className=" flex shrink-0 justify-start items-center gap-2 text-[#777777] line-through
+               decoration-1"
+              >
+                <span className="truncate max-w-[100px] sm:max-w-none">
+                  {parseInt(property.price || "0").toLocaleString()}
+                </span>
+                <span className="shrink-0 text-sm md:text-base">
+                  {t("toman")}
+                </span>
               </span>
-              <span className=" flex justify-start items-center gap-2  text-[#1E2022] dark:text-[#FAFAFA]">
-                {parseInt(property.discounted_price).toLocaleString()}
-                <span>{t("toman")}</span>
+              <span className="flex min-w-0 justify-start items-center gap-2 text-[#1E2022] dark:text-[#FAFAFA]">
+                <span className="truncate">
+                  {parseInt(property.discounted_price || "0").toLocaleString()}
+                </span>
+                <span className="shrink-0 text-sm md:text-base">
+                  {t("toman")}
+                </span>
               </span>
             </>
           )}
           {!property.discounted_price && (
             <span className=" flex justify-start items-center gap-2  text-[#1E2022] dark:text-[#FAFAFA]">
-              {parseInt(property.price).toLocaleString()}
+              {parseInt(property.price || "0").toLocaleString()}
               <span>{t("toman")}</span>
             </span>
           )}

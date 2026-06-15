@@ -227,7 +227,7 @@ const SendNotification = () => {
           />
         )}
       </div>
-      <div className="w-[35%] w-full h-full">
+      <div className="hidden md:block w-[35%] w-full h-full">
         <NotificationsGifWrapper />
       </div>
     </div>

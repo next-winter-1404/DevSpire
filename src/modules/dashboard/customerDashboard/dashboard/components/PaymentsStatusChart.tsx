@@ -6,13 +6,13 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const PaymentStatusChart = ({ percentage }: { percentage: number }) => {
   return (
-    <div className="flex flex-col flex-grow p-4 sm:p-6 bg-white rounded-[24px] 
-              bg-red-500 dark:!bg-[#262626] dark:!border-[#333333] border border-transparent transition-colors">
+    <div
+      className="flex flex-col flex-grow p-4 sm:p-6 bg-white rounded-[24px] 
+              bg-red-500 dark:!bg-[#262626] dark:!border-[#333333] border border-transparent transition-colors"
+    >
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
-        dark:bg-[#262626]
         <div className="flex flex-col gap-2 min-w-0">
-          <h2 className="font-bold text-[18px] sm:text-[20px] text-[#1E2022] dark:text-[#F5F5F5]">
-          </h2>
+          <h2 className="font-bold text-[18px] sm:text-[20px] text-[#1E2022] dark:text-[#F5F5F5]"></h2>
           <p className="font-regular text-[14px] sm:text-[16px] text-[#777777] dark:text-gray-400 leading-6">
             پرداختی های شما توسط فروشنده بررسی و تایید میشود
           </p>

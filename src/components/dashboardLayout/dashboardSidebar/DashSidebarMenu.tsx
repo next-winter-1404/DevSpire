@@ -224,7 +224,7 @@ const DashboardSidebar = ({ role, toggleMenu }: IProps) => {
             onClick={() => {
               toggleMenu(false);
             }}
-            className="p-3 bg-[#F5F5F5] rounded-full"
+            className="p-3 bg-background rounded-full"
           >
             <Close />
           </div>

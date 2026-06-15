@@ -165,7 +165,8 @@ export default function UserHousesTable({
         {data.map((row) => (
           <div
             key={row.id}
-            className="w-full rounded-2xl border border-[#DDDDDD] bg-white p-4 shadow-sm relative dark:bg-[#1F2937] dark:border-white/10"
+            className="w-full rounded-2xl border border-[#DDDDDD] bg-[#ffff]
+             p-4 shadow-sm relative dark:bg-[#1F2937] dark:border-white/10"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-start gap-3 min-w-0">

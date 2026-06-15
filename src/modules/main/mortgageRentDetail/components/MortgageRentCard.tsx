@@ -96,11 +96,11 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
           </span>
         </div>
 
-    <div className="flex justify-between items-center w-full">
-      <div className="flex items-center gap-2 text-[15px] text-[#0D3B66] dark:text-blue-400">
-        <Money />
-        <span>قیمت از :</span>
-      </div>
+        <div className="flex justify-between items-center w-full">
+          <div className="flex items-center gap-2 text-[15px] text-[#0D3B66] dark:text-blue-400">
+            <Money />
+            <span>قیمت از :</span>
+          </div>
 
           <div className="flex gap-2 font-bold text-[18px] text-foreground">
             <span>{Number(amount).toLocaleString()}</span>
@@ -108,32 +108,32 @@ const MortgageRentCard = ({ sellerId, lastUpdated, amount }: IProps) => {
           </div>
         </div>
 
-    <button className="flex justify-center items-center gap-3 w-full py-3 text-white bg-[#0D3B66] rounded-[40px] hover:opacity-90 transition dark:bg-blue-600">
-      <MobileCall />
-      <span>تماس با **** {seller.phoneNumber?.slice(0, 4)}</span>
-    </button>
+        <button className="flex justify-center items-center gap-3 w-full py-3 text-white bg-[#0D3B66] rounded-[40px] hover:opacity-90 transition dark:bg-blue-600">
+          <MobileCall />
+          <span>تماس با **** {seller.phoneNumber?.slice(0, 4)}</span>
+        </button>
 
-    <button
-      onClick={() => setOpenChatModal(true)}
-      className="flex justify-center items-center gap-3 w-full py-3 text-[#FF7F11] border border-[#FF7F11] rounded-[40px] hover:bg-[#FF7F11] hover:text-white transition"
-    >
-      <Chat />
-      <span>گفت و گو با فروشنده</span>
-    </button>
+        <button
+          onClick={() => setOpenChatModal(true)}
+          className="flex justify-center items-center gap-3 w-full py-3 text-[#FF7F11] border border-[#FF7F11] rounded-[40px] hover:bg-[#FF7F11] hover:text-white transition"
+        >
+          <Chat />
+          <span>گفت و گو با فروشنده</span>
+        </button>
 
-    <div className="flex justify-between w-full text-[13px] text-[#777777] dark:text-gray-400">
-      <div className="flex items-center gap-2">
-        <DateIcon />
-        <span>{formattedDate}</span>
+        <div className="flex justify-between w-full text-[13px] text-[#777777] dark:text-gray-400">
+          <div className="flex items-center gap-2">
+            <DateIcon />
+            <span>{formattedDate}</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Clock />
+            <span>{formattedTime}</span>
+          </div>
+        </div>
       </div>
-
-      <div className="flex items-center gap-2">
-        <Clock />
-        <span>{formattedTime}</span>
-      </div>
-    </div>
-
-  </div>
+    </>
   );
 };
 

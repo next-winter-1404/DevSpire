@@ -22,7 +22,7 @@ const DetailTabs = ({ house }: { house: THouse }) => {
           className={`px-3 py-2 transition-colors rounded-[40px] ${
             activeTab === "about"
               ? "bg-primary text-[#ffff]"
-              : " bg-[#F5F5F5] text-[#777777] hover:text-gray-700"
+              : " text-[#777777] hover:text-gray-700 bg-background dark:border dark:border-[#777777]"
           }`}
         >
           {t("aboutHouse")}
@@ -32,7 +32,7 @@ const DetailTabs = ({ house }: { house: THouse }) => {
           className={`px-3 py-2  transition-colors rounded-[40px] ${
             activeTab === "facilities"
               ? "bg-primary text-[#ffff]"
-              : " bg-[#F5F5F5] text-[#777777] hover:text-gray-700"
+              : " bg-background dark:border dark:border-[#777777] bg-[#F5F5F5] text-[#777777] hover:text-gray-700"
           }`}
         >
           {t("options")}
@@ -42,7 +42,7 @@ const DetailTabs = ({ house }: { house: THouse }) => {
           className={`px-3 py-2 transition-colors rounded-[40px]  ${
             activeTab === "reviews"
               ? "bg-primary text-[#ffff]"
-              : " bg-[#F5F5F5] text-[#777777] hover:text-gray-700"
+              : " bg-background dark:border dark:border-[#777777] text-[#777777] hover:text-gray-700"
           }`}
         >
           {t("comments")}

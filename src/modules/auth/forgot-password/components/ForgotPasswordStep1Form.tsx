@@ -62,7 +62,7 @@ export default function ForgotPasswordStep1({ next, updateData }: Props) {
     <div className="w-full h-full flex flex-col gap-4">
       <div className="w-full flex justify-between items-center mt-8">
         <Link
-          href={`/${locale}`}
+          href={`/`}
           className="flex items-center gap-[3px] mt-[16px] 
           lg:mt-[24px] mb-[24px] lg:mb-[40px] h-[24px]
            animate-[fadeText_0.7s_ease] cursor-pointer hover:opacity-80 transition"

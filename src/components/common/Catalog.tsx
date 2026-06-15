@@ -33,7 +33,7 @@ export default function CatalogModal({
         onClick={onClose}
       >
         <div
-          className="bg-white w-full max-w-6xl rounded-2xl shadow-2xl p-6 relative overflow-y-auto max-h-[90vh]"
+          className="bg-background w-full max-w-6xl rounded-2xl shadow-2xl p-6 relative overflow-y-auto max-h-[90vh]"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between items-center mb-6">

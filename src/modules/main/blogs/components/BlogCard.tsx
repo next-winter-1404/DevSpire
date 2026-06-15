@@ -20,15 +20,12 @@ type IBlogCard = {
 const BlogCard = ({ item }: IBlogCard) => {
   return (
     <div
-      className="group w-[444px] bg-white border border-gray-200 rounded-[24px] overflow-hidden 
+      className="group w-full bg-white border border-gray-200 rounded-[24px] overflow-hidden 
     transition-all duration-300 ease-in-out cursor-pointer
     hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-2
           dark:!bg-[#27272A] dark:!border-[#333333] dark:hover:shadow-none"
-
-
     >
       <div className="relative w-full h-56 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 overflow-hidden">
-
         <BookOpen
           className="absolute bottom-6 left-6 w-20 h-20 text-white/20
          transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"

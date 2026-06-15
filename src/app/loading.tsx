@@ -19,7 +19,7 @@ export default function Loading() {
           className="z-10 flex h-20 w-20 animate-float items-center justify-center rounded-full
          bg-primary text-primary-foreground shadow-2xl"
         >
-          <HomeIcon className="h-10 w-10" />
+          <HomeIcon className="h-10 w-10 text-foreground " />
         </div>
 
         <div className="mt-12 flex items-center gap-3 rounded-2xl bg-card px-6 py-3 shadow-sm border border-border">

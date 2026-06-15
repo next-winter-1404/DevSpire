@@ -106,7 +106,7 @@ export default function ReservationTable({
           return (
             <div
               key={row.id}
-              className="relative rounded-2xl border border-[#DDDDDD] bg-white p-4 shadow-sm dark:bg-[#1F2937] dark:border-white/10"
+              className="relative rounded-2xl border border-[#DDDDDD] bg-[#ffff] p-4 shadow-sm dark:bg-[#1F2937] dark:border-white/10"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0 flex-1">
