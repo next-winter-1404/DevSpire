@@ -9,6 +9,14 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/api-backend/:path*",
+        destination: "http://188.121.111.8:3003/api/:path*",
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
