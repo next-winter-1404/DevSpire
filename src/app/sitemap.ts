@@ -1,5 +1,4 @@
 import { THousesResponse } from "@/components/common/types";
-import { apiFetch } from "@/core/Server-fetch/fetchApi";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -24,12 +23,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
   });
 
-  const reserveHouses = await apiFetch<THousesResponse>("/houses", {
-    params: { transactionType: "reservation" },
-    cache: "no-store",
-  });
+  const reserveHouses = (await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/houses?transactionType=reservation`,
+    {
+      next: {
+        revalidate: 3600,
+      },
+    },
+  ).then((res) => res.json())) as THousesResponse;
   if (reserveHouses && reserveHouses.houses.length > 0) {
-    reserveHouses.houses.map((item, i) => {
+    reserveHouses.houses.forEach((item) => {
       routes.push({
         url: `${SITE_URL}/fa/fast-reserve/${item.id}`,
         lastModified: new Date(),
@@ -39,12 +42,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  const mortgageHouses = await apiFetch<THousesResponse>("/houses", {
-    params: { transactionType: "mortgage" },
-    cache: "no-store",
-  });
+  const mortgageHouses = (await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/houses?transactionType=mortgage`,
+    {
+      next: {
+        revalidate: 3600,
+      },
+    },
+  ).then((res) => res.json())) as THousesResponse;
   if (mortgageHouses && mortgageHouses.houses.length > 0) {
-    mortgageHouses.houses.map((item, i) => {
+    mortgageHouses.houses.forEach((item) => {
       routes.push({
         url: `${SITE_URL}/fa/mortgage-rent/${item.id}`,
         lastModified: new Date(),

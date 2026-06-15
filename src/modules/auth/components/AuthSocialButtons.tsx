@@ -10,7 +10,8 @@ const AuthSocialButtons = () => {
     >
       <button
         className="flex items-center justify-center gap-4 px-18 py-4 border cursor-pointer
-       border-gray-300 rounded-[40px] text-foreground text-[16px] md:w-[45%] leading-2"
+       border-gray-300 rounded-[40px] text-foreground text-[16px] md:w-[45%] leading-2
+         whitespace-nowrap"
       >
         <Image
           src="/icons/fastReservePage/Google.svg"
@@ -21,15 +22,10 @@ const AuthSocialButtons = () => {
         {t("loginWithGoogle")}
       </button>
       <button
-        className="flex items-center justify-center gap-4  px-18 py-4 border cursor-pointer
+        className="flex items-center justify-center gap-4  px-18 py-4 border cursor-pointer  whitespace-nowrap
        border-gray-300 rounded-[40px] text-foreground text-[16px] leading-2 md:w-[45%] "
       >
-        <Image
-          src="/icons/fastReservePage/Apple.svg"
-          alt="apple"
-          width={25}
-          height={25}
-        />
+        <Image src="/icons/Apple.png" alt="apple" width={25} height={25} />
         {t("loginWithApple")}
       </button>
     </div>

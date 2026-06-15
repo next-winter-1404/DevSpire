@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import ContactView from "@/modules/main/contact-us/views/ContactView";
 import { customMetadataGenerator } from "@/utils/helper/Metadata";
 

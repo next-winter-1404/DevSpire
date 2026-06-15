@@ -31,9 +31,9 @@ export default function UserHousesTable({
   };
 
   return (
-    <div className="w-full">
-      <div className="hidden md:block w-full overflow-x-auto ">
-        <div className="max-h-[500px] overflow-y-auto">
+    <div className="w-full h-full">
+      <div className="hidden md:block w-full h-full overflow-x-auto ">
+        <div className=" h-full overflow-y-auto ">
           <table className="w-full text-sm text-right min-w-[900px] ">
             <thead className="font-medium">
               <tr className="border-b border-[#DDDDDD]">

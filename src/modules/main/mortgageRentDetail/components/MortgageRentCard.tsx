@@ -12,8 +12,6 @@ import { getSellerDetail } from "../services/GET/GetSellerDetail";
 import { useLocale } from "next-intl";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useState } from "react";
-import ChatModal from "@/modules/chats/components/ChatModal";
 
 interface IProps {
   sellerId: number;

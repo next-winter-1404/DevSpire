@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import Container from "@/components/common/Container";
 import PropertyComparison, {
   ICompareProperty,

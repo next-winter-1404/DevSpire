@@ -105,9 +105,9 @@ const BookingStepThree = ({
           </div>
         </div>
       </div>
-      <div className="mb-8">
+      {/* <div className="mb-8">
         <DiscountCode />
-      </div>
+      </div> */}
       <div className=" w-full flex flex-col gap-4 md:gap-6">
         <div className="flex gap-2 items-center">
           <h2 className="text-[24px] font-bold text-foreground ">قیمت کل :</h2>
