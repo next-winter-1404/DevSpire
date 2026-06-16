@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { PostPayment } from "../services/Post/PostPayment";
 import { IPaymentRequest } from "../types";
 import toast from "react-hot-toast";
-import { usePathname } from "@/i18n/routing";
+import { usePathname, useRouter } from "@/i18n/routing";
 import axios from "axios";
 import { notFound } from "next/navigation";
 
@@ -16,6 +16,7 @@ interface IProps {
 }
 const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
   const pathname = usePathname();
+  const router = useRouter();
   const isRequested = useRef<boolean>(false);
   const {
     mutate: paymentReq,
@@ -28,7 +29,7 @@ const BookingStepFour = ({ houseId, bookingId, amount }: IProps) => {
       toast.success("به صفحه پرداخت هدایت میشوید");
       console.log(res.data);
       localStorage.setItem("houseId", String(houseId));
-      window.location.href = res.data.paymentUrl;
+      router.push(`/mock-payment/${res.data?.paymentId}`);
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {

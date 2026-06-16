@@ -13,7 +13,7 @@ const SayAboutUs = async () => {
     },
   });
 
-  console.log(data.comments)
+  console.log(data.comments);
 
   return (
     <div className="flex justify-center w-full mt-30 px-4 sm:px-6 lg:px-10">

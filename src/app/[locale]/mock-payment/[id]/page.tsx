@@ -15,7 +15,7 @@ const MockPayment = async ({ params, searchParams }: IProps) => {
       {paymentData ? (
         <MockPaymentView paymentData={paymentData} />
       ) : (
-        <p>
+        <div>
           <div
             className="flex min-h-[350px] w-full flex-col items-center justify-center rounded-2xl 
           border border-dashed border-gray-300 bg-gray-50 px-6 text-center"
@@ -33,7 +33,7 @@ const MockPayment = async ({ params, searchParams }: IProps) => {
               بازگشت به صفحه اصلی
             </Link>
           </div>
-        </p>
+        </div>
       )}
     </div>
   );
