@@ -11,6 +11,7 @@ interface IProps {
 }
 const SellerDashboardCharts = ({ payments, user }: IProps) => {
   const t = useTranslations("sellerDashboard.dashboard");
+  console.log(user);
 
   return (
     <div className="flex gap-4 flex-col md:flex-row">
