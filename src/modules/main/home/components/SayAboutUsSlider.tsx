@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState } from "react";
 import SayAboutUsCard from "./SayAboutUsCard";
@@ -37,15 +38,16 @@ const SayAboutUsSlider = ({ data }: Props) => {
   return (
     <div className="flex flex-col items-center gap-10 w-full">
       <SliderWrapper>
-        {data?.map((data: any) => (
-          <div
-            className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
-            dir="rtl"
-            key={data.id}
-          >
-            <SayAboutUsCard data={data} />
-          </div>
-        ))}
+        {data.length > 0 &&
+          data?.map((data: any) => (
+            <div
+              className="shrink-0 w-[calc(100%-20px)] md:w-[calc(33.333%-16px)]"
+              dir="rtl"
+              key={data.id}
+            >
+              <SayAboutUsCard data={data} />
+            </div>
+          ))}
       </SliderWrapper>
       {/* <div className="flex gap-8">
         <div onClick={nextSlide}>
