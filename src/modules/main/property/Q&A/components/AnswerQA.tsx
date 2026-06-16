@@ -131,11 +131,12 @@ export default function AnswerQuestionModal({
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-black">{t("answerModalTitle")}</h3>
+                    <h3 className="text-xl font-black">
+                      {t("answerModalTitle")}
+                    </h3>
                     <p className="mt-1 text-sm text-white/60">
                       {t("answerModalDesc")}
                     </p>
-
                   </div>
                 </div>
 
@@ -143,7 +144,8 @@ export default function AnswerQuestionModal({
                   type="button"
                   onClick={handleClose}
                   disabled={isPending}
-                  className="rounded-xl p-2 text-white/70 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-xl p-2 text-white/70 transition hover:bg-white/10
+                   hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -178,10 +180,11 @@ export default function AnswerQuestionModal({
                   </label>
 
                   <span
-                    className={`text-xs ${answerValue.length > 500
-                      ? "text-[#ff5555]"
-                      : "text-slate-400"
-                      }`}
+                    className={`text-xs ${
+                      answerValue.length > 500
+                        ? "text-[#ff5555]"
+                        : "text-slate-400"
+                    }`}
                   >
                     {answerValue.length}/500
                   </span>
@@ -202,17 +205,18 @@ export default function AnswerQuestionModal({
                       notOnlySpace: (value) =>
                         value.trim().length > 0 || t("validation.answerEmpty"),
                       meaningful: (value) =>
-                        value.trim().length >= 5 || t("validation.answerMeaningful"),
+                        value.trim().length >= 5 ||
+                        t("validation.answerMeaningful"),
                     },
                   })}
-
                   placeholder={t("answerPlaceholder")}
                   className={`min-h-[160px] w-full resize-none rounded-3xl border
                      px-5 py-4 text-sm leading-7 text-slate-700 outline-none transition
-                      placeholder:text-slate-400  ${errors.answer
-                      ? "border-[#ff5555] focus:ring-4 focus:ring-[#ff5555]/10"
-                      : "border-slate-200 focus:border-[#ff7f11] focus:ring-4 focus:ring-[#ff7f11]/10"
-                    }`}
+                      placeholder:text-slate-400  ${
+                        errors.answer
+                          ? "border-[#ff5555] focus:ring-4 focus:ring-[#ff5555]/10"
+                          : "border-slate-200 focus:border-[#ff7f11] focus:ring-4 focus:ring-[#ff7f11]/10"
+                      }`}
                 />
 
                 {errors.answer && (
@@ -223,8 +227,8 @@ export default function AnswerQuestionModal({
               </div>
 
               <div className="rounded-2xl border border-[#0d3b66]/10 bg-[#0d3b66]/5 px-4 py-3">
-                <p className="text-xs leading-6 text-slate-500">{t("answerHint")}
-
+                <p className="text-xs leading-6 text-slate-500">
+                  {t("answerHint")}
                 </p>
               </div>
 
@@ -245,7 +249,6 @@ export default function AnswerQuestionModal({
                       {t("submitAnswer")}
                     </>
                   )}
-
                 </button>
 
                 <button
